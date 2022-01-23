@@ -26,6 +26,9 @@
     "/aamacau/aamacau/:category?/:id?": [
         "nczitzk"
     ],
+    "/abmedia/abmedia/:category?": [
+        "Fatpandac"
+    ],
     "/acm-ecnu/contest/:category?": [
         "a180285"
     ],
@@ -145,6 +148,9 @@
     ],
     "/distill/": [
         "nczitzk"
+    ],
+    "/dushu/fuzhou": [
+        "Fatpandac"
     ],
     "/eastday/find": [
         "nczitzk"
