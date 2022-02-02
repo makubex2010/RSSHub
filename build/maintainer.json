@@ -156,6 +156,15 @@
     "/dushu/fuzhou": [
         "Fatpandac"
     ],
+    "/e-hentai/category/:category?/:needTorrents?/:needImages?": [
+        "nczitzk"
+    ],
+    "/e-hentai/tag/:tag?/:needTorrents?/:needImages?": [
+        "nczitzk"
+    ],
+    "/e-hentai/search/:keyword?/:needTorrents?/:needImages?": [
+        "nczitzk"
+    ],
     "/eastday/find": [
         "nczitzk"
     ],
@@ -184,6 +193,9 @@
     ],
     "/eventernote/actors/:name/:id": [
         "KTachibanaM"
+    ],
+    "/ezone/:category?": [
+        "nczitzk"
     ],
     "/filmdeepfocus/:category?": [
         "nczitzk"
@@ -314,6 +326,12 @@
     "/hotukdeals/:type": [
         "DIYgod"
     ],
+    "/houxu/lives/:id?": [
+        "nczitzk"
+    ],
+    "/houxu/:category?": [
+        "nczitzk"
+    ],
     "/icac/news/:lang?": [
         "linbuxiao, TonyRL"
     ],
@@ -397,6 +415,9 @@
     ],
     "/lanqiao/questions/:id": [
         "huhuhang"
+    ],
+    "/latepost/:proma?": [
+        "nczitzk"
     ],
     "/lativ/:id": [
         "Fatpandac"
@@ -575,7 +596,16 @@
     "/qm120/news/:category?": [
         "nczitzk"
     ],
+    "/qq/ac/comic/:id": [
+        "nczitzk"
+    ],
+    "/qq/ac/rank/:type?/:time?": [
+        "nczitzk"
+    ],
     "/qq/live/:id": [
+        "nczitzk"
+    ],
+    "/radio-canada/latest/:language?": [
         "nczitzk"
     ],
     "/rfi/news": [
@@ -620,6 +650,9 @@
         "Fatpandac"
     ],
     "/startuplatte/:category?": [
+        "nczitzk"
+    ],
+    "/storm/:category?/:id?": [
         "nczitzk"
     ],
     "/subhd/sub/:category?": [
@@ -692,6 +725,15 @@
     "/wenku8/chapter/:id": [
         "zsakvo"
     ],
+    "/whoscall/": [
+        "nczitzk"
+    ],
+    "/whoscall/tags/:tag?": [
+        "nczitzk"
+    ],
+    "/whoscall/categories/:category?": [
+        "nczitzk"
+    ],
     "/wsyu/news/:type?": [
         "Derekmini"
     ],
@@ -716,6 +758,18 @@
         "kt286",
         "AlexdanerZe",
         "TonyRL"
+    ],
+    "/zaobao/realtime/:section?": [
+        "shunf4"
+    ],
+    "/zaobao/znews/:section?": [
+        "shunf4"
+    ],
+    "/zaobao/:type/:section": [
+        "shunf4"
+    ],
+    "/zaobao/interactive-graphics": [
+        "shunf4"
     ],
     "/zjgtjy/:type?": [
         "Fatpandac"
@@ -1247,10 +1301,6 @@
     "/ifanr/:channel?": [],
     "/guokr/scientific": [],
     "/guokr/:channel": [],
-    "/zaobao/realtime/:section?": [],
-    "/zaobao/znews/:section?": [],
-    "/zaobao/:type/:section": [],
-    "/zaobao/interactive-graphics": [],
     "/apple/exchange_repair/:country?": [],
     "/ipsw/index/:ptype/:pname": [],
     "/curseforge/files/:project": [],
@@ -1288,9 +1338,6 @@
     "/dwnews/rank/:type?/:range?": [],
     "/miniapp/article/:category": [],
     "/miniapp/store/newest": [],
-    "/houxu/live/:id/:timeline?": [],
-    "/houxu/events": [],
-    "/houxu/lives/:type": [],
     "/laosiji/hot": [],
     "/laosiji/feed": [],
     "/laosiji/hotshow/:id": [],
@@ -2441,7 +2488,6 @@
     "/yinxiang/card/:id": [],
     "/yinxiang/personal/:id": [],
     "/yinxiang/category/:id": [],
-    "/latepost/:proma?": [],
     "/ixigua/user/video/:uid/:disableEmbed?": [],
     "/gvm/index/:category?": [],
     "/chuapp/index/:category?": [],
@@ -2573,7 +2619,6 @@
     "/trakt/collection/:username/:type?": [],
     "/ccg/:category?": [],
     "/eagle/changelog/:language?": [],
-    "/ezone/:category?": [],
     "/cria/news/:id?": [],
     "/lingyi/:category": [],
     "/wainao-reads/all-articles": [],
