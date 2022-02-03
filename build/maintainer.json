@@ -47,6 +47,9 @@
     "/ajmide/:id": [
         "Fatpandac"
     ],
+    "/app-center/release/:user/:app/:distribution_group": [
+        "Rongronggg9"
+    ],
     "/appledaily/:channel?": [
         "Fatpandac"
     ],
@@ -410,8 +413,9 @@
     "/guduodata/daily": [
         "Gem1ni"
     ],
-    "/hackernews/:section?/:type?": [
-        "nczitzk"
+    "/hackernews/:section?/:type?/:user?": [
+        "nczitzk",
+        "xie-dongping"
     ],
     "/hbr/topic/:topic?/:type?": [
         "nczitzk"
@@ -663,6 +667,9 @@
     "/nifd/research/:categoryGuid?": [
         "Fatpandac"
     ],
+    "/nikkei-asia/nikkei-asia": [
+        "rainrdx"
+    ],
     "/nikkei-cn/:language?/:category?/:type?": [
         "nczitzk"
     ],
@@ -725,6 +732,10 @@
     ],
     "/pku/hr/:category?": [
         "nczitzk"
+    ],
+    "/producthunt/today": [
+        "miaoyafeng",
+        "Fatpandac"
     ],
     "/pts/dailynews": [
         "nczitzk"
@@ -2093,7 +2104,6 @@
     "/xinwenlianbo/index": [],
     "/blogs/paulgraham": [],
     "/invisionapp/inside-design": [],
-    "/producthunt/today": [],
     "/mlog-club/topics/:node": [],
     "/mlog-club/projects": [],
     "/chrome/webstore/extensions/:id": [],
