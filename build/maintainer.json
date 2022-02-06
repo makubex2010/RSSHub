@@ -77,6 +77,12 @@
     "/biodiscover/:channel?": [
         "aidistan"
     ],
+    "/bioone/featured": [
+        "nczitzk"
+    ],
+    "/bioone/journals/:journal?": [
+        "nczitzk"
+    ],
     "/bit/rszhaopin": [
         "nczitzk"
     ],
@@ -134,6 +140,10 @@
         "Fatpandac"
     ],
     "/cnki/journals/debut/:name": [
+        "Fatpandac"
+    ],
+    "/cntv/:column": [
+        "WhoIsSure",
         "Fatpandac"
     ],
     "/codeforces/contests": [
@@ -996,11 +1006,22 @@
     "/yaohuo/": [
         "nczitzk"
     ],
+    "/youku/channel/:channelId/:embed?": [
+        "xyqfer",
+        "Fatpandac"
+    ],
+    "/yxdzqb/:type": [
+        "LogicJake",
+        "nczitzk"
+    ],
     "/zaker/:type/:id?": [
         "LogicJake",
         "kt286",
         "AlexdanerZe",
         "TonyRL"
+    ],
+    "/zaobao/interactive-graphics": [
+        "shunf4"
     ],
     "/zaobao/realtime/:section?": [
         "shunf4"
@@ -1009,9 +1030,6 @@
         "shunf4"
     ],
     "/zaobao/:type/:section": [
-        "shunf4"
-    ],
-    "/zaobao/interactive-graphics": [
         "shunf4"
     ],
     "/zjgtjy/:type?": [
@@ -1555,7 +1573,6 @@
     "/chouti/:subject?": [],
     "/xidian/jwc/:category?": [],
     "/westore/new": [],
-    "/youku/channel/:channelId/:embed?": [],
     "/oilprice/:area": [],
     "/nhentai/search/:keyword/:mode?": [],
     "/nhentai/:key/:keyword/:mode?": [],
@@ -1909,7 +1926,6 @@
     "/gov/veterans/:type": [],
     "/gov/veterans/hebei/:type": [],
     "/dilbert/strip": [],
-    "/yxdzqb/:type": [],
     "/monsterhunter/update": [],
     "/mhw/update": [],
     "/mhw/news": [],
@@ -2616,7 +2632,6 @@
     "/wsj/:lang/:category?": [],
     "/chinafile/:category?": [],
     "/daodu/:caty?": [],
-    "/cntv/:column": [],
     "/grandchallenge/user/:id": [],
     "/grandchallenge/challenges": [],
     "/nwpu/:column": [],
@@ -2780,7 +2795,6 @@
     "/sznews/press": [],
     "/sznews/ranking": [],
     "/shuax/project/:name?": [],
-    "/bioone/featured": [],
     "/obsidian/announcements": [],
     "/jlbtc/kyc/:category?": [],
     "/jlbtc/jwc/:id?": [],
