@@ -101,6 +101,9 @@
     "/bupt/rczp": [
         "nczitzk"
     ],
+    "/cahkms/:category?": [
+        "nczitzk"
+    ],
     "/cbirc/:category?": [
         "JkCheung"
     ],
@@ -113,6 +116,9 @@
     ],
     "/cde/:channel/:category": [
         "Fatpandac"
+    ],
+    "/cdi/:id?": [
+        "nczitzk"
     ],
     "/cebbank/quotation/all": [
         "linbuxiao"
@@ -2101,7 +2107,7 @@
     "/haimaoba/:id?": [],
     "/reuters/channel/:site/:channel": [],
     "/pgyer/:app?": [],
-    "/weibo/timeline/:uid/:feature?": [],
+    "/weibo/timeline/:uid/:feature?/:routeParams?": [],
     "/taptap/topic/:id/:label?": [],
     "/taptap/changelog/:id": [],
     "/taptap/review/:id/:order?": [],
