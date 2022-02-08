@@ -515,6 +515,10 @@
     "/informs/:category?": [
         "Fatpandac"
     ],
+    "/iresearch/report": [
+        "brilon",
+        "Fatpandac"
+    ],
     "/ithome/zt/:id": [
         "nczitzk"
     ],
@@ -780,6 +784,9 @@
     "/pku/hr/:category?": [
         "nczitzk"
     ],
+    "/polkaworld/polkaworld/newest": [
+        "iceqing"
+    ],
     "/producthunt/today": [
         "miaoyafeng",
         "Fatpandac"
@@ -982,6 +989,14 @@
     ],
     "/ustb/yjsy/news/wenfa": [
         "DA1Y1"
+    ],
+    "/wallhaven/search/:filter?/:needDetails?": [
+        "nczitzk",
+        "Fatpandac"
+    ],
+    "/wallhaven/:filter?/:needDetails?": [
+        "nczitzk",
+        "Fatpandac"
     ],
     "/wallstreetcn/live/:category?": [
         "nczitzk"
@@ -1854,7 +1869,6 @@
     "/infoq/recommend": [],
     "/infoq/topic/:id": [],
     "/checkee/:dispdate": [],
-    "/iresearch/report": [],
     "/matters/latest/:type?": [],
     "/matters/hot": [],
     "/matters/tags/:tid": [],
