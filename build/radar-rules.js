@@ -3,6 +3,24 @@
         docs:"https://docs.rsshub.app/bbs.html#2047-fen-lei",
         source:[ "/" ],
         target:"/2047/:category?/:sort?" } ] },
+  "12306.cn":{ _name:"12306",
+    kyfw:[ { title:"售票信息",
+        docs:"https://docs.rsshub.app/travel.html#_12306-shou-shu-piao-piao-xin-shen-xi",
+        source:[ "/",
+          "/otn/leftTicket/init" ],
+        target:(params, url) => {
+                    const searchParams = new URL(url).searchParams;
+                    const from = searchParams.get('fs').split(',')[0];
+                    const to = searchParams.get('ts').split(',')[0];
+                    const date = searchParams.get('date');
+
+                    return `/12306/${date}/${from}/${to}`;
+                } } ],
+    www:[ { title:"最新动态",
+        docs:"https://docs.rsshub.app/travel.html#_12306-zui-cuo-xin-dong-tai",
+        source:[ "/",
+          "/mormhweb/1/:id/index_fl.html" ],
+        target:"/12306/zxdt/:id" } ] },
   "18comic.org":{ _name:"18comic 禁漫天堂",
     ".":[ { title:"成人 A 漫",
         docs:"https://docs.rsshub.app/anime.html#18comic-jin-man-tian-tang-cheng-ren-a-man",
@@ -2670,6 +2688,12 @@
         docs:"https://docs.rsshub.app/other.html#wu-chang-shou-yi-xue-yuan",
         source:"/*",
         target:"/wsyu/news/mtjj" } ] },
+  "wyzxwk.com":{ _name:"乌有之乡",
+    ".":[ { title:"栏目",
+        docs:"https://docs.rsshub.app/new-media.html#wu-you-zhi-xiang-lan-mu",
+        source:[ "/Article/:id",
+          "/" ],
+        target:"/wyzxwk/article/:id?" } ] },
   "wzu.edu.cn":{ _name:"温州大学",
     ".":[ { title:"温州大学 - 主站新闻",
         docs:"https://docs.rsshub.app/university.html#wen-zhou-da-xue" } ] },
