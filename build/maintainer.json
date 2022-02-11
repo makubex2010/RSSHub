@@ -436,6 +436,9 @@
     "/gov/guangdong/tqyb/sncsyjxh": [
         "Fatpandac"
     ],
+    "/gov/huizhou/zwgk/:category?": [
+        "Fatpandac"
+    ],
     "/guduodata/daily": [
         "Gem1ni"
     ],
@@ -467,6 +470,9 @@
     "/hex-rays/news": [
         "hellodword ",
         "TonyRL"
+    ],
+    "/hizu/:column?": [
+        "nczitzk"
     ],
     "/hkej/:category?": [
         "TonyRL"

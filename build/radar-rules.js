@@ -1155,6 +1155,31 @@
         docs:"https://docs.rsshub.app/government.html#guang-zhou-tian-qi-guang-dong-sheng-nei-cheng-shi-yu-jing-xin-hao",
         source:[ "/gz/weatherAlarm/otherCity/" ],
         target:"/gov/guangdong/tqyb/sncsyjxh" } ] },
+  "huizhou.gov.cn":{ _name:"惠州市人民政府",
+    www:[ { title:"政务公开 - 政务要闻",
+        docs:"https://docs.rsshub.app/government.html#guang-yan-an-dong-sheng-xing-xian-ren-min-zheng-zheng-fu-hui-zhou-shi-fu-ren-min-zheng-zheng-fu-zheng-zheng-wu-gong-kai",
+        source:[ "/zwgk/hzsz/:category" ],
+        target:(params) => {
+                    if (params.category === 'zwyw') {
+                        return '/gov/huizhou/zwgk/zwyw';
+                    }
+                } },
+      { title:"政务公开 - 机关动态",
+        docs:"https://docs.rsshub.app/government.html#guang-yan-an-dong-sheng-xing-xian-ren-min-zheng-zheng-fu-hui-zhou-shi-fu-ren-min-zheng-zheng-fu-zheng-zheng-wu-gong-kai",
+        source:[ "/zwgk/hzsz/:category" ],
+        target:(params) => {
+                    if (params.category === 'jgdt') {
+                        return '/gov/huizhou/zwgk/jgdt';
+                    }
+                } },
+      { title:"政务公开 - 县区要闻",
+        docs:"https://docs.rsshub.app/government.html#guang-yan-an-dong-sheng-xing-xian-ren-min-zheng-zheng-fu-hui-zhou-shi-fu-ren-min-zheng-zheng-fu-zheng-zheng-wu-gong-kai",
+        source:[ "/zwgk/hzsz/:category" ],
+        target:(params) => {
+                    if (params.category === 'xqyw') {
+                        return '/gov/huizhou/zwgk/xqyw';
+                    }
+                } } ] },
   "guduodata.com":{ _name:"骨朵数据",
     data:[ { title:"日榜",
         docs:"https://docs.rsshub.app/other.html#gu-duo-shu-ju",
@@ -1207,6 +1232,11 @@
         source:[ "/",
           "/blog" ],
         target:"/hex-rays/news" } ] },
+  "hizh.cn":{ _name:"珠海网",
+    ".":[ { title:"栏目",
+        docs:"https://docs.rsshub.app/new-media.html#zhu-hai-wang-lan-mu",
+        source:"/",
+        target:"/hizu/:column?" } ] },
   "hkej.com":{ _name:"信报财经新闻",
     ".":[ { title:"即时新闻",
         docs:"https://docs.rsshub.app/traditional-media.html##xin-bao-cai-jing-xin-wen",
