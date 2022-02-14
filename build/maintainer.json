@@ -889,6 +889,18 @@
     "/startuplatte/:category?": [
         "nczitzk"
     ],
+    "/stcn/data/:id?": [
+        "nczitzk"
+    ],
+    "/stcn/kuaixun/:id?": [
+        "nczitzk"
+    ],
+    "/stcn/stock/:id?": [
+        "nczitzk"
+    ],
+    "/stcn/:id?": [
+        "nczitzk"
+    ],
     "/storm/:category?/:id?": [
         "nczitzk"
     ],
@@ -1074,6 +1086,10 @@
     ],
     "/youku/channel/:channelId/:embed?": [
         "xyqfer",
+        "Fatpandac"
+    ],
+    "/youzhiyouxing/materials/:column?": [
+        "broven",
         "Fatpandac"
     ],
     "/yxdzqb/:type": [
@@ -2121,7 +2137,6 @@
     "/wechat-open/community/:type/:category": [],
     "/weidian/goods/:id": [],
     "/youzan/goods/:id": [],
-    "/youzhiyouxing/materials": [],
     "/bishijie/kuaixun": [],
     "/sf/sffq-announce": [],
     "/queshu/sale": [],
@@ -2674,9 +2689,6 @@
     "/allnow/tag/:id": [],
     "/allnow/user/:id": [],
     "/allnow": [],
-    "/stcn/news/:id?": [],
-    "/stcn/data/:id?": [],
-    "/stcn/kuaixun/:id?": [],
     "/dev.to/top/:period": [],
     "/gameres/hot": [],
     "/gameres/list/:id": [],
