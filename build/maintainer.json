@@ -29,6 +29,12 @@
     "/50forum/": [
         "sddiky"
     ],
+    "/52hrtt/symposium/:id?/:classId?": [
+        "nczitzk"
+    ],
+    "/52hrtt/:area?/:type?": [
+        "nczitzk"
+    ],
     "/8world/:category?": [
         "nczitzk"
     ],
@@ -103,6 +109,21 @@
     ],
     "/bit/rszhaopin": [
         "nczitzk"
+    ],
+    "/bjfu/grs": [
+        "markmingjie"
+    ],
+    "/bjfu/it/:type": [
+        "wzc-blog"
+    ],
+    "/bjfu/jwc/:type": [
+        "markmingjie"
+    ],
+    "/bjfu/kjc": [
+        "markmingjie"
+    ],
+    "/bjfu/news/:type": [
+        "markmingjie"
     ],
     "/blockbeats/:channel?": [
         "Fatpandac"
@@ -287,6 +308,12 @@
     "/douban/topic/:id/:sort?": [
         "LogicJake"
     ],
+    "/dtcj/datahero/:category?": [
+        "nczitzk"
+    ],
+    "/dtcj/datainsight/:id?": [
+        "nczitzk"
+    ],
     "/dushu/fuzhou": [
         "Fatpandac"
     ],
@@ -299,11 +326,17 @@
     "/e-hentai/search/:keyword?/:needTorrents?/:needImages?": [
         "nczitzk"
     ],
+    "/eastday/24/:category?": [
+        "nczitzk"
+    ],
     "/eastday/find": [
         "nczitzk"
     ],
     "/eastday/portrait": [
         "nczitzk"
+    ],
+    "/eastday/sh": [
+        "saury"
     ],
     "/ecust-jxjy/ecust-jxjy/news": [
         "jialinghui"
@@ -347,6 +380,12 @@
     ],
     "/fisher-spb/news": [
         "denis-ya"
+    ],
+    "/flyert/preferential": [
+        "howel52"
+    ],
+    "/flyert/creditcard/:bank": [
+        "nicolaszf"
     ],
     "/focustaiwan/:category?": [
         "nczitzk"
@@ -835,6 +874,9 @@
     "/odaily/:id?": [
         "nczitzk"
     ],
+    "/oilchem/:type?/:category?/:subCategory?": [
+        "nczitzk"
+    ],
     "/oncc/:language/:channel?": [
         "Fatpandac"
     ],
@@ -899,6 +941,9 @@
     "/qq/live/:id": [
         "nczitzk"
     ],
+    "/qq88/:category?": [
+        "nczitzk"
+    ],
     "/radio-canada/latest/:language?": [
         "nczitzk"
     ],
@@ -934,6 +979,9 @@
     ],
     "/shmeea/": [
         "jialinghui"
+    ],
+    "/shmeea/self-study": [
+        "h2ws"
     ],
     "/shopback/:store": [
         "nczitzk"
@@ -1166,6 +1214,9 @@
     ],
     "/whoscall/categories/:category?": [
         "nczitzk"
+    ],
+    "/wsj/:lang/:category?": [
+        "oppilate"
     ],
     "/wsyu/news/:type?": [
         "Derekmini"
@@ -1552,10 +1603,6 @@
     "/hhgal": [],
     "/sayhuahuo": [],
     "/zdfx": [],
-    "/bjfu/grs": [],
-    "/bjfu/kjc": [],
-    "/bjfu/jwc/:type": [],
-    "/bjfu/news/:type": [],
     "/bit/jwc": [],
     "/bit/cs": [],
     "/bjtu/gs/:type": [],
@@ -2133,17 +2180,12 @@
     "/005tv/zx/latest": [],
     "/polimi/news/:language?": [],
     "/dekudeals/:type": [],
-    "/eastday/sh": [],
     "/metacritic/release/:platform/:type/:sort?": [],
     "/kkj/news": [],
     "/outagereport/:name/:count?": [],
     "/sixthtone/news": [],
     "/aiyanxishe/:id/:sort?": [],
     "/huodongxing/explore": [],
-    "/flyert/preferential": [],
-    "/flyert/creditcard/:bank": [],
-    "/flyertea/preferential": [],
-    "/flyertea/creditcard/:bank": [],
     "/radio/:channelname/:name": [],
     "/8btc/:authorid": [],
     "/8btc/news/flash": [],
@@ -2810,7 +2852,6 @@
     "/qnap/release-notes/:id": [],
     "/liquipedia/dota2/matches/:id": [],
     "/gov/harbin/kjj": [],
-    "/wsj/:lang/:category?": [],
     "/chinafile/:category?": [],
     "/daodu/:caty?": [],
     "/grandchallenge/user/:id": [],
@@ -2980,7 +3021,6 @@
     "/jlbtc/kyc/:category?": [],
     "/jlbtc/jwc/:id?": [],
     "/jlbtc/:category?": [],
-    "/dtcj/datahero/:category?": [],
     "/kenshin/:category?/:type?": [],
     "/av01/actor/:name/:type?": [],
     "/av01/tag/:name/:type?": [],
