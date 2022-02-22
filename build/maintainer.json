@@ -74,7 +74,13 @@
     "/audiobar/latest": [
         "zxzhuty"
     ],
+    "/bandcamp/tag/:tag?": [
+        "nczitzk"
+    ],
     "/bandcamp/live": [
+        "nczitzk"
+    ],
+    "/bandcamp/weekly": [
         "nczitzk"
     ],
     "/baozimh/comic/:name": [
@@ -145,6 +151,9 @@
     "/chaoxing/qk/:id/:needContent?": [
         "nczitzk"
     ],
+    "/ciidbnu/:id?": [
+        "nczitzk"
+    ],
     "/cnbeta/": [
         "nczitzk"
     ],
@@ -187,6 +196,9 @@
     ],
     "/ddosi/category/:category": [
         "XinRoom"
+    ],
+    "/disinfo/publications": [
+        "nczitzk"
     ],
     "/distill/": [
         "nczitzk"
@@ -413,6 +425,9 @@
     ],
     "/github/user/followers/:user": [
         "HenryQW"
+    ],
+    "/gocn/": [
+        "AtlanCI"
     ],
     "/google/album/:id": [
         "hoilc"
@@ -799,6 +814,9 @@
         "crispgm",
         "Fatpandac"
     ],
+    "/nogizaka46/blog": [
+        "Kasper4649"
+    ],
     "/now/news/:category?/:id?": [
         "nczitzk"
     ],
@@ -819,6 +837,24 @@
     ],
     "/oncc/:language/:channel?": [
         "Fatpandac"
+    ],
+    "/orcid/:id": [
+        "OrangeEd1t"
+    ],
+    "/oup/:name": [
+        "Fatpandac"
+    ],
+    "/panewslab/column/:id": [
+        "nczitzk"
+    ],
+    "/panewslab/newsflash/:language?": [
+        "nczitzk"
+    ],
+    "/panewslab/topic/:id": [
+        "nczitzk"
+    ],
+    "/panewslab/:category?": [
+        "nczitzk"
     ],
     "/people/cpc/24h": [
         "nczitzk"
@@ -900,6 +936,12 @@
         "jialinghui"
     ],
     "/shopback/:store": [
+        "nczitzk"
+    ],
+    "/sicau/dky/:category?": [
+        "nczitzk"
+    ],
+    "/sicau/yan/:category?": [
         "nczitzk"
     ],
     "/sicau/zsjy/:category?": [
@@ -989,6 +1031,9 @@
     ],
     "/timednews/news/:type?": [
         "linbuxiao"
+    ],
+    "/tisi/latest": [
+        "Fatpandac"
     ],
     "/topys/:keyword?": [
         "nczitzk"
@@ -1110,6 +1155,9 @@
     "/wenku8/chapter/:id": [
         "zsakvo"
     ],
+    "/whitehouse/briefing-room/:category?": [
+        "nczitzk"
+    ],
     "/whoscall/": [
         "nczitzk"
     ],
@@ -1137,6 +1185,13 @@
     "/xaut/rsc/:category?": [
         "mocusez",
         "light0926"
+    ],
+    "/xiaoyuzhou/": [
+        "prnake",
+        "Maecenas"
+    ],
+    "/xiaoyuzhou/podcast/:id": [
+        "hondajojo"
     ],
     "/yaohuo/": [
         "nczitzk"
@@ -1170,6 +1225,15 @@
     ],
     "/zaobao/:type/:section": [
         "shunf4"
+    ],
+    "/zhibo8/forum/:id": [
+        "LogicJake"
+    ],
+    "/zhibo8/more/:category?": [
+        "nczitzk"
+    ],
+    "/zhibo8/post/:id": [
+        "LogicJake"
     ],
     "/zhubai/:id": [
         "naixy28"
@@ -2069,9 +2133,6 @@
     "/005tv/zx/latest": [],
     "/polimi/news/:language?": [],
     "/dekudeals/:type": [],
-    "/zhibo8/forum/:id": [],
-    "/zhibo8/post/:id": [],
-    "/zhibo8/more/:caty": [],
     "/eastday/sh": [],
     "/metacritic/release/:platform/:type/:sort?": [],
     "/kkj/news": [],
@@ -2458,7 +2519,6 @@
     "/ccnucs": [],
     "/ccnuwu": [],
     "/weexcn/news/:typeid": [],
-    "/eastmoney/user/:uid": [],
     "/ssmh": [],
     "/ssmh/category/:cid": [],
     "/scnuyjs": [],
@@ -2640,7 +2700,6 @@
     "/newrank/douyin/:dyid": [],
     "/manxiaosi/book/:id": [],
     "/jlu/oa": [],
-    "/xiaoyuzhou": [],
     "/hfut/tzgg": [],
     "/darwinawards/all": [],
     "/scvtc/xygg": [],
@@ -2969,7 +3028,6 @@
     "/wanwansub/:id?": [],
     "/zimuxia/portfolio/:id": [],
     "/zimuxia/:category?": [],
-    "/bandcamp/tag/:tag?": [],
     "/hugo/releases": [],
     "/tongli/news/:type": [],
     "/or/:id?": [],
