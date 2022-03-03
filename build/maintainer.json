@@ -592,6 +592,18 @@
     "/hbr/topic/:topic?/:type?": [
         "nczitzk"
     ],
+    "/hellobtc/information/:channel?": [
+        "Fatpandac"
+    ],
+    "/hellobtc/news": [
+        "Fatpandac"
+    ],
+    "/hellobtc/kepu/:channel?": [
+        "Fatpandac"
+    ],
+    "/hellobtc/topic/:id": [
+        "Fatpandac"
+    ],
     "/heu/yjsy/list/:id": [
         "Derekmini"
     ],
@@ -1287,6 +1299,9 @@
     ],
     "/trow/portal": [
         "shiningdracon"
+    ],
+    "/txrjy/fornumtopic/:channel?": [
+        "Fatpandac"
     ],
     "/ucas/job/:type?": [
         "Fatpandac"
