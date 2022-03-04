@@ -592,6 +592,9 @@
     "/hbr/topic/:topic?/:type?": [
         "nczitzk"
     ],
+    "/hdu/cs": [
+        "legr4ndk"
+    ],
     "/hellobtc/information/:channel?": [
         "Fatpandac"
     ],
@@ -1293,6 +1296,15 @@
     ],
     "/tisi/latest": [
         "Fatpandac"
+    ],
+    "/tokeninsight/blog/:lang?": [
+        "fuergaosi233"
+    ],
+    "/tokeninsight/bulletin:lang?": [
+        "fuergaosi233"
+    ],
+    "/tokeninsight/report:lang?": [
+        "fuergaosi233"
     ],
     "/topys/:keyword?": [
         "nczitzk"
