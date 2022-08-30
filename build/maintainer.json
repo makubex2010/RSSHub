@@ -723,6 +723,9 @@
     "/csu/cse/:type?": [
         "j1g5awi"
     ],
+    "/cts/:category": [
+        "miles170"
+    ],
     "/dahecube/:type?": [
         "linbuxiao"
     ],
@@ -1413,6 +1416,10 @@
     ],
     "/gov/xuzhou/hrss/:category?": [
         "nczitzk"
+    ],
+    "/greasyfork/:language/:domain?": [
+        "imlonghao",
+        "miles170"
     ],
     "/guancha/:category?": [
         "nczitzk",
@@ -2489,14 +2496,13 @@
         "evnydd0sf"
     ],
     "/nuaa/cae/:type/:getDescription?": [
-        "Seiry",
-        "qrzbing",
         "Xm798"
     ],
     "/nuaa/cs/:type/:getDescription?": [
         "LogicJake",
         "Seiry",
-        "qrzbing"
+        "qrzbing",
+        "Xm798"
     ],
     "/nuaa/jwc/:type/:getDescription?": [
         "arcosx",
@@ -4103,7 +4109,6 @@
     "/un/scveto": [],
     "/egsea/flash": [],
     "/xuangubao/subject/:subject_id": [],
-    "/greasyfork/:language/:domain?": [],
     "/gwern/:category": [],
     "/linkedkeeper/:type/:id?": [],
     "/technologyreview": [],
