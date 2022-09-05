@@ -512,6 +512,9 @@
     "/blockbeats/:channel?": [
         "Fatpandac"
     ],
+    "/bluestacks/release/5": [
+        "TonyRL"
+    ],
     "/bnu/bs/:category?": [
         "nczitzk"
     ],
@@ -747,6 +750,12 @@
     ],
     "/dbmv/:category?": [
         "kba977"
+    ],
+    "/dcard/posts/:type?": [
+        "DIYgod"
+    ],
+    "/dcard/:section/:type?": [
+        "HenryQW"
     ],
     "/ddosi/": [
         "XinRoom"
@@ -1349,6 +1358,9 @@
     ],
     "/gov/nmpa/:path+": [
         "TonyRL"
+    ],
+    "/gov/nopss/:path+": [
+        "nczitzk"
     ],
     "/gov/nrta/news/:category?": [
         "yuxinliu-alex"
@@ -2924,6 +2936,9 @@
     "/radio-canada/latest/:language?": [
         "nczitzk"
     ],
+    "/rarehistoricalphotos/": [
+        "TonyRL"
+    ],
     "/remnote/changelog": [
         "TonyRL"
     ],
@@ -3347,6 +3362,9 @@
     ],
     "/thepaper/list/:id": [
         "nczitzk"
+    ],
+    "/thwiki/calendar/:before?/:after?": [
+        "aether17"
     ],
     "/tiktok/user/:user": [
         "TonyRL"
@@ -4477,7 +4495,6 @@
     "/instapaper/person/:name": [],
     "/ui-cn/article": [],
     "/ui-cn/user/:id": [],
-    "/dcard/:section/:type?": [],
     "/bjp/apod": [],
     "/luogu/daily/:id?": [],
     "/luogu/contest": [],

@@ -1891,6 +1891,20 @@
       }
     ]
   },
+  "bluestacks.com": {
+    "_name": "BlueStacks",
+    ".": [
+      {
+        "title": "BlueStacks 5 版本日誌",
+        "docs": "https://docs.rsshub.app/program-update.html#bluestacks",
+        "source": [
+          "/hc/en-us/articles/360056960211-Release-Notes-BlueStacks-5",
+          "/"
+        ],
+        "target": "/bluestacks/release/5"
+      }
+    ]
+  },
   "bnu.edu.cn": {
     "_name": "北京师范大学",
     ".": [
@@ -3008,6 +3022,35 @@
         "title": "分类",
         "docs": "https://docs.rsshub.app/picture.html#bu-xiu-se",
         "source": "/"
+      }
+    ]
+  },
+  "dcard.tw": {
+    "_name": "Dcard",
+    "www": [
+      {
+        "title": "首頁帖子-最新",
+        "docs": "https://docs.rsshub.app/bbs.html#dcard",
+        "source": "/f",
+        "target": "/dcard/posts/latest"
+      },
+      {
+        "title": "首頁帖子-熱門",
+        "docs": "https://docs.rsshub.app/bbs.html#dcard",
+        "source": "/f",
+        "target": "/dcard/posts/popular"
+      },
+      {
+        "title": "板塊帖子-最新",
+        "docs": "https://docs.rsshub.app/bbs.html#dcard",
+        "source": "/f/:section",
+        "target": "/dcard/:section/latest"
+      },
+      {
+        "title": "板塊帖子-熱門",
+        "docs": "https://docs.rsshub.app/bbs.html#dcard",
+        "source": "/f/:section",
+        "target": "/dcard/:section/popular"
       }
     ]
   },
@@ -5312,6 +5355,18 @@
       {
         "title": "通用",
         "docs": "https://docs.rsshub.app/government.html#guo-jia-yao-pin-jian-du-guan-li-ju",
+        "source": [
+          "/*path"
+        ]
+      }
+    ]
+  },
+  "nopss.gov.cn": {
+    "_name": "全国哲学社会科学工作办公室",
+    ".": [
+      {
+        "title": "通用",
+        "docs": "https://docs.rsshub.app/government.html#quan-guo-zhe-xue-she-hui-ke-xue-gong-zuo-ban-gong-shi",
         "source": [
           "/*path"
         ]
@@ -12021,6 +12076,19 @@
       }
     ]
   },
+  "rarehistoricalphotos.com": {
+    "_name": "Rare Historical Photos",
+    ".": [
+      {
+        "title": "Home",
+        "docs": "https://docs.rsshub.app/en/picture.html#rare-historical-photos",
+        "source": [
+          "/"
+        ],
+        "target": "/rarehistoricalphotos"
+      }
+    ]
+  },
   "readhub.cn": {
     "_name": "Readhub",
     ".": [
@@ -13691,6 +13759,20 @@
           "/"
         ],
         "target": "/thepaper/factpaper/:status"
+      }
+    ]
+  },
+  "thwiki.cc": {
+    "_name": "THBWiki",
+    ".": [
+      {
+        "title": "日历",
+        "docs": "https://docs.rsshub.app/#thbwiki",
+        "source": [
+          "/",
+          "/日程表"
+        ],
+        "target": "/thwiki/calendar"
       }
     ]
   },
@@ -16334,35 +16416,6 @@
         "docs": "https://docs.rsshub.app/picture.html#bing-bi-zhi",
         "source": "",
         "target": "/bing"
-      }
-    ]
-  },
-  "dcard.tw": {
-    "_name": "Dcard",
-    "www": [
-      {
-        "title": "首頁帖子-最新",
-        "docs": "https://docs.rsshub.app/bbs.html#dcard",
-        "source": "/f",
-        "target": "/dcard/posts/latest"
-      },
-      {
-        "title": "首頁帖子-熱門",
-        "docs": "https://docs.rsshub.app/bbs.html#dcard",
-        "source": "/f",
-        "target": "/dcard/posts/popular"
-      },
-      {
-        "title": "板塊帖子-最新",
-        "docs": "https://docs.rsshub.app/bbs.html#dcard",
-        "source": "/f/:section",
-        "target": "/dcard/:section/latest"
-      },
-      {
-        "title": "板塊帖子-熱門",
-        "docs": "https://docs.rsshub.app/bbs.html#dcard",
-        "source": "/f/:section",
-        "target": "/dcard/:section/popular"
       }
     ]
   },
