@@ -8840,6 +8840,16 @@
           "/newsflashes",
           "/" ],
         target:"/yunspe/newsflashes" } ] },
+  "yxdown.com":{ _name:"游讯网",
+    ".":[ { title:"资讯",
+        docs:"https://docs.rsshub.app/game.html#you-xun-wang",
+        source:[ "/news/:category",
+          "/news" ],
+        target:(params) => `/yxdown/news${params.category ? `/${params.category}` : ''}` },
+      { title:"精彩推荐",
+        docs:"https://docs.rsshub.app/game.html#you-xun-wang",
+        source:[ "/" ],
+        target:"/yxdown/recommend" } ] },
   "yxdzqb.com":{ _name:"游戏打折情报",
     ".":[ { title:"游戏折扣",
         docs:"https://docs.rsshub.app/game.html#you-xi-da-zhe-qing-bao-you-xi-zhe-kou",
@@ -9048,19 +9058,19 @@
         target:(params) => {
                     let type;
                     switch (params.path) {
-                        case '1335/list.htm':
+                        case 'qbgg/list.htm':
                             type = 1;
                             break;
-                        case '1336/list.htm':
+                        case 'jxgl/list.htm':
                             type = 2;
                             break;
-                        case '1337/list.htm':
+                        case 'glzz/list.htm':
                             type = 3;
                             break;
-                        case '1338/list.htm':
+                        case 'xkjs/list.htm':
                             type = 4;
                             break;
-                        case '1339/list.htm':
+                        case 'hwjl/list.htm':
                             type = 5;
                             break;
                         default:
