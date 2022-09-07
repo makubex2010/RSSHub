@@ -4649,6 +4649,45 @@
       }
     ]
   },
+  "gamme.com.tw": {
+    "_name": "卡卡洛普",
+    "news": [
+      {
+        "title": "宅宅新聞 - 分類",
+        "docs": "https://docs.rsshub.app/new-media.html#ka-ka-luo-pu",
+        "source": [
+          "/category/:category",
+          "/"
+        ]
+      },
+      {
+        "title": "宅宅新聞 - 標籤",
+        "docs": "https://docs.rsshub.app/new-media.html#ka-ka-luo-pu",
+        "source": [
+          "/tag/:tag"
+        ],
+        "target": "/gamme/news/tag/:tag"
+      }
+    ],
+    "sexynews": [
+      {
+        "title": "西斯新聞 - 分類",
+        "docs": "https://docs.rsshub.app/new-media.html#ka-ka-luo-pu",
+        "source": [
+          "/category/:category",
+          "/"
+        ]
+      },
+      {
+        "title": "西斯新聞 - 標籤",
+        "docs": "https://docs.rsshub.app/new-media.html#ka-ka-luo-pu",
+        "source": [
+          "/tag/:tag"
+        ],
+        "target": "/gamme/sexynews/tag/:tag"
+      }
+    ]
+  },
   "gaze.run": {
     "_name": "注视影视",
     ".": [
@@ -11855,6 +11894,28 @@
           "/"
         ],
         "target": "/qbittorrent/news"
+      }
+    ]
+  },
+  "qianzhan.com": {
+    "_name": "前瞻网",
+    ".": [
+      {
+        "title": "文章列表",
+        "docs": "https://docs.rsshub.app/finance.html#qian-zhan-wang",
+        "source": [
+          "/analyst",
+          "/analyst/list/:html"
+        ]
+      },
+      {
+        "title": "排行榜",
+        "docs": "https://docs.rsshub.app/finance.html#qian-zhan-wang",
+        "source": [
+          "/analyst",
+          "/"
+        ],
+        "target": "/qianzhan/analyst/rank"
       }
     ]
   },
