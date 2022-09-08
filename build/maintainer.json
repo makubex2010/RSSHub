@@ -200,6 +200,9 @@
     "/aliyun/notice/:type?": [
         "muzea"
     ],
+    "/aliyundrive/files/:share_id/:parent_file_id?": [
+        "DIYgod"
+    ],
     "/allrecode/news": [
         "nczitzk"
     ],
@@ -2454,6 +2457,9 @@
     ],
     "/nju/dafls": [
         "ret-1"
+    ],
+    "/nju/exchangesys": [
+        "cqjjjzr"
     ],
     "/nju/gra": [
         "ret-1"
