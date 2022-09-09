@@ -766,6 +766,10 @@
     "/ddosi/category/:category": [
         "XinRoom"
     ],
+    "/deepmind/blog": [
+        "nczitzk",
+        "TonyRL"
+    ],
     "/dgjyw/:category?": [
         "nczitzk"
     ],
@@ -2471,7 +2475,7 @@
         "ret-1"
     ],
     "/nju/jw/:type": [
-        "ret-1"
+        "cqjjjzr"
     ],
     "/nju/rczp/:type": [
         "ret-1"
@@ -3032,6 +3036,18 @@
     ],
     "/samsung/research/blog": [
         "nczitzk"
+    ],
+    "/science/cover": [
+        "yech1990",
+        "TonyRL"
+    ],
+    "/science/current/:journal?": [
+        "yech1990",
+        "TonyRL"
+    ],
+    "/science/early/:journal?": [
+        "yech1990",
+        "TonyRL"
     ],
     "/sciencedirect/journal/:id": [
         "nczitzk"
@@ -4832,9 +4848,6 @@
     "/pnas/:topic?": [],
     "/cell/cell/:category": [],
     "/cell/cover": [],
-    "/sciencemag/current/:journal?": [],
-    "/sciencemag/cover": [],
-    "/sciencemag/early/science": [],
     "/dlsite/new/:type": [],
     "/dlsite/campaign/:type/:free?": [],
     "/mcbbs/forum/:type": [],
@@ -5289,7 +5302,6 @@
     "/rescuetime/release-notes/:os?": [],
     "/totalcommander/whatsnew": [],
     "/blizzard/news/:language?/:category?": [],
-    "/deepmind/blog/:category?": [],
     "/deepl/blog/:lang?": [],
     "/openai/blog/:tag?": [],
     "/muchong/journal/:type?": [],
