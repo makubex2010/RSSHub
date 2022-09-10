@@ -9053,6 +9053,19 @@
       }
     ]
   },
+  "linovelib.com": {
+    "_name": "哩哔轻小说",
+    ".": [
+      {
+        "title": "小说详情",
+        "docs": "https://docs.rsshub.app/anime.html#linovelib",
+        "source": [
+          "/novel/:id"
+        ],
+        "target": "/linovellib/novel/:id"
+      }
+    ]
+  },
   "literotica.com": {
     "_name": "Literotica",
     ".": [
@@ -9297,6 +9310,52 @@
           "/sort-realtime",
           "/sort-realtime/:sort"
         ]
+      }
+    ]
+  },
+  "sonymusic.co.jp": {
+    "_name": "Sony Music",
+    "www": [
+      {
+        "title": "LiSA News",
+        "docs": "https://docs.rsshub.app/en/live.html#lisa",
+        "source": [
+          "/artist/lisa/",
+          "/artist/lisa/info/"
+        ],
+        "target": "/lxixsxa/info"
+      },
+      {
+        "title": "LiSA Albums",
+        "docs": "https://docs.rsshub.app/en/live.html#lisa",
+        "source": [
+          "/artist/lisa/",
+          "/artist/lisa/discography/"
+        ],
+        "target": "/lxixsxa/disco"
+      }
+    ]
+  },
+  "lxixsxa.com": {
+    "_name": "LiSA Official",
+    "www": [
+      {
+        "title": "News",
+        "docs": "https://docs.rsshub.app/en/live.html#lisa",
+        "source": [
+          "/",
+          "/info"
+        ],
+        "target": "/lxixsxa/info"
+      },
+      {
+        "title": "Albums",
+        "docs": "https://docs.rsshub.app/en/live.html#lisa",
+        "source": [
+          "/",
+          "/discography"
+        ],
+        "target": "/lxixsxa/disco"
       }
     ]
   },
