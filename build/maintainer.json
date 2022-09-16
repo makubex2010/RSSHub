@@ -218,6 +218,9 @@
     "/android/platform-tools-releases": [
         "nczitzk"
     ],
+    "/anquanke/:category": [
+        "qwertyuiop6"
+    ],
     "/apnews/topics/:topic?": [
         "zoenglinghou",
         "mjysci",
@@ -1625,6 +1628,9 @@
     ],
     "/hit/today/:category": [
         "ranpox"
+    ],
+    "/hitwh/today": [
+        "raptazure"
     ],
     "/hizu/:column?": [
         "nczitzk"
@@ -3156,6 +3162,12 @@
     "/secnews/index": [
         "kaiili"
     ],
+    "/secrss/author/:author": [
+        "XinRoom"
+    ],
+    "/secrss/category/:category?": [
+        "XinRoom"
+    ],
     "/seekingalpha/:symbol/:category?": [
         "TonyRL"
     ],
@@ -4296,8 +4308,6 @@
     "/linkedkeeper/:type/:id?": [],
     "/technologyreview": [],
     "/technologyreview/:category_name": [],
-    "/aqk/vul": [],
-    "/aqk/:category": [],
     "/gameinstitute/community/:tag?": [],
     "/qcloud/mlvb/changelog": [],
     "/tucaoqq/post/:project/:key": [],
@@ -4337,7 +4347,6 @@
     "/hhu/libNews": [],
     "/hhu/libNewsc": [],
     "/hitsz/article/:category?": [],
-    "/hitwh/today": [],
     "/shanghaitech/activity": [],
     "/shanghaitech/sist/activity": [],
     "/sjtu/seiee/academic": [],
@@ -5588,7 +5597,5 @@
     "/rss3/blog": [],
     "/fashionnetwork/news/:sectors?/:categories?/:language?": [],
     "/dykszx/news/:type?": [],
-    "/secrss/category/:category?": [],
-    "/secrss/author/:author?": [],
     "/fashionnetwork/headline/:country?": []
 }

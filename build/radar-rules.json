@@ -898,6 +898,19 @@
       }
     ]
   },
+  "anquanke.com": {
+    "_name": "安全客",
+    ".": [
+      {
+        "title": "分类订阅",
+        "docs": "https://docs.rsshub.app/programming.html#an-quan-ke",
+        "source": [
+          "/:category",
+          "/"
+        ]
+      }
+    ]
+  },
   "apnews.com": {
     "_name": "AP News",
     ".": [
@@ -6316,6 +6329,20 @@
         "docs": "https://docs.rsshub.app/university.html#ha-er-bin-gong-ye-da-xue",
         "source": "/*",
         "target": "/hit/hitgs"
+      }
+    ]
+  },
+  "hitwh.edu.cn": {
+    "_name": "哈尔滨工业大学（威海）",
+    ".": [
+      {
+        "title": "今日工大 - 通知公告",
+        "docs": "https://docs.rsshub.app/university.html#ha-er-bin-gong-ye-da-xue-wei-hai",
+        "source": [
+          "/1024/list.htm",
+          "/"
+        ],
+        "target": "/hitwh/today"
       }
     ]
   },
@@ -13007,6 +13034,27 @@
         "docs": "https://docs.rsshub.app/university.html#shan-dong-da-xue",
         "source": [
           "/*path",
+          "/"
+        ]
+      }
+    ]
+  },
+  "secrss.com": {
+    "_name": "安全内参",
+    ".": [
+      {
+        "title": "分类",
+        "docs": "https://docs.rsshub.app/programming.html#an-quan-nei-can",
+        "source": [
+          "/articles",
+          "/"
+        ]
+      },
+      {
+        "title": "作者",
+        "docs": "https://docs.rsshub.app/programming.html#an-quan-nei-can",
+        "source": [
+          "/articles",
           "/"
         ]
       }
