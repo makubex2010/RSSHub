@@ -5010,6 +5010,17 @@
       }
     ]
   },
+  "gihyo.jp": {
+    "_name": "gihyo.jp",
+    ".": [
+      {
+        "title": "記事一覧",
+        "docs": "https://docs.rsshub.app/programming.html#gihyo-jp",
+        "source": "/list/group/:id",
+        "target": "/gihyo/list/group/:id"
+      }
+    ]
+  },
   "gitee.com": {
     "_name": "Gitee",
     ".": [
@@ -14315,7 +14326,7 @@
         ]
       },
       {
-        "title": "列表",
+        "title": "栏目",
         "docs": "https://docs.rsshub.app/traditional-media.html#peng-pai-xin-wen-lie-biao",
         "source": [
           "/"
@@ -15403,6 +15414,18 @@
         "docs": "https://docs.rsshub.app/program-update.html#western-digital-download",
         "source": [
           "/downloads.aspx",
+          "/"
+        ]
+      }
+    ]
+  },
+  "web3caff.com": {
+    "_name": "web3caff",
+    ".": [
+      {
+        "title": "发现",
+        "docs": "https://docs.rsshub.app/new-media.html#web3caff-fa-xian",
+        "source": [
           "/"
         ]
       }

@@ -1264,6 +1264,9 @@
     "/gf-cn/news/:category?": [
         "nczitzk"
     ],
+    "/gihyo/list/group/:id": [
+        "masakichi"
+    ],
     "/gitee/commits/:owner/:repo": [
         "TonyRL"
     ],
@@ -3505,17 +3508,20 @@
     ],
     "/thepaper/channel/:id": [
         "xyqfer",
-        "nczitzk"
+        "nczitzk",
+        "bigfei"
     ],
     "/thepaper/featured": [
         "HenryQW",
-        "nczitzk"
+        "nczitzk",
+        "bigfei"
     ],
     "/thepaper/factpaper/:status?": [
         "nczitzk"
     ],
     "/thepaper/list/:id": [
-        "nczitzk"
+        "nczitzk",
+        "bigfei"
     ],
     "/thwiki/calendar/:before?/:after?": [
         "aether17"
@@ -3796,6 +3802,9 @@
         "nczitzk"
     ],
     "/wdc/download/:id": [
+        "nczitzk"
+    ],
+    "/web3caff/:path?": [
         "nczitzk"
     ],
     "/wechat/announce": [
