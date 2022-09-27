@@ -218,7 +218,7 @@
     "/android/platform-tools-releases": [
         "nczitzk"
     ],
-    "/anquanke/:category": [
+    "/anquanke/:category/:fulltext?": [
         "qwertyuiop6"
     ],
     "/apnews/topics/:topic?": [
@@ -698,6 +698,9 @@
     "/cn-healthcare/index": [
         "qnloft"
     ],
+    "/cnbc/rss/:id?": [
+        "TonyRL"
+    ],
     "/cnbeta/": [
         "nczitzk"
     ],
@@ -1140,6 +1143,12 @@
         "KTachibanaM"
     ],
     "/ezone/:category?": [
+        "nczitzk"
+    ],
+    "/fantia/search/:type?/:caty?/:peroid?/:order?/:rating?/:keyword?": [
+        "nczitzk"
+    ],
+    "/fantia/user/:id": [
         "nczitzk"
     ],
     "/fastbull/express-news": [
@@ -2222,6 +2231,12 @@
     ],
     "/knowmedia/:category?": [
         "Fatpandac"
+    ],
+    "/kuwaitlocal/": [
+        "TonyRL"
+    ],
+    "/kuwaitlocal/:category?": [
+        "TonyRL"
     ],
     "/kyodonews/:language?/:keyword?": [
         "Rongronggg9"
@@ -4088,6 +4103,15 @@
     "/yicai/vip/:id?": [
         "nczitzk"
     ],
+    "/yoasobi-music/info/:category": [
+        "Kiotlin"
+    ],
+    "/yoasobi-music/live": [
+        "Kiotlin"
+    ],
+    "/yoasobi-music/media": [
+        "Kiotlin"
+    ],
     "/yomiuri/yomiuri/:category?": [
         "Arracc"
     ],
@@ -5471,8 +5495,6 @@
     "/matataki/tags/:tagId/:tagName/posts/:ipfsFlag?": [],
     "/matataki/users/:userId/favorites/:favoriteListId/posts/:ipfsFlag?": [],
     "/zhimap/:categoryUuid?/:recommend?": [],
-    "/fantia/search/:type?/:caty?/:peroid?/:order?/:rating?/:keyword?": [],
-    "/fantia/user/:id": [],
     "/icable/:category/:option?": [],
     "/processon/popular/:cate?/:sort?": [],
     "/mathpix/blog": [],

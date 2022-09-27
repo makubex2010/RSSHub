@@ -2801,6 +2801,28 @@
       }
     ]
   },
+  "cnbc.com": {
+    "_name": "CNBC",
+    "search": [
+      {
+        "title": "全文 RSS",
+        "docs": "https://docs.rsshub.app/traditional-media.html#cnbc",
+        "source": [
+          "/rs/search/combinedcms/view.xml"
+        ]
+      }
+    ],
+    "www": [
+      {
+        "title": "全文 RSS",
+        "docs": "https://docs.rsshub.app/traditional-media.html#cnbc",
+        "source": [
+          "/id/:id/device/rss/rss.html"
+        ],
+        "target": "/cnbc/rss/:id"
+      }
+    ]
+  },
   "cnbeta.com": {
     "_name": "cnBeta",
     ".": [
@@ -4538,6 +4560,19 @@
           "/"
         ],
         "target": "/ezone/:category?"
+      }
+    ]
+  },
+  "fantia.jp": {
+    "_name": "Fantia",
+    ".": [
+      {
+        "title": "用户投稿",
+        "docs": "https://docs.rsshub.app/picture.html#fantia",
+        "source": [
+          "/fanclubs/:id"
+        ],
+        "target": "/fantia/user/:id"
       }
     ]
   },
@@ -9178,6 +9213,29 @@
           "/topics/影音專區"
         ],
         "target": "/knowmedia/yyzq"
+      }
+    ]
+  },
+  "kuwaitlocal.com": {
+    "_name": "Kuwait Local",
+    ".": [
+      {
+        "title": "Latest News",
+        "docs": "https://docs.rsshub.app/en/new-media.html#kuwait-local",
+        "source": [
+          "/news/latest",
+          "/news",
+          "/"
+        ],
+        "target": "/kuwaitlocal"
+      },
+      {
+        "title": "Categorised News",
+        "docs": "https://docs.rsshub.app/en/new-media.html#kuwait-local",
+        "source": [
+          "/news/categories/:category"
+        ],
+        "target": "/kuwaitlocal/:category"
       }
     ]
   },
@@ -16365,6 +16423,47 @@
           "/author"
         ],
         "target": "/yicai/author/:id"
+      }
+    ]
+  },
+  "yoasobi-music.jp": {
+    "_name": "Yoasobi Official",
+    "www": [
+      {
+        "title": "News",
+        "docs": "https://docs.rsshub.app/en/live.html#yoasobi",
+        "source": [
+          "/",
+          "/:category"
+        ],
+        "target": "/yoasobi-music/info/:category"
+      },
+      {
+        "title": "Biography",
+        "docs": "https://docs.rsshub.app/en/live.html#yoasobi",
+        "source": [
+          "/",
+          "/:category"
+        ],
+        "target": "/yoasobi-music/info/:category"
+      },
+      {
+        "title": "Live",
+        "docs": "https://docs.rsshub.app/en/live.html#yoasobi",
+        "source": [
+          "/",
+          "/live"
+        ],
+        "target": "/yoasobi-music/live"
+      },
+      {
+        "title": "Media",
+        "docs": "https://docs.rsshub.app/en/live.html#yoasobi",
+        "source": [
+          "/",
+          "/media"
+        ],
+        "target": "/yoasobi-music/media"
       }
     ]
   },
