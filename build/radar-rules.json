@@ -3075,6 +3075,35 @@
       }
     ]
   },
+  "coolapk.com": {
+    "_name": "酷安",
+    ".": [
+      {
+        "title": "图文",
+        "docs": "https://docs.rsshub.app/social-media.html#ku-an"
+      },
+      {
+        "title": "头条",
+        "docs": "https://docs.rsshub.app/social-media.html#ku-an"
+      },
+      {
+        "title": "看看号",
+        "docs": "https://docs.rsshub.app/social-media.html#ku-an"
+      },
+      {
+        "title": "话题",
+        "docs": "https://docs.rsshub.app/social-media.html#ku-an"
+      },
+      {
+        "title": "用户",
+        "docs": "https://docs.rsshub.app/social-media.html#ku-an"
+      },
+      {
+        "title": "热榜",
+        "docs": "https://docs.rsshub.app/social-media.html#ku-an"
+      }
+    ]
+  },
   "coomer.party": {
     "_name": "Coomer",
     ".": [
@@ -3399,6 +3428,71 @@
           "/category/:category/"
         ],
         "target": "/ddosi/category/:category"
+      }
+    ]
+  },
+  "dedao.cn": {
+    "_name": "得到",
+    ".": [
+      {
+        "title": "知识城邦",
+        "docs": "https://docs.rsshub.app/new-media.html#de-dao-zhi-shi-cheng-bang",
+        "source": [
+          "/knowledge/topic/:topic",
+          "/knowledge",
+          "/"
+        ],
+        "target": "/dedao/knowledge/:topic?/:type?"
+      }
+    ]
+  },
+  "igetget.com": {
+    "_name": "得到",
+    ".": [
+      {
+        "title": "首页",
+        "docs": "https://docs.rsshub.app/new-media.html#de-dao-shou-ye",
+        "source": [
+          "/"
+        ],
+        "target": "/dedao/list/:category?"
+      },
+      {
+        "title": "新闻",
+        "docs": "https://docs.rsshub.app/new-media.html#de-dao-xin-wen",
+        "source": [
+          "/news",
+          "/"
+        ],
+        "target": "/dedao/news"
+      },
+      {
+        "title": "人物故事",
+        "docs": "https://docs.rsshub.app/new-media.html#de-dao-ren-wu-gu-shi",
+        "source": [
+          "/news",
+          "/"
+        ],
+        "target": "/dedao/figure"
+      },
+      {
+        "title": "视频",
+        "docs": "https://docs.rsshub.app/new-media.html#de-dao-shi-pin",
+        "source": [
+          "/video",
+          "/"
+        ],
+        "target": "/dedao/video"
+      }
+    ],
+    "m": [
+      {
+        "title": "用户主页",
+        "docs": "https://docs.rsshub.app/new-media.html#de-dao-yong-hu-zhu-ye",
+        "source": [
+          "/native/mine/account",
+          "/"
+        ]
       }
     ]
   },
@@ -6513,25 +6607,43 @@
     "_name": "HelloGitHub",
     ".": [
       {
-        "title": "文章列表",
-        "docs": "https://docs.rsshub.app/programming.html#hellogithub",
+        "title": "热门",
+        "docs": "https://docs.rsshub.app/programming.html#hellogithub-re-men",
         "source": [
-          "/article",
-          "/article/?url=/periodical/volume/"
-        ],
-        "target": "/hellogithub/article"
+          "/"
+        ]
       },
       {
-        "title": "编程语言排行榜",
-        "docs": "https://docs.rsshub.app/programming.html#hellogithub",
-        "source": "/report/:type/?url=/periodical/volume/",
-        "target": "/hellogithub/ranking/:type"
+        "title": "最近",
+        "docs": "https://docs.rsshub.app/programming.html#hellogithub-zui-jin",
+        "source": [
+          "/"
+        ]
+      },
+      {
+        "title": "文章",
+        "docs": "https://docs.rsshub.app/programming.html#hellogithub-wen-zhang",
+        "source": [
+          "/"
+        ]
+      },
+      {
+        "title": "排行榜",
+        "docs": "https://docs.rsshub.app/programming.html#hellogithub-pai-hang-bang",
+        "source": [
+          "/report/:type",
+          "/"
+        ],
+        "target": "/hellogithub/report/:type"
       },
       {
         "title": "月刊",
-        "docs": "https://docs.rsshub.app/programming.html#hellogithub",
-        "source": "/periodical/volume/",
-        "target": "/hellogithub/month"
+        "docs": "https://docs.rsshub.app/programming.html#hellogithub-yue-kan",
+        "source": [
+          "/periodical/volume/:id",
+          "/"
+        ],
+        "target": "/hellogithub/volume"
       }
     ]
   },
