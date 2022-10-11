@@ -5411,6 +5411,19 @@
       }
     ]
   },
+  "good.news": {
+    "_name": "Good.news",
+    ".": [
+      {
+        "title": "今日要闻",
+        "docs": "https://docs.rsshub.app/new-media.html#good-news-jin-ri-yao-wen",
+        "source": [
+          "/"
+        ],
+        "target": "/good"
+      }
+    ]
+  },
   "google.com": {
     "_name": "谷歌",
     "chrome": [
@@ -9743,6 +9756,20 @@
       }
     ]
   },
+  "linkresearcher": {
+    "_name": "领研",
+    ".": [
+      {
+        "title": "论文",
+        "docs": "https://docs.rsshub.app/study.html#ling-yan",
+        "source": [
+          "/theses",
+          "/information",
+          "/careers"
+        ]
+      }
+    ]
+  },
   "linovelib.com": {
     "_name": "哩哔轻小说",
     ".": [
@@ -10111,6 +10138,19 @@
       {
         "title": "Exhibitions",
         "docs": "https://docs.rsshub.app/en/travel.html#museum-of-contemporary-art-chicago"
+      }
+    ]
+  },
+  "mckinsey.com.cn": {
+    "_name": "McKinsey Greater China",
+    ".": [
+      {
+        "title": "洞见",
+        "docs": "https://docs.rsshub.app/finance.html#mai-ken-xi",
+        "source": [
+          "/insights/:category",
+          "/insights"
+        ]
       }
     ]
   },

@@ -2833,6 +2833,11 @@
         docs:"https://docs.rsshub.app/programming.html#GoCN",
         source:[ "/" ],
         target:"/gocn/jobs" } ] },
+  "good.news":{ _name:"Good.news",
+    ".":[ { title:"今日要闻",
+        docs:"https://docs.rsshub.app/new-media.html#good-news-jin-ri-yao-wen",
+        source:[ "/" ],
+        target:"/good" } ] },
   "google.com":{ _name:"谷歌",
     chrome:[ { title:"插件更新",
         source:"/webstore/detail/:name/:id",
@@ -5279,6 +5284,19 @@
         docs:"https://docs.rsshub.app/new-media.html#line-today",
         source:[ "/" ],
         target:"/line/today/:edition?/:tab?" } ] },
+  linkresearcher:{ _name:"领研",
+    ".":[ { title:"论文",
+        docs:"https://docs.rsshub.app/study.html#ling-yan",
+        source:[ "/theses",
+          "/information",
+          "/careers" ],
+        target:(_, url) => {
+                    const pathname = new URL(url).pathname;
+                    const searchParams = new URL(url).searchParams;
+                    return `/linkresearcher/theses/${pathname.replace('/', '')}${searchParams.has('filters.subject') ? `&subject=${searchParams.get('filters.subject')}` : ''}${
+                        searchParams.has('filters.columns') ? `&columns=${searchParams.get('filters.columns')}` : ''
+                    }`;
+                } } ] },
   "linovelib.com":{ _name:"哩哔轻小说",
     ".":[ { title:"小说详情",
         docs:"https://docs.rsshub.app/anime.html#linovelib",
@@ -5494,6 +5512,12 @@
   "mcachicago.org":{ _name:"MCA Chicago",
     ".":[ { title:"Exhibitions",
         docs:"https://docs.rsshub.app/en/travel.html#museum-of-contemporary-art-chicago" } ] },
+  "mckinsey.com.cn":{ _name:"McKinsey Greater China",
+    ".":[ { title:"洞见",
+        docs:"https://docs.rsshub.app/finance.html#mai-ken-xi",
+        source:[ "/insights/:category",
+          "/insights" ],
+        target:(params) => `/mckinsey/cn${params.category ? `/${categories.find((c) => c.slug === params.category).key}` : ''}` } ] },
   "mdpi.com":{ _name:"MDPI",
     www:[ { title:"Journal",
         docs:"https://docs.rsshub.app/journal.html#MDPI",
