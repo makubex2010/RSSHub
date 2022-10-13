@@ -6128,7 +6128,7 @@
     "kjt": [
       {
         "title": "陕西省科学技术厅",
-        "docs": "https://docs.rsshub.app/government.html#shan-xi-ren-min-zheng-fu-shan-xi-sheng-ke-xue-ji-shu-ting",
+        "docs": "https://docs.rsshub.app/government.html#shan-xi-sheng-sheng-ren-min-zheng-fu-sheng-ke-xue-ji-shu-ting",
         "source": [
           "/view/iList.jsp",
           "/"
@@ -9232,6 +9232,19 @@
           "/people/:user"
         ],
         "target": "/jisilu/topic/:user"
+      }
+    ]
+  },
+  "jseea.cn": {
+    "_name": "江苏省教育考试院",
+    ".": [
+      {
+        "title": "新闻中心",
+        "docs": "https://docs.rsshub.app/government.html#jiang-su-sheng-ren-min-zheng-fu",
+        "source": [
+          "/webfile/news/:type"
+        ],
+        "target": "/jseea/news/:type"
       }
     ]
   },
@@ -12908,6 +12921,23 @@
           "/"
         ],
         "target": "/qidiantu/:category?/:type?/:is_history?"
+      }
+    ]
+  },
+  "qingting.fm": {
+    "_name": "蜻蜓 FM",
+    ".": [
+      {
+        "title": "专辑",
+        "docs": "https://docs.rsshub.app/multimedia.html#qing-ting-fm",
+        "source": "/channels/:id",
+        "target": "/qingting/channels/:id"
+      },
+      {
+        "title": "播客",
+        "docs": "https://docs.rsshub.app/multimedia.html#qing-ting-fm",
+        "source": "/channels/:id",
+        "target": "/qingting/podcast/:id"
       }
     ]
   },
