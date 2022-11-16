@@ -1468,6 +1468,12 @@
         source:[ "/Article/List",
           "/" ],
         target:(params, url) => `/cdi/${new URL(url).searchParams.get('ColumnId')}` } ] },
+  "cdzjryb.com":{ _name:"成都住建蓉 e 办",
+    zw:[ { title:"商品住房购房登记",
+        docs:"https://docs.rsshub.app/other.html#cheng-dou-zhu-jian-rong-e-ban",
+        source:[ "/lottery/accept/projectList",
+          "/" ],
+        target:"/cdzjryb/zw/projectList" } ] },
   "cebbank.com":{ _name:"中国光大银行",
     ".":[ { title:"外汇牌价 - 牌价总览",
         docs:"https://docs.rsshub.app/new-media.html#eprice",
@@ -1693,7 +1699,12 @@
       { title:"网络首发",
         docs:"https://docs.rsshub.app/journal.html#zhong-guo-zhi-wang-wang-luo-shou-fa",
         source:[ "/knavi/journals/:name/detail" ],
-        target:"/cnki/journals/debut/:name" } ] },
+        target:"/cnki/journals/debut/:name" } ],
+    kns:[ { title:"作者期刊文献",
+        docs:"https://docs.rsshub.app/journal.html#zhong-guo-zhi-wang-zuo-zhe-qi-kan-wen-xian",
+        source:[ "/kcms/detail/knetsearch.aspx",
+          "/" ],
+        target:(_, url) => `/cnki/author/${new URL(url).searchParams.get('code')}` } ] },
   "cntheory.com":{ _name:"理论网",
     paper:[ { title:"学习时报",
         docs:"https://docs.rsshub.app/traditional-media.html#li-lun-wang-xue-xi-shi-bao",
@@ -6780,7 +6791,11 @@
     grad:[ { title:"研究生处",
         docs:"https://docs.rsshub.app/university.html#nan-jing-yi-shu-xue-yuan",
         source:[ "/:type/list.htm" ],
-        target:"/nua/gra/:type" } ] },
+        target:"/nua/gra/:type" } ],
+    lib:[ { title:"图书馆",
+        docs:"https://docs.rsshub.app/university.html#nan-jing-yi-shu-xue-yuan",
+        source:[ "/:type/list.htm" ],
+        target:"/nua/lib/:type" } ] },
   "nuaa.edu.cn":{ _name:"南京航空航天大学",
     aao:[ { title:"教务处",
         docs:"https://docs.rsshub.app/university.html#nan-jing-hang-kong-hang-tian-da-xue" } ],
@@ -6827,38 +6842,42 @@
         source:[ "/" ],
         target:"/nuist/jwc/:path+" } ] },
   "nyaa.si":{ _name:"nyaa",
-    ".":[ { title:"搜索结果",
-        docs:"https://docs.rsshub.app/multimedia.html#nyaa-sou-suo-jie-guo",
-        source:"/",
+    ".":[ { title:"nyaa 的搜索结果、指定用户、指定用户的搜索结果",
+        docs:"https://docs.rsshub.app/multimedia.html#nyaa",
+        source:[ "/",
+          "/user/:username" ],
         target:(params, url) => {
                     url = new URL(url);
-                    if (url.hostname.split('.')[0] === 'nyaa') {
-                        const searchParams = url.searchParams;
-                        const query = searchParams.has('q') ? searchParams.get('q') : '';
-                        return `/nyaa/search/${query}`;
+                    const username = params.username;
+                    const query = url.searchParams.get('q');
+
+                    let currentURL = '/nyaa';
+                    if (username !== undefined) {
+                        currentURL = `${currentURL}/user/${username}`;
                     }
-                } },
-      { title:"用户",
-        docs:"https://docs.rsshub.app/multimedia.html#nyaa-yong-hu",
-        source:"/user/:username",
-        target:(params, url) => {
-                    url = new URL(url);
-                    if (url.hostname.split('.')[0] === 'nyaa') {
-                        return `/nyaa/user/${params.username}`;
+                    if (query !== null) {
+                        currentURL = `${currentURL}/search/${query}`;
                     }
+                    return currentURL;
                 } } ],
-    sukebei:[ { title:"sukebei 搜索结果",
-        docs:"https://docs.rsshub.app/multimedia.html#nyaa-sukebei-sou-suo-jie-guo",
-        source:"/",
+    sukebei:[ { title:"sukebei 的搜索结果、指定用户、指定用户的搜索结果",
+        docs:"https://docs.rsshub.app/multimedia.html#nyaa",
+        source:[ "/",
+          "/user/:username" ],
         target:(params, url) => {
-                    const searchParams = new URL(url).searchParams;
-                    const query = searchParams.has('q') ? searchParams.get('q') : '';
-                    return `/nyaa/sukebei/search/${query}`;
-                } },
-      { title:"sukebei 用户",
-        docs:"https://docs.rsshub.app/multimedia.html#nyaa-sukebei-yong-hu",
-        source:"/user/:username",
-        target:(params) => `/nyaa/sukebei/user/${params.username}` } ] },
+                    url = new URL(url);
+                    const username = params.username;
+                    const query = url.searchParams.get('q');
+
+                    let currentURL = '/nyaa/sukebei';
+                    if (username !== undefined) {
+                        currentURL = `${currentURL}/user/${username}`;
+                    }
+                    if (query !== null) {
+                        currentURL = `${currentURL}/search/${query}`;
+                    }
+                    return currentURL;
+                } } ] },
   "nytimes.com":{ _name:"纽约时报",
     ".":[ { title:"新闻简报",
         docs:"https://docs.rsshub.app/traditional-media.html#niu-yue-shi-bao",
@@ -8673,9 +8692,9 @@
   "theverge.com":{ _name:"The Verge",
     ".":[ { title:"The Verge",
         docs:"https://docs.rsshub.app/new-media.html#the-verge",
-        source:[ "/rss/index.xml",
+        source:[ "/:hub",
           "/" ],
-        target:"/theverge" } ] },
+        target:"/theverge/:hub?" } ] },
   "thwiki.cc":{ _name:"THBWiki",
     ".":[ { title:"日历",
         docs:"https://docs.rsshub.app/#thbwiki",

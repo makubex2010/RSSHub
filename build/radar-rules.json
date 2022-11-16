@@ -2592,6 +2592,20 @@
       }
     ]
   },
+  "cdzjryb.com": {
+    "_name": "成都住建蓉 e 办",
+    "zw": [
+      {
+        "title": "商品住房购房登记",
+        "docs": "https://docs.rsshub.app/other.html#cheng-dou-zhu-jian-rong-e-ban",
+        "source": [
+          "/lottery/accept/projectList",
+          "/"
+        ],
+        "target": "/cdzjryb/zw/projectList"
+      }
+    ]
+  },
   "cebbank.com": {
     "_name": "中国光大银行",
     ".": [
@@ -3059,6 +3073,16 @@
           "/knavi/journals/:name/detail"
         ],
         "target": "/cnki/journals/debut/:name"
+      }
+    ],
+    "kns": [
+      {
+        "title": "作者期刊文献",
+        "docs": "https://docs.rsshub.app/journal.html#zhong-guo-zhi-wang-zuo-zhe-qi-kan-wen-xian",
+        "source": [
+          "/kcms/detail/knetsearch.aspx",
+          "/"
+        ]
       }
     ]
   },
@@ -12211,6 +12235,16 @@
         ],
         "target": "/nua/gra/:type"
       }
+    ],
+    "lib": [
+      {
+        "title": "图书馆",
+        "docs": "https://docs.rsshub.app/university.html#nan-jing-yi-shu-xue-yuan",
+        "source": [
+          "/:type/list.htm"
+        ],
+        "target": "/nua/lib/:type"
+      }
     ]
   },
   "nuaa.edu.cn": {
@@ -12327,26 +12361,22 @@
     "_name": "nyaa",
     ".": [
       {
-        "title": "搜索结果",
-        "docs": "https://docs.rsshub.app/multimedia.html#nyaa-sou-suo-jie-guo",
-        "source": "/"
-      },
-      {
-        "title": "用户",
-        "docs": "https://docs.rsshub.app/multimedia.html#nyaa-yong-hu",
-        "source": "/user/:username"
+        "title": "nyaa 的搜索结果、指定用户、指定用户的搜索结果",
+        "docs": "https://docs.rsshub.app/multimedia.html#nyaa",
+        "source": [
+          "/",
+          "/user/:username"
+        ]
       }
     ],
     "sukebei": [
       {
-        "title": "sukebei 搜索结果",
-        "docs": "https://docs.rsshub.app/multimedia.html#nyaa-sukebei-sou-suo-jie-guo",
-        "source": "/"
-      },
-      {
-        "title": "sukebei 用户",
-        "docs": "https://docs.rsshub.app/multimedia.html#nyaa-sukebei-yong-hu",
-        "source": "/user/:username"
+        "title": "sukebei 的搜索结果、指定用户、指定用户的搜索结果",
+        "docs": "https://docs.rsshub.app/multimedia.html#nyaa",
+        "source": [
+          "/",
+          "/user/:username"
+        ]
       }
     ]
   },
@@ -15517,10 +15547,10 @@
         "title": "The Verge",
         "docs": "https://docs.rsshub.app/new-media.html#the-verge",
         "source": [
-          "/rss/index.xml",
+          "/:hub",
           "/"
         ],
-        "target": "/theverge"
+        "target": "/theverge/:hub?"
       }
     ]
   },
