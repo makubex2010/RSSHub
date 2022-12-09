@@ -5132,6 +5132,19 @@
       }
     ]
   },
+  "freewechat.com": {
+    "_name": "自由微信",
+    ".": [
+      {
+        "title": "公众号",
+        "docs": "https://docs.rsshub.app/new-media.html#zi-you-wei-xin",
+        "source": [
+          "/profile/:id"
+        ],
+        "target": "/freewechat/profile/:id"
+      }
+    ]
+  },
   "ftchinese.com": {
     "_name": "Financial Times",
     ".": [
@@ -6528,6 +6541,19 @@
         "source": [
           "/cheaps.php"
         ]
+      }
+    ]
+  },
+  "guanhai.com.cn": {
+    "_name": "观海新闻",
+    ".": [
+      {
+        "title": "首页",
+        "docs": "https://docs.rsshub.app/new-media.html#guan-hai-xin-wen",
+        "source": [
+          "/"
+        ],
+        "target": "/guanhai"
       }
     ]
   },
@@ -14355,6 +14381,16 @@
           "/:type"
         ],
         "target": "/shmtu/jwc/:type"
+      }
+    ],
+    "portal": [
+      {
+        "title": "数字平台",
+        "docs": "https://docs.rsshub.app/university.html#shang-hai-dian-li-da-xue",
+        "source": [
+          "/:type"
+        ],
+        "target": "/shmtu/portal/:type"
       }
     ],
     "www": [
