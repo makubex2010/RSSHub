@@ -746,6 +746,21 @@
     "/cnbeta/topics/:id": [
         "nczitzk"
     ],
+    "/cnblogs/aggsite/topdiggs": [
+        "hujingnb"
+    ],
+    "/cnblogs/aggsite/topviews": [
+        "hujingnb"
+    ],
+    "/cnblogs/aggsite/headline": [
+        "hujingnb"
+    ],
+    "/cnblogs/cate/:type": [
+        "hujingnb"
+    ],
+    "/cnblogs/pick": [
+        "hujingnb"
+    ],
     "/cncf/:cate?": [
         "Fatpandac"
     ],
@@ -940,6 +955,9 @@
     ],
     "/distill/": [
         "nczitzk"
+    ],
+    "/dmzj/news/:category?": [
+        "vzz64"
     ],
     "/dockerhub/build/:owner/:image/:tag?": [
         "HenryQW"
@@ -2594,6 +2612,9 @@
     ],
     "/luogu/user/feed/:uid": [
         "solstice23"
+    ],
+    "/luogu/user/blog/:username": [
+        "ftiasch"
     ],
     "/lvv2/news/:channel/:sort?": [
         "Fatpandac"
@@ -4501,6 +4522,9 @@
     ],
     "/xwlb/index": [
         "xfangbao"
+    ],
+    "/xys/new": [
+        "wenzhenl"
     ],
     "/xyzrank/": [
         "nczitzk"
