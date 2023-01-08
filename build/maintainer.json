@@ -1804,6 +1804,10 @@
     "/hackertalk/": [
         "hyoban"
     ],
+    "/hackmd/profile/:path": [
+        "Yukaii",
+        "kaiix"
+    ],
     "/hafu/news/:tpye?": [
         "WenPeiTung"
     ],
@@ -3622,6 +3626,9 @@
     ],
     "/shopback/:store": [
         "nczitzk"
+    ],
+    "/shoppingdesign/posts": [
+        "miles170"
     ],
     "/shuiguopai/": [
         "nczitzk"
