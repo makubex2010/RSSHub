@@ -18,6 +18,12 @@ pageClass: routes
 
 </RouteEn>
 
+## Chinese Social Science Net
+
+### Institute of Law
+
+<RouteEn author="HankChow" example="/cssn/iolaw/zxzp" path="/cssn/iolaw/:section?" :paramsDesc="['Section ID, can be found in the URL. For example, the Section ID of URL `http://iolaw.cssn.cn/zxzp/` is `zxzp`. The default value is `zxzp`']"/>
+
 ## gradCafe
 
 ### gradCafe result
@@ -113,6 +119,12 @@ pageClass: routes
 ### Publications
 
 <RouteEn author="nczitzk" example="/researchgate/publications/Somsak-Panha" path="/researchgate/publications/:username" :paramsDesc="['Username, can be found in URL']" puppeteer="1" anticrawler="1"/>
+
+## The Korea Institute of Marine Law
+
+### Thesis
+
+<RouteEn author="TonyRL" example="/kimlaw/thesis" path="/kimlaw/thesis" radar="1"/>
 
 ## X-MOL
 

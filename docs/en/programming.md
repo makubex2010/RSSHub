@@ -122,10 +122,11 @@ Category
 
 GitHub provides some official RSS feeds:
 
--   Repo releases: https://github.com/:owner/:repo/releases.atom
--   Repo commits: https://github.com/:owner/:repo/commits.atom
--   User activities: https://github.com/:user.atom
--   Private feed: https://github.com/:user.private.atom?token=:secret (You can find **Subscribe to your news feed** in [dashboard](https://github.com) page after login)
+-   Repo releases: `https://github.com/:owner/:repo/releases.atom`
+-   Repo commits: `https://github.com/:owner/:repo/commits.atom`
+-   User activities: `https://github.com/:user.atom`
+-   Private feed: `https://github.com/:user.private.atom?token=:secret` (You can find **Subscribe to your news feed** in [dashboard](https://github.com) page after login)
+-   Wiki history: `https://github.com/:owner/:repo/wiki.atom`
 
 :::
 
@@ -182,9 +183,10 @@ For instance, the `/github/topics/framework/l=php&o=desc&s=stars` route will gen
 > -   If there are special characters such as `/` in the **branch name**, they need to be encoded with urlencode, usually `/` needs to be replaced with `%2f`
 > -   If there are special characters in the **file path**, you need to use urlencode to encode them, but the file path can be recognized normally `/` characters
 > -   If the **file path** ends with `.rss`, `.atom`, `.json`, you need to replace the `.` in the suffix with `%2e`
->     > Reeder will make an error when subscribing to `% 2erss` or similar suffixes. At this time, add`.rss` after the route to subscribe
->     >
->     > Such as: replace `https://rsshub.app/github/file/DIYgod/RSSHub/master/lib/router%2ejs` to `https://rsshub.app/github/file/DIYgod/RSSHub/master/lib/router%2ejs.rss`
+>
+> > Reeder will make an error when subscribing to `% 2erss` or similar suffixes. At this time, add`.rss` after the route to subscribe
+> >
+> > Such as: replace `https://rsshub.app/github/file/DIYgod/RSSHub/master/lib/router%2ejs` to `https://rsshub.app/github/file/DIYgod/RSSHub/master/lib/router%2ejs.rss`
 
 </RouteEn>
 
@@ -211,7 +213,19 @@ For instance, the `/github/topics/framework/l=php&o=desc&s=stars` route will gen
 
 ### Issue / Pull Request comments
 
-<RouteEn author="TonyRL" example="/github/comments/DIYgod/RSSHub/8116" path="/github/comments/:user/:repo/:number" :paramsDesc="['User / Org name', 'Repo name', 'Issue or pull number']"/>
+<RouteEn author="TonyRL" example="/github/comments/DIYgod/RSSHub/8116" path="/github/comments/:user/:repo/:number" :paramsDesc="['User / Org name', 'Repo name', 'Issue or pull number']" radar="1" rssbud="1"/>
+
+### Wiki History
+
+<RouteEn author="TonyRL" example="/github/wiki/flutter/flutter/Roadmap" path="/github/wiki/:user/:repo/:page?" :paramsDesc="['User / Org name', 'Repo name', 'Page slug, can be found in URL, empty means Home']" radar="1" rssbud="1"/>
+
+### Notifications
+
+<RouteEn author="zhzy0077" example="/github/notifications" path="/github/notifications" radar="1" rssbud="1" selfhost="1"/>
+
+### Gist Commits
+
+<RouteEn author="TonyRL" example="/github/gist/d2c152bb7179d07015f336b1a0582679" path="/github/gist/:gistId" :paramsDesc="['Gist ID']" radar="1" rssbud="1"/>
 
 ## GitLab
 
@@ -285,6 +299,12 @@ Subscribe to the updates (threads and submission) from a paritcular Hacker News 
 
 <RouteEn author="hellodword" example="/hex-rays/news" path="/hex-rays/news" />
 
+## Issue Hunt
+
+### Project Funded
+
+<RouteEn author="running-grass" radar="1" example="/issuehunt/funded/DIYgod/RSSHub" path="/issuehunt/funded/:username/:repo" :paramsDesc="['Github user/org','Repository name']" />
+
 ## Kaggle
 
 ### Discussion
@@ -306,6 +326,13 @@ Subscribe to the updates (threads and submission) from a paritcular Hacker News 
 | All Categories | Featured | Research | Recruitment | Getting started | Masters | Playground | Analytics |
 
 </RouteEn>
+
+## Layer3
+
+### Quest
+
+<RouteEn author="nczitzk" example="/layer3/quests" path="/layer3/quests" radar="1"/>
+
 
 ## LeetCode
 
