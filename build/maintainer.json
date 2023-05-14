@@ -327,6 +327,9 @@
     "/ajmide/:id": [
         "Fatpandac"
     ],
+    "/aliresearch/information/:type?": [
+        "nczitzk"
+    ],
     "/aliyun/database_month": [
         "junbaor"
     ],
@@ -1744,6 +1747,9 @@
     ],
     "/finviz/:category?": [
         "nczitzk"
+    ],
+    "/firecore/:os": [
+        "NathanDai"
     ],
     "/firefox/breaches": [
         "TonyRL"
