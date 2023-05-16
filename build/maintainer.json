@@ -5127,6 +5127,9 @@
     "/tingshuitz/yangjiang": [
         "ciaranchen"
     ],
+    "/tingtingfm/program/:programId": [
+        "TonyRL"
+    ],
     "/tisi/latest": [
         "Fatpandac"
     ],
@@ -5494,8 +5497,13 @@
     "/weekendhk/": [
         "TonyRL"
     ],
+    "/weibo/group/:gid/:gname?/:routeParams?": [
+        "monologconnor",
+        "Rongronggg9"
+    ],
     "/weibo/keyword/:keyword/:routeParams?": [
-        "DIYgod"
+        "DIYgod",
+        "Rongronggg9"
     ],
     "/weibo/oasis/user/:userid": [
         "kt286"
@@ -5504,11 +5512,12 @@
         "xyqfer"
     ],
     "/weibo/super_index/:id/:type?/:routeParams?": [
-        "zengxs"
+        "zengxs",
+        "Rongronggg9"
     ],
     "/weibo/timeline/:uid/:feature?/:routeParams?": [
         "zytomorrow",
-        "DIYgod ",
+        "DIYgod",
         "Rongronggg9"
     ],
     "/weibo/user/:uid/:routeParams?": [
@@ -5635,8 +5644,9 @@
     "/xiaohongshu/user/:user_id/collect": [
         "lotosbin"
     ],
-    "/xiaohongshu/user/:user_id/notes": [
-        "lotosbin"
+    "/xiaohongshu/user/:user_id/notes/:fulltext?": [
+        "lotosbin",
+        "howerhe"
     ],
     "/xiaomiyoupin/crowdfunding": [
         "bigfei"
