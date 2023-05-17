@@ -903,6 +903,20 @@
       }
     ]
   },
+  "5eplay.com": {
+    "_name": "5EPLAY",
+    "csgo": [
+      {
+        "title": "新闻列表",
+        "docs": "https://docs.rsshub.app/game.html#_5eplay-xin-wen-lie-biao",
+        "source": [
+          "/",
+          "/article"
+        ],
+        "target": "/5eplay/article"
+      }
+    ]
+  },
   "6parkbbs.com": {
     "_name": "留园网",
     "club": [
@@ -5359,6 +5373,19 @@
           "/category/:category/"
         ],
         "target": "/ddosi/category/:category"
+      }
+    ]
+  },
+  "deadline.com": {
+    "_name": "Deadline",
+    ".": [
+      {
+        "title": "Latest Articles",
+        "docs": "https://docs.rsshub.app/en/new-media.html#deadline",
+        "source": [
+          "/"
+        ],
+        "target": "/deadline"
       }
     ]
   },
@@ -23541,12 +23568,12 @@
     "_name": "読売新聞",
     "www": [
       {
-        "title": "読売新聞",
+        "title": "新聞",
         "docs": "https://docs.rsshub.app/traditional-media.html#du-mai-xin-wen",
         "source": [
-          "/:category"
+          "/:category?"
         ],
-        "target": "/yomiuri/:category"
+        "target": "/yomiuri/:category?"
       }
     ]
   },
