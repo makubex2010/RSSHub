@@ -895,6 +895,26 @@
         docs:"https://docs.rsshub.app/travel.html#zhong-guo-guo-ji-hang-kong-gong-si",
         source:"/",
         target:"/airchina/announcement" } ] },
+  "aisixiang.com":{ _name:"爱思想",
+    ".":[ { title:"栏目",
+        docs:"https://docs.rsshub.app/reading.html#ai-si-xiang",
+        source:[ "/data/search",
+          "/" ],
+        target:(params, url) => `/aisixiang/column/${new URL(url).searchParams.get('column')}` },
+      { title:"排行",
+        docs:"https://docs.rsshub.app/reading.html#ai-si-xiang",
+        source:[ "/toplist",
+          "/" ],
+        target:(params, url) => {
+                    const id = new URL(url).searchParams.get('id');
+                    const period = new URL(url).searchParams.get('period');
+                    return `/aisixiang/toplist${id ? `/${id}${(id === '1' || !id) && period ? `/${period}` : ''}` : ''}`;
+                } },
+      { title:"思想库（专栏）",
+        docs:"https://docs.rsshub.app/reading.html#ai-si-xiang",
+        source:[ "/thinktank",
+          "/" ],
+        target:(params, url) => `/aisixiang/thinktank/${new URL(url).href.match(/thinktank\/(.*)\.html/)[1]}` } ] },
   "ajmide.com":{ _name:"阿基米德FM",
     m:[ { title:"播客",
         docs:"https://docs.rsshub.app/multimedia.html#a-ji-mi-de-fm-bo-ke",
@@ -3879,6 +3899,9 @@
         docs:"https://docs.rsshub.app/finance.html#fx-markets",
         source:"/regulation",
         target:"/fx-markets/regulation" } ] },
+  "fzmtr.com":{ _name:"福州地铁",
+    www:[ { title:"通知公告",
+        docs:"https://docs.rsshub.app/travel.html#fu-zhou-di-tie" } ] },
   "gameapps.hk":{ _name:"GameApps.hk 香港手机游戏网",
     ".":[ { title:"最新消息",
         docs:"https://docs.rsshub.app/game.html#gameapps-hk-xiang-gang-shou-ji-you-xi-wang",
@@ -4840,6 +4863,9 @@
         docs:"https://docs.rsshub.app/shopping.html#guang-diu",
         source:[ "/cheaps.php" ],
         target:(param, url) => `/guangdiu/${url.indexOf('?') > -1 ? url.split('?')[1] : ''}` } ] },
+  "gzmtr.com":{ _name:"广州地铁",
+    www:[ { title:"新闻",
+        docs:"https://docs.rsshub.app/travel.html#guang-zhou-di-tie" } ] },
   "guanhai.com.cn":{ _name:"观海新闻",
     ".":[ { title:"首页",
         docs:"https://docs.rsshub.app/new-media.html#guan-hai-xin-wen",
@@ -13216,6 +13242,14 @@
                         .toString()
                         .split(/zyshow\.net/)
                         .pop()}` } ] },
+  "zyw.asia":{ _name:"zyw",
+    hot:[ { title:"今日热榜",
+        docs:"https://docs.rsshub.app/new-media.html#zyw-jin-ri-re-bang",
+        source:[ "/" ],
+        target:(params, url) => {
+                    const matches = new URL(url).href.match(/type=(\w+)/);
+                    return `/zyw/hot${matches ? `/${matches[1]}` : ''}`;
+                } } ] },
   "ximalaya.com":{ _name:"喜马拉雅",
     ".":[ { title:"专辑",
         docs:"https://docs.rsshub.app/multimedia.html#xi-ma-la-ya",

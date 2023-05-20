@@ -327,6 +327,21 @@
     "/airchina/announcement": [
         "LandonLi"
     ],
+    "/aisixiang/column/:id": [
+        "HenryQW",
+        "nczitzk"
+    ],
+    "/aisixiang/ranking/:id?/:period?": [
+        "HenryQW",
+        "nczitzk"
+    ],
+    "/aisixiang/toplist/:id?/:period?": [
+        "nczitzk"
+    ],
+    "/aisixiang/thinktank/:id/:type?": [
+        "hoilc",
+        "nczitzk"
+    ],
     "/ajmide/:id": [
         "Fatpandac"
     ],
@@ -1843,6 +1858,9 @@
     "/fx-markets/fx-markets/:channel": [
         "mikkkee"
     ],
+    "/fzmtr/announcements": [
+        "HankChow"
+    ],
     "/gameapps/": [
         "TonyRL"
     ],
@@ -2304,6 +2322,9 @@
     ],
     "/guangdiu/:query?": [
         "Fatpandac"
+    ],
+    "/guangzhoumetro/news": [
+        "HankChow"
     ],
     "/guanhai": [
         "TonyRL"
@@ -6065,6 +6086,9 @@
     "/zyshow/:region?/:id": [
         "nczitzk"
     ],
+    "/zyw/hot/:site?": [
+        "nczitzk"
+    ],
     "/1draw": [],
     "/benedictevans": [],
     "/ziroom/room/:city/:iswhole/:room/:keyword": [],
@@ -6398,9 +6422,6 @@
     "/gaoqing/latest": [],
     "/whalegogo/home": [],
     "/whalegogo/portal/:type_id/:tagid?": [],
-    "/aisixiang/column/:id": [],
-    "/aisixiang/ranking/:type?/:range?": [],
-    "/aisixiang/thinktank/:name/:type?": [],
     "/leetcode/submission/us/:user": [],
     "/leetcode/submission/cn/:user": [],
     "/xiaomieu/releases": [],
