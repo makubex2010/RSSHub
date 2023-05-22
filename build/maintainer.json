@@ -1173,6 +1173,9 @@
     "/coindesk/consensus-magazine": [
         "jameshih"
     ],
+    "/comicat/search/:keyword": [
+        "Cyang39"
+    ],
     "/comicskingdom/:name": [
         "stjohnjohnson"
     ],
@@ -3757,6 +3760,9 @@
     "/nogizaka46/blog": [
         "Kasper4649"
     ],
+    "/notion/database/:databaseId": [
+        "curly210102"
+    ],
     "/now/news/:category?/:id?": [
         "nczitzk"
     ],
@@ -4985,6 +4991,15 @@
     "/techflowpost/": [
         "nczitzk"
     ],
+    "/techpowerup": [
+        "TonyRL"
+    ],
+    "/techpowerup/": [
+        "TonyRL"
+    ],
+    "/techpowerup/review/:keyword?": [
+        "TonyRL"
+    ],
     "/telecompaper/news/:caty/:year?/:country?/:type?": [
         "nczitzk"
     ],
@@ -5144,6 +5159,9 @@
     ],
     "/tingshuitz/nanjing": [
         "ocleo1"
+    ],
+    "/tingshuitz/shenzhen": [
+        "lilPiper"
     ],
     "/tingshuitz/wuhan": [
         "MoonBegonia"
