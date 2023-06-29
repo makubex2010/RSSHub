@@ -2700,6 +2700,9 @@
     "/huanqiu/news/:category?": [
         "yuxinliu-alex"
     ],
+    "/huggingface/daily-papers": [
+        "zeyugao"
+    ],
     "/hunanpea/rsks/:guid": [
         "TonyRL"
     ],
@@ -5838,6 +5841,9 @@
     "/xaut/rsc/:category?": [
         "mocusez",
         "light0926"
+    ],
+    "/xboxfan/news": [
+        "XXY233"
     ],
     "/xiaohongshu/board/:board_id": [
         "lotosbin"
