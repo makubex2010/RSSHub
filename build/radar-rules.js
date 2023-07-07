@@ -1,4 +1,14 @@
-({ "163.com":{ _name:"网易",
+({ "81.cn":{ _name:"中国军网",
+    "81rc":[ { title:"军队人才网",
+        docs:"https://docs.rsshub.app/government.html#zhon-guo-jun-wang-jun-dui-ren-cai-wang",
+        source:[ "/" ],
+        target:(params, url) => {
+                    url = new URL(url);
+                    const path = url.href.match(/81rc\.81\.cn(.*?)/).replace(/\/index\.html$/, '');
+
+                    return `/81/81rc${path === '/' ? '' : path}`;
+                } } ] },
+  "163.com":{ _name:"网易",
     ".":[ { title:"网易号（通用）",
         docs:"https://docs.rsshub.app/new-media.html#wang-yi-hao",
         source:[ "/dy/media/:id",
@@ -10552,6 +10562,11 @@
         source:[ "/viewall",
           "/" ],
         target:"/setn/女孩" } ] },
+  "shcstheatre.com":{ _name:"上海文化广场",
+    www:[ { title:"节目列表",
+        docs:"https://docs.rsshub.app/shopping.html#shang-hai-wen-hua-guang-chang-jie-mu-lie-biao",
+        source:[ "/Program/programList.aspx" ],
+        target:"/shcstheatre/programs" } ] },
   "shiep.edu.cn":{ _name:"上海电力大学",
     bwc:[ { title:"武装部保卫处",
         docs:"https://docs.rsshub.app/university.html#shang-hai-dian-li-da-xue",

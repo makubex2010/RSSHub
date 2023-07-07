@@ -1,4 +1,7 @@
 {
+    "/81/81rc/:path+": [
+        "nczitzk"
+    ],
     "/163/exclusive/:id?": [
         "nczitzk"
     ],
@@ -4773,6 +4776,9 @@
     ],
     "/setn/:category?": [
         "nczitzk"
+    ],
+    "/shcstheatre/programs": [
+        "fuzy112"
     ],
     "/shiep/:type/:id?": [
         "gumibea",
