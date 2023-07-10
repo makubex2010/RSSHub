@@ -3266,6 +3266,9 @@
     "/kemono/posts": [
         "nczitzk"
     ],
+    "/keylol/:path+": [
+        "nczitzk"
+    ],
     "/kimlaw/thesis": [
         "TonyRL"
     ],
@@ -3469,6 +3472,9 @@
     ],
     "/macmenubar/recently/:category?": [
         "5upernova-heng"
+    ],
+    "/macupdate/app/:appId/:appSlug?": [
+        "TonyRL"
     ],
     "/magazinelib/latest-magazine/:query?": [
         "NavePnow"
