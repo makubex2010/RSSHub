@@ -1432,6 +1432,9 @@
     "/dhu/jiaowu/news/:type?": [
         "KiraKiseki"
     ],
+    "/dhu/news/xsxx": [
+        "fox2049"
+    ],
     "/dhu/xxgk/news": [
         "KiraKiseki"
     ],
@@ -2715,6 +2718,9 @@
     ],
     "/hunanpea/rsks/:guid": [
         "TonyRL"
+    ],
+    "/huoxian/zone": [
+        "p7e4"
     ],
     "/hupu/all/:id?": [
         "nczitzk"

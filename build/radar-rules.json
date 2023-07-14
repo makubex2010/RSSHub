@@ -5736,6 +5736,16 @@
         "docs": "https://docs.rsshub.app/university.html#dong-hua-da-xue"
       }
     ],
+    "news": [
+      {
+        "title": "学术信息",
+        "docs": "https://docs.rsshub.app/university.html#dong-hua-da-xue",
+        "source": [
+          "/6410"
+        ],
+        "target": "/dhu/news/xsxx"
+      }
+    ],
     "xxgk": [
       {
         "title": "最新信息公开",
@@ -10770,6 +10780,15 @@
           "/Category/:guid/ArticlesByCategory.do"
         ],
         "target": "/hunanpea/rsks/:guid"
+      }
+    ]
+  },
+  "huoxian.cn": {
+    "_name": "火线",
+    "zone": [
+      {
+        "title": "Zone",
+        "docs": "https://docs.rsshub.app/bbs.html#huo-xian"
       }
     ]
   },
