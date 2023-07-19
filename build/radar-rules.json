@@ -3380,6 +3380,20 @@
       }
     ]
   },
+  "blizzard.com": {
+    "_name": "Blizzard",
+    "news": [
+      {
+        "title": "News",
+        "docs": "https://docs.rsshub.app/game.html#blizzard",
+        "source": [
+          "/:language/:category?",
+          "/:language"
+        ],
+        "target": "/blizzard/news/:language/:category?"
+      }
+    ]
+  },
   "theblockbeats.info": {
     "_name": "律动",
     "rszhaopin": [
@@ -19367,6 +19381,15 @@
       }
     ]
   },
+  "sec-wiki.com": {
+    "_name": "SecWiki-安全维基",
+    "www": [
+      {
+        "title": "最新周刊",
+        "docs": "https://docs.rsshub.app/other.html#secwiki-an-quan-wei-ji"
+      }
+    ]
+  },
   "secrss.com": {
     "_name": "安全内参",
     ".": [
@@ -20203,6 +20226,29 @@
         "docs": "https://docs.rsshub.app/design.html#shopping-design",
         "source": "/post",
         "target": "/shoppingdesign/posts"
+      }
+    ]
+  },
+  "shu.edu.cn": {
+    "_name": "上海大学",
+    "jwb": [
+      {
+        "title": "教务处通知公告",
+        "docs": "https://docs.rsshub.app/university.html#shang-hai-da-xue",
+        "source": [
+          "/index/:type"
+        ],
+        "target": "/shu/jwb/:type"
+      }
+    ],
+    "www": [
+      {
+        "title": "官网信息",
+        "docs": "https://docs.rsshub.app/university.html#shang-hai-da-xue",
+        "source": [
+          "/:type"
+        ],
+        "target": "/shu/:type"
       }
     ]
   },

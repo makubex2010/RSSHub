@@ -818,6 +818,9 @@
     "/bjx/huanbao": [
         "zsimple"
     ],
+    "/blizzard/news/:language?/:category?": [
+        "nczitzk"
+    ],
     "/blockbeats/:channel?": [
         "Fatpandac",
         "jameshih"
@@ -4741,6 +4744,9 @@
     "/sec-in/": [
         "p7e4"
     ],
+    "/sec-wiki/weekly": [
+        "p7e4"
+    ],
     "/secnews/index": [
         "kaiili"
     ],
@@ -4827,6 +4833,12 @@
     ],
     "/shoppingdesign/posts": [
         "miles170"
+    ],
+    "/shu/:type?": [
+        "lonelyion"
+    ],
+    "/shu/jwb/:type?": [
+        "tuxinghuan"
     ],
     "/shuiguopai/": [
         "nczitzk"
@@ -6535,8 +6547,6 @@
     "/buaa/news/:type": [],
     "/zjut/:type": [],
     "/zjut/design/:type": [],
-    "/shu/:type?": [],
-    "/shu/jwc/:type?": [],
     "/nuc/:type": [],
     "/ahau/cs_news/:type": [],
     "/ahau/jwc/:type": [],
@@ -7290,7 +7300,6 @@
     "/xyplorer/whatsnew": [],
     "/rescuetime/release-notes/:os?": [],
     "/totalcommander/whatsnew": [],
-    "/blizzard/news/:language?/:category?": [],
     "/deepl/blog/:lang?": [],
     "/muchong/journal/:type?": [],
     "/muchong/:id/:type?/:sort?": [],
