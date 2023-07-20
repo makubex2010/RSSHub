@@ -2180,6 +2180,16 @@
         source:[ "/col/col41740/index.html",
           "/" ],
         target:"/cau/yjs" } ] },
+  "cbaigui.com":{ _name:"纪妖",
+    ".":[ { title:"通用",
+        docs:"https://docs.rsshub.app/new-media.html#ji-yao-tong-yong",
+        source:[ "/" ],
+        target:(params, url) => {
+                    url = new URL(url);
+                    const path = url.href.match(/\.com(.*?)/)[1];
+
+                    return `/cbaigui${path}`;
+                } } ] },
   "cbirc.gov.cn":{ _name:"中国银行保险监督管理委员会",
     ".":[ { title:"分类",
         docs:"https://docs.rsshub.app/government.html#zhong-guo-yin-xing-bao-xian-jian-du-guan-li-wei-yuan-hui",
@@ -3083,6 +3093,8 @@
         source:[ "/" ],
         target:(params, url) => `/dgjyw/${new URL(url).toString().match(/dgjyw\.com\/(.*)\.htm$/)[1]}` } ] },
   "dhu.edu.cn":{ _name:"东华大学",
+    gs:[ { title:"研究生院通知",
+        docs:"https://docs.rsshub.app/university.html#dong-hua-da-xue" } ],
     jw:[ { title:"教务处通知",
         docs:"https://docs.rsshub.app/university.html#dong-hua-da-xue" } ],
     news:[ { title:"学术信息",
@@ -9012,6 +9024,9 @@
         docs:"https://docs.rsshub.app/program-update.html#npm",
         source:[ "/package/:name" ],
         target:"/npm/package/:name" } ] },
+  "npr.org":{ _name:"NPR",
+    ".":[ { title:"全文 RSS",
+        docs:"https://docs.rsshub.app/traditional-media.html#npr" } ] },
   "ntdtv.com":{ _name:"新唐人电视台",
     www:[ { title:"频道",
         docs:"https://docs.rsshub.app/traditional-media.html#xin-tang-ren-dian-shi-tai",

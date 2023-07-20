@@ -3898,6 +3898,18 @@
       }
     ]
   },
+  "cbaigui.com": {
+    "_name": "纪妖",
+    ".": [
+      {
+        "title": "通用",
+        "docs": "https://docs.rsshub.app/new-media.html#ji-yao-tong-yong",
+        "source": [
+          "/"
+        ]
+      }
+    ]
+  },
   "cbirc.gov.cn": {
     "_name": "中国银行保险监督管理委员会",
     ".": [
@@ -5744,6 +5756,12 @@
   },
   "dhu.edu.cn": {
     "_name": "东华大学",
+    "gs": [
+      {
+        "title": "研究生院通知",
+        "docs": "https://docs.rsshub.app/university.html#dong-hua-da-xue"
+      }
+    ],
     "jw": [
       {
         "title": "教务处通知",
@@ -16746,6 +16764,15 @@
           "/package/:name"
         ],
         "target": "/npm/package/:name"
+      }
+    ]
+  },
+  "npr.org": {
+    "_name": "NPR",
+    ".": [
+      {
+        "title": "全文 RSS",
+        "docs": "https://docs.rsshub.app/traditional-media.html#npr"
       }
     ]
   },
