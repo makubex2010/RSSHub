@@ -870,6 +870,9 @@
     "/bse/:category?/:keyword?": [
         "nczitzk"
     ],
+    "/bsky/keyword/:keyword": [
+        "untitaker"
+    ],
     "/btzj/:category?": [
         "nczitzk"
     ],
@@ -4163,6 +4166,9 @@
         "GeoffreyChen777"
     ],
     "/ouc/jwc": [
+        "3401797899"
+    ],
+    "/ouc/jwgl": [
         "3401797899"
     ],
     "/ouc/yjs": [
