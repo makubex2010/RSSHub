@@ -4104,6 +4104,9 @@
     "/odaily/newsflash": [
         "nczitzk"
     ],
+    "/odaily/search/news/:keyword": [
+        "snowraincloud"
+    ],
     "/odaily/user/:id": [
         "nczitzk"
     ],
@@ -4637,6 +4640,12 @@
     ],
     "/rsshub/rsshub/sponsors": [
         "DIYgod"
+    ],
+    "/rsshub/transform/html/:url/:routeParams": [
+        "ttttmr"
+    ],
+    "/rsshub/transform/json/:url/:routeParams": [
+        "ttttmr"
     ],
     "/ruancan/ruancan/category/:category?": [
         "nczitzk"

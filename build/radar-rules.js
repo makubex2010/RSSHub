@@ -1120,6 +1120,11 @@
         source:[ "/",
           "/html/:category?/:topic?" ],
         target:"/ally/rail/:category?/:topic?" } ] },
+  "altervista.org":{ _name:"Altervista",
+    hyp3rlinx:[ { title:"hyp3rlinx blog",
+        docs:"https://docs.rsshub.app/",
+        source:[ "/" ],
+        target:"/rsshub/transform/html/http%3A%2F%2Fhyp3rlinx.altervista.org%2F/item=table[border=%221%22]%20tr%20td%20a" } ] },
   "amazon.com":{ _name:"Amazon",
     ".":[ { title:"Kindle 软件更新",
         docs:"https://docs.rsshub.app/program-update.html#amazon",
@@ -9226,6 +9231,10 @@
         source:[ "/newsflash",
           "/" ],
         target:"/odaily/newsflash" },
+      { title:"搜索快讯",
+        docs:"https://docs.rsshub.app/new-media.html#odaily-xing-qiu-ri-bao-sou-suo-kuai-xun",
+        source:[ "/search/:keyword" ],
+        target:"/odaily/search/news/:keyword" },
       { title:"文章",
         docs:"https://docs.rsshub.app/new-media.html#odaily-xing-qiu-ri-bao-wen-zhang",
         source:[ "/" ],
@@ -9246,6 +9255,10 @@
         source:[ "/newsflash",
           "/" ],
         target:"/odaily/newsflash" },
+      { title:"搜索快讯",
+        docs:"https://docs.rsshub.app/new-media.html#odaily-xing-qiu-ri-bao-sou-suo-kuai-xun",
+        source:[ "/search/:keyword" ],
+        target:"/odaily/search/news/:keyword" },
       { title:"文章",
         docs:"https://docs.rsshub.app/new-media.html#odaily-xing-qiu-ri-bao-wen-zhang",
         source:[ "/" ],
@@ -10630,6 +10643,12 @@
                     const cid = new URL(url).searchParams.get('CID');
                     return `/sdzk${bcid ? `/${bcid}${cid ? `/${cid}` : ''}` : ''}`;
                 } } ] },
+  "sec.today":{ _name:"每日安全",
+    ".":[ { title:"动态",
+        docs:"https://docs.rsshub.app/",
+        source:[ "/pulses",
+          "/" ],
+        target:"/rsshub/transform/html/https%3A%2F%2Fsec.today%2Fpulses%2F/item=div[class=\"card-body\"]" } ] },
   "sec-in.com":{ _name:"SecIN信息安全技术社区",
     ".":[ { title:"最新文章",
         docs:"https://docs.rsshub.app/bbs.html#secin-xin-xi-an-quan-ji-shu-she-qu" } ] },
@@ -11826,8 +11845,7 @@
         docs:"https://docs.rsshub.app/social-media.html#telegram",
         source:"/:username",
         target:(params, url, document) => {
-                    const isChannel = document && document.querySelector('.tgme_action_button_label');
-                    if (isChannel) {
+                    if (document?.querySelector('a[href^="/s/"]')) {
                         return '/telegram/channel/:username';
                     }
                 } },
@@ -13366,11 +13384,13 @@
         target:"/xueqiu/column/:id" },
       { title:"组合最新调仓信息",
         docs:"https://docs.rsshub.app/finance.html#xue-qiu",
-        source:[ "/p/:id" ],
+        source:[ "/P/:id",
+          "/p/:id" ],
         target:"/xueqiu/snb/:id" },
       { title:"股票信息",
         docs:"https://docs.rsshub.app/finance.html#xue-qiu",
-        source:[ "/S/:id" ],
+        source:[ "/S/:id",
+          "/s/:id" ],
         target:"/xueqiu/stock_info/:id" },
       { title:"股票评论",
         docs:"https://docs.rsshub.app/finance.html#xue-qiu",
