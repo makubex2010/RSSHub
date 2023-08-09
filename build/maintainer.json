@@ -4675,6 +4675,12 @@
     "/ruc/hr/:category?": [
         "nczitzk"
     ],
+    "/runtrail": [
+        "TonyRL"
+    ],
+    "/runtrail/": [
+        "TonyRL"
+    ],
     "/rustcc/jobs": [
         "CcccFz"
     ],
@@ -5133,6 +5139,9 @@
     "/stheadline/std/realtime/:category*": [
         "TonyRL"
     ],
+    "/stockedge/daily-updates/news": [
+        "Rjnishant530"
+    ],
     "/storm/:category?/:id?": [
         "nczitzk"
     ],
@@ -5350,6 +5359,9 @@
     ],
     "/thecover/channel/:id?": [
         "yuxinliu-alex"
+    ],
+    "/thehindu/topic/:topic": [
+        "TonyRL"
     ],
     "/theinitium/author/:type/:language?": [
         "AgFlore"

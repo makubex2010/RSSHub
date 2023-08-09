@@ -19054,6 +19054,19 @@
       }
     ]
   },
+  "runtrail.cn": {
+    "_name": "跑野大爆炸",
+    ".": [
+      {
+        "title": "最新文章",
+        "docs": "https://docs.rsshub.app/new-media.html#pao-ye",
+        "source": [
+          "/"
+        ],
+        "target": "/runtrail"
+      }
+    ]
+  },
   "rustcc.cn": {
     "_name": "Rust语言中文社区",
     ".": [
@@ -21410,6 +21423,19 @@
       }
     ]
   },
+  "stockedge.com": {
+    "_name": "Stock Edge",
+    ".": [
+      {
+        "title": "Daily Updates News",
+        "docs": "https://docs.rsshub.app/en/finance.html#stock-edge",
+        "source": [
+          "/daily-updates/news"
+        ],
+        "target": "/stockedge/daily-updates/news"
+      }
+    ]
+  },
   "storm.mg": {
     "_name": "風傳媒",
     ".": [
@@ -22169,6 +22195,19 @@
           "/:id",
           "/"
         ]
+      }
+    ]
+  },
+  "thehindu.com": {
+    "_name": "The Hindu",
+    ".": [
+      {
+        "title": "Topic",
+        "docs": "https://docs.rsshub.app/en/traditional-media.html#the-hindu",
+        "source": [
+          "/topic/:topic"
+        ],
+        "target": "/thehindu/topic/:topic"
       }
     ]
   },
