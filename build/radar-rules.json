@@ -1660,6 +1660,17 @@
       }
     ]
   },
+  "aip.org": {
+    "_name": "American Institute of Physics",
+    "pubs": [
+      {
+        "title": "Journal",
+        "docs": "https://docs.rsshub.app/routes/journal#american-institute-of-physics",
+        "source": "/:pub/:jrn",
+        "target": "/aip/:pub/:jrn"
+      }
+    ]
+  },
   "airchina.com.cn": {
     "_name": "中国国际航空公司",
     "www": [
@@ -19383,22 +19394,6 @@
       }
     ]
   },
-  "scitation.org": {
-    "_name": "scitation",
-    ".": [
-      {
-        "title": "journal",
-        "docs": "https://docs.rsshub.app/routes/journal#scitation",
-        "source": ":pub.scitation.org/toc/:jrn",
-        "target": "/scitation/:pub/:jrn"
-      },
-      {
-        "title": "section",
-        "docs": "https://docs.rsshub.app/routes/journal#scitation",
-        "source": ":pub.scitation.org/toc/:jrn"
-      }
-    ]
-  },
   "scmp.com": {
     "_name": "South China Morning Post",
     ".": [
@@ -23242,6 +23237,12 @@
         "docs": "https://docs.rsshub.app/routes/social-media#zhi-hu",
         "source": "/column/:id",
         "target": "/zhihu/zhuanlan/:id"
+      },
+      {
+        "title": "xhu - 话题",
+        "docs": "https://docs.rsshub.app/routes/social-media#zhi-hu",
+        "source": "/topic/:topicId/:type",
+        "target": "/zhihu/xhu/topic/:topicId"
       }
     ],
     "zhuanlan": [
