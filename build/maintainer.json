@@ -1512,6 +1512,9 @@
     "/distill/": [
         "nczitzk"
     ],
+    "/dlnews/:category?": [
+        "Rjnishant530"
+    ],
     "/dlsite/campaign/:type/:free?": [
         "cssxsh"
     ],
@@ -6466,7 +6469,16 @@
     "/zhihu/weekly": [
         "LogicJake"
     ],
+    "/zhihu/xhu/collection/:id": [
+        "JimenezLi"
+    ],
+    "/zhihu/xhu/question/:questionId/:sortBy?": [
+        "JimenezLi"
+    ],
     "/zhihu/xhu/topic/:topicId": [
+        "JimenezLi"
+    ],
+    "/zhihu/xhu/zhuanlan/:id": [
         "JimenezLi"
     ],
     "/zhihu/zhuanlan/:id": [
