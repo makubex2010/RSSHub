@@ -1373,12 +1373,26 @@
   },
   "abskoop.com": {
     "_name": "A姐分享",
+    "nsfw": [
+      {
+        "title": "NSFW 存档列表",
+        "docs": "https://docs.rsshub.app/routes/multimedia#a-jie-fen-xiang",
+        "source": [
+          "/articles-archive",
+          "/"
+        ],
+        "target": "/abskoop"
+      }
+    ]
+  },
+  "ahhhhfs.com": {
+    "_name": "A姐分享",
     ".": [
       {
         "title": "存档列表",
-        "docs": "https://docs.rsshub.app/routes/multimedia#abskoop",
+        "docs": "https://docs.rsshub.app/routes/multimedia#a-jie-fen-xiang",
         "source": [
-          "/archives"
+          "/"
         ],
         "target": "/abskoop"
       }
@@ -2573,8 +2587,13 @@
       },
       {
         "title": "用户帖子",
-        "docs": "https://docs.rsshub.app/routes/bbs#tie-ba",
+        "docs": "https://docs.rsshub.app/routes/bbs#bai-du-tie-ba",
         "source": "/home/main"
+      },
+      {
+        "title": "贴吧搜索",
+        "docs": "https://docs.rsshub.app/routes/bbs#bai-du-tie-ba",
+        "source": "/f/search/res"
       }
     ],
     "top": [
@@ -2677,55 +2696,55 @@
     ".": [
       {
         "title": "小组话题",
-        "docs": "https://docs.rsshub.app/routes/anime#bangumi",
+        "docs": "https://docs.rsshub.app/routes/anime#bangumi-fan-zu-ji-hua",
         "source": "/group/:id",
         "target": "/bangumi/tv/group/:id"
       },
       {
         "title": "小组话题的新回复",
-        "docs": "https://docs.rsshub.app/routes/anime#bangumi",
+        "docs": "https://docs.rsshub.app/routes/anime#bangumi-fan-zu-ji-hua",
         "source": "/group/topic/:id",
         "target": "/bangumi/tv/topic/:id"
       },
       {
         "title": "现实人物的新作品",
-        "docs": "https://docs.rsshub.app/routes/anime#bangumi",
+        "docs": "https://docs.rsshub.app/routes/anime#bangumi-fan-zu-ji-hua",
         "source": "/person/:id",
         "target": "/bangumi/tv/person/:id"
       },
       {
         "title": "用户日志",
-        "docs": "https://docs.rsshub.app/routes/anime#bangumi",
+        "docs": "https://docs.rsshub.app/routes/anime#bangumi-fan-zu-ji-hua",
         "source": "/user/:id",
         "target": "/bangumi/tv/user/blog/:id"
       },
       {
         "title": "条目的讨论",
-        "docs": "https://docs.rsshub.app/routes/anime#bangumi",
+        "docs": "https://docs.rsshub.app/routes/anime#bangumi-fan-zu-ji-hua",
         "source": "/subject/:id",
         "target": "/bangumi/tv/subject/:id/topics"
       },
       {
         "title": "条目的评论",
-        "docs": "https://docs.rsshub.app/routes/anime#bangumi",
+        "docs": "https://docs.rsshub.app/routes/anime#bangumi-fan-zu-ji-hua",
         "source": "/subject/:id",
         "target": "/bangumi/tv/subject/:id/blogs"
       },
       {
         "title": "条目的章节",
-        "docs": "https://docs.rsshub.app/routes/anime#bangumi",
+        "docs": "https://docs.rsshub.app/routes/anime#bangumi-fan-zu-ji-hua",
         "source": "/subject/:id",
         "target": "/bangumi/tv/subject/:id"
       },
       {
         "title": "条目的吐槽箱",
-        "docs": "https://docs.rsshub.app/routes/anime#bangumi",
+        "docs": "https://docs.rsshub.app/routes/anime#bangumi-fan-zu-ji-hua",
         "source": "/subject/:id",
         "target": "/bangumi/tv/subject/:id/comments"
       },
       {
         "title": "放送列表",
-        "docs": "https://docs.rsshub.app/routes/anime#bangumi",
+        "docs": "https://docs.rsshub.app/routes/anime#bangumi-fan-zu-ji-hua",
         "source": "/calendar",
         "target": "/bangumi/tv/calendar/today"
       }
@@ -2736,55 +2755,55 @@
     ".": [
       {
         "title": "小组话题",
-        "docs": "https://docs.rsshub.app/routes/anime#bangumi",
+        "docs": "https://docs.rsshub.app/routes/anime#bangumi-fan-zu-ji-hua",
         "source": "/group/:id",
         "target": "/bangumi/tv/group/:id"
       },
       {
         "title": "小组话题的新回复",
-        "docs": "https://docs.rsshub.app/routes/anime#bangumi",
+        "docs": "https://docs.rsshub.app/routes/anime#bangumi-fan-zu-ji-hua",
         "source": "/group/topic/:id",
         "target": "/bangumi/tv/topic/:id"
       },
       {
         "title": "现实人物的新作品",
-        "docs": "https://docs.rsshub.app/routes/anime#bangumi",
+        "docs": "https://docs.rsshub.app/routes/anime#bangumi-fan-zu-ji-hua",
         "source": "/person/:id",
         "target": "/bangumi/tv/person/:id"
       },
       {
         "title": "用户日志",
-        "docs": "https://docs.rsshub.app/routes/anime#bangumi",
+        "docs": "https://docs.rsshub.app/routes/anime#bangumi-fan-zu-ji-hua",
         "source": "/user/:id",
         "target": "/bangumi/tv/user/blog/:id"
       },
       {
         "title": "条目的讨论",
-        "docs": "https://docs.rsshub.app/routes/anime#bangumi",
+        "docs": "https://docs.rsshub.app/routes/anime#bangumi-fan-zu-ji-hua",
         "source": "/subject/:id",
         "target": "/bangumi/tv/subject/:id/topics"
       },
       {
         "title": "条目的评论",
-        "docs": "https://docs.rsshub.app/routes/anime#bangumi",
+        "docs": "https://docs.rsshub.app/routes/anime#bangumi-fan-zu-ji-hua",
         "source": "/subject/:id",
         "target": "/bangumi/tv/subject/:id/blogs"
       },
       {
         "title": "条目的章节",
-        "docs": "https://docs.rsshub.app/routes/anime#bangumi",
+        "docs": "https://docs.rsshub.app/routes/anime#bangumi-fan-zu-ji-hua",
         "source": "/subject/:id",
         "target": "/bangumi/tv/subject/:id"
       },
       {
         "title": "条目的吐槽箱",
-        "docs": "https://docs.rsshub.app/routes/anime#bangumi",
+        "docs": "https://docs.rsshub.app/routes/anime#bangumi-fan-zu-ji-hua",
         "source": "/subject/:id",
         "target": "/bangumi/tv/subject/:id/comments"
       },
       {
         "title": "放送列表",
-        "docs": "https://docs.rsshub.app/routes/anime#bangumi",
+        "docs": "https://docs.rsshub.app/routes/anime#bangumi-fan-zu-ji-hua",
         "source": "/calendar",
         "target": "/bangumi/tv/calendar/today"
       }
@@ -2824,6 +2843,15 @@
           "/col",
           "/"
         ]
+      }
+    ]
+  },
+  "bbc.com": {
+    "_name": "BBC",
+    ".": [
+      {
+        "title": "News",
+        "docs": "https://docs.rsshub.app/routes/traditional-media#bbc"
       }
     ]
   },
@@ -3622,6 +3650,20 @@
       }
     ]
   },
+  "boc.cn": {
+    "_name": "中国银行",
+    ".": [
+      {
+        "title": "外汇牌价",
+        "docs": "https://docs.rsshub.app/routes/others#zhong-guo-yin-hang",
+        "source": [
+          "/sourcedb/whpj",
+          "/"
+        ],
+        "target": "/boc/whpj"
+      }
+    ]
+  },
   "bookfere.com": {
     "_name": "书伴",
     ".": [
@@ -4032,6 +4074,22 @@
           "/"
         ],
         "target": "/cau/yjs"
+      }
+    ]
+  },
+  "caus.com": {
+    "_name": "加美财经",
+    ".": [
+      {
+        "title": "分类",
+        "docs": "https://docs.rsshub.app/routes/new-media#jia-mei-cai-jing",
+        "source": [
+          "/home",
+          "/focus_news",
+          "/hours",
+          "/fortune",
+          "/life"
+        ]
       }
     ]
   },
@@ -4845,6 +4903,19 @@
       }
     ]
   },
+  "cna.com.tw": {
+    "_name": "中央通訊社",
+    ".": [
+      {
+        "title": "分类",
+        "docs": "https://docs.rsshub.app/routes/traditional-media#zhong-yang-tong-xun-she",
+        "source": [
+          "/list/:id",
+          "/topic/newstopic/:id"
+        ]
+      }
+    ]
+  },
   "cnbc.com": {
     "_name": "CNBC",
     "search": [
@@ -5564,6 +5635,38 @@
       }
     ]
   },
+  "cyzone.cn": {
+    "_name": "创业邦",
+    ".": [
+      {
+        "title": "资讯",
+        "docs": "https://docs.rsshub.app/routes/new-media#chuang-ye-bang-zi-xun",
+        "source": [
+          "/channel/:id",
+          "/"
+        ],
+        "target": "/cyzone/:id"
+      },
+      {
+        "title": "作者",
+        "docs": "https://docs.rsshub.app/routes/new-media#chuang-ye-bang-zuo-zhe",
+        "source": [
+          "/author/:id",
+          "/"
+        ],
+        "target": "/cyzone/author/:id"
+      },
+      {
+        "title": "标签",
+        "docs": "https://docs.rsshub.app/routes/new-media#chuang-ye-bang-biao-qian",
+        "source": [
+          "/label/:name",
+          "/"
+        ],
+        "target": "/cyzone/label/:name"
+      }
+    ]
+  },
   "cztv.com": {
     "_name": "新蓝网",
     ".": [
@@ -5873,6 +5976,17 @@
           "/"
         ],
         "target": "/blog"
+      }
+    ]
+  },
+  "delta.io": {
+    "_name": "Delta Lake",
+    ".": [
+      {
+        "title": "Blogs",
+        "docs": "https://docs.rsshub.app/routes/blog#deltalake",
+        "source": "/blog",
+        "target": "/deltaio/blog"
       }
     ]
   },
@@ -9721,6 +9835,16 @@
         "target": "/gov/shenzhen/hrss/szksy/:caty/:page?"
       }
     ],
+    "zjj": [
+      {
+        "title": "深圳市住房和建设局",
+        "docs": "https://docs.rsshub.app/routes/government#guang-dong-sheng-ren-min-zheng-fu-shen-zhen-shi-zhu-fang-he-jian-she-ju",
+        "source": [
+          "/xxgk/:caty"
+        ],
+        "target": "/gov/shenzhen/zjj/xxgk/:caty"
+      }
+    ],
     "zzb": [
       {
         "title": "组工在线公告",
@@ -11403,6 +11527,19 @@
       }
     ]
   },
+  "icbc.com.cn": {
+    "_name": "中国工商银行",
+    ".": [
+      {
+        "title": "外汇牌价",
+        "docs": "https://docs.rsshub.app/other#zhong-guo-gong-shang-yin-hang",
+        "source": [
+          "/column/1438058341489590354.html"
+        ],
+        "target": "/icbc/whpj"
+      }
+    ]
+  },
   "idolypride.jp": {
     "_name": "偶像荣耀",
     ".": [
@@ -12175,6 +12312,16 @@
           "/"
         ],
         "target": "/jandan/:category?"
+      }
+    ]
+  },
+  "japanpost.jp": {
+    "_name": "日本郵便",
+    "trackings.post": [
+      {
+        "title": "郵便・荷物の追跡",
+        "docs": "https://docs.rsshub.app/routes/other#japanpost-ri-ben-you-bian",
+        "source": "/services/srv/search/direct"
       }
     ]
   },
@@ -13968,8 +14115,7 @@
         "title": "Essay",
         "docs": "https://docs.rsshub.app/routes/blog#kun-cheng-essay",
         "source": [
-          "/essay",
-          "/"
+          "/essay"
         ],
         "target": "/kunchengblog/essay"
       }
@@ -14089,7 +14235,7 @@
       {
         "title": "报道",
         "docs": "https://docs.rsshub.app/routes/new-media#wan-dian-latepost-bao-dao",
-        "source": "/"
+        "source": "*"
       }
     ]
   },
@@ -14419,25 +14565,55 @@
     "_name": "木木博客",
     ".": [
       {
-        "title": "每天六十秒（60秒）读懂世界",
-        "docs": "https://docs.rsshub.app/routes/new-media#mu-mu-bo-ke",
+        "title": "频道",
+        "docs": "https://docs.rsshub.app/new-media.html#mu-mu-bo-ke",
         "source": [
-          "/kuaixun"
+          "/:channel",
+          "/"
+        ]
+      },
+      {
+        "title": "标签",
+        "docs": "https://docs.rsshub.app/new-media.html#mu-mu-bo-ke",
+        "source": [
+          "/tag/:id",
+          "/"
+        ],
+        "target": "/liulinblog/tag/:id"
+      },
+      {
+        "title": "专题",
+        "docs": "https://docs.rsshub.app/new-media.html#mu-mu-bo-ke",
+        "source": [
+          "/series/:id",
+          "/"
+        ],
+        "target": "/liulinblog/series/:id"
+      },
+      {
+        "title": "搜索",
+        "docs": "https://docs.rsshub.app/new-media.html#mu-mu-bo-ke",
+        "source": [
+          "/search/:keyword",
+          "/"
+        ],
+        "target": "/liulinblog/search/:keyword"
+      },
+      {
+        "title": "60秒读懂世界",
+        "docs": "https://docs.rsshub.app/new-media.html#mu-mu-bo-ke",
+        "source": [
+          "/kuaixun",
+          "/"
         ],
         "target": "/liulinblog/kuaixun"
       },
       {
-        "title": "互联网早报",
-        "docs": "https://docs.rsshub.app/routes/new-media#mu-mu-bo-ke",
+        "title": "网络营销",
+        "docs": "https://docs.rsshub.app/new-media.html#mu-mu-bo-ke",
         "source": [
-          "/itnews/:channel"
-        ]
-      },
-      {
-        "title": "站长圈",
-        "docs": "https://docs.rsshub.app/routes/new-media#mu-mu-bo-ke",
-        "source": [
-          "/itnews/:channel"
+          "/:channel",
+          "/"
         ]
       }
     ]
@@ -14613,6 +14789,19 @@
           "/blog/:name"
         ],
         "target": "/luogu/user/blog/:name"
+      }
+    ]
+  },
+  "luxiangdong.com": {
+    "_name": "土猛的员外",
+    ".": [
+      {
+        "title": "文章",
+        "docs": "https://docs.rsshub.app/routes/blog#luxiangdong",
+        "source": [
+          "/"
+        ],
+        "target": "/luxiangdong/archive"
       }
     ]
   },
@@ -15189,8 +15378,14 @@
     "_name": "米哈游",
     "bbs": [
       {
+        "title": "米游社 - 同人榜",
+        "docs": "https://docs.rsshub.app/routes/game#mi-ha-you",
+        "source": "/:game/imgRanking/:forum_id/:ranking_id/:cate_id",
+        "target": "/mihoyo/bbs/img-ranking/:game"
+      },
+      {
         "title": "米游社 - 官方公告",
-        "docs": "https://docs.rsshub.app/routes/game#mi-ha-you-mi-you-she-guan-fang-gong-gao",
+        "docs": "https://docs.rsshub.app/routes/game#mi-ha-you",
         "source": [
           "/:game/home/28",
           "/:game/home/6",
@@ -18349,6 +18544,54 @@
       }
     ]
   },
+  "pornhub.com": {
+    "_name": "PornHub",
+    ".": [
+      {
+        "title": "Category",
+        "docs": "https://docs.rsshub.app/routes/multimedia#pornhub",
+        "source": [
+          "/categories/:caty",
+          "/video"
+        ]
+      },
+      {
+        "title": "Keyword Search",
+        "docs": "https://docs.rsshub.app/routes/multimedia#pornhub",
+        "source": [
+          "/video/search"
+        ]
+      },
+      {
+        "title": "Users",
+        "docs": "https://docs.rsshub.app/routes/multimedia#pornhub",
+        "source": [
+          "/users/:username/*"
+        ],
+        "target": "/pornhub/users/:username"
+      },
+      {
+        "title": "Verified amateur / Model",
+        "docs": "https://docs.rsshub.app/routes/multimedia#pornhub",
+        "source": [
+          "/model/:username/*"
+        ],
+        "target": "/pornhub/model/:username"
+      },
+      {
+        "title": "Verified model / Pornstar",
+        "docs": "https://docs.rsshub.app/routes/multimedia#pornhub",
+        "source": [
+          "/pornstar/:username/*"
+        ],
+        "target": "/pornhub/pornstar/:username"
+      },
+      {
+        "title": "Video List",
+        "docs": "https://docs.rsshub.app/routes/multimedia#pornhub"
+      }
+    ]
+  },
   "postman.com": {
     "_name": "Postman",
     ".": [
@@ -19180,6 +19423,20 @@
           "/ko"
         ],
         "target": "/rodong/news"
+      }
+    ]
+  },
+  "rsc.org": {
+    "_name": "The Royal Society of Chemistry",
+    "pubs": [
+      {
+        "title": "Journal",
+        "docs": "https://docs.rsshub.app/routes/journal#royal-society-of-chemistry",
+        "source": [
+          "/en/journals/journalissues/:id",
+          "/en/content/articlelanding",
+          "/en/content/articlehtml"
+        ]
       }
     ]
   },
@@ -22376,6 +22633,41 @@
       }
     ]
   },
+  "tfc-taiwan.org.tw": {
+    "_name": "台灣事實查核中心",
+    ".": [
+      {
+        "title": "專題",
+        "docs": "https://docs.rsshub.app/routes/other#tai-wan-shi-shi-cha-he-zhong-xin",
+        "source": "/articles/category/:id+",
+        "target": "/tfc-taiwan/category/:id"
+      },
+      {
+        "title": "最新相關資訊",
+        "docs": "https://docs.rsshub.app/routes/other#tai-wan-shi-shi-cha-he-zhong-xin",
+        "source": [
+          "/articles/info",
+          "/"
+        ],
+        "target": "/tfc-taiwan/info"
+      },
+      {
+        "title": "最新查核報告",
+        "docs": "https://docs.rsshub.app/routes/other#tai-wan-shi-shi-cha-he-zhong-xin",
+        "source": [
+          "/articles/report",
+          "/"
+        ],
+        "target": "/tfc-taiwan/report"
+      },
+      {
+        "title": "重點專區",
+        "docs": "https://docs.rsshub.app/routes/other#tai-wan-shi-shi-cha-he-zhong-xin",
+        "source": "/topic/:id",
+        "target": "/tfc-taiwan/topic/:id"
+      }
+    ]
+  },
   "theatlantic.com": {
     "_name": "The Atlantic",
     "www": [
@@ -23105,6 +23397,51 @@
           "/"
         ],
         "target": "/tongji/yjs"
+      }
+    ]
+  },
+  "toodaylab.com": {
+    "_name": "理想生活实验室",
+    ".": [
+      {
+        "title": "滚动",
+        "docs": "https://docs.rsshub.app/routes/new-media#li-xiang-sheng-huo-shi-yan-shi-gun-dong",
+        "source": [
+          "/posts"
+        ],
+        "target": "/toodaylab/posts"
+      },
+      {
+        "title": "最热",
+        "docs": "https://docs.rsshub.app/routes/new-media#li-xiang-sheng-huo-shi-yan-shi-zui-re",
+        "source": [
+          "/posts"
+        ],
+        "target": "/toodaylab/hot"
+      },
+      {
+        "title": "专栏",
+        "docs": "https://docs.rsshub.app/routes/new-media#li-xiang-sheng-huo-shi-yan-shi-zhuan-lan",
+        "source": [
+          "/column/:id"
+        ],
+        "target": "/toodaylab/column/:id"
+      },
+      {
+        "title": "领域",
+        "docs": "https://docs.rsshub.app/routes/new-media#li-xiang-sheng-huo-shi-yan-shi-ling-yu",
+        "source": [
+          "/field/:id"
+        ],
+        "target": "/toodaylab/field/:id"
+      },
+      {
+        "title": "话题",
+        "docs": "https://docs.rsshub.app/routes/new-media#li-xiang-sheng-huo-shi-yan-shi-hua-ti",
+        "source": [
+          "/topic/:id"
+        ],
+        "target": "/toodaylab/topic/:id"
       }
     ]
   },
@@ -24092,6 +24429,33 @@
           "/"
         ],
         "target": "/v1tx"
+      }
+    ]
+  },
+  "v2ex.com": {
+    "_name": "V2EX",
+    ".": [
+      {
+        "title": "最热 / 最新主题",
+        "docs": "https://docs.rsshub.app/routes/v2ex",
+        "source": [
+          "/"
+        ]
+      },
+      {
+        "title": "帖子",
+        "docs": "https://docs.rsshub.app/routes/v2ex",
+        "source": [
+          "/t/:postid"
+        ],
+        "target": "/v2ex/post/:postid"
+      },
+      {
+        "title": "标签",
+        "docs": "https://docs.rsshub.app/routes/v2ex",
+        "source": [
+          "/"
+        ]
       }
     ]
   },
@@ -25688,6 +26052,11 @@
           "/feed/channels"
         ],
         "target": "/youtube/subscriptions"
+      },
+      {
+        "title": "Live",
+        "docs": "https://docs.rsshub.app/routes/live#youtube-live",
+        "source": "/:handle"
       }
     ]
   },
@@ -27076,16 +27445,6 @@
         "docs": "https://docs.rsshub.app/routes/university#ha-er-bin-gong-cheng-da-xue",
         "source": "/*",
         "target": "/heu/gongxue/sx"
-      }
-    ]
-  },
-  "japanpost.jp": {
-    "_name": "日本郵便",
-    "trackings.post": [
-      {
-        "title": "郵便・荷物の追跡",
-        "docs": "https://docs.rsshub.app/routes/other#ri-ben-you-bian-you-bian-zhui-ji-サービス",
-        "source": "/services/srv/search/direct"
       }
     ]
   },
