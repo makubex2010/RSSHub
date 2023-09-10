@@ -295,6 +295,7 @@ So the route is [`/itch/devlogs/teamterrible/the-baby-in-yellow`](https://rsshub
 ### 游戏折扣 {#jump-you-xi-zhe-kou}
 
 <Route author="zytomorrow" path="/jump/discount/:platform/:filter?/:countries?" example="/jump/discount/ps5/all" paramsDesc={['平台:switch,ps4,ps5,xbox,steam,epic', '过滤参数,all-全部，jx-精选，sd-史低，dl-独立，vip-会员', '地区，具体支持较多，可自信查看地区简写']}>
+
 | switch | ps4  | ps5  | xbox   | steam | epic   |
 | ------ | ---- | ---- | ------ | ----- | ------ |
 | 可用   | 可用 | 可用 | 不可用 | 可用  | 不可用 |
@@ -743,6 +744,52 @@ Example：`https://www.iyingdi.com/tz/people/55547` ，id 是 `55547`
 | 最新   | 动态 | 公告   | 活动     | 补给     |
 | ------ | ---- | ------ | -------- | -------- |
 | latest | news | notice | activity | strategy |
+
+</Route>
+
+### 米游社 - 同人榜 {#mi-ha-you-mi-you-she---tong-ren-bang}
+
+<Route author="CaoMeiYouRen" example="/mihoyo/bbs/img-ranking/ys/forumType=tongren&cateType=illustration&rankingType=daily" path="/bbs/img-ranking/:game/:routeParams?" paramsDesc={['游戏缩写','额外参数；请参阅以下说明和表格']} radar="1">
+
+| 键          | 含义                                | 接受的值                                                     | 默认值       |
+| ----------- | ----------------------------------- | ------------------------------------------------------------ | ------------ |
+| forumType   | 主榜类型（仅原神、大别野有cos主榜） | tongren/cos                                                  | tongren      |
+| cateType    | 子榜类型（仅崩坏三、原神有子榜）    | 崩坏三：illustration/comic/cos；原神：illustration/comic/qute/manual | illustration |
+| rankingType | 排行榜类型（崩坏二没有日榜）        | daily/weekly/monthly                                         | daily        |
+| lastId      | 当前页id（用于分页）                | 数字                                                         | 1            |
+
+游戏缩写（目前绝区零还没有同人榜
+
+| 崩坏三 | 原神 | 崩坏二 | 未定事件簿 | 星穹铁道 | 大别野 |
+| ------ | ---- | ------ | ---------- | -------- | ------ |
+| bh3    | ys   | bh2    | wd         | sr       | dby    |
+
+主榜类型
+
+| 同人榜  | COS榜 |
+| ------- | ----- |
+| tongren | cos   |
+
+子榜类型
+
+崩坏三 子榜
+
+| 插画         | 漫画  | COS  |
+| ------------ | ----- | ---- |
+| illustration | comic | cos  |
+
+
+原神 子榜
+
+| 插画         | 漫画  | Q版  | 手工   |
+| ------------ | ----- | ---- | ------ |
+| illustration | comic | qute | manual |
+
+排行榜类型
+
+| 日榜  | 周榜   | 月榜    |
+| ----- | ------ | ------- |
+| daily | weekly | monthly |
 
 </Route>
 

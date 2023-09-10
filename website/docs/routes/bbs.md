@@ -150,7 +150,17 @@ You need to set the environment variable `DISCOURSE_CONFIG_{id}` before using it
 
 ### Latest posts {#discourse-latest-posts}
 
-<Route author="dzx-dzx" example="/discourse/0/posts" path="/discuz/:configId/posts" paramsDesc={['Environment variable configuration id, see above']} selfhost="1"/>
+<Route author="dzx-dzx" example="/discourse/0/posts" path="/discourse/:configId/posts" paramsDesc={['Environment variable configuration id, see above']} selfhost="1"/>
+
+### Notifications {#discourse-notifications}
+
+<Route author="dzx-dzx" example="/discourse/0/notifications" path="/discourse/:configId/notifications/:fulltext?" paramsDesc={['Environment variable configuration id, see above','Fetch the content if the notification points to a post. This is disabled by default, set it to `1` to enable it.']} selfhost="1"/>
+
+:::caution
+
+If you opt to enable `fulltext` feature, consider adding `limit` parameter to your query to avoid sending too many request.
+
+:::
 
 ## Discuz {#discuz}
 
@@ -467,6 +477,21 @@ When accessing Joeyray's Bar, `SCBOY_BBS_TOKEN` needs to be filled in `environme
 <Route author="igxlin nczitzk" example="/baidu/tieba/user/斗鱼游戏君" path="/baidu/tieba/user/:uid" paramsDesc={['用户 ID']} radar="1">
 
 用户 ID 可以通过打开用户的主页后查看地址栏的 `un` 字段来获取。
+
+</Route>
+
+### 贴吧搜索 {#bai-du-tie-ba-tie-ba-sou-suo}
+
+<Route author="JimenezLi" example="/baidu/tieba/search/neuro" path="/baidu/tieba/search/:qw/:routeParams?" paramsDesc={['搜索关键词', '额外参数；请参阅以下说明和表格']} radar="1">
+
+| 键 | 含义 | 接受的值 | 默认值 |
+| -- | ---- | ------- | ------ |
+| kw | 在名为 kw 的贴吧中搜索 | 任意名称/无 | 无 |
+| only_thread | 只看主题帖，默认为 0 关闭 | 0/1 | 0 |
+| rn | 返回条目的数量 | 1-20 | 20 |
+| sm | 排序方式，0 为按时间顺序，1 为按时间倒序，2 为按相关性顺序 | 0/1/2 | 1 |
+
+用例：`/baidu/tieba/search/neuro/kw=neurosama&only_thread=1&sm=2`
 
 </Route>
 

@@ -2312,13 +2312,31 @@ Supported sub-sites:
 
 ## 创业邦 {#chuang-ye-bang}
 
+### 资讯 {#chuang-ye-bang-zi-xun}
+
+<Route author="nczitzk" example="/cyzone" path="/cyzone/:id?" paramsDesc={['频道 id，可在对应频道页 URL 中找到，默认为 news，即最新资讯']}>
+
+| 最新 | 快鲤鱼 | 创投 | 科创板 | 汽车 |
+| ---- | ------ | ---- | ------ | ---- |
+| news | 5      | 14   | 13     | 8    |
+
+| 海外 | 消费 | 科技 | 医疗 | 文娱 |
+| ---- | ---- | ---- | ---- | ---- |
+| 10   | 9    | 7    | 27   | 11   |
+
+| 城市 | 政策 | 特写 | 干货 | 科技股 |
+| ---- | ---- | ---- | ---- | ------ |
+| 16   | 15   | 6    | 12   | 33     |
+
+</Route>
+
 ### 作者 {#chuang-ye-bang-zuo-zhe}
 
-<Route author="xyqfer" example="/cyzone/author/1225562" path="/cyzone/author/:id" paramsDesc={['作者 id']}/>
+<Route author="xyqfer nczitzk" example="/cyzone/author/1225562" path="/cyzone/author/:id" paramsDesc={['作者 id，可在对应作者页 URL 中找到']}/>
 
 ### 标签 {#chuang-ye-bang-biao-qian}
 
-<Route author="LogicJake" example="/cyzone/label/创业邦周报" path="/cyzone/label/:name" paramsDesc={['标签名称']}/>
+<Route author="LogicJake nczitzk" example="/cyzone/label/创业邦周报" path="/cyzone/label/:name" paramsDesc={['标签名称，可在对应标签页 URL 中找到']}/>
 
 ## 創新拿鐵 {#chuang-xin-na-tie}
 
@@ -3011,11 +3029,13 @@ others = 热点新闻 + 滚动新闻
 
 ## 加美财经 {#jia-mei-cai-jing}
 
-<Route author="nczitzk" example="/caus" path="/caus/:category?" paramsDesc={['分类，见下表，默认为全部']}>
+### 分类 {#jia-mei-cai-jing-fen-lei}
 
-| 全部 | 要闻 | 商业 | 快讯 | 投资理财 | 生活 |
+<Route author="nczitzk" example="/caus" path="/caus/:category?" paramsDesc={['分类，见下表，默认为全部']} radar="1">
+
+| 全部 | 要闻 | 商业 | 快讯 | 财富 | 生活 |
 | ---- | ---- | ---- | ---- | -------- | ---- |
-| 0    | 1    | 2    | 3    | 4        | 6    |
+| 0    | 1    | 2    | 3    | 8        | 6    |
 
 </Route>
 
@@ -3314,53 +3334,93 @@ column 为 third 时可选的 category:
 
 -   子栏目
 
-    -   人工智能
+-   人工智能
 
-                        | 学术     | 开发者   |
-                        | -------- | -------- |
-                        | academic | yanxishe |
+| 学术     | 开发者   |
+| -------- | -------- |
+| academic | yanxishe |
 
-    -   数智化
+-   数智化
 
-                        | 零售数智化 | 金融数智化 | 工业数智化 | 医疗数智化 | 城市数智化  |
-                        | ---------- | ---------- | ---------- | ---------- | ----------- |
-                        | redigital  | findigital | mandigital | medigital  | citydigital |
+| 零售数智化 | 金融数智化 | 工业数智化 | 医疗数智化 | 城市数智化  |
+| ---------- | ---------- | ---------- | ---------- | ----------- |
+| redigital  | findigital | mandigital | medigital  | citydigital |
 
-    -   金融科技
+-   金融科技
 
-                        | 科技巨头 | 银行 AI | 金融云       | 风控与安全   |
-                        | -------- | ------- | ------------ | ------------ |
-                        | BigTech  | bank    | FinanceCloud | DataSecurity |
+| 科技巨头 | 银行 AI | 金融云       | 风控与安全   |
+| -------- | ------- | ------------ | ------------ |
+| BigTech  | bank    | FinanceCloud | DataSecurity |
 
-    -   医疗科技
+-   医疗科技
 
-                        | 医疗 AI  | 投融资 | 医疗器械 | 互联网医疗       | 生物医药     | 健康险       |
-                        | -------- | ------ | -------- | ---------------- | ------------ | ------------ |
-                        | healthai | touzi  | qixie    | hulianwangyiliao | shengwuyiyao | jiankangxian |
+| 医疗 AI  | 投融资 | 医疗器械 | 互联网医疗       | 生物医药     | 健康险       |
+| -------- | ------ | -------- | ---------------- | ------------ | ------------ |
+| healthai | touzi  | qixie    | hulianwangyiliao | shengwuyiyao | jiankangxian |
 
-    -   芯片
+-   芯片
 
-                        | 材料设备  | 芯片设计   | 晶圆代工      | 封装测试  |
-                        | --------- | ---------- | ------------- | --------- |
-                        | materials | chipdesign | manufacturing | packaging |
+| 材料设备  | 芯片设计   | 晶圆代工      | 封装测试  |
+| --------- | ---------- | ------------- | --------- |
+| materials | chipdesign | manufacturing | packaging |
 
-    -   智慧城市
+-   智慧城市
 
-                        | 智慧安防      | 智慧教育       | 智慧交通            | 智慧社区       | 智慧零售       | 智慧政务        | 智慧地产 |
-                        | ------------- | -------------- | ------------------- | -------------- | -------------- | --------------- | -------- |
-                        | smartsecurity | smarteducation | smarttransportation | smartcommunity | smartretailing | smartgovernment | proptech |
+| 智慧安防      | 智慧教育       | 智慧交通            | 智慧社区       | 智慧零售       | 智慧政务        | 智慧地产 |
+| ------------- | -------------- | ------------------- | -------------- | -------------- | --------------- | -------- |
+| smartsecurity | smarteducation | smarttransportation | smartcommunity | smartretailing | smartgovernment | proptech |
 
-    -   工业互联网
+-   工业互联网
 
-                        | 工业软件   | 工业安全 | 5G 工业互联网 | 工业转型实践 |
-                        | ---------- | -------- | ------------- | ------------ |
-                        | gysoftware | gysafety | 5ggy          | gypratice    |
+| 工业软件   | 工业安全 | 5G 工业互联网 | 工业转型实践 |
+| ---------- | -------- | ------------- | ------------ |
+| gysoftware | gysafety | 5ggy          | gypratice    |
 
-    -   AIoT
+-   AIoT
 
-                        | 物联网 | 智能硬件 | 机器人 | 智能家居  |
-                        | ------ | -------- | ------ | --------- |
-                        | 5G     | arvr     | robot  | smarthome |
+| 物联网 | 智能硬件 | 机器人 | 智能家居  |
+| ------ | -------- | ------ | --------- |
+| 5G     | arvr     | robot  | smarthome |
+
+</Route>
+
+## 理想生活实验室 {#li-xiang-sheng-huo-shi-yan-shi}
+
+### 滚动 {#li-xiang-sheng-huo-shi-yan-shi-gun-dong}
+
+<Route author="nczitzk" example="/toodaylab/posts" path="/toodaylab/posts" radar="1" rssbud="1"/>
+
+### 最热 {#li-xiang-sheng-huo-shi-yan-shi-zui-re}
+
+<Route author="nczitzk" example="/toodaylab/hot" path="/toodaylab/hot" radar="1" rssbud="1"/>
+
+### 专栏 {#li-xiang-sheng-huo-shi-yan-shi-zhuan-lan}
+
+<Route author="nczitzk" example="/toodaylab/column/299" path="/toodaylab/column/:id" paramsDesc={['专栏 id，见下表，可在对应专栏页 URL 中找到']} radar="1" rssbud="1">
+
+| 专题 | 攻略 |
+| ---- | ---- |
+| 299  | 300  |
+
+</Route>
+
+### 领域 {#li-xiang-sheng-huo-shi-yan-shi-ling-yu}
+
+<Route author="nczitzk" example="/toodaylab/field/308" path="/toodaylab/field/:id" paramsDesc={['领域 id，见下表，可在对应领域页 URL 中找到']} radar="1" rssbud="1">
+
+| 快消 | 时尚 | 智能 | 娱乐 | 运动 | 生活 | 设计 | 出行 |
+| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
+| 308  | 307  | 306  | 305  | 304  | 303  | 302  | 301  |
+
+</Route>
+
+### 话题 {#li-xiang-sheng-huo-shi-yan-shi-hua-ti}
+
+<Route author="nczitzk" example="/toodaylab/topic/309" path="/toodaylab/topic/:id" paramsDesc={['话题 id，见下表，可在对应话题页 URL 中找到']} radar="1" rssbud="1">
+
+| 今日消费资讯 | 实验室带你过周末 | 实验室带你过假期 | 每日一图 | 每周一书 | 实验室数字 | 新鲜社会人 | 实验室TV |
+| ------------ | ---------------- | ---------------- | -------- | -------- | ---------- | ---------- | -------- |
+| 309          | 37               | 40               | 32       | 33       | 310        | 316        | 476      |
 
 </Route>
 
@@ -3699,17 +3759,91 @@ column 为 third 时可选的 category:
 
 ## 木木博客 {#mu-mu-bo-ke}
 
-### 每天六十秒（60 秒）读懂世界 {#mu-mu-bo-ke-mei-tian-liu-shi-miao-%EF%BC%8860-miao-%EF%BC%89-du-dong-shi-jie}
+### 频道 {#mu-mu-bo-ke-pin-dao}
 
-<Route author="Fatpandac" example="/liulinblog/kuaixun" path="/liulinblog/kuaixun"/>
+<Route author="nczitzk" example="/liulinblog" path="/liulinblog/:channel?" paramsDesc={['频道 id，可在对应频道页 URL 中找到，见下表，默认为最新']} radar="1" rssbud="1">
 
-### 科技新闻 {#mu-mu-bo-ke-ke-ji-xin-wen}
+| 最新 | 60秒读懂世界 | 精品资源 | 视频资源 | 音频资源 |
+| ---- | ------------ | -------- | -------- | -------- |
+|      | kuaixun      | ziyuan   | video    | yinpin   |
 
-<Route author="Fatpandac" example="/liulinblog/itnews/seo" path="/liulinblog/itnews/:channel?" paramsDesc={['频道，默认为互联网早报']}>
+| 绝版资源 | 实用文档 | PPT素材   | 后期素材 | 技能教程  |
+| -------- | -------- | --------- | -------- | --------- |
+| jueban   | wendang  | ppt-sucai | sucai    | jiaocheng |
 
-| 互联网早报 | 站长圈 |
-| :--------: | :----: |
-|  internet  |   seo  |
+| 创业副业 | 单机游戏 | 冒险解谜 | 竞技格斗    | 赛车竞技 |
+| -------- | -------- | -------- | ----------- | -------- |
+| money    | game     | mxjm     | jingjigedou | saiche   |
+
+| 模拟经营 | 角色扮演 | 飞行游戏 | 塔防策略 | 射击游戏 |
+| -------- | -------- | -------- | -------- | -------- |
+| moni     | jiaose   | feixing  | tafang   | sheji    |
+
+| 恐怖冒险 | 策略生存 | 动作冒险 | 电商运营  | 互联网早报 |
+| -------- | -------- | -------- | --------- | ---------- |
+| kongbu   | celve    | dongzuo  | dianshang | internet   |
+
+| 站长圈 | 自媒体运营 | 短视频      |
+| ------ | ---------- | ----------- |
+| seo    | zimeiti    | duan-shipin |
+
+</Route>
+
+### 标签 {#mu-mu-bo-ke-biao-qian}
+
+<Route author="nczitzk" example="/liulinblog/tag/qukuailian" path="/liulinblog/tag/:id" paramsDesc={['标签 id，可在对应标签页 URL 中找到，见下表']} radar="1" rssbud="1">
+
+| 区块链     | 小红书      | 小说项目 | 微信公众号 | 微信营销 |
+| ---------- | ----------- | -------- | ---------- | -------- |
+| qukuailian | xiaohongshu | xiaoshuo | 微信公众号 | we-chat  |
+
+| 抖音 | 抖音直播 | 拼多多    | 支付宝 | 教育 |
+| ---- | -------- | --------- | ------ | ---- |
+| 抖音 | 抖音直播 | pinduoduo | alipay | 教育 |
+
+| chrome插件 | galgame汉化游戏 | honeyselect 汉化游戏 | PSD笔刷素材 | ps插件     |
+| ---------- | --------------- | -------------------- | ----------- | ---------- |
+| chrome插件 | galgame         | honey-select         | psd-bishua  | ps-chajian |
+
+| vip视频    | windows实用技巧 | 下载软件 | 丝袜玉足 | 免费字体下载 |
+| ---------- | --------------- | -------- | -------- | ------------ |
+| vip-shipin | computer        | download | siwa     | ziti         |
+
+| 二战游戏下载 | 冒险解谜游戏 | 动作游戏下载 | 安卓游戏     | 策略游戏   |
+| ------------ | ------------ | ------------ | ------------ | ---------- |
+| war-games    | 冒险解谜游戏 | 动作游戏下载 | android-game | game-celve |
+
+| Pr插件 | Python | seo优化 | VLOG | wordpress | word技巧 |
+| ------ | ------ | ------- | ---- | --------- | -------- |
+| pr插件 | python | seo     | vlog | wordpress | word     |
+
+</Route>
+
+### 专题 {#mu-mu-bo-ke-zhuan-ti}
+
+<Route author="nczitzk" example="/liulinblog/series/xunlei" path="/liulinblog/series/:id" paramsDesc={['专题 id，可在对应标签页 URL 中找到，见下表']} radar="1" rssbud="1">
+
+| 【免费速存】迅雷资源合集 | 直播带货教程 | 电商培训课程    | 拼多多运营培训 | 小红书运营  | 抖音运营      | 闲鱼运营      | 短视频运营        |
+| ------------------------ | ------------ | --------------- | -------------- | ----------- | ------------- | ------------- | ----------------- |
+| xunlei                   | zhibodaihuo  | dianshangpeixun | pinduoduo      | xiaohongshu | douyinyunying | xianyuyunying | duanshipinyunying |
+
+</Route>
+
+### 搜索 {#mu-mu-bo-ke-sou-suo}
+
+<Route author="nczitzk" example="/liulinblog/search/单机游戏" path="/liulinblog/search/:keyword" paramsDesc={['关键字']} radar="1" rssbud="1"/>
+
+### 60秒读懂世界 {#mu-mu-bo-ke-60-miao-du-dong-shi-jie}
+
+<Route author="Fatpandac nczitzk" example="/liulinblog/kuaixun" path="/liulinblog/kuaixun"/>
+
+### 网络营销 {#mu-mu-bo-ke-wang-luo-ying-xiao}
+
+<Route author="Fatpandac nczitzk" example="/liulinblog/itnews" path="/liulinblog/itnews/:channel?" paramsDesc={['频道，默认为网络营销']}>
+
+| 网络营销 | 电商运营  | 互联网早报 | 站长圈 |
+| -------- | --------- | ---------- | ------ |
+|          | dianshang | internet   | seo    |
 
 </Route>
 

@@ -124,7 +124,7 @@ There is no RSS source for Al Jazeera Chinese, returning homepage content by def
 
 ## BBC {#bbc}
 
-### BBC {#bbc-bbc}
+### News {#bbc-news}
 
 <Route author="HenryQW DIYgod" example="/bbc/world-asia" path="/bbc/:channel?" paramsDesc={['channel, default to `top stories`']}>
 
@@ -136,11 +136,19 @@ Support major channels, refer to [BBC RSS feeds](https://www.bbc.co.uk/news/1062
 
 </Route>
 
-### BBC Chinese {#bbc-bbc-chinese}
+### BBC 中文网 {#bbc-bbc-zhong-wen-wang}
 
-<Route author="HenryQW" example="/bbc/chinese/business" path="/bbc/:lang/:channel?" paramsDesc={['lang, Simplified or Traditional Chinese','channel, default to `top stories`']}>
+<Route author="HenryQW" example="/bbc/chinese/business" path="/bbc/:lang/:channel?" paramsDesc={['语言，简体或繁体中文','频道，默认为主页']}>
 
-See [BBC 中文网](/routes/traditional-media#bbc-bbc-zhong-wen-wang).
+支持大部分频道，频道名称见 [BBC 中文网 RSS 服务](https://www.bbc.com/zhongwen/simp/services/2009/09/000000_rss)。
+
+简体版：
+
+-   频道，如金融财经 `https://www.bbc.co.uk/zhongwen/simp/business/index.xml` 则为 `/bbc/chinese/business`.
+
+繁體版：
+
+-   频道，如金融財經 `https://www.bbc.co.uk/zhongwen/trad/business/index.xml` 则为 `/bbc/traditionalchinese/business`.
 
 </Route>
 
@@ -521,6 +529,7 @@ Parameters can be obtained from the official website, for instance:
 <Route author="HenryQW proletarius101 LyleLee nczitzk" example="/reuters/world/us" path="/reuters/:category/:topic?" paramsDesc={['find it in the URL, or tables below', 'find it in the URL, or tables below']}>
 
 -   `:category`:
+
     | World | Business | Legal | Markets | Breakingviews | Technology | Graphics |
     | ----- | -------- | ----- | ------- | ------------- | ---------- | -------- |
     | world | business | legal | markets | breakingviews | technology | graphics |
@@ -535,13 +544,13 @@ Parameters can be obtained from the official website, for instance:
 
     | All | Aerospace & Defense | Autos & Transportation | Energy | Environment | Finance | Healthcare & Pharmaceuticals | Media & Telecom | Retail & Consumer | Sustainable Business | Charged | Future of Health | Future of Money | Take Five | Reuters Impact |
     | --- | ------------------- | ---------------------- | ------ | ----------- | ------- | ---------------------------- | --------------- | ----------------- | -------------------- | ------- | ---------------- | --------------- | --------- | -------------- |
-    |     | aerospace-defense   | autos-transportation   | energy | environment | finance | healthcare-pharmaceuticals   | media-telecom   | retail-consumer   | sustainable-business | charged | future-of-health | futrue-of-money | take-five | reuters-impact |
+    |     | aerospace-defense   | autos-transportation   | energy | environment | finance | healthcare-pharmaceuticals   | media-telecom   | retail-consumer   | sustainable-business | charged | future-of-health | future-of-money | take-five | reuters-impact |
 
 -   `legal/:topic`:
 
-    | All | Goverment | Legal Industry | Litigation | Transaction |
+    | All | Government | Legal Industry | Litigation | Transactional |
     | --- | --------- | -------------- | ---------- | ----------- |
-    |     | goverment | legalindustry  | litigation | transaction |
+    |     | government | legalindustry  | litigation | transactional |
 
 -   `authors/:topic`:
 
@@ -898,11 +907,13 @@ Provides all of the articles by the specified New York Times author.
 <Route author="oppilate NavePnow" example="/wsj/en-us/opinion" path="/wsj/:lang/:category?" paramsDesc={['Language, `en-us`, `zh-cn`, `zh-tw`', 'Category. See below']}>
 
 en_us
+
 | World | U.S. | Politics | Economy | Business | Tech | Markets | Opinion | Books & Arts | Real Estate | Life & Work | Sytle | Sports |
 | ------ | ------- | -------- | -------- | ----- | --------- | --------- | --------- | --------- | --------- |--------- | --------- | --------- |
 | world | us | politics | economy | business | technology | markets | opinion | books-arts | realestate | life-work | style-entertainment | sports |
 
 zh-cn / zh-tw
+
 | 国际 | 中国 | 金融市场 | 经济 | 商业 | 科技 | 派 | 专栏与观点 |
 | ------ | ------- | -------- | -------- | ----- | --------- | --------- | --------- |
 | world | china | markets | economy | business | technology | life-arts | opinion |
@@ -950,11 +961,13 @@ Provide full article RSS for WSJ topics.
 <Route author="KeiLongW" example="/yahoo/news/hk/world" path="/yahoo/news/:region/:category?" paramsDesc={['Region','Category']}>
 
 `Region`
+
 | Hong Kong | Taiwan | US |
 | --------- | ------ | --- |
 | hk | tw | en |
 
 `Category`
+
 | All | World | Business | Entertainment | Sports | Health |
 | ------- | ----- | -------- | ------------- | ------ | ------ |
 | (Empty) | world | business | entertainment | sports | health |
@@ -2334,18 +2347,6 @@ category 对应的关键词有
 
 </Route>
 
-## 台湾中央通讯社 {#tai-wan-zhong-yang-tong-xun-she}
-
-### 分类 {#tai-wan-zhong-yang-tong-xun-she-fen-lei}
-
-<Route author="nczitzk" example="/cna/aall" path="/cna/:id?" paramsDesc={['分类 id 或新闻专题 id。分类 id 见下表，新闻专题 id 為 https://www.cna.com.tw/list/newstopic.aspx 中，連結的數字部份。此參數默认为 aall']}>
-
-| 即時 | 政治 | 國際 | 兩岸 | 產經 | 證券 | 科技 | 生活 | 社會 | 地方 | 文化 | 運動 | 娛樂 |
-| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
-| aall | aipl | aopl | acn  | aie  | asc  | ait  | ahel | asoc | aloc | acul | aspt | amov |
-
-</Route>
-
 ## 天下雜誌 {#tian-xia-za-zhi}
 
 ### 最新上線 {#tian-xia-za-zhi-zui-xin-shang-xian}
@@ -2764,6 +2765,18 @@ category 对应的关键词有
 | 35   | 36   | 37   | 38   | 39   |
 | ---- | ---- | ---- | ---- | ---- |
 | 本地 | 镇区 | 热点 | 社会 | 综合 |
+
+</Route>
+
+## 中央通讯社 {#zhong-yang-tong-xun-she}
+
+### 分类 {#zhong-yang-tong-xun-she-fen-lei}
+
+<Route author="nczitzk" example="/cna/aall" path="/cna/:id?" paramsDesc={['分类 id 或新闻专题 id。分类 id 见下表，新闻专题 id 為 https://www.cna.com.tw/list/newstopic.aspx 中，連結的數字部份。此參數默认为 aall']}>
+
+| 即時 | 政治 | 國際 | 兩岸 | 產經 | 證券 | 科技 | 生活 | 社會 | 地方 | 文化 | 運動 | 娛樂 |
+| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
+| aall | aipl | aopl | acn  | aie  | asc  | ait  | ahel | asoc | aloc | acul | aspt | amov |
 
 </Route>
 
