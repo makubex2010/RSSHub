@@ -59,6 +59,9 @@
     "/2048/:id?": [
         "nczitzk"
     ],
+    "/8264/list/:id?": [
+        "nczitzk"
+    ],
     "/12306/:date/:from/:to/:type?": [
         "Fatpandac"
     ],
@@ -1592,6 +1595,9 @@
     "/dmzj/news/:category?": [
         "vzz64"
     ],
+    "/dn/:language/news/:category?": [
+        "nczitzk"
+    ],
     "/dnaindia/:category": [
         "Rjnishant530"
     ],
@@ -1733,6 +1739,18 @@
     ],
     "/douyu/room/:id": [
         "DIYgod"
+    ],
+    "/dribbble/keyword/:keyword": [
+        "DIYgod",
+        "loganrockmore"
+    ],
+    "/dribbble/popular/:timeframe?": [
+        "DIYgod",
+        "loganrockmore"
+    ],
+    "/dribbble/user/:name": [
+        "DIYgod",
+        "loganrockmore"
     ],
     "/dtcj/datahero/:category?": [
         "nczitzk"
@@ -3435,6 +3453,9 @@
     ],
     "/kakuyomu/episode/:id": [
         "huangliangshusheng"
+    ],
+    "/kantarworldpanel/:region/:category?": [
+        "nczitzk"
     ],
     "/kbs/news/:category?/:language?": [
         "nczitzk"
@@ -6748,9 +6769,6 @@
     "/geektime/column/:cid": [],
     "/geektime/news": [],
     "/infzm/:id": [],
-    "/dribbble/popular/:timeframe?": [],
-    "/dribbble/user/:name": [],
-    "/dribbble/keyword/:keyword": [],
     "/huya/live/:id": [],
     "/showroom/room/:id": [],
     "/fdroid/apprelease/:app": [],
