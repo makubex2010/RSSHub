@@ -1813,6 +1813,16 @@ jsjxy.hbut.edu.cn 证书链不全，自建 RSSHub 可设置环境变量 NODE_TLS
 
 :::
 
+### 机械与汽车工程学院 - 通知公告 {#hua-nan-li-gong-da-xue-ji-xie-yu-qi-che-gong-cheng-xue-yuan-tong-zhi-gong-gao}
+
+<Route author="Ermaotie" example="/scut/smae/yjsjw" path="/scut/smae/:category?" radar="1" paramsDesc={['通知分类，默认为 `yjsjw`']}>
+
+| 公务信息 | 党建工作 | 人事工作 | 学生工作 | 科研实验室 | 本科生教务 | 研究生教务 |
+| ------- | ------- | -------- | ------- | --------- | --------- | --------- |
+| gwxx    | djgz    | rsgz     | xsgz    | kysys     | bksjw     | yjsjw     |
+
+</Route>
+
 ## 华南农业大学 {#hua-nan-nong-ye-da-xue}
 
 ### 华农研讯 {#hua-nan-nong-ye-da-xue-hua-nong-yan-xun}
@@ -2528,6 +2538,22 @@ jsjxy.hbut.edu.cn 证书链不全，自建 RSSHub 可设置环境变量 NODE_TLS
 | 通知公告 | 本科生教务 | 研究生教务 |
 | :------: | :--------: | :--------: |
 |   tzgg   |    bksjw   |    yjsjw   |
+
+</Route>
+
+## 厦门理工大学 {#xia-men-li-gong-da-xue}
+
+### 教务处 {#xia-men-li-gong-da-xue-jiao-wu-chu}
+
+<Route author="icecliffs" example="/xmut/jwc/bkjw/jxyx" path="/xmut/jwc/:type/:method" paramsDesc={['系统类型，分为 `bkjw` 本科生教务处， `yjjw` 研究生处', '分类如下表']} >
+
+| 本科生教务处 | 系统说明 | 研究生处 |  系统说明 |
+| :------: | :--------: | :--------: | :-------: |
+|   jxyx   |    教学运行   |    tzgg   | 通知公告   |
+|   zhsw   |    综合事务   |    xwdt   | 新闻动态   |
+|   xwgl   |    学务管理   |    xstj   | 学术研究   |
+|   sjjx   |    实践教学   |    yjsjw   | 工作简讯   |
+|   jyjg   |    教研教改   |       |    |
 
 </Route>
 
@@ -3421,6 +3447,18 @@ jsjxy.hbut.edu.cn 证书链不全，自建 RSSHub 可设置环境变量 NODE_TLS
 | 栏目 | 学院新闻 | 通知公告 | 教育教学 | 学生工作 | 招生就业 |
 | ---- | -------- | -------- | -------- | -------- | -------- |
 | 代码 | xyxw     | tzgg     | jyjx     | xsgz     | zsjy     |
+
+</Route>
+
+## 新乡医学院三全学院 {#xin-xiang-yi-xue-yuan-san-quan-xue-yuan}
+
+### 官网信息 {#xin-xiang-yi-xue-yuan-san-quan-xue-yuan-guan-wang-xin-xi}
+
+<Route author="nyaShine" example="/sqmc/www/3157" path="/sqmc/www/:category?" paramsDesc={['分类ID，默认为`3157`']} radar="1">
+
+| 学校要闻 | 通知 | 学术讲座 | 基层风采书院 | 基层风采院系 | 外媒报道 | 三全学院报 |
+| -------- | -------- | -------- | -------- | -------- | -------- | -------- |
+| 3157     | 3187     | 3188     | 3185     | 3186     | 3199     | 3200     |
 
 </Route>
 
