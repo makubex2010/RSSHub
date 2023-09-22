@@ -2143,6 +2143,27 @@
       }
     ]
   },
+  "ainvest.com": {
+    "_name": "AInvest",
+    ".": [
+      {
+        "title": "Latest Article",
+        "docs": "https://docs.rsshub.app/finance#ainvest",
+        "source": [
+          "/news"
+        ],
+        "target": "/ainvest/article"
+      },
+      {
+        "title": "Latest News",
+        "docs": "https://docs.rsshub.app/finance#ainvest",
+        "source": [
+          "/news"
+        ],
+        "target": "/ainvest/news"
+      }
+    ]
+  },
   "aip.org": {
     "_name": "American Institute of Physics",
     "pubs": [
@@ -2430,6 +2451,23 @@
       }
     ]
   },
+  "alternativeto.net": {
+    "_name": "AlternativeTo",
+    "www": [
+      {
+        "title": "Software Alternatives",
+        "docs": "https://docs.rsshub.app/routes/programming#alternativeto-software-alternatives",
+        "source": "/software/:name",
+        "target": "/software/:name"
+      },
+      {
+        "title": "Platform Software",
+        "docs": "https://docs.rsshub.app/routes/programming#alternativeto-platform-software",
+        "source": "/platform/:name",
+        "target": "/platform/:name"
+      }
+    ]
+  },
   "altervista.org": {
     "_name": "Altervista",
     "hyp3rlinx": [
@@ -2568,14 +2606,6 @@
   "apple.com": {
     "_name": "Apple",
     "apps": [
-      {
-        "title": "应用更新",
-        "docs": "https://docs.rsshub.app/routes/program-update#app-store-mac-app-store",
-        "source": [
-          "/:contry/app/:id"
-        ],
-        "target": "/appstore/update/:country/:id"
-      },
       {
         "title": "价格更新",
         "docs": "https://docs.rsshub.app/routes/program-update#app-store-mac-app-store",
@@ -4571,6 +4601,19 @@
         "source": [
           "/"
         ]
+      }
+    ]
+  },
+  "cbc.ca": {
+    "_name": "Canadian Broadcasting Corporation",
+    ".": [
+      {
+        "title": "News",
+        "docs": "https://docs.rsshub.app/routes/traditional-media#canadian-broadcasting-corporation",
+        "source": [
+          "/news"
+        ],
+        "target": "/cbc/topics"
       }
     ]
   },
@@ -9877,6 +9920,19 @@
         "source": [
           "/news/:type"
         ]
+      }
+    ]
+  },
+  "gamegene.cn": {
+    "_name": "游戏基因",
+    "news": [
+      {
+        "title": "资讯",
+        "docs": "https://docs.rsshub.app/routes/game#you-xi-ji-yin",
+        "source": [
+          "/news"
+        ],
+        "target": "/gamegene/news"
       }
     ]
   },
@@ -15474,6 +15530,18 @@
       }
     ]
   },
+  "kamen-rider-official.com": {
+    "_name": "仮面ライダ",
+    ".": [
+      {
+        "title": "最新情報",
+        "docs": "https://docs.rsshub.app/routes/new-media#fan-mian-%E3%83%A9%E3%82%A4%E3%83%80-zui-xin-qing-bao",
+        "source": [
+          "/news_articles"
+        ]
+      }
+    ]
+  },
   "kantarworldpanel.com": {
     "_name": "Kantar Worldpanel",
     ".": [
@@ -17551,14 +17619,269 @@
   },
   "mydrivers.com": {
     "_name": "快科技",
-    ".": [
+    "m": [
       {
-        "title": "新闻",
-        "docs": "https://docs.rsshub.app/routes/new-media#kuai-ke-ji-xin-wen",
+        "title": "最新",
+        "docs": "https://docs.rsshub.app/routes/new-media#kuai-ke-ji-zui-xin",
         "source": [
           "/"
         ],
-        "target": "/mydrivers/:type?/:id?"
+        "target": "/mydrivers/new"
+      },
+      {
+        "title": "热门",
+        "docs": "https://docs.rsshub.app/routes/new-media#kuai-ke-ji-re-men",
+        "source": [
+          "/"
+        ],
+        "target": "/mydrivers/hot"
+      },
+      {
+        "title": "发布会",
+        "docs": "https://docs.rsshub.app/routes/new-media#kuai-ke-ji-fa-bu-hui",
+        "source": [
+          "/"
+        ],
+        "target": "/mydrivers/zhibo"
+      },
+      {
+        "title": "排行",
+        "docs": "https://docs.rsshub.app/routes/new-media#kuai-ke-ji-pai-hang",
+        "source": [
+          "/newsclass.aspx"
+        ],
+        "target": "/mydrivers/rank"
+      },
+      {
+        "title": "分类",
+        "docs": "https://docs.rsshub.app/routes/new-media#kuai-ke-ji-fen-lei",
+        "source": [
+          "/newsclass.aspx"
+        ]
+      },
+      {
+        "title": "板块 - 电脑",
+        "docs": "https://docs.rsshub.app/routes/new-media#kuai-ke-ji-fen-lei",
+        "source": [
+          "/newsclass.aspx"
+        ],
+        "target": "/mydrivers/bcid/801"
+      },
+      {
+        "title": "板块 - 手机",
+        "docs": "https://docs.rsshub.app/routes/new-media#kuai-ke-ji-fen-lei",
+        "source": [
+          "/newsclass.aspx"
+        ],
+        "target": "/mydrivers/bcid/802"
+      },
+      {
+        "title": "板块 - 汽车",
+        "docs": "https://docs.rsshub.app/routes/new-media#kuai-ke-ji-fen-lei",
+        "source": [
+          "/newsclass.aspx"
+        ],
+        "target": "/mydrivers/bcid/807"
+      },
+      {
+        "title": "板块 - 业界",
+        "docs": "https://docs.rsshub.app/routes/new-media#kuai-ke-ji-fen-lei",
+        "source": [
+          "/newsclass.aspx"
+        ],
+        "target": "/mydrivers/bcid/803"
+      },
+      {
+        "title": "板块 - 游戏",
+        "docs": "https://docs.rsshub.app/routes/new-media#kuai-ke-ji-fen-lei",
+        "source": [
+          "/newsclass.aspx"
+        ],
+        "target": "/mydrivers/bcid/806"
+      },
+      {
+        "title": "话题 - 科学",
+        "docs": "https://docs.rsshub.app/routes/new-media#kuai-ke-ji-fen-lei",
+        "source": [
+          "/newsclass.aspx"
+        ],
+        "target": "/mydrivers/tid/1000"
+      },
+      {
+        "title": "话题 - 排行",
+        "docs": "https://docs.rsshub.app/routes/new-media#kuai-ke-ji-fen-lei",
+        "source": [
+          "/newsclass.aspx"
+        ],
+        "target": "/mydrivers/tid/1001"
+      },
+      {
+        "title": "话题 - 评测",
+        "docs": "https://docs.rsshub.app/routes/new-media#kuai-ke-ji-fen-lei",
+        "source": [
+          "/newsclass.aspx"
+        ],
+        "target": "/mydrivers/tid/1002"
+      },
+      {
+        "title": "话题 - 一图",
+        "docs": "https://docs.rsshub.app/routes/new-media#kuai-ke-ji-fen-lei",
+        "source": [
+          "/newsclass.aspx"
+        ],
+        "target": "/mydrivers/tid/1003"
+      },
+      {
+        "title": "品牌 - 安卓",
+        "docs": "https://docs.rsshub.app/routes/new-media#kuai-ke-ji-fen-lei",
+        "source": [
+          "/newsclass.aspx"
+        ],
+        "target": "/mydrivers/icid/121"
+      },
+      {
+        "title": "品牌 - 阿里",
+        "docs": "https://docs.rsshub.app/routes/new-media#kuai-ke-ji-fen-lei",
+        "source": [
+          "/newsclass.aspx"
+        ],
+        "target": "/mydrivers/icid/270"
+      },
+      {
+        "title": "品牌 - 微软",
+        "docs": "https://docs.rsshub.app/routes/new-media#kuai-ke-ji-fen-lei",
+        "source": [
+          "/newsclass.aspx"
+        ],
+        "target": "/mydrivers/icid/90"
+      },
+      {
+        "title": "品牌 - 百度",
+        "docs": "https://docs.rsshub.app/routes/new-media#kuai-ke-ji-fen-lei",
+        "source": [
+          "/newsclass.aspx"
+        ],
+        "target": "/mydrivers/icid/67"
+      },
+      {
+        "title": "品牌 - PS5",
+        "docs": "https://docs.rsshub.app/routes/new-media#kuai-ke-ji-fen-lei",
+        "source": [
+          "/newsclass.aspx"
+        ],
+        "target": "/mydrivers/icid/6950"
+      },
+      {
+        "title": "品牌 - Xbox",
+        "docs": "https://docs.rsshub.app/routes/new-media#kuai-ke-ji-fen-lei",
+        "source": [
+          "/newsclass.aspx"
+        ],
+        "target": "/mydrivers/icid/194"
+      },
+      {
+        "title": "品牌 - 华为",
+        "docs": "https://docs.rsshub.app/routes/new-media#kuai-ke-ji-fen-lei",
+        "source": [
+          "/newsclass.aspx"
+        ],
+        "target": "/mydrivers/icid/136"
+      },
+      {
+        "title": "品牌 - 小米",
+        "docs": "https://docs.rsshub.app/routes/new-media#kuai-ke-ji-fen-lei",
+        "source": [
+          "/newsclass.aspx"
+        ],
+        "target": "/mydrivers/icid/9355"
+      },
+      {
+        "title": "品牌 - VIVO",
+        "docs": "https://docs.rsshub.app/routes/new-media#kuai-ke-ji-fen-lei",
+        "source": [
+          "/newsclass.aspx"
+        ],
+        "target": "/mydrivers/icid/288"
+      },
+      {
+        "title": "品牌 - 三星",
+        "docs": "https://docs.rsshub.app/routes/new-media#kuai-ke-ji-fen-lei",
+        "source": [
+          "/newsclass.aspx"
+        ],
+        "target": "/mydrivers/icid/154"
+      },
+      {
+        "title": "品牌 - 魅族",
+        "docs": "https://docs.rsshub.app/routes/new-media#kuai-ke-ji-fen-lei",
+        "source": [
+          "/newsclass.aspx"
+        ],
+        "target": "/mydrivers/icid/140"
+      },
+      {
+        "title": "品牌 - 一加",
+        "docs": "https://docs.rsshub.app/routes/new-media#kuai-ke-ji-fen-lei",
+        "source": [
+          "/newsclass.aspx"
+        ],
+        "target": "/mydrivers/icid/385"
+      },
+      {
+        "title": "品牌 - 比亚迪",
+        "docs": "https://docs.rsshub.app/routes/new-media#kuai-ke-ji-fen-lei",
+        "source": [
+          "/newsclass.aspx"
+        ],
+        "target": "/mydrivers/icid/770"
+      },
+      {
+        "title": "品牌 - 小鹏",
+        "docs": "https://docs.rsshub.app/routes/new-media#kuai-ke-ji-fen-lei",
+        "source": [
+          "/newsclass.aspx"
+        ],
+        "target": "/mydrivers/icid/7259"
+      },
+      {
+        "title": "品牌 - 蔚来",
+        "docs": "https://docs.rsshub.app/routes/new-media#kuai-ke-ji-fen-lei",
+        "source": [
+          "/newsclass.aspx"
+        ],
+        "target": "/mydrivers/icid/7318"
+      },
+      {
+        "title": "品牌 - 理想",
+        "docs": "https://docs.rsshub.app/routes/new-media#kuai-ke-ji-fen-lei",
+        "source": [
+          "/newsclass.aspx"
+        ],
+        "target": "/mydrivers/icid/12947"
+      },
+      {
+        "title": "品牌 - 奔驰",
+        "docs": "https://docs.rsshub.app/routes/new-media#kuai-ke-ji-fen-lei",
+        "source": [
+          "/newsclass.aspx"
+        ],
+        "target": "/mydrivers/icid/429"
+      },
+      {
+        "title": "品牌 - 宝马",
+        "docs": "https://docs.rsshub.app/routes/new-media#kuai-ke-ji-fen-lei",
+        "source": [
+          "/newsclass.aspx"
+        ],
+        "target": "/mydrivers/icid/461"
+      },
+      {
+        "title": "品牌 - 大众",
+        "docs": "https://docs.rsshub.app/routes/new-media#kuai-ke-ji-fen-lei",
+        "source": [
+          "/newsclass.aspx"
+        ],
+        "target": "/mydrivers/icid/481"
       }
     ]
   },
@@ -18445,6 +18768,36 @@
           "/nhkworld/:lang/news/"
         ],
         "target": "/nhk/news/:lang"
+      }
+    ]
+  },
+  "niaogebiji.com": {
+    "_name": "鸟哥笔记",
+    ".": [
+      {
+        "title": "首页",
+        "docs": "https://docs.rsshub.app/new-media#niao-ge-bi-ji",
+        "source": [
+          "/"
+        ],
+        "target": "/niaogebiji"
+      },
+      {
+        "title": "今日事",
+        "docs": "https://docs.rsshub.app/new-media#niao-ge-bi-ji",
+        "source": [
+          "/",
+          "/bulletin"
+        ],
+        "target": "/niaogebiji"
+      },
+      {
+        "title": "分类目录",
+        "docs": "https://docs.rsshub.app/new-media#niao-ge-bi-ji",
+        "source": [
+          "/cat/:cat"
+        ],
+        "target": "/niaogebiji/cat/:cat"
       }
     ]
   },
@@ -21651,6 +22004,13 @@
         "target": "/scut/seie/news_center"
       },
       {
+        "title": "机械与汽车工程学院 - 通知公告",
+        "docs": "https://docs.rsshub.app/routes/university#hua-nan-li-gong-da-xue",
+        "source": [
+          "/smae/:category/list.htm"
+        ]
+      },
+      {
         "title": "研究生院通知公告",
         "docs": "https://docs.rsshub.app/routes/university#hua-nan-li-gong-da-xue",
         "source": [
@@ -23555,6 +23915,19 @@
           "/"
         ],
         "target": "/sputniknews/:category/:language"
+      }
+    ]
+  },
+  "sqmc.edu.cn": {
+    "_name": "新乡医学院三全学院",
+    ".": [
+      {
+        "title": "官网信息",
+        "docs": "https://docs.rsshub.app/university.html#xin-xiang-yi-xue-yuan-san-quan-xue-yuan",
+        "source": [
+          "/:category/list.htm"
+        ],
+        "target": "/sqmc/www/:category?"
       }
     ]
   },
@@ -27358,6 +27731,25 @@
       }
     ]
   },
+  "xinpianchang.com": {
+    "_name": "新片场",
+    ".": [
+      {
+        "title": "发现",
+        "docs": "https://docs.rsshub.app/routes/new-media#xin-pian-chang-fa-xian",
+        "source": [
+          "/discover/:params"
+        ]
+      },
+      {
+        "title": "排行榜",
+        "docs": "https://docs.rsshub.app/routes/new-media#xin-pian-chang-pai-hang-bang",
+        "source": [
+          "/rank/:params"
+        ]
+      }
+    ]
+  },
   "xjtu.edu.cn": {
     "_name": "西安交通大学",
     "2yuan": [
@@ -27465,6 +27857,18 @@
           "/"
         ],
         "target": "/xmnn/epaper/:id"
+      }
+    ]
+  },
+  "xmut.edu.cn": {
+    "_name": "厦门理工学院",
+    "jwc": [
+      {
+        "title": "教务处",
+        "docs": "https://docs.rsshub.app/routes/university#xia-men-li-gong-da-xue",
+        "source": [
+          "/:category"
+        ]
       }
     ]
   },

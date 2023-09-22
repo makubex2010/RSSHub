@@ -350,6 +350,12 @@
     "/aijishu/u/:name": [
         "bigfei"
     ],
+    "/ainvest/article": [
+        "TonyRL"
+    ],
+    "/ainvest/news": [
+        "TonyRL"
+    ],
     "/aip/:pub/:jrn": [
         "Derekmini",
         "auto-bot-ty"
@@ -420,6 +426,12 @@
     "/ally/rail/:category?/:topic?": [
         "Rongronggg9"
     ],
+    "/alternativeto/software/:name/:routeParams?": [
+        "JimenezLi"
+    ],
+    "/alternativeto/platform/:name/:routeParams?": [
+        "JimenezLi"
+    ],
     "/amazon/awsblogs/:locale?": [
         "HankChow"
     ],
@@ -452,6 +464,9 @@
     "/app-center/release/:user/:app/:distribution_group": [
         "Rongronggg9"
     ],
+    "/apple/apps/update/:country/:id": [
+        "EkkoG"
+    ],
     "/apple/exchange_repair/:country?": [
         "metowolf",
         "HenryQW",
@@ -462,9 +477,6 @@
     ],
     "/appleinsider/:category?": [
         "nczitzk"
-    ],
-    "/appstore/update/:country/:id": [
-        "HenryQW"
     ],
     "/appstore/price/:country/:type/:id": [
         "HenryQW"
@@ -1030,6 +1042,9 @@
     ],
     "/cbaigui/:path+": [
         "nczitzk"
+    ],
+    "/cbc/topics/:topic?": [
+        "wb14123"
     ],
     "/cbirc/:category?": [
         "JkCheung"
@@ -2118,6 +2133,9 @@
     ],
     "/gamebase/news/:type?/:category?": [
         "nczitzk"
+    ],
+    "/gamegene/news": [
+        "lone1y-51"
     ],
     "/gamer/gnn/:category?": [
         "Arracc"
@@ -3460,6 +3478,9 @@
     "/kakuyomu/episode/:id": [
         "huangliangshusheng"
     ],
+    "/kamen-rider-official/news/:category?": [
+        "nczitzk"
+    ],
     "/kantarworldpanel/:region/:category?": [
         "nczitzk"
     ],
@@ -3565,6 +3586,9 @@
     ],
     "/leiphone/leiphone/newsflash": [
         "vlcheng"
+    ],
+    "/lemmy/:community/:sort?": [
+        "wb14123"
     ],
     "/lever/:domain": [
         "tsarlewey"
@@ -3862,7 +3886,20 @@
     "/mvm/:category?": [
         "nczitzk"
     ],
-    "/mydrivers/:type?/:id?": [
+    "/mydrivers/hot": [
+        "nczitzk"
+    ],
+    "/mydrivers/new": [
+        "kt286",
+        "nczitzk"
+    ],
+    "/mydrivers/rank/:range?": [
+        "nczitzk"
+    ],
+    "/mydrivers/zhibo": [
+        "nczitzk"
+    ],
+    "/mydrivers/:category?": [
         "nczitzk"
     ],
     "/myfigurecollection/activity/:category?/:language?/:latestAdditions?/:latestEdits?/:latestAlerts?/:latestPictures?": [
@@ -4017,6 +4054,18 @@
     ],
     "/nhk/news_web_easy": [
         "Andiedie"
+    ],
+    "/niaogebiji": [
+        "WenryXu"
+    ],
+    "/niaogebiji/": [
+        "WenryXu"
+    ],
+    "/niaogebiji/cat/:cat": [
+        "cKotoriKat"
+    ],
+    "/niaogebiji/today": [
+        "KotoriK"
     ],
     "/nifd/research/:categoryGuid?": [
         "Fatpandac"
@@ -4877,6 +4926,9 @@
     "/rsshub/transform/json/:url/:routeParams": [
         "ttttmr"
     ],
+    "/rsshub/transform/sitemap/:url/:routeParams?": [
+        "flrngel"
+    ],
     "/ruancan/ruancan/category/:category?": [
         "nczitzk"
     ],
@@ -4993,6 +5045,9 @@
     ],
     "/scut/seie/news_center": [
         "auto-bot-ty"
+    ],
+    "/scut/smae/:category?": [
+        "Ermaotie"
     ],
     "/scut/yjs": [
         "shengmaosu"
@@ -5292,6 +5347,9 @@
     ],
     "/sputniknews/:category?/:language?": [
         "nczitzk"
+    ],
+    "/sqmc/www/:category?": [
+        "nyaShine"
     ],
     "/sse/convert/:query?": [
         "kt286"
@@ -6357,6 +6415,12 @@
         "jjeejj",
         "prnake"
     ],
+    "/xinpianchang/discover/:params?": [
+        "nczitzk"
+    ],
+    "/xinpianchang/rank/:category?": [
+        "nczitzk"
+    ],
     "/xjtu/2yuan/news/:id?": [
         "nczitzk"
     ],
@@ -6389,6 +6453,9 @@
     ],
     "/xmnn/epaper/:id?": [
         "nczitzk"
+    ],
+    "/xmut/jwc/:type/:method": [
+        "icecliffs"
     ],
     "/xsijishe/forum/:fid": [
         "akynazh"
@@ -7176,7 +7243,6 @@
     "/polimi/news/:language?": [],
     "/dekudeals/:type": [],
     "/metacritic/release/:platform/:type/:sort?": [],
-    "/kkj/news": [],
     "/sixthtone/news": [],
     "/aiyanxishe/:id/:sort?": [],
     "/huodongxing/explore": [],
@@ -7361,7 +7427,6 @@
     "/xinquji/today": [],
     "/xinquji/today/internal": [],
     "/gbcc/trust": [],
-    "/cbc/topics/:topic?": [],
     "/chinadialogue/topics/:topic": [],
     "/chinadialogue/:column": [],
     "/ifnews/:cid": [],
@@ -7544,9 +7609,6 @@
     "/gov/chongqing/ljxq/dwgk": [],
     "/gov/chongqing/ljxq/zwgk/:caty": [],
     "/12379": [],
-    "/ngbj": [],
-    "/ngbj/today": [],
-    "/ngbj/cat/:cat": [],
     "/meihua/shots/:caty": [],
     "/meihua/article/:caty": [],
     "/kuaibao": [],
