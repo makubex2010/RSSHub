@@ -141,7 +141,7 @@ See [#app-store-mac-app-store](/routes/program-update#app-store-mac-app-store)
 
 ### 国家卫健委 - 疫情通报 {#corona-virus-disease-2019-guo-jia-wei-jian-wei-yi-qing-tong-bao}
 
-<Route author="Cielpy DIYgod" example="/coronavirus/nhc" path="/coronavirus/nhc"/>
+<Route author="EkkoG DIYgod" example="/coronavirus/nhc" path="/coronavirus/nhc"/>
 
 ### 财新网 - 新冠肺炎防疫全纪录 {#corona-virus-disease-2019-cai-xin-wang-xin-guan-fei-yan-fang-yi-quan-ji-lu}
 
@@ -219,7 +219,7 @@ Official Website: <https://news.yahoo.co.jp/pages/article/20200207>
 
 > Only support IMAP protocol, email password and other settings refer to [Email setting](/install)
 
-<Route author="kt286" example="/mail/imap/rss@rsshub.app" path="/mail/imap/:email" paramsDesc={['Email account']} selfhost="1"/>
+<Route author="kt286" example="/mail/imap/rss@rsshub.app" path="/mail/imap/:email/:folder*" paramsDesc={['Email account', 'Inbox name, `INBOX` by default']} selfhost="1"/>
 
 ## Emi Nitta official website 新田惠海官方网站 {#emi-nitta-official-website-xin-tian-hui-hai-guan-fang-wang-zhan}
 
@@ -354,7 +354,7 @@ For example:
 1.  If we want to search software engineer jobs of all levels and all job types, use `/linkedin/jobs/all/all/software engineer`
 2.  If we want to search all entry level contractor/part time software engineer jobs, use `/linkedin/jobs/P-C/2/software engineer`
 
-**To make it easier, the recommended way is to start a search on <a href="https://www.linkedin.com/jobs/search">LinkedIn</a> and use <a href="https://github.com/DIYgod/RSSHub-Radar">RSSHub Radar</a> to load the specific feed.**
+**To make it easier, the recommended way is to start a search on [LinkedIn](https://www.linkedin.com/jobs/search) and use [RSSHub Radar](https://github.com/DIYgod/RSSHub-Radar) to load the specific feed.**
 
 </Route>
 
@@ -643,6 +643,25 @@ Parsing of `routeParams` parameter:
 | `itemTitle` | `tag_name`      |
 | `itemLink`  | `html_url`      |
 | `itemDesc`  | `body`          |
+
+</Route>
+
+### Sitemap {#transformation-sitemap}
+
+Specify options (in the format of query string) in parameter `routeParams` parameter to extract data from Sitemap. (Follows Sitemap Protocol 0.9)
+
+| Key             | Meaning                                                        | Accepted Values | Default                |
+|-----------------|----------------------------------------------------------------|-----------------|------------------------|
+| `title`         | The title of the RSS                                           | `string`        | Extract from `<title>` |
+
+<Route author="flrngel" example="/rsshub/transform/xml/https%3A%2F%2Fwww.sitemaps.org%2Fsitemap.xml/" path="/rsshub/transform/html/:url/:routeParams?" paramsDesc={['`encodeURIComponent`ed URL address', 'Transformation rules, requires URL encode']} selfhost="1">
+
+Parameters parsing in the above example:
+
+| Parameter     | Value                                     |
+|---------------|-------------------------------------------|
+| `url`         | `https://www.sitemaps.org/sitemap.xml` |
+| `routeParams` | `title=Example`      |
 
 </Route>
 

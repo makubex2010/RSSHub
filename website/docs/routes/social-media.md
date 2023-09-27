@@ -49,6 +49,7 @@ Tiny Tiny RSS 会给所有 iframe 元素添加 `sandbox="allow-scripts"` 属性�
 | showEmoji | 显示或隐藏表情图片 | 0/1/true/false | false |
 | disableEmbed | 关闭内嵌视频 | 0/1/true/false | false |
 | useAvid | 视频链接使用AV号(默认为BV号) | 0/1/true/false | false |
+| directLink | 使用内容直链 | 0/1/true/false | false |
 
 用例：`/bilibili/user/dynamic/2267573/showEmoji=1&disableEmbed=1&useAvid=1`
 
@@ -601,6 +602,12 @@ It's highly recommended to deploy with Redis cache enabled.
 ### 运动日记 {#keep-yun-dong-ri-ji}
 
 <Route author="Dectinc DIYgod" example="/keep/user/556b02c1ab59390afea671ea" path="/keep/user/:id" paramsDesc={['Keep 用户 id']}/>
+
+## Lemmy {#lemmy}
+
+### Community {#lemmy-community}
+
+<Route author="wb14123" example="/lemmy/technology@lemmy.world/Hot" path="/lemmy/:community/:sort?" paramsDesc={['Lemmmy community, for example technology@lemmy.world', 'Sort by, defaut to Active']} selfhost="1"/>
 
 ## Lofter {#lofter}
 

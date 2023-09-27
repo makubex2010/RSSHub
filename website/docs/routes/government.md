@@ -305,6 +305,16 @@ Language
 
 ## 重庆市人民政府 {#chong-qing-shi-ren-min-zheng-fu}
 
+### 国有资产监督管理委员会 {#chong-qing-shi-ren-min-zheng-fu-guo-you-zi-chan-jian-du-guan-li-wei-yuan-hui}
+
+<Route author="nczitzk" example="/gov/chongqing/gzw" path="/gov/chongqing/gzw/:category?" paramsDesc={['分类，见下表，默认为通知公告']} radar="1" rssbud="1">
+
+| 通知公告 | 国企资讯 | 国企简介 | 国企招聘 |
+| -------- | -------- | -------- | -------- |
+| tzgg_191 | gqdj     | gqjj     | gqzp     |
+
+</Route>
+
 ### 两江新区信息公开网 {#chong-qing-shi-ren-min-zheng-fu-liang-jiang-xin-qu-xin-xi-gong-kai-wang}
 
 #### 党务公开 {#chong-qing-shi-ren-min-zheng-fu-liang-jiang-xin-qu-xin-xi-gong-kai-wang-dang-wu-gong-kai}
@@ -326,6 +336,10 @@ Language
 #### 人事考试通知 {#chong-qing-shi-ren-min-zheng-fu-ren-li-she-bao-ju-ren-shi-kao-shi-tong-zhi}
 
 <Route author="Mai19930513" example="/gov/chongqing/rsks" path="/gov/chongqing/rsks" radar="1"/>
+
+#### 事业单位公开招聘 {#chong-qing-shi-ren-min-zheng-fu-ren-li-she-bao-ju-shi-ye-dan-wei-gong-kai-zhao-pin}
+
+<Route author="MajexH" example="/gov/chongqing/sydwgkzp" path="/gov/chongqing/sydwgkzp" radar="1"/>
 
 ## 德阳市人民政府 {#de-yang-shi-ren-min-zheng-fu}
 

@@ -1315,6 +1315,10 @@ Note：[Source website](https://ece.umass.edu/seminar) may be empty when there's
 
 <Route author="real-jiakai" example="/gxmzu/aitzgg" path="/gxmzu/aitzgg" radar="1" />
 
+### 图书馆最新消息 {#guang-xi-min-zu-da-xue-tu-shu-guan-zui-xin-xiao-xi}
+
+<Route author="real-jiakai" example="/gxmzu/libzxxx" path="/gxmzu/libzxxx" radar="1" />
+
 ## 广州大学 {#guang-zhou-da-xue}
 
 ### 研究生院招生动态 {#guang-zhou-da-xue-yan-jiu-sheng-yuan-zhao-sheng-dong-tai}
@@ -1813,6 +1817,16 @@ jsjxy.hbut.edu.cn 证书链不全，自建 RSSHub 可设置环境变量 NODE_TLS
 
 :::
 
+### 机械与汽车工程学院 - 通知公告 {#hua-nan-li-gong-da-xue-ji-xie-yu-qi-che-gong-cheng-xue-yuan-tong-zhi-gong-gao}
+
+<Route author="Ermaotie" example="/scut/smae/yjsjw" path="/scut/smae/:category?" radar="1" paramsDesc={['通知分类，默认为 `yjsjw`']}>
+
+| 公务信息 | 党建工作 | 人事工作 | 学生工作 | 科研实验室 | 本科生教务 | 研究生教务 |
+| ------- | ------- | -------- | ------- | --------- | --------- | --------- |
+| gwxx    | djgz    | rsgz     | xsgz    | kysys     | bksjw     | yjsjw     |
+
+</Route>
+
 ## 华南农业大学 {#hua-nan-nong-ye-da-xue}
 
 ### 华农研讯 {#hua-nan-nong-ye-da-xue-hua-nong-yan-xun}
@@ -2008,6 +2022,18 @@ jsjxy.hbut.edu.cn 证书链不全，自建 RSSHub 可设置环境变量 NODE_TLS
 ### 双选会 {#kun-ming-li-gong-da-xue-shuang-xuan-hui}
 
 <Route author="geekrainy" example="/kmust/job/jobfairs" path="/kmust/job/jobfairs" />
+
+## 乐山师范学院 {#le-shan-shi-fan-xue-yuan}
+
+### 教学部通知公告 {#le-shan-shi-fan-xue-yuan-jiao-xue-bu-tong-zhi-gong-gao}
+
+<Route author="nyaShine" example="/lsnu/jiaowc/tzgg" path="/lsnu/jiaowc/tzgg/:category?" paramsDesc={['分类名']} radar="1">
+
+| 实践教学科 | 教育运行科 | 教研教改科 | 学籍管理科 | 考试科 | 教材建设管理科 |
+| -------- | -------- | -------- | -------- | -------- | -------- |
+| sjjxk     | jxyxk     | jyjgk     | xjglk     | ksk     | jcjsglk     |
+
+</Route>
 
 ## 辽宁工程技术大学 {#liao-ning-gong-cheng-ji-shu-da-xue}
 
@@ -2516,6 +2542,22 @@ jsjxy.hbut.edu.cn 证书链不全，自建 RSSHub 可设置环境变量 NODE_TLS
 | 通知公告 | 本科生教务 | 研究生教务 |
 | :------: | :--------: | :--------: |
 |   tzgg   |    bksjw   |    yjsjw   |
+
+</Route>
+
+## 厦门理工大学 {#xia-men-li-gong-da-xue}
+
+### 教务处 {#xia-men-li-gong-da-xue-jiao-wu-chu}
+
+<Route author="icecliffs" example="/xmut/jwc/bkjw/jxyx" path="/xmut/jwc/:type/:method" paramsDesc={['系统类型，分为 `bkjw` 本科生教务处， `yjjw` 研究生处', '分类如下表']} >
+
+| 本科生教务处 | 系统说明 | 研究生处 |  系统说明 |
+| :------: | :--------: | :--------: | :-------: |
+|   jxyx   |    教学运行   |    tzgg   | 通知公告   |
+|   zhsw   |    综合事务   |    xwdt   | 新闻动态   |
+|   xwgl   |    学务管理   |    xstj   | 学术研究   |
+|   sjjx   |    实践教学   |    yjsjw   | 工作简讯   |
+|   jyjg   |    教研教改   |       |    |
 
 </Route>
 
@@ -3045,39 +3087,48 @@ jsjxy.hbut.edu.cn 证书链不全，自建 RSSHub 可设置环境变量 NODE_TLS
 
 ### 计算机学院公告 {#wu-han-da-xue-ji-suan-ji-xue-yuan-gong-gao}
 
-<Route author="SweetDumpling" example="/whu/cs/2" path="/whu/cs/:type"
-paramsDesc={['公告类型，详见表格']}>
+<Route author="ttyfly" example="/whu/cs/2" path="/whu/cs/:type" paramsDesc={['公告类型，详见表格']}>
 
-| 公告类型 | 新闻动态 | 学术讲座 | 学院通知 | 公示公告 |
+| 公告类型 | 学院新闻 | 学术交流 | 通知公告 | 科研进展 |
 | -------- | -------- | -------- | -------- | -------- |
 | 参数     | 0        | 1        | 2        | 3        |
 
 </Route>
 
-### 武汉大学新闻网 {#wu-han-da-xue-wu-han-da-xue-xin-wen-wang}
+### 新闻网 {#wu-han-da-xue-xin-wen-wang}
 
-<Route author="SChen1024" example="/whu/news/wdyw" path="/whu/news/:type?" paramsDesc={['分类，默认为 `wdyw`，具体参数见下表']}>
+<Route author="SChen1024" example="/whu/news/wdzx/wdyw" path="/whu/news/:type*" paramsDesc={['分类，默认为 `wdyw`，具体参数见下表']} radar="1">
 
 注意：除了 `kydt` 代表学术动态，其余页面均是拼音首字母小写.
 
-| **内容** | **参数** |
-| :------: | :------: |
-| 武大要闻 |   wdyw   |
-| 媒体武大 |   mtwd   |
-| 专题报道 |   ztbd   |
-| 珞珈人物 |   ljrw   |
-| 国际交流 |   gjjl   |
-| 缤纷校园 |   bfxy   |
-| 校友之声 |   xyzs   |
-| 珞珈论坛 |   ljlt   |
-| 新闻热线 |   xwrx   |
-| 头条新闻 |   ttxw   |
-| 综合新闻 |   zhxw   |
-| 珞珈影像 |   ljyx   |
-| 学术动态 |   kydt   |
-| 珞珈副刊 |   ljfk   |
-| 校史钩沉 |   xsgc   |
-| 来稿选登 |   lgxd   |
+|  内容   | 参数    |
+| :-----: | :-----:   |
+| 武大要闻 | wdzx/wdyw |
+| 媒体武大 | mtwd      |
+| 专题报道 | ztbd      |
+| 珞珈人物 | ljrw      |
+| 合作交流 | wdzx/hzjl |
+| 缤纷校园 | xywh/bfxy |
+| 校友之声 | xywh/xyzs |
+| 珞珈论坛 | ljlt      |
+| 新闻热线 | xwrx      |
+| 头条新闻 | ttxw      |
+| 综合新闻 | wdzx/zhxw |
+| 珞珈影像 | stkj/ljyx |
+| 学术动态 | kydt      |
+| 珞珈副刊 | xywh/ljfk |
+| 校史钩沉 | xywh/xsgc |
+| 来稿选登 | lgxd      |
+
+</Route>
+
+### 研究生院 {#wu-han-da-xue-yan-jiu-sheng-yuan}
+
+<Route author="Delreyaa" example="/whu/gs/0" path="/whu/gs/:type?" paramsDesc={['分类，默认为 `0`，具体参数见下表']}>
+
+| 公告类型 | 新闻动态 | 学术探索 | 院系风采 | 通知(全部) | 通知(招生) | 通知(培养) | 通知(学位) | 通知(质量与专业学位) | 通知(综合) |
+| -------- | -------- | -------- | -------- | -------- | -------- | -------- | -------- | -------- | -------- |
+| 参数     | 0        | 1        | 2        | 3        | 4        | 5        | 6        | 7        | 8        |
 
 </Route>
 
@@ -3400,6 +3451,18 @@ paramsDesc={['公告类型，详见表格']}>
 | 栏目 | 学院新闻 | 通知公告 | 教育教学 | 学生工作 | 招生就业 |
 | ---- | -------- | -------- | -------- | -------- | -------- |
 | 代码 | xyxw     | tzgg     | jyjx     | xsgz     | zsjy     |
+
+</Route>
+
+## 新乡医学院三全学院 {#xin-xiang-yi-xue-yuan-san-quan-xue-yuan}
+
+### 官网信息 {#xin-xiang-yi-xue-yuan-san-quan-xue-yuan-guan-wang-xin-xi}
+
+<Route author="nyaShine" example="/sqmc/www/3157" path="/sqmc/www/:category?" paramsDesc={['分类ID，默认为`3157`']} radar="1">
+
+| 学校要闻 | 通知 | 学术讲座 | 基层风采书院 | 基层风采院系 | 外媒报道 | 三全学院报 |
+| -------- | -------- | -------- | -------- | -------- | -------- | -------- |
+| 3157     | 3187     | 3188     | 3185     | 3186     | 3199     | 3200     |
 
 </Route>
 

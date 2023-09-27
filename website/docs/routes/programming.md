@@ -82,6 +82,24 @@ You have the option to utilize the main heading or use individual categories as 
 
 </Route>
 
+## AlternativeTo {#alternativeto}
+
+### Software Alternatives {#alternativeto-software-alternatives}
+
+<Route author="JimenezLi" example="/alternativeto/software/cpp" path="/alternativeto/software/:name/:routeParams?" paramsDesc={['Software name', 'Filters of software type']} puppeteer="1" radar="1">
+
+> routeParms can be copied from original site URL, example: `/alternativeto/software/cpp/license=opensource&platform=windows`
+
+</Route>
+
+### Platform Software {#alternativeto-platform-software}
+
+<Route author="JimenezLi" example="/alternativeto/platform/firefox" path="/alternativeto/platform/:name/:routeParams?" paramsDesc={['Platform name', 'Filters of software type']} puppeteer="1" radar="1">
+
+> routeParms can be copied from original site URL, example: `/alternativeto/platform/firefox/license=free`
+
+</Route>
+
 ## AtCoder {#atcoder}
 
 ### Present Contests {#atcoder-present-contests}
@@ -316,6 +334,10 @@ For instance, the `/github/topics/framework/l=php&o=desc&s=stars` route will gen
 
 <Route author="hashman TonyRL" example="/github/pull/DIYgod/RSSHub" path="/github/pull/:user/:repo/:state?/:labels?" paramsDesc={['User name', 'Repo name', 'the state of pull requests. Can be either `open`, `closed`, or `all`. Default: `open`.', 'a list of comma separated label names']} radar="1" rssbud="1"/>
 
+### Repo Pulse {#github-repo-pulse}
+
+<Route author="jameschensmith" example="/github/pulse/DIYgod/RSSHub" path="/github/pulse/:user/:repo/:period?" paramsDesc={['User name', 'Repo name', 'Time frame, selected from a repository\'s Pulse/Insights page. Possible values are: `daily`, `halfweekly`, `weekly`, or `monthly`. Default: `weekly`. If your RSS client supports it, consider aligning the polling frequency of the feed to the period.']} radar="1" rssbud="1"/>
+
 ### User Followers {#github-user-followers}
 
 <Route author="HenryQW" path="/github/user/followers/:user" example="/github/user/followers/HenryQW" paramsDesc={['GitHub username']} radar="1" rssbud="1"/>
@@ -472,6 +494,13 @@ Subscribe to the updates (threads and submission) from a paritcular Hacker News 
 ### Profile {#hackmd-profile}
 
 <Route author="Yukaii kaiix" example="/hackmd/profile/hackmd" path="/hackmd/profile/:path" paramsDesc={['userpath or teampath']} radar="1"/>
+
+
+## HackYourNews {#hackyournews}
+
+### Index {#hackyournews-index}
+
+<Route author="ftiasch" example="/hackyournews" path="/hackyournews" />
 
 ## HelloGitHub {#hellogithub}
 
