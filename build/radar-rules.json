@@ -10347,6 +10347,19 @@
       }
     ]
   },
+  "gogoanimehd.io": {
+    "_name": "Gogoanime",
+    "developer": [
+      {
+        "title": "Recent Releases",
+        "docs": "https://docs.rsshub.app/routes/anime#gogoanimehd",
+        "source": [
+          "/"
+        ],
+        "target": "/gogoanimehd/recent-releases"
+      }
+    ]
+  },
   "good.news": {
     "_name": "Good.news",
     ".": [
@@ -10832,6 +10845,15 @@
           "/"
         ],
         "target": "/gov/chongqing/sydwgkzp"
+      }
+    ],
+    "gzw": [
+      {
+        "title": "国有资产监督管理委员会",
+        "docs": "https://docs.rsshub.app/routes/government#chong-qing-shi-ren-min-zheng-fu-guo-you-zi-chan-jian-du-guan-li-wei-yuan-hui",
+        "source": [
+          "/:category*"
+        ]
       }
     ]
   },
@@ -11706,6 +11728,19 @@
       }
     ]
   },
+  "grubstreet.com": {
+    "_name": "Grub Street",
+    ".": [
+      {
+        "title": "Posts",
+        "docs": "https://docs.rsshub.app/routes/new-media#grub-street",
+        "source": [
+          "/"
+        ],
+        "target": "/grubstreet"
+      }
+    ]
+  },
   "guancha.cn": {
     "_name": "观察者网",
     ".": [
@@ -11898,6 +11933,17 @@
         "target": "/gxmzu/aitzgg"
       }
     ],
+    "library": [
+      {
+        "title": "图书馆最新消息",
+        "docs": "https://docs.rsshub.app/routes/unversity#guang-xi-min-zu-da-xue-tu-shu-guan-zui-xin-xiao-xi",
+        "source": [
+          "/news/news_list.jsp",
+          "/"
+        ],
+        "target": "/gxmzu/libzxxx"
+      }
+    ],
     "yjs": [
       {
         "title": "研究生院招生公告",
@@ -12028,6 +12074,19 @@
         "source": [
           "/:profile"
         ]
+      }
+    ]
+  },
+  "hackyournews.com": {
+    "_name": "HackYourNews",
+    ".": [
+      {
+        "title": "Index",
+        "docs": "https://docs.rsshub.app/routes/programming#hack-your-news",
+        "source": [
+          "/"
+        ],
+        "target": "/hackyournews"
       }
     ]
   },
@@ -20111,6 +20170,16 @@
       }
     ]
   },
+  "ppy.sh": {
+    "_name": "osu!",
+    "osu": [
+      {
+        "title": "Beatmap Pack",
+        "docs": "https://docs.rsshub.app/routes/game#osu-beatmap-packs",
+        "source": "/beatmaps/packs"
+      }
+    ]
+  },
   "ouc.edu.cn": {
     "_name": "中国海洋大学",
     "it": [
@@ -24972,12 +25041,21 @@
     ".": [
       {
         "title": "价格",
-        "docs": "https://docs.rsshub.app/routes/shopping#te-si-la-zhong-guo",
+        "docs": "https://docs.rsshub.app/routes/shopping#te-si-la-zhong-guo-jia-ge",
         "source": [
           "/model3/design",
           "/"
         ],
         "target": "/tesla/price"
+      }
+    ],
+    "cx": [
+      {
+        "title": "权益中心",
+        "docs": "https://docs.rsshub.app/routes/shopping#te-si-la-zhong-guo-quan-yi-zhong-xin",
+        "source": [
+          "/user-right/list/:category"
+        ]
       }
     ]
   },

@@ -465,7 +465,8 @@
         "Rongronggg9"
     ],
     "/apple/apps/update/:country/:id": [
-        "EkkoG"
+        "EkkoG",
+        "nczitzk"
     ],
     "/apple/exchange_repair/:country?": [
         "metowolf",
@@ -2291,6 +2292,9 @@
     "/gocn/jobs": [
         "CcccFz"
     ],
+    "/gogoanimehd/recent-releases": [
+        "user4302"
+    ],
     "/good/": [
         "nczitzk"
     ],
@@ -2481,6 +2485,9 @@
     "/gov/beijing/kw/:channel": [
         "Fatpandac"
     ],
+    "/gov/chongqing/gzw/:category?": [
+        "nczitzk"
+    ],
     "/gov/chongqing/rsks": [
         "Mai19930513"
     ],
@@ -2602,6 +2609,12 @@
     "/grist/topic/:topic": [
         "Rjnishant530"
     ],
+    "/grubstreet": [
+        "loganrockmore"
+    ],
+    "/grubstreet/": [
+        "loganrockmore"
+    ],
     "/guancha/:category?": [
         "nczitzk",
         "Jeason0228"
@@ -2660,6 +2673,9 @@
     "/gxmzu/aitzgg": [
         "real-jiakai"
     ],
+    "/gxmzu/libzxxx": [
+        "real-jiakai"
+    ],
     "/gxmzu/yjszsgg": [
         "real-jiakai"
     ],
@@ -2694,6 +2710,9 @@
     "/hackmd/profile/:path": [
         "Yukaii",
         "kaiix"
+    ],
+    "/hackyournews/": [
+        "ftiasch"
     ],
     "/hafu/news/:tpye?": [
         "WenPeiTung"
@@ -4429,6 +4448,9 @@
     "/oshwhub/:sortType?": [
         "tylinux"
     ],
+    "/osu/packs/:type?": [
+        "JimenezLi"
+    ],
     "/ouc/it/postgraduate": [
         "shengmaosu"
     ],
@@ -5640,6 +5662,10 @@
     ],
     "/tesla/price": [
         "xiaokyo"
+    ],
+    "/tesla/cx/:category?/:city?": [
+        "simonsmh",
+        "nczitzk"
     ],
     "/test/:id": [
         "DIYgod",
@@ -7566,7 +7592,6 @@
     "/199it/tag/:tag": [],
     "/jijitang/article/:id": [],
     "/jijitang/publication": [],
-    "/grubstreet": [],
     "/manhuadui/manhua/:name/:serial?": [],
     "/cfd/gbp_div": [],
     "/monotype/article": [],
