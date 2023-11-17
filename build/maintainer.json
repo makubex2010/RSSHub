@@ -711,6 +711,9 @@
     "/bangumi/tv/calendar/today": [
         "magic-akari"
     ],
+    "/bangumi/tv/followrank": [
+        "honue"
+    ],
     "/bangumi/tv/group/:id": [
         "SettingDust"
     ],
@@ -3127,6 +3130,9 @@
     "/guangdiu/rank": [
         "fatpandac"
     ],
+    "/guangdiu/search/:query?": [
+        "Huzhixin00"
+    ],
     "/guanggoo/:category?": [],
     "/guangzhoumetro/news": [
         "HankChow"
@@ -3969,6 +3975,9 @@
     ],
     "/javlibrary/genre/:genre?/:language?/:mode?": [
         "nczitzk"
+    ],
+    "/javlibrary/maker/:maker?/:language?/:mode?": [
+        "Zhixin Hu"
     ],
     "/javlibrary/mostwanted/:language?/:mode?": [
         "nczitzk"
