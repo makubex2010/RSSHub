@@ -851,6 +851,9 @@
     "/bilibili/partion/ranking/:tid/:days?/:disableEmbed?": [
         "lengthmin"
     ],
+    "/bilibili/platform/:area?/:p_type?/:uid?": [
+        "nightmare-mio"
+    ],
     "/bilibili/popular/all": [
         "ziminliu"
     ],
@@ -2953,6 +2956,9 @@
     "/gov/mohurd/policy": [],
     "/gov/moj/aac/news/:type?": [
         "TonyRL"
+    ],
+    "/gov/mot/:category?": [
+        "nczitzk"
     ],
     "/gov/ndrc/xwdt/:caty?": [],
     "/gov/news/:uid": [
@@ -7135,6 +7141,9 @@
     "/umass/amherst/ipoevents": [],
     "/umass/amherst/ipostories": [],
     "/un/scveto": [],
+    "/uniqlo/new/:country/:category": [
+        "DIYgod"
+    ],
     "/uniqlo/stylingbook/:category?": [],
     "/unit-image/films/:type?": [],
     "/unusualwhales/news": [
