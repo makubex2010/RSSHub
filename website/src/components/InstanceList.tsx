@@ -19,6 +19,16 @@ export default function InstanceList(): JSX.Element {
     location: '🇭🇰',
     maintainer: '刘明野',
     maintainerUrl: 'https://www.liumingye.cn',
+  }, {
+    url: 'https://rsshub-instance.zeabur.app',
+    location: '🇺🇸',
+    maintainer: 'Zeabur',
+    maintainerUrl: 'https://zeabur.com',
+  }, {
+    url: 'https://rss.fatpandac.com',
+    location: '🇺🇸',
+    maintainer: 'Fatpandac',
+    maintainerUrl: 'https://fatpandac.com',
   }]
 
   return (
