@@ -2588,6 +2588,9 @@
         "StevenRCE0"
     ],
     "/gdoujwc": [],
+    "/gdsrx/id?": [
+        "nczitzk"
+    ],
     "/gdut/oa_news/:type?": [
         "Jim Kirisame"
     ],
@@ -3250,7 +3253,9 @@
     "/hanime/video": [],
     "/haohaozhu/discover/:keyword?": [],
     "/haohaozhu/whole-house/:keyword?": [],
-    "/harvard/health/blog": [],
+    "/harvard/health/blog": [
+        "nczitzk"
+    ],
     "/hashnode/blog/:username": [
         "hnrainll"
     ],
