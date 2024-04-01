@@ -19,7 +19,7 @@ export const route: Route = {
     },
     radar: [
         {
-            source: ['age.tv/update', 'age.tv/'],
+            source: ['agedm.org/update', 'agedm.org/'],
         },
     ],
     name: '最近更新',
