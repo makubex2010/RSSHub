@@ -637,9 +637,9 @@
       }
     ]
   },
-  "age.tv": {
+  "agedm.org": {
     "_name": "AGE 动漫",
-    ".": [
+    "www": [
       {
         "title": "番剧详情",
         "docs": "https://docs.rsshub.app/routes/anime",
@@ -647,7 +647,12 @@
           "/detail/:id"
         ],
         "target": "/agefans/detail/:id"
-      },
+      }
+    ]
+  },
+  "age.tv": {
+    "_name": "AGE 动漫",
+    ".": [
       {
         "title": "最近更新",
         "docs": "https://docs.rsshub.app/routes/anime",
