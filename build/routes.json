@@ -2750,7 +2750,7 @@
         "radar": [
           {
             "source": [
-              "agemys.org/detail/:id"
+              "age.tv/detail/:id"
             ]
           }
         ],
@@ -2792,7 +2792,7 @@
       }
     },
     "name": "AGE 动漫",
-    "url": "agemys.cc"
+    "url": "age.tv"
   },
   "agirls": {
     "routes": {

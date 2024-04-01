@@ -637,7 +637,7 @@
       }
     ]
   },
-  "agemys.org": {
+  "age.tv": {
     "_name": "AGE 动漫",
     ".": [
       {
@@ -647,7 +647,12 @@
           "/detail/:id"
         ],
         "target": "/agefans/detail/:id"
-      },
+      }
+    ]
+  },
+  "agemys.org": {
+    "_name": "AGE 动漫",
+    ".": [
       {
         "title": "最近更新",
         "docs": "https://docs.rsshub.app/routes/anime",
