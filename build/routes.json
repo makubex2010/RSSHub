@@ -2778,8 +2778,8 @@
         "radar": [
           {
             "source": [
-              "agemys.org/update",
-              "agemys.org/"
+              "age.tv/update",
+              "age.tv/"
             ]
           }
         ],
@@ -2792,7 +2792,7 @@
       }
     },
     "name": "AGE 动漫",
-    "url": "agemys.cc"
+    "url": "age.tv"
   },
   "agirls": {
     "routes": {
