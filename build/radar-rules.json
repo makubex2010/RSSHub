@@ -68,6 +68,19 @@
       }
     ]
   },
+  "12371.cn": {
+    "_name": "共产党员网",
+    "www": [
+      {
+        "title": "最新发布",
+        "docs": "https://docs.rsshub.app/routes/government",
+        "source": [
+          "/:category"
+        ],
+        "target": "/12371/:category?"
+      }
+    ]
+  },
   "005.tv": {
     "_name": "幻之羁绊动漫网",
     ".": [
@@ -1510,6 +1523,19 @@
           "/pcr/news.html"
         ],
         "target": "/priconne-redive/news/zh-cn"
+      }
+    ]
+  },
+  "binance.com": {
+    "_name": "Binance",
+    ".": [
+      {
+        "title": "Binance数字货币及交易对上新",
+        "docs": "https://docs.rsshub.app/routes/finance",
+        "source": [
+          "/:lang/support/announcement"
+        ],
+        "target": "/binance/launchpool"
       }
     ]
   },
@@ -4188,6 +4214,29 @@
           "/:locale/free-games"
         ],
         "target": "/epicgames/freegames/:locale"
+      }
+    ]
+  },
+  "blogspot.com": {
+    "_name": "歐洲動態（國際）",
+    "europechinese": [
+      {
+        "title": "最新",
+        "docs": "https://docs.rsshub.app/routes/new-media",
+        "source": [
+          "/"
+        ],
+        "target": "/europechinese/latest"
+      }
+    ],
+    "ygkkk": [
+      {
+        "title": "最新发表",
+        "docs": "https://docs.rsshub.app/routes/blog",
+        "source": [
+          "/"
+        ],
+        "target": "/ygkkk/"
       }
     ]
   },
@@ -8314,6 +8363,19 @@
       }
     ]
   },
+  "luolei.org": {
+    "_name": "罗磊的独立博客",
+    ".": [
+      {
+        "title": "罗磊的独立博客",
+        "docs": "https://docs.rsshub.app/routes/blog",
+        "source": [
+          "/"
+        ],
+        "target": "/luolei/"
+      }
+    ]
+  },
   "luxiangdong.com": {
     "_name": "土猛的员外",
     ".": [
@@ -8522,6 +8584,22 @@
   "minecraft.net": {
     "_name": "Minecraft",
     ".": [
+      {
+        "title": "Java Blocked Servers",
+        "docs": "https://docs.rsshub.app/routes/game",
+        "source": [
+          "/"
+        ],
+        "target": "/minecraft/blockedservers"
+      },
+      {
+        "title": "Java Runtimes",
+        "docs": "https://docs.rsshub.app/routes/game",
+        "source": [
+          "/"
+        ],
+        "target": "/minecraft/java-runtime/:arch?/:javaType?"
+      },
       {
         "title": "Java Game Update",
         "docs": "https://docs.rsshub.app/routes/game",
@@ -8928,6 +9006,20 @@
           "/papers"
         ],
         "target": "/nber/news"
+      }
+    ]
+  },
+  "ncpssd.cn": {
+    "_name": "国家哲学社会科学文献中心",
+    ".": [
+      {
+        "title": "最新文献",
+        "docs": "https://docs.rsshub.app/routes/study",
+        "source": [
+          "/",
+          "/newlist"
+        ],
+        "target": "/ncpssd/newlist"
       }
     ]
   },
@@ -12410,6 +12502,27 @@
       }
     ]
   },
+  "shopify.com": {
+    "_name": "Shopify",
+    "apps": [
+      {
+        "title": "App reviews",
+        "docs": "https://docs.rsshub.app/routes/other",
+        "source": [
+          "/:handle"
+        ],
+        "target": "/shopify/apps/:handle/reviews/:page?"
+      },
+      {
+        "title": "App store search",
+        "docs": "https://docs.rsshub.app/routes/other",
+        "source": [
+          "/search"
+        ],
+        "target": "/shopify(_params,url)=>{const{searchParams}=new URL(url).searchParams;return searchParams.has(\"q\")?`/shopify/apps/search/${searchParams.get(\"q\")}`:null}"
+      }
+    ]
+  },
   "shoppingdesign.com.tw": {
     "_name": "Shopping Design",
     "www": [
@@ -14474,6 +14587,16 @@
         "target": "/ustc/jwc"
       }
     ],
+    "math": [
+      {
+        "title": "数学科学学院",
+        "docs": "https://docs.rsshub.app/routes/university",
+        "source": [
+          "/"
+        ],
+        "target": "/ustc/math"
+      }
+    ],
     "sist": [
       {
         "title": "信息科学技术学院",
@@ -14744,6 +14867,20 @@
           "/"
         ],
         "target": "/warthunder/news"
+      }
+    ]
+  },
+  "watasuke.net": {
+    "_name": "Watasuke",
+    ".": [
+      {
+        "title": "Blog",
+        "docs": "https://docs.rsshub.app/routes/blog",
+        "source": [
+          "/blog/",
+          "/"
+        ],
+        "target": "/watasuke/blog"
       }
     ]
   },
@@ -15408,19 +15545,6 @@
           "/post/"
         ],
         "target": "/yande/post/popular_recent/:period?"
-      }
-    ]
-  },
-  "blogspot.com": {
-    "_name": "甬哥侃侃侃YouTube教程摘要随笔",
-    "ygkkk": [
-      {
-        "title": "最新发表",
-        "docs": "https://docs.rsshub.app/routes/blog",
-        "source": [
-          "/"
-        ],
-        "target": "/ygkkk/"
       }
     ]
   },
