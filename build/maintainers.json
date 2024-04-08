@@ -180,6 +180,9 @@
   "/50forum/": [
     "sddiky"
   ],
+  "/51cto/index/recommend": [
+    "cnkmmk"
+  ],
   "/52hrtt/:area?/:type?": [
     "nczitzk"
   ],
@@ -470,6 +473,9 @@
   "/atcoder/post/:language?/:keyword?": [
     "nczitzk"
   ],
+  "/atptour/news/:lang?": [
+    "LM1207"
+  ],
   "/auto-stats/:category?": [
     "nczitzk"
   ],
@@ -698,7 +704,8 @@
     "DIYgod"
   ],
   "/bilibili/vsearch/:kw/:order?/:disableEmbed?/:tid?": [
-    "Symty"
+    "pcrtool",
+    "DIYgod"
   ],
   "/bilibili/watchlater/:uid/:disableEmbed?": [
     "JimenezLi"
@@ -788,8 +795,9 @@
   "/bloomberg/authors/:id/:slug/:source?": [
     "josh"
   ],
-  "/bloomberg/:site": [],
-  "/bloomberg/": [],
+  "/bloomberg/:site?": [
+    "bigfei"
+  ],
   "/bluestacks/release/5": [
     "TonyRL"
   ],
@@ -841,7 +849,9 @@
   "/btzj/:category?": [
     "nczitzk"
   ],
-  "/buaa/sme/:path{.+}?": [],
+  "/buaa/sme/:path{.+}?": [
+    "MeanZhang"
+  ],
   "/buaa/news/:type": [
     "AlanDecode"
   ],
@@ -2283,7 +2293,10 @@
     "Yoge-Code"
   ],
   "/gov/mmht/*": [],
-  "/gov/moa/:suburl{.+}": [],
+  "/gov/moa/:suburl{.+}": [
+    "Origami404",
+    "lyqluis"
+  ],
   "/gov/moa/sjzxfb/:category{.+}?": [],
   "/gov/moa/zdscxx/:category{.+}?": [],
   "/gov/moe/:type": [
@@ -6050,6 +6063,9 @@
   "/xboxfan/news": [
     "XXY233"
   ],
+  "/xianbao/:category?": [
+    "nashi23"
+  ],
   "/xiaoheihe/add2cart/:platform": [
     "ladeng07"
   ],
@@ -6266,7 +6282,9 @@
   "/youtube/community/:handle": [
     "TonyRL"
   ],
-  "/youtube/c/:username/:embed?": [],
+  "/youtube/c/:username/:embed?": [
+    "TonyRL"
+  ],
   "/youtube/live/:username/:embed?": [
     "sussurr127"
   ],
@@ -6446,6 +6464,9 @@
   ],
   "/zhiy/posts/:author": [
     "TonyRL"
+  ],
+  "/zhonglun/research/article/:language{[a-zA-Z0-9-]+}?": [
+    "nczitzk"
   ],
   "/zhubai/:id": [
     "naixy28"
