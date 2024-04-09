@@ -2631,6 +2631,9 @@
   "/hit/today/:category": [
     "ranpox"
   ],
+  "/hitcon/zeroday/vulnerability/:status?": [
+    "KarasuShin"
+  ],
   "/hitsz/article/:category?": [
     "xandery-geek"
   ],
@@ -3795,7 +3798,8 @@
   "/nikkei/": [],
   "/nikkei/index": [],
   "/nikkei/:category/:article_type?": [
-    "Arracc"
+    "Arracc",
+    "ladeng07"
   ],
   "/nikkei/asia": [
     "rainrdx"
