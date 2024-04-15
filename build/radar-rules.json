@@ -5462,6 +5462,19 @@
       }
     ]
   },
+  "jiangsu.gov.cn": {
+    "_name": "中国人民银行",
+    "wlt": [
+      {
+        "title": "江苏文旅局审批公告",
+        "docs": "https://docs.rsshub.app/routes/government",
+        "source": [
+          "/"
+        ],
+        "target": "/gov/jiangsu/wlt"
+      }
+    ]
+  },
   "jinan.gov.cn": {
     "_name": "中国人民银行",
     "jnmhc": [
@@ -8704,6 +8717,29 @@
           "/page/info/mio/mio/homePage"
         ],
         "target": "/miui(_,url)=>`/miui/community/user/${new URL(url).searchParams.get(\"uid\")}`"
+      }
+    ]
+  },
+  "mixcloud.com": {
+    "_name": "Mixcloud",
+    ".": [
+      {
+        "title": "User",
+        "docs": "https://docs.rsshub.app/routes/multimedia",
+        "source": [
+          "/:username/:type"
+        ],
+        "target": "/mixcloud/:username/:type?"
+      }
+    ],
+    "www": [
+      {
+        "title": "User",
+        "docs": "https://docs.rsshub.app/routes/multimedia",
+        "source": [
+          "/:username/:type"
+        ],
+        "target": "/mixcloud/:username/:type?"
       }
     ]
   },
