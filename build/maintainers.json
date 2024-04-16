@@ -246,6 +246,9 @@
   "/abskoop/nsfw": [
     "zhenhappy"
   ],
+  "/accessbriefing/:category{.+}?": [
+    "nczitzk"
+  ],
   "/acfun/article/:categoryId/:sortType?/:timeRange?": [
     "TonyRL"
   ],
@@ -1954,6 +1957,9 @@
   ],
   "/freewechat/profile/:id": [
     "TonyRL"
+  ],
+  "/freexcomic/book/:id": [
+    "junfengP"
   ],
   "/ft/:language/:channel?": [
     "HenryQW",
