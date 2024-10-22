@@ -1,12 +1,13 @@
 import { Route } from '@/types';
-import got from '@/utils/got';
 import { load } from 'cheerio';
 import { config } from '@/config';
+import ofetch from '@/utils/ofetch';
+
 export const route: Route = {
-    path: '/tv/followrank',
+    path: '/:type/followrank',
     categories: ['anime'],
-    example: '/bangumi/tv/followrank',
-    parameters: {},
+    example: '/bangumi/anime/followrank',
+    parameters: { type: '类型：anime - 动画，book - 图书，music - 音乐，game - 游戏，real - 三次元' },
     features: {
         requireConfig: false,
         requirePuppeteer: false,
@@ -17,51 +18,60 @@ export const route: Route = {
     },
     radar: [
         {
-            source: ['bgm.tv/anime'],
+            source: ['bgm.tv/:type'],
+            target: '/:type/followrank',
         },
     ],
-    name: '成员关注动画榜',
-    maintainers: ['honue'],
+    name: '成员关注榜',
+    maintainers: ['honue', 'zhoukuncheng', 'NekoAria'],
     handler,
-    url: 'bgm.tv/anime',
 };
 
-async function handler() {
-    const url = 'https://bgm.tv/anime';
-    const response = await got({
-        url,
-        method: 'get',
+async function handler(ctx) {
+    let type = ctx.req.param('type');
+    if (!type || type === 'tv') {
+        type = 'anime';
+    }
+    const url = `https://bgm.tv/${type}`;
+
+    const response = await ofetch(url, {
         headers: {
             'User-Agent': config.trueUA,
         },
     });
 
-    const $ = load(response.body);
+    const $ = load(response);
 
-    const items = [
-        ...$('#columnB > div:nth-child(4) > table > tbody')
-            .find('tr')
-            .toArray()
-            .map((item) => {
-                const aTag = $(item).children('td').next().find('a');
-                return {
-                    title: aTag.html(),
-                    link: 'https://bgm.tv' + aTag.attr('href'),
-                };
-            }),
-        ...$('#chl_subitem > ul')
-            .find('li')
-            .toArray()
-            .map((item) => ({
-                title: $(item).children('a').attr('title'),
-                link: 'https://bgm.tv' + $(item).children('a').attr('href'),
-            })),
-    ];
+    const items = $('.featuredItems .mainItem')
+        .toArray()
+        .map((item) => {
+            const $item = $(item);
+            const link = 'https://bgm.tv' + $item.find('a').first().attr('href');
+            const imageUrl = $item
+                .find('.image')
+                .attr('style')
+                ?.match(/url\((.*?)\)/)?.[1];
+            const info = $item.find('small.grey').text();
+            return {
+                title: $item.find('.title').text().trim(),
+                link,
+                description: `<img src="${imageUrl}"><br>${info}`,
+            };
+        });
+
+    const RANK_TYPES = {
+        tv: '动画',
+        anime: '动画',
+        book: '图书',
+        music: '音乐',
+        game: '游戏',
+        real: '三次元',
+    };
 
     return {
-        title: 'Bangumi 成员关注动画榜',
+        title: `BangumiTV 成员关注${RANK_TYPES[type]}榜`,
         link: url,
         item: items,
-        description: `Bangumi 首页-成员关注动画榜`,
+        description: `BangumiTV 首页 - 成员关注${RANK_TYPES[type]}榜`,
     };
 }

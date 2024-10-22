@@ -1,10 +1,10 @@
 import { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import ofetch from '@/utils/ofetch';
 import queryString from 'query-string';
 import { parseDate } from '@/utils/parse-date';
 import sanitizeHtml from 'sanitize-html';
+import { parseToken } from '@/routes/xueqiu/cookies';
 
 const rootUrl = 'https://xueqiu.com';
 
@@ -48,12 +48,8 @@ async function handler(ctx) {
         11: '交易',
     };
 
-    const res1 = await ofetch.raw(rootUrl, {
-        method: 'get',
-    });
-    const cookieArray = res1.headers.getSetCookie();
-    const token = cookieArray.find((c) => c.startsWith('xq_a_token='));
-
+    const link = `${rootUrl}/u/${id}`;
+    const token = await parseToken(link);
     const res2 = await got({
         method: 'get',
         url: `${rootUrl}/v4/statuses/user_timeline.json`,
@@ -64,7 +60,7 @@ async function handler(ctx) {
         }),
         headers: {
             Cookie: token,
-            Referer: `${rootUrl}/u/${id}`,
+            Referer: link,
         },
     });
     const data = res2.data.statuses.filter((s) => s.mark !== 1); // 去除置顶动态
@@ -76,7 +72,7 @@ async function handler(ctx) {
                     method: 'get',
                     url: rootUrl + item.target,
                     headers: {
-                        Referer: `${rootUrl}/u/${id}`,
+                        Referer: link,
                         Cookie: token,
                     },
                 });
@@ -88,7 +84,7 @@ async function handler(ctx) {
                 const description = item.description + retweetedStatus;
 
                 return {
-                    title: item.title ?? sanitizeHtml(description, { allowedTags: [], allowedAttributes: {} }),
+                    title: item.title || sanitizeHtml(description, { allowedTags: [], allowedAttributes: {} }),
                     description: item.text ? item.text + retweetedStatus : description,
                     pubDate: parseDate(item.created_at),
                     link: rootUrl + item.target,
@@ -99,7 +95,7 @@ async function handler(ctx) {
 
     return {
         title: `${data[0].user.screen_name} 的雪球${typename[type]}动态`,
-        link: `${rootUrl}/u/${id}`,
+        link,
         description: `${data[0].user.screen_name} 的雪球${typename[type]}动态`,
         item: items,
     };

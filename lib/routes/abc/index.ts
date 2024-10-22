@@ -82,8 +82,8 @@ async function handler(ctx) {
             }),
             author: i.newsBylineProps?.authors?.map((a) => a.name).join('/') ?? undefined,
             guid: `abc-${i.id}`,
-            pubDate: parseDate(i.timestamp.dates.firstPublished),
-            updated: i.timestamp.dates.lastUpdated ? parseDate(i.timestamp.dates.lastUpdated) : undefined,
+            pubDate: parseDate(i.dates.firstPublished),
+            updated: i.dates.lastUpdated ? parseDate(i.dates.lastUpdated) : undefined,
         };
 
         if (i.mediaIndicator) {
@@ -126,7 +126,7 @@ async function handler(ctx) {
                     item.title = content('meta[property="og:title"]').prop('content');
                     item.description = '';
 
-                    const enclosurePattern = '"(?:MIME|content)?Type":"([\\w]+/[\\w]+)".*?"(?:fileS|s)?ize":(\\d+),.*?"url":"([\\w-.:/?]+)"';
+                    const enclosurePattern = String.raw`"(?:MIME|content)?Type":"([\w]+/[\w]+)".*?"(?:fileS|s)?ize":(\d+),.*?"url":"([\w-.:/?]+)"`;
 
                     const enclosureMatches = detailResponse.match(new RegExp(enclosurePattern, 'g'));
 

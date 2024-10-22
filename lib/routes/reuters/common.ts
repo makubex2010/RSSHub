@@ -1,4 +1,4 @@
-import { Route } from '@/types';
+import { Route, ViewType } from '@/types';
 import { getCurrentPath } from '@/utils/helpers';
 const __dirname = getCurrentPath(import.meta.url);
 
@@ -11,9 +11,63 @@ import path from 'node:path';
 
 export const route: Route = {
     path: '/:category/:topic?',
-    categories: ['traditional-media'],
+    categories: ['traditional-media', 'popular'],
+    view: ViewType.Articles,
     example: '/reuters/world/us',
-    parameters: { category: 'find it in the URL, or tables below', topic: 'find it in the URL, or tables below' },
+    parameters: {
+        category: {
+            description: 'find it in the URL, or tables below',
+            options: [
+                { value: 'world', label: 'World' },
+                { value: 'business', label: 'Business' },
+                { value: 'legal', label: 'Legal' },
+                { value: 'markets', label: 'Markets' },
+                { value: 'breakingviews', label: 'Breakingviews' },
+                { value: 'technology', label: 'Technology' },
+                { value: 'graphics', label: 'Graphics' },
+                { value: 'authors', label: 'Authors' },
+            ],
+            default: 'world',
+        },
+        topic: {
+            description: 'find it in the URL, or tables below, leave empty for `All`',
+            options: [
+                // World topics
+                { value: 'africa', label: 'Africa' },
+                { value: 'americas', label: 'Americas' },
+                { value: 'asia-pacific', label: 'Asia Pacific' },
+                { value: 'china', label: 'China' },
+                { value: 'europe', label: 'Europe' },
+                { value: 'india', label: 'India' },
+                { value: 'middle-east', label: 'Middle East' },
+                { value: 'uk', label: 'United Kingdom' },
+                { value: 'us', label: 'United States' },
+                { value: 'the-great-reboot', label: 'The Great Reboot' },
+                { value: 'reuters-next', label: 'Reuters Next' },
+                // Business topics
+                { value: 'aerospace-defense', label: 'Aerospace & Defense' },
+                { value: 'autos-transportation', label: 'Autos & Transportation' },
+                { value: 'energy', label: 'Energy' },
+                { value: 'environment', label: 'Environment' },
+                { value: 'finance', label: 'Finance' },
+                { value: 'healthcare-pharmaceuticals', label: 'Healthcare & Pharmaceuticals' },
+                { value: 'media-telecom', label: 'Media & Telecom' },
+                { value: 'retail-consumer', label: 'Retail & Consumer' },
+                { value: 'sustainable-business', label: 'Sustainable Business' },
+                { value: 'charged', label: 'Charged' },
+                { value: 'future-of-health', label: 'Future of Health' },
+                { value: 'future-of-money', label: 'Future of Money' },
+                { value: 'take-five', label: 'Take Five' },
+                { value: 'reuters-impact', label: 'Reuters Impact' },
+                // Legal topics
+                { value: 'government', label: 'Government' },
+                { value: 'legalindustry', label: 'Legal Industry' },
+                { value: 'litigation', label: 'Litigation' },
+                { value: 'transactional', label: 'Transactional' },
+            ],
+            default: 'us',
+        },
+    },
     features: {
         requireConfig: false,
         requirePuppeteer: false,
@@ -64,13 +118,13 @@ export const route: Route = {
 };
 
 async function handler(ctx) {
-    const MUST_FETCH_BY_TOPICS = new Set(['authors']);
+    const MUST_FETCH_BY_TOPICS = new Set(['authors', 'tags']);
     const CAN_USE_SOPHI = ['world'];
 
     const category = ctx.req.param('category');
     const topic = ctx.req.param('topic') ?? (category === 'authors' ? 'reuters' : '');
     const limit = ctx.req.query('limit') ? Number.parseInt(ctx.req.query('limit')) : 20;
-    const useSophi = ctx.req.query('sophi') === 'true' && 'topic' !== '' && CAN_USE_SOPHI.includes(category);
+    const useSophi = ctx.req.query('sophi') === 'true' && topic !== '' && CAN_USE_SOPHI.includes(category);
 
     const section_id = `/${category}/${topic ? `${topic}/` : ''}`;
     const { title, description, rootUrl, response } = await (async () => {
@@ -136,7 +190,7 @@ async function handler(ctx) {
 
     const results = await Promise.allSettled(
         items.map((item) =>
-            ctx.req.query('mode') === 'fulltext'
+            ctx.req.query('fulltext') === 'true'
                 ? cache.tryGet(item.link, async () => {
                       const detailResponse = await ofetch(item.link);
                       const content = load(detailResponse.data);
