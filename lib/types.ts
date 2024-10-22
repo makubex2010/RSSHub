@@ -3,6 +3,7 @@ import type { Context } from 'hono';
 // Make sure it's synchronise with scripts/workflow/data.ts
 // and lib/routes/rsshub/routes.ts
 type Category =
+    | 'popular'
     | 'social-media'
     | 'new-media'
     | 'traditional-media'
@@ -34,7 +35,13 @@ export type DataItem = {
     pubDate?: number | string | Date;
     link?: string;
     category?: string[];
-    author?: string | { name: string }[];
+    author?:
+        | string
+        | {
+              name: string;
+              url?: string;
+              avatar?: string;
+          }[];
     doi?: string;
     guid?: string;
     id?: string;
@@ -118,6 +125,15 @@ interface Namespace extends NamespaceItem {
 
 export type { Namespace };
 
+export enum ViewType {
+    Articles = 0,
+    SocialMedia = 1,
+    Pictures = 2,
+    Videos = 3,
+    Audios = 4,
+    Notifications = 5,
+}
+
 // route
 interface RouteItem {
     /**
@@ -154,7 +170,18 @@ interface RouteItem {
     /**
      * The description of the route parameters
      */
-    parameters?: Record<string, string>;
+    parameters?: Record<
+        string,
+        | string
+        | {
+              description: string;
+              default?: string;
+              options?: {
+                  value: string;
+                  label: string;
+              }[];
+          }
+    >;
 
     /**
      * Hints and additional explanations for users using this route, it will be appended after the route component, supports markdown
@@ -205,6 +232,11 @@ interface RouteItem {
      * The [RSSHub-Radar](https://github.com/DIYgod/RSSHub-Radar) rule of the route
      */
     radar?: RadarItem[];
+
+    /**
+     * The [Follow](https://github.com/RSSNext/follow) default view of the route, default to `ViewType.Articles`
+     */
+    view?: ViewType;
 }
 
 interface Route extends RouteItem {
@@ -241,6 +273,7 @@ export type RadarItem = {
      *
      * Using `target` as a function is deprecated in RSSHub-Radar 2.0.19
      * @see https://github.com/DIYgod/RSSHub-Radar/commit/5a97647f900bb2bca792787a322b2b1ca512e40b#diff-f84e3c1e16af314bc4ed7c706d7189844663cde9b5142463dc5c0db34c2e8d54L10
+     * @see https://github.com/DIYgod/RSSHub-Radar/issues/692
      */
     target?:
         | string
@@ -252,4 +285,10 @@ export type RadarItem = {
               /** @deprecated Temporary removed  @see https://github.com/DIYgod/RSSHub-Radar/commit/e6079ea1a8c96e89b1b2c2aa6d13c7967788ca3b */
               document: Document
           ) => string);
+};
+
+export type RadarDomain = {
+    _name: string;
+} & {
+    [subdomain: string]: RadarItem[];
 };

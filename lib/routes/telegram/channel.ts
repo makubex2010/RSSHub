@@ -1,7 +1,5 @@
-import { Route } from '@/types';
+import { Route, ViewType } from '@/types';
 import { getCurrentPath } from '@/utils/helpers';
-const __dirname = getCurrentPath(import.meta.url);
-
 import cache from '@/utils/cache';
 import { config } from '@/config';
 import got from '@/utils/got';
@@ -12,6 +10,8 @@ import path from 'node:path';
 import querystring from 'querystring';
 import { fallback, queryToBoolean } from '@/utils/readable-social';
 import tglibchannel from './tglib/channel';
+
+const __dirname = getCurrentPath(import.meta.url);
 
 /* message types */
 const REPLY = 'REPLY';
@@ -57,9 +57,40 @@ const mediaTagDict = {
 
 export const route: Route = {
     path: '/channel/:username/:routeParams?',
-    categories: ['social-media'],
-    example: '/telegram/channel/awesomeDIYgod/searchQuery=twitter',
-    parameters: { username: 'channel username', routeParams: 'extra parameters, see the table below' },
+    categories: ['social-media', 'popular'],
+    view: ViewType.SocialMedia,
+    example: '/telegram/channel/awesomeRSSHub',
+    parameters: {
+        username: 'channel username',
+        routeParams: `extra parameters, see the table below
+| Key                    | Description                                                           | Accepts                                            | Defaults to  |
+| :--------------------: | :-------------------------------------------------------------------: | :------------------------------------------------: | :----------: |
+| showLinkPreview        | Show the link preview from Telegram                                   | 0/1/true/false                                     | true         |
+| showViaBot             | For messages sent via bot, show the bot                               | 0/1/true/false                                     | true         |
+| showReplyTo            | For reply messages, show the target of the reply                      | 0/1/true/false                                     | true         |
+| showFwdFrom            | For forwarded messages, show the forwarding source                    | 0/1/true/false                                     | true         |
+| showFwdFromAuthor      | For forwarded messages, show the author of the forwarding source      | 0/1/true/false                                     | true         |
+| showInlineButtons      | Show inline buttons                                                   | 0/1/true/false                                     | false        |
+| showMediaTagInTitle    | Show media tags in the title                                          | 0/1/true/false                                     | true         |
+| showMediaTagAsEmoji    | Show media tags as emoji                                              | 0/1/true/false                                     | true         |
+| showHashtagAsHyperlink | Show hashtags as hyperlinks (\`https://t.me/s/channel?q=%23hashtag\`) | 0/1/true/false                                     | true         |
+| includeFwd             | Include forwarded messages                                            | 0/1/true/false                                     | true         |
+| includeReply           | Include reply messages                                                | 0/1/true/false                                     | true         |
+| includeServiceMsg      | Include service messages (e.g. message pinned, channel photo updated) | 0/1/true/false                                     | true         |
+| includeUnsupportedMsg  | Include messages unsupported by t.me                                  | 0/1/true/false                                     | false        |
+| searchQuery            | search query                                                          | keywords; replace \`#hashtag\` with \`%23hashtag\` | (no keyword) |
+
+Specify different option values than default values can meet different needs, URL
+
+\`\`\`
+https://rsshub.app/telegram/channel/NewlearnerChannel/showLinkPreview=0&showViaBot=0&showReplyTo=0&showFwdFrom=0&showFwdFromAuthor=0&showInlineButtons=0&showMediaTagInTitle=1&showMediaTagAsEmoji=1&includeFwd=0&includeReply=1&includeServiceMsg=0&includeUnsupportedMsg=0
+\`\`\`
+
+generates an RSS without any link previews and annoying metadata, with emoji media tags in the title, without forwarded messages (but with reply messages), and without messages you don't care about (service messages and unsupported messages), for people who prefer pure subscriptions.
+
+For backward compatibility reasons, invalid \`routeParams\` will be treated as \`searchQuery\` .
+`,
+    },
     features: {
         requireConfig: false,
         requirePuppeteer: false,
@@ -77,33 +108,8 @@ export const route: Route = {
     name: 'Channel',
     maintainers: ['DIYgod', 'Rongronggg9'],
     handler,
-    description: `| Key                   | Description                                                           | Accepts                                              | Defaults to       |
-  | --------------------- | --------------------------------------------------------------------- | ---------------------------------------------------- | ----------------- |
-  | showLinkPreview       | Show the link preview from Telegram                                   | 0/1/true/false                                       | true              |
-  | showViaBot            | For messages sent via bot, show the bot                               | 0/1/true/false                                       | true              |
-  | showReplyTo           | For reply messages, show the target of the reply                      | 0/1/true/false                                       | true              |
-  | showFwdFrom           | For forwarded messages, show the forwarding source                    | 0/1/true/false                                       | true              |
-  | showFwdFromAuthor     | For forwarded messages, show the author of the forwarding source      | 0/1/true/false                                       | true              |
-  | showInlineButtons     | Show inline buttons                                                   | 0/1/true/false                                       | false             |
-  | showMediaTagInTitle   | Show media tags in the title                                          | 0/1/true/false                                       | true              |
-  | showMediaTagAsEmoji   | Show media tags as emoji                                              | 0/1/true/false                                       | true              |
-  | includeFwd            | Include forwarded messages                                            | 0/1/true/false                                       | true              |
-  | includeReply          | Include reply messages                                                | 0/1/true/false                                       | true              |
-  | includeServiceMsg     | Include service messages (e.g. message pinned, channel photo updated) | 0/1/true/false                                       | true              |
-  | includeUnsupportedMsg | Include messages unsupported by t.me                                  | 0/1/true/false                                       | false             |
-  | searchQuery           | search query                                                          | keywords; replace \`#\` by \`%23\` for hashtag searching | (search disabled) |
-
-  Specify different option values than default values can meet different needs, URL
-
-  \`\`\`
-  https://rsshub.app/telegram/channel/NewlearnerChannel/showLinkPreview=0&showViaBot=0&showReplyTo=0&showFwdFrom=0&showFwdFromAuthor=0&showInlineButtons=0&showMediaTagInTitle=1&showMediaTagAsEmoji=1&includeFwd=0&includeReply=1&includeServiceMsg=0&includeUnsupportedMsg=0
-  \`\`\`
-
-  generates an RSS without any link previews and annoying metadata, with emoji media tags in the title, without forwarded messages (but with reply messages), and without messages you don't care about (service messages and unsupported messages), for people who prefer pure subscriptions.
-
+    description: `
   :::tip
-  For backward compatibility reasons, invalid \`routeParams\` will be treated as \`searchQuery\` .
-
   Due to Telegram restrictions, some channels involving pornography, copyright, and politics cannot be subscribed. You can confirm by visiting \`https://t.me/s/:username\`.
   :::`,
 };
@@ -124,12 +130,13 @@ async function handler(ctx) {
     let showInlineButtons = false;
     let showMediaTagInTitle = true;
     let showMediaTagAsEmoji = true;
+    let showHashtagAsHyperlink = true;
     let includeFwd = true;
     let includeReply = true;
     let includeServiceMsg = true;
     let includeUnsupportedMsg = false;
     let searchQuery = routeParams; // for backward compatibility
-    if (routeParams && routeParams.search(/(^|&)(show(LinkPreview|ViaBot|ReplyTo|FwdFrom(Author)?|InlineButtons|MediaTag(InTitle|AsEmoji))|include(Fwd|Reply|(Service|Unsupported)Msg)|searchQuery)=/) !== -1) {
+    if (routeParams && routeParams.search(/(^|&)(show(LinkPreview|ViaBot|ReplyTo|FwdFrom(Author)?|InlineButtons|MediaTag(InTitle|AsEmoji)|HashtagAsHyperlink)|include(Fwd|Reply|(Service|Unsupported)Msg)|searchQuery)=/) !== -1) {
         routeParams = querystring.parse(ctx.req.param('routeParams'));
         showLinkPreview = !!fallback(undefined, queryToBoolean(routeParams.showLinkPreview), showLinkPreview);
         showViaBot = !!fallback(undefined, queryToBoolean(routeParams.showViaBot), showViaBot);
@@ -139,6 +146,7 @@ async function handler(ctx) {
         showInlineButtons = !!fallback(undefined, queryToBoolean(routeParams.showInlineButtons), showInlineButtons);
         showMediaTagInTitle = !!fallback(undefined, queryToBoolean(routeParams.showMediaTagInTitle), showMediaTagInTitle);
         showMediaTagAsEmoji = !!fallback(undefined, queryToBoolean(routeParams.showMediaTagAsEmoji), showMediaTagAsEmoji);
+        showHashtagAsHyperlink = !!fallback(undefined, queryToBoolean(routeParams.showHashtagAsHyperlink), showHashtagAsHyperlink);
         includeFwd = !!fallback(undefined, queryToBoolean(routeParams.includeFwd), includeFwd);
         includeReply = !!fallback(undefined, queryToBoolean(routeParams.includeReply), includeReply);
         includeServiceMsg = !!fallback(undefined, queryToBoolean(routeParams.includeServiceMsg), includeServiceMsg);
@@ -159,6 +167,24 @@ async function handler(ctx) {
     );
 
     const $ = load(data);
+
+    /*
+     * Since 2024/4/20, t.me/s/ mistakenly have every '&' in **hyperlinks** replaced by '&amp;'.
+     * The characteristic of a hyperlink is [onclick] (pop-up confirmation), which is not present in ordinary links.
+     * This is a workaround to fix the issue until Telegram fixes it.
+     */
+    $('a[onclick][href]').each((_, elem) => {
+        const $elem = $(elem);
+        const href = $elem.attr('href');
+        href && $elem.attr('href', href.replaceAll('&amp;', '&'));
+    });
+
+    !showHashtagAsHyperlink &&
+        $('a[href^="?q=%23"]').each((_, elem) => {
+            const $elem = $(elem);
+            $elem.replaceWith($elem.text());
+        });
+
     const list = includeServiceMsg
         ? $('.tgme_widget_message_wrap:not(.tgme_widget_message_wrap:has(.tme_no_messages_found))') // exclude 'no posts found' messages
         : $('.tgme_widget_message_wrap:not(.tgme_widget_message_wrap:has(.service_message,.tme_no_messages_found))'); // also exclude service messages
@@ -402,7 +428,40 @@ async function handler(ctx) {
                                 const background = $node.css('background-image');
                                 const backgroundUrl = background && background.match(/url\('(.*)'\)/);
                                 const backgroundUrlSrc = backgroundUrl && backgroundUrl[1];
-                                tag_media += backgroundUrlSrc ? `<img src="${backgroundUrlSrc}">` : '';
+                                const attrs = [`src="${backgroundUrlSrc}"`];
+                                /*
+                                 * If the width is not in px, it is either a percentage (Link Preview/Instant view)
+                                 * or absent (ditto).
+                                 * Only accept px to prevent images from being invisible or too small.
+                                 */
+                                let width = 0;
+                                const widthStr = $node.css('width');
+                                if (widthStr && widthStr.endsWith('px')) {
+                                    width = Number.parseFloat(widthStr);
+                                }
+                                /*
+                                 * Height is present when the message is an album but does not exist in other cases.
+                                 * Ditto, only accept px.
+                                 * !!!NOTE: images in albums may have smaller width and height.
+                                 */
+                                let height = 0;
+                                const heightStr = $node.css('height');
+                                if (heightStr && heightStr.endsWith('px')) {
+                                    height = Number.parseFloat(heightStr);
+                                }
+                                /*
+                                 * Only calculate height when needed.
+                                 * The aspect ratio is either a percentage (single image) or absent (Link Preview).
+                                 * Only accept percentage to prevent images from being invisible or distorted.
+                                 */
+                                const aspectRatioStr = $node.find('.tgme_widget_message_photo').css('padding-top');
+                                if (height <= 0 && width > 0 && aspectRatioStr && aspectRatioStr.endsWith('%')) {
+                                    height = (Number.parseFloat(aspectRatioStr) / 100) * width;
+                                }
+                                // Only set width/height when >32 to avoid invisible images.
+                                width > 32 && attrs.push(`width="${width}"`);
+                                height > 32 && attrs.push(`height="${height.toFixed(2).replace('.00', '')}"`);
+                                tag_media += backgroundUrlSrc ? `<img ${attrs.join(' ')}>` : '';
                             }
                             if (tag_media) {
                                 tag_media_all += tag_media;

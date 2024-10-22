@@ -1,6 +1,6 @@
 import { Route } from '@/types';
 import utils from './utils';
-import got from '@/utils/got';
+import ofetch from '@/utils/ofetch';
 import { parseDate } from '@/utils/parse-date';
 
 export const route: Route = {
@@ -39,13 +39,12 @@ async function handler(ctx) {
     const token = await utils.getPublicToken();
     const id = ctx.req.param('id');
 
-    const meta = await got
-        .get(`https://api.spotify.com/v1/shows/${id}?market=US`, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-        })
-        .json();
+    const meta = await ofetch(`https://api.spotify.com/v1/shows/${id}?market=US`, {
+        method: 'GET',
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    });
 
     const episodes = meta.episodes.items;
 
@@ -64,7 +63,7 @@ async function handler(ctx) {
             pubDate: parseDate(x.release_date),
             link: x.external_urls.spotify,
             itunes_item_image: x.images[0].url,
-            itunes_duration: x.duration_ms * 1000,
+            itunes_duration: x.duration_ms / 1000,
             enclosure_url: x.audio_preview_url,
             enclosure_type: 'audio/mpeg',
         })),

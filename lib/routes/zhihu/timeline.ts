@@ -1,7 +1,7 @@
 import { Route } from '@/types';
 import got from '@/utils/got';
 import { config } from '@/config';
-import utils from './utils';
+import { processImage } from './utils';
 import { parseDate } from '@/utils/parse-date';
 import ConfigNotFoundError from '@/errors/types/config-not-found';
 
@@ -60,10 +60,13 @@ async function handler(ctx) {
                 const questionId = e.target.question.id;
                 return `${urlBase}/question/${questionId}/answer/${id}`;
             }
+            case 'pin':
             case 'article':
                 return e.target.url;
             case 'question':
                 return `${urlBase}/question/${id}`;
+            default:
+                return;
         }
         return '';
     };
@@ -106,16 +109,17 @@ async function handler(ctx) {
         const link = buildLink(e);
         return {
             title: `${e.action_text_tpl.replace('{}', buildActors(e))}: ${getOne([e.target.title, e.target.question ? e.target.question.title : ''])}`,
-            description: utils.ProcessImage(`<div>${getOne([e.target.content_html, getContent(e.target.content), e.target.detail, e.target.excerpt, ''])}</div>`),
+            description: processImage(`<div>${getOne([e.target.content_html, getContent(e.target.content), e.target.detail, e.target.excerpt, ''])}</div>`),
             pubDate: parseDate(e.updated_time * 1000),
             link,
             author: e.target.author ? e.target.author.name : '',
             guid: link,
+            category: [e.verb],
         };
     };
 
     const out = feeds
-        .filter((e) => e.verb && e.verb !== 'MEMBER_VOTEUP_ARTICLE' && e.verb !== 'MEMBER_VOTEUP_ANSWER')
+        .filter((e) => e.verb)
         .map((e) => {
             if (e && e.type && e.type === 'feed_group') {
                 // A feed group contains a list of feeds whose structure is the same as a single feed
@@ -134,6 +138,7 @@ async function handler(ctx) {
                     description,
                     pubDate,
                     guid,
+                    category: [e.verb],
                 };
             }
             return buildItem(e);
