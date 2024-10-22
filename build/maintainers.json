@@ -376,6 +376,9 @@
   "/ajmide/:id": [
     "Fatpandac"
   ],
+  "/alicesoft/information/:category?/:game?": [
+    "keocheung"
+  ],
   "/alipan/files/:share_id/:parent_file_id?": [
     "DIYgod"
   ],
@@ -1880,7 +1883,8 @@
   ],
   "/douban/topic/:id/:sort?": [
     "LogicJake",
-    "pseudoyu"
+    "pseudoyu",
+    "haowenwu"
   ],
   "/douban/movie/ustop": [
     "DIYgod"
