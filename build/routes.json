@@ -2111,7 +2111,7 @@
       "/article/:id": {
         "path": "/article/:id",
         "name": "章节",
-        "url": "www.69shuba.pro",
+        "url": "www.69shuba.cx",
         "maintainers": [
           "eternasuno"
         ],
@@ -2133,7 +2133,7 @@
         "radar": [
           {
             "source": [
-              "www.69shuba.pro/book/:id.htm"
+              "www.69shuba.cx/book/:id.htm"
             ],
             "target": "/article/:id"
           }
@@ -2142,7 +2142,7 @@
       }
     },
     "name": "69书吧",
-    "url": "69shuba.pro"
+    "url": "69shuba.cx"
   },
   "6park": {
     "routes": {
@@ -6044,8 +6044,7 @@
           "/nav/:nav{.*}?"
         ],
         "categories": [
-          "traditional-media",
-          "popular"
+          "traditional-media"
         ],
         "example": "/apnews/topics/apf-topnews",
         "view": 0,
@@ -6085,8 +6084,7 @@
           "/nav/:nav{.*}?"
         ],
         "categories": [
-          "traditional-media",
-          "popular"
+          "traditional-media"
         ],
         "example": "/apnews/topics/apf-topnews",
         "view": 0,
@@ -21560,8 +21558,10 @@
       "/people/:userid/status/:routeParams?": {
         "path": "/people/:userid/status/:routeParams?",
         "categories": [
-          "social-media"
+          "social-media",
+          "popular"
         ],
+        "view": 1,
         "example": "/douban/people/75118396/status",
         "parameters": {
           "userid": "整数型用户 id",
@@ -59311,8 +59311,10 @@
       "/top/:category?/:lang?": {
         "path": "/top/:category?/:lang?",
         "categories": [
-          "social-media"
+          "social-media",
+          "popular"
         ],
+        "view": 1,
         "example": "/plurk/top/topReplurks",
         "parameters": {
           "category": "Category, see the table below, `topReplurks` by default",
@@ -59336,8 +59338,10 @@
       "/topic/:topic": {
         "path": "/topic/:topic",
         "categories": [
-          "social-media"
+          "social-media",
+          "popular"
         ],
+        "view": 1,
         "example": "/plurk/topic/standwithukraine",
         "parameters": {
           "topic": "Topic ID, can be found in URL"
@@ -59366,8 +59370,10 @@
       "/user/:user": {
         "path": "/user/:user",
         "categories": [
-          "social-media"
+          "social-media",
+          "popular"
         ],
+        "view": 1,
         "example": "/plurk/user/plurkoffice",
         "parameters": {
           "user": "User ID, can be found in URL"
