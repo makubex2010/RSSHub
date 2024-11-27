@@ -16,11 +16,11 @@ importers:
   .:
     dependencies:
       '@bbob/html':
-        specifier: 4.1.1
-        version: 4.1.1
+        specifier: 4.2.0
+        version: 4.2.0
       '@bbob/preset-html5':
-        specifier: 4.1.1
-        version: 4.1.1
+        specifier: 4.2.0
+        version: 4.2.0
       '@hono/node-server':
         specifier: 1.13.7
         version: 1.13.7(hono@4.6.12)
@@ -281,8 +281,8 @@ importers:
         specifier: 7.26.0
         version: 7.26.0(@babel/core@7.26.0)
       '@bbob/types':
-        specifier: 4.1.1
-        version: 4.1.1
+        specifier: 4.2.0
+        version: 4.2.0
       '@eslint/eslintrc':
         specifier: 3.2.0
         version: 3.2.0
@@ -374,8 +374,8 @@ importers:
         specifier: 2.0.5
         version: 2.0.5(vitest@2.0.5(@types/node@22.10.0)(jsdom@25.0.1(bufferutil@4.0.8)(utf-8-validate@5.0.10)))
       discord-api-types:
-        specifier: 0.37.108
-        version: 0.37.108
+        specifier: 0.37.109
+        version: 0.37.109
       eslint:
         specifier: 9.15.0
         version: 9.15.0
@@ -390,7 +390,7 @@ importers:
         version: 17.14.0(eslint@9.15.0)
       eslint-plugin-prettier:
         specifier: 5.2.1
-        version: 5.2.1(@types/eslint@9.6.1)(eslint-config-prettier@9.1.0(eslint@9.15.0))(eslint@9.15.0)(prettier@3.4.0)
+        version: 5.2.1(@types/eslint@9.6.1)(eslint-config-prettier@9.1.0(eslint@9.15.0))(eslint@9.15.0)(prettier@3.4.1)
       eslint-plugin-unicorn:
         specifier: 56.0.1
         version: 56.0.1(eslint@9.15.0)
@@ -425,8 +425,8 @@ importers:
         specifier: 1.0.22
         version: 1.0.22(bufferutil@4.0.8)(undici@6.21.0)(utf-8-validate@5.0.10)
       prettier:
-        specifier: 3.4.0
-        version: 3.4.0
+        specifier: 3.4.1
+        version: 3.4.1
       remark-parse:
         specifier: 11.0.0
         version: 11.0.0
@@ -991,8 +991,8 @@ packages:
   '@bbob/core@4.1.1':
     resolution: {integrity: sha512-cH2Fi+K1R0lKlEcUk+vQbOWP3Lny+A/jyYvrN1pRL71TEdamvbvlb5vTT8dwtOs5hWKFxMsDOcIVchjVaZmiFg==}
 
-  '@bbob/html@4.1.1':
-    resolution: {integrity: sha512-u1PsKlsM9os+TI9zqB2jh3CdGuZrNcGCAII/ZocgoW/asu49OXWQrcGHheJqBbeZLRagXMHYTWJ+W/DvDEgZ3g==}
+  '@bbob/html@4.2.0':
+    resolution: {integrity: sha512-mZG7MmE/YluH1/FNCr2Jv/Vz3Mq5stZ5tFAjBmYpVVN6Ndus4+FA84vKoHFdUHDiuU1p/e2/o/VUrwsWwLdoIA==}
 
   '@bbob/parser@4.1.1':
     resolution: {integrity: sha512-pNSx4WWp9qBpUf8pgfINEAxtN0E829IPNdDioP8JNf2N3enFFrDWdkVq3TnEy2QWyTBhEA+n5ARMM+lSId1w5A==}
@@ -1000,14 +1000,14 @@ packages:
   '@bbob/plugin-helper@4.1.1':
     resolution: {integrity: sha512-Ew7V2Yym+Os6wtiR4Se1irudFY5wLSTZGRNy8CSPq3QqBMk1LDi7phQvj8SFfqFCElG/UDciQb07lE7KQpiqbA==}
 
-  '@bbob/preset-html5@4.1.1':
-    resolution: {integrity: sha512-9dgO0Jui2qYshObGezso9AU30dtFYGg0AfvxDONATkL+1lBpIvwUrL3Xj+gDUotAdRw6QHCaU0x+rplxa0CLnA==}
+  '@bbob/preset-html5@4.2.0':
+    resolution: {integrity: sha512-X2EIeb2vqTz/n34KWQXEL5IC0SuB6i2/ltRpEaMTyK7IoDEs0XGIWcqVpenb7Z2d4eNA3gTWhkoUUkKlZmfQRQ==}
 
   '@bbob/preset@4.1.1':
     resolution: {integrity: sha512-Qas/hd1jOoZiux9LyPDStxxbSM/qVyts3ZJmFFHa3uzT0d7mKrnHjnI7qahHdo7Ry8CyrvGDDD8qL2A4bIfMqA==}
 
-  '@bbob/types@4.1.1':
-    resolution: {integrity: sha512-QnA0S8YpnEUFBV8KbU5DnqydDJaIFyxp656sWGLtvHqkxNGOOSRWc1m1YqFqfrHM7tmphr4AQybFeHqE1a2/2w==}
+  '@bbob/types@4.2.0':
+    resolution: {integrity: sha512-bSCZnNg0VrPosBBUVkjBDYVKNEqwT0jTNuzvAuNrZkuILgUKtLYI9GHuT8rY4lZecCb7UqGDsHsYt0YJO36eJg==}
 
   '@bcoe/v8-coverage@0.2.3':
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
@@ -2790,8 +2790,8 @@ packages:
     resolution: {integrity: sha512-d9paCbverdqmuwR+B40phSqiHhgPKiP8dpsMz5WT9U6ug2VVQ3tqXNCedpa6iGHg6mgv9lHaoq5DJUu2IXMjsQ==}
     engines: {node: '>=18.17.0'}
 
-  discord-api-types@0.37.108:
-    resolution: {integrity: sha512-WVdewWLnz2BvRv8r8wYLoLwL0xPycUCvN+6OirAKoHXkn+hubR2bwAFoSPfaAMDEE2QkKGAE90mUNkwGYBlIlQ==}
+  discord-api-types@0.37.109:
+    resolution: {integrity: sha512-B4W/ao8vempNVCS4/K4CeeCGhiabTcU7ekgqJy4/RytEsgkJP9hWS0MWZMcRP3wWzU/FXi6QqqvArZTJUfc6Iw==}
 
   doctrine@3.0.0:
     resolution: {integrity: sha512-yS+Q5i3hBf7GBkd4KG8a7eBNNWNGLTaEwwYWUijIYM7zrlYDM0BFXHjjPWlWZ1Rg7UaddZeIDmi9jF3HmqiQ2w==}
@@ -4615,8 +4615,8 @@ packages:
     resolution: {integrity: sha512-GbK2cP9nraSSUF9N2XwUwqfzlAFlMNYYl+ShE/V+H8a9uNl/oUqB1w2EL54Jh0OlyRSd8RfWYJ3coVS4TROP2w==}
     engines: {node: '>=6.0.0'}
 
-  prettier@3.4.0:
-    resolution: {integrity: sha512-/OXNZcLyWkfo13ofOW5M7SLh+k5pnIs07owXK2teFpnfaOEcycnSy7HQxldaVX1ZP/7Q8oO1eDuQJNwbomQq5Q==}
+  prettier@3.4.1:
+    resolution: {integrity: sha512-G+YdqtITVZmOJje6QkXQWzl3fSfMxFwm1tjTyo9exhkmWSqC4Yhd1+lug++IlR2mvRVAxEDDWYkQdeSztajqgg==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -6526,35 +6526,35 @@ snapshots:
     dependencies:
       '@bbob/parser': 4.1.1
       '@bbob/plugin-helper': 4.1.1
-      '@bbob/types': 4.1.1
+      '@bbob/types': 4.2.0
 
-  '@bbob/html@4.1.1':
+  '@bbob/html@4.2.0':
     dependencies:
       '@bbob/core': 4.1.1
       '@bbob/plugin-helper': 4.1.1
-      '@bbob/types': 4.1.1
+      '@bbob/types': 4.2.0
 
   '@bbob/parser@4.1.1':
     dependencies:
       '@bbob/plugin-helper': 4.1.1
-      '@bbob/types': 4.1.1
+      '@bbob/types': 4.2.0
 
   '@bbob/plugin-helper@4.1.1':
     dependencies:
-      '@bbob/types': 4.1.1
+      '@bbob/types': 4.2.0
 
-  '@bbob/preset-html5@4.1.1':
+  '@bbob/preset-html5@4.2.0':
     dependencies:
       '@bbob/plugin-helper': 4.1.1
       '@bbob/preset': 4.1.1
-      '@bbob/types': 4.1.1
+      '@bbob/types': 4.2.0
 
   '@bbob/preset@4.1.1':
     dependencies:
       '@bbob/plugin-helper': 4.1.1
-      '@bbob/types': 4.1.1
+      '@bbob/types': 4.2.0
 
-  '@bbob/types@4.1.1': {}
+  '@bbob/types@4.2.0': {}
 
   '@bcoe/v8-coverage@0.2.3': {}
 
@@ -8306,7 +8306,7 @@ snapshots:
 
   directory-import@3.3.1: {}
 
-  discord-api-types@0.37.108: {}
+  discord-api-types@0.37.109: {}
 
   doctrine@3.0.0:
     dependencies:
@@ -8583,10 +8583,10 @@ snapshots:
       minimatch: 9.0.5
       semver: 7.6.3
 
-  eslint-plugin-prettier@5.2.1(@types/eslint@9.6.1)(eslint-config-prettier@9.1.0(eslint@9.15.0))(eslint@9.15.0)(prettier@3.4.0):
+  eslint-plugin-prettier@5.2.1(@types/eslint@9.6.1)(eslint-config-prettier@9.1.0(eslint@9.15.0))(eslint@9.15.0)(prettier@3.4.1):
     dependencies:
       eslint: 9.15.0
-      prettier: 3.4.0
+      prettier: 3.4.1
       prettier-linter-helpers: 1.0.0
       synckit: 0.9.2
     optionalDependencies:
@@ -10479,7 +10479,7 @@ snapshots:
     dependencies:
       fast-diff: 1.3.0
 
-  prettier@3.4.0: {}
+  prettier@3.4.1: {}
 
   process-warning@4.0.0: {}
 

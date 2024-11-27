@@ -50,8 +50,8 @@
         "*.yml": "eslint --cache --fix"
     },
     "dependencies": {
-        "@bbob/html": "4.1.1",
-        "@bbob/preset-html5": "4.1.1",
+        "@bbob/html": "4.2.0",
+        "@bbob/preset-html5": "4.2.0",
         "@hono/node-server": "1.13.7",
         "@hono/zod-openapi": "0.18.0",
         "@notionhq/client": "2.2.15",
@@ -140,7 +140,7 @@
     "devDependencies": {
         "@babel/preset-env": "7.26.0",
         "@babel/preset-typescript": "7.26.0",
-        "@bbob/types": "4.1.1",
+        "@bbob/types": "4.2.0",
         "@eslint/eslintrc": "3.2.0",
         "@eslint/js": "9.15.0",
         "@microsoft/eslint-formatter-sarif": "3.1.0",
@@ -171,7 +171,7 @@
         "@typescript-eslint/parser": "8.16.0",
         "@vercel/nft": "0.27.6",
         "@vitest/coverage-v8": "2.0.5",
-        "discord-api-types": "0.37.108",
+        "discord-api-types": "0.37.109",
         "eslint": "9.15.0",
         "eslint-config-prettier": "9.1.0",
         "eslint-nibble": "8.1.0",
@@ -188,7 +188,7 @@
         "mockdate": "3.0.5",
         "msw": "2.4.3",
         "node-network-devtools": "1.0.22",
-        "prettier": "3.4.0",
+        "prettier": "3.4.1",
         "remark-parse": "11.0.0",
         "supertest": "7.0.0",
         "typescript": "5.7.2",
