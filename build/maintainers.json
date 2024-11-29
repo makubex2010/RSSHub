@@ -4610,7 +4610,8 @@
     "lessmoe"
   ],
   "/newrank/wechat/:wxid": [
-    "lessmoe"
+    "lessmoe",
+    "pseudoyu"
   ],
   "/news/xhsxw": [
     "nczitzk"
@@ -5173,6 +5174,9 @@
   ],
   "/parliament.uk/lordslibrary/type/:topic?": [
     "AntiKnot"
+  ],
+  "/parliament.uk/petitions/:state?": [
+    "nczitzk"
   ],
   "/patagonia/new-arrivals/:category": [],
   "/patreon/:creator": [
