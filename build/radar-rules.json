@@ -8333,6 +8333,19 @@
       }
     ]
   },
+  "dingshao.cn": {
+    "_name": "盯梢",
+    "www": [
+      {
+        "title": "频道",
+        "docs": "https://docs.rsshub.app/routes/other",
+        "source": [
+          "/share/:shortId"
+        ],
+        "target": "/dingshao/share/:shortId"
+      }
+    ]
+  },
   "discord.com": {
     "_name": "Discord",
     ".": [
@@ -28145,6 +28158,19 @@
           "/www/lawrules/rule/repeal/rules/index.html"
         ],
         "target": "/szse/rule/repeal/rules"
+      }
+    ]
+  },
+  "taiwanmobile.com": {
+    "_name": "台灣大哥大",
+    ".": [
+      {
+        "title": "資費公告",
+        "docs": "https://docs.rsshub.app/routes/other",
+        "source": [
+          "/cs/public/servAnn/queryList.htm"
+        ],
+        "target": "/taiwanmobile/rate-plans"
       }
     ]
   },

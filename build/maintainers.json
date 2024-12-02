@@ -1769,6 +1769,9 @@
   "/digitalcameraworld/news": [
     "EthanWng97"
   ],
+  "/dingshao/share/:shortId": [
+    "TonyRL"
+  ],
   "/discord/channel/:channelId": [
     "TonyRL"
   ],
@@ -6499,6 +6502,9 @@
     "cnzgray"
   ],
   "/tableau/viz-of-the-day": [],
+  "/taiwanmobile/rate-plans": [
+    "Tsuyumi25"
+  ],
   "/taiwannews/hot/:lang?": [
     "TonyRL"
   ],
