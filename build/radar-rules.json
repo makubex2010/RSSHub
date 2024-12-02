@@ -9399,11 +9399,11 @@
       }
     ]
   },
-  "fastbull.cn": {
-    "_name": "法布财经",
+  "fastbull.com": {
+    "_name": "FastBull",
     ".": [
       {
-        "title": "快讯",
+        "title": "News Flash",
         "docs": "https://docs.rsshub.app/routes/finance",
         "source": [
           "/express-news",
@@ -9412,22 +9412,13 @@
         "target": "/fastbull/express-news"
       },
       {
-        "title": "新闻",
+        "title": "News",
         "docs": "https://docs.rsshub.app/routes/finance",
         "source": [
-          "/news",
-          "/"
+          "/cn/news",
+          "/cn"
         ],
         "target": "/fastbull/news"
-      },
-      {
-        "title": "新闻",
-        "docs": "https://docs.rsshub.app/routes/finance",
-        "source": [
-          "/news",
-          "/"
-        ],
-        "target": "/fastbull/"
       }
     ]
   },
@@ -15445,6 +15436,67 @@
           "/allnews"
         ],
         "target": "/ielts/"
+      }
+    ]
+  },
+  "ifun.cool": {
+    "_name": "趣集",
+    "n": [
+      {
+        "title": "盐选故事分类",
+        "docs": "https://docs.rsshub.app/routes/new-media",
+        "source": [
+          "/"
+        ],
+        "target": "/ifun/n/category/:id?"
+      },
+      {
+        "title": "全部",
+        "docs": "https://docs.rsshub.app/routes/new-media",
+        "source": [
+          "/"
+        ],
+        "target": "/ifun/n/category"
+      },
+      {
+        "title": "通告",
+        "docs": "https://docs.rsshub.app/routes/new-media",
+        "source": [
+          "/"
+        ],
+        "target": "/ifun/n/category/1"
+      },
+      {
+        "title": "盐选故事",
+        "docs": "https://docs.rsshub.app/routes/new-media",
+        "source": [
+          "/"
+        ],
+        "target": "/ifun/n/category/2"
+      },
+      {
+        "title": "趣集精选",
+        "docs": "https://docs.rsshub.app/routes/new-media",
+        "source": [
+          "/"
+        ],
+        "target": "/ifun/n/category/3"
+      },
+      {
+        "title": "盐选故事搜索",
+        "docs": "https://docs.rsshub.app/routes/new-media",
+        "source": [
+          "/search-result"
+        ],
+        "target": "/ifun(_,url)=>{const urlObj=new URL(url);const keywords=urlObj.searchParams.get(\"s\");return`/ifun/n/search/${keywords}`}"
+      },
+      {
+        "title": "盐选故事专栏",
+        "docs": "https://docs.rsshub.app/routes/new-media",
+        "source": [
+          "/article-list/1"
+        ],
+        "target": "/ifun(_,url)=>{const urlObj=new URL(url);const name=urlObj.searchParams.get(\"tagName\");return`/ifun/n/tag/${name}`}"
       }
     ]
   },

@@ -26590,23 +26590,20 @@
         "radar": [
           {
             "source": [
-              "fastbull.cn/express-news",
-              "fastbull.cn/"
+              "fastbull.com/express-news",
+              "fastbull.com/"
             ]
           }
         ],
-        "name": "快讯",
+        "name": "News Flash",
         "maintainers": [
           "nczitzk"
         ],
-        "url": "fastbull.cn/express-news",
+        "url": "fastbull.com/express-news",
         "location": "express-news.ts"
       },
       "/news": {
-        "path": [
-          "/news",
-          "/"
-        ],
+        "path": "/news",
         "categories": [
           "finance",
           "popular"
@@ -26625,57 +26622,22 @@
         "radar": [
           {
             "source": [
-              "fastbull.cn/news",
-              "fastbull.cn/"
+              "fastbull.com/cn/news",
+              "fastbull.com/cn"
             ]
           }
         ],
-        "name": "新闻",
+        "name": "News",
         "maintainers": [
           "nczitzk"
         ],
-        "url": "fastbull.cn/news",
-        "location": "news.ts"
-      },
-      "/": {
-        "path": [
-          "/news",
-          "/"
-        ],
-        "categories": [
-          "finance",
-          "popular"
-        ],
-        "view": 0,
-        "example": "/fastbull/news",
-        "parameters": {},
-        "features": {
-          "requireConfig": false,
-          "requirePuppeteer": false,
-          "antiCrawler": false,
-          "supportBT": false,
-          "supportPodcast": false,
-          "supportScihub": false
-        },
-        "radar": [
-          {
-            "source": [
-              "fastbull.cn/news",
-              "fastbull.cn/"
-            ]
-          }
-        ],
-        "name": "新闻",
-        "maintainers": [
-          "nczitzk"
-        ],
-        "url": "fastbull.cn/news",
+        "url": "fastbull.com/news",
         "location": "news.ts"
       }
     },
-    "name": "法布财经",
-    "url": "fastbull.cn",
-    "lang": "zh-CN"
+    "name": "FastBull",
+    "url": "fastbull.com",
+    "lang": "en"
   },
   "fda": {
     "routes": {
@@ -42221,6 +42183,148 @@
     "name": "iFi audio",
     "url": "ifi-audio.com",
     "lang": "en"
+  },
+  "ifun": {
+    "routes": {
+      "/n/category/:id?": {
+        "path": "/n/category/:id?",
+        "name": "盐选故事分类",
+        "url": "n.ifun.cool",
+        "maintainers": [
+          "nczitzk"
+        ],
+        "example": "/ifun/n/category",
+        "parameters": {
+          "id": "分类 id，默认为空，即全部，见下表"
+        },
+        "description": "\n| 名称     | ID  |\n| -------- | --- |\n| 全部     |     |\n| 通告     | 1   |\n| 故事盐选 | 2   |\n| 趣集精选 | 3   |\n    ",
+        "categories": [
+          "new-media"
+        ],
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportRadar": true,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "n.ifun.cool"
+            ],
+            "target": "/n/category/:id?"
+          },
+          {
+            "title": "全部",
+            "source": [
+              "n.ifun.cool"
+            ],
+            "target": "/n/category"
+          },
+          {
+            "title": "通告",
+            "source": [
+              "n.ifun.cool"
+            ],
+            "target": "/n/category/1"
+          },
+          {
+            "title": "盐选故事",
+            "source": [
+              "n.ifun.cool"
+            ],
+            "target": "/n/category/2"
+          },
+          {
+            "title": "趣集精选",
+            "source": [
+              "n.ifun.cool"
+            ],
+            "target": "/n/category/3"
+          }
+        ],
+        "view": 0,
+        "location": "n/category.ts"
+      },
+      "/n/search/:keywords": {
+        "path": "/n/search/:keywords",
+        "name": "盐选故事搜索",
+        "url": "n.ifun.cool",
+        "maintainers": [
+          "nczitzk"
+        ],
+        "example": "/ifun/n/search/NPC",
+        "parameters": {
+          "keywords": "搜索关键字"
+        },
+        "description": ":::tip\n若订阅 [关键词：NPC](https://n.ifun.cool/search-result/?s=NPC)，网址为 `https://n.ifun.cool/search-result/?s=NPC`，请截取 `s` 的值 `NPC` 作为 `keywords` 参数填入，此时目标路由为 [`/ifun/n/search/NPC`](https://rsshub.app/ifun/n/search/NPC)。\n:::\n    ",
+        "categories": [
+          "new-media"
+        ],
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportRadar": true,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "n.ifun.cool/search-result"
+            ]
+          }
+        ],
+        "view": 0,
+        "location": "n/search.ts"
+      },
+      "/n/tag/:name": {
+        "path": "/n/tag/:name",
+        "name": "盐选故事专栏",
+        "url": "n.ifun.cool",
+        "maintainers": [
+          "nczitzk"
+        ],
+        "example": "/ifun/n/tag/zhihu",
+        "parameters": {
+          "name": "专栏 id，可在对应专栏页 URL 中找到"
+        },
+        "description": ":::tip\n若订阅 [zhihu](https://n.ifun.cool/article-list/2?tagName=zhihu)，网址为 `https://n.ifun.cool/article-list/2?tagName=zhihu`，请截取 `tagName` 的值 `zhihu` 作为 `name` 参数填入，此时目标路由为 [`/ifun/n/tag/zhihu`](https://rsshub.app/ifun/n/tag/zhihu)。\n\n更多专栏请见 [盐选故事专栏](https://n.ifun.cool/tags)。\n:::\n    ",
+        "categories": [
+          "new-media"
+        ],
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportRadar": true,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "n.ifun.cool/article-list/1"
+            ]
+          }
+        ],
+        "view": 0,
+        "location": "n/tag.ts"
+      }
+    },
+    "name": "趣集",
+    "url": "ifun.cool",
+    "categories": [
+      "new-media"
+    ],
+    "description": "全面的找书、学习资源导航平台，它整合了电子书和科研文档的搜索功能，方便用户进行学习资料的检索和分享，为用户提供一站式的读书学习体验。",
+    "lang": "zh-CN"
   },
   "iguoguo": {
     "routes": {
@@ -65908,7 +66012,8 @@
         },
         "name": "专辑",
         "maintainers": [
-          "nczitzk"
+          "nczitzk",
+          "pseudoyu"
         ],
         "location": "channel.ts"
       },
@@ -65941,7 +66046,8 @@
         "name": "播客",
         "maintainers": [
           "RookieZoe",
-          "huyyi"
+          "huyyi",
+          "pseudoyu"
         ],
         "description": "获取的播放 URL 有效期只有 1 天，需要开启播客 APP 的自动下载功能。",
         "location": "podcast.ts"
@@ -90524,8 +90630,8 @@
         ],
         "location": "board.ts"
       },
-      "/user/:user_id/:category": {
-        "path": "/user/:user_id/:category",
+      "/user/:user_id/:category/:routeParams?": {
+        "path": "/user/:user_id/:category/:routeParams?",
         "name": "用户笔记/收藏",
         "categories": [
           "social-media",
@@ -90574,6 +90680,10 @@
               }
             ],
             "default": "notes"
+          },
+          "routeParams": {
+            "description": "displayLivePhoto,`/user/:user_id/notes/displayLivePhoto=0`,不限时LivePhoto显示为图片,`/user/:user_id/notes/displayLivePhoto=1`,取值不为0时LivePhoto显示为视频",
+            "default": "0"
           }
         },
         "location": "user.ts"
