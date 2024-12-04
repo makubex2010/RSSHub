@@ -6429,6 +6429,48 @@
     "url": "amazon.com",
     "lang": "en"
   },
+  "amz123": {
+    "routes": {
+      "/kx": {
+        "path": "/kx",
+        "categories": [
+          "new-media"
+        ],
+        "example": "/amz123/kx",
+        "parameters": {},
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "amz123.com/kx"
+            ],
+            "target": "/kx"
+          }
+        ],
+        "name": "AMZ123 快讯",
+        "maintainers": [
+          "defp"
+        ],
+        "url": "amz123.com/kx",
+        "view": 0,
+        "location": "kx.ts"
+      }
+    },
+    "name": "Amz123",
+    "url": "www.amz123.com",
+    "categories": [
+      "new-media"
+    ],
+    "description": "跨境电商平台",
+    "lang": "zh-CN"
+  },
   "android": {
     "routes": {
       "/platform-tools-releases": {
@@ -9681,7 +9723,8 @@
         "radar": [
           {
             "source": [
-              "www.bilibili.com/"
+              "www.bilibili.com/",
+              "m.bilibili.com/"
             ]
           }
         ],
@@ -45980,7 +46023,7 @@
           "language": "Language, `zh` by default",
           "category": "Category, `trends-and-insights` by default"
         },
-        "description": ":::tip\nIf you subscribe to [Trends & Insights](https://www.joneslanglasalle.com.cn/en/trends-and-insights)，where the URL is `https://www.joneslanglasalle.com.cn/en/trends-and-insights`, extract the part `https://joneslanglasalle.com.cn/` to the end. Use `zh` and `trends-and-insights` as the parameters to fill in. Therefore, the route will be [`/joneslanglasalle/trends-and-insights/en/trends-and-insights`](https://rsshub.app/joneslanglasalle/trends-and-insights/en/trends-and-insights).\n:::\n\n| Category  | ID                            |\n| --------- | ----------------------------- |\n| Latest    | trends-and-insights           |\n| Workplace | trends-and-insights/workplace |\n| Investor  | trends-and-insights/investor  |\n| Cities    | trends-and-insights/cities    |\n| Research  | trends-and-insights/research  |\n",
+        "description": ":::tip\nIf you subscribe to [Trends & Insights](https://www.joneslanglasalle.com.cn/en/trends-and-insights)，where the URL is `https://www.joneslanglasalle.com.cn/en/trends-and-insights`, extract the part `https://joneslanglasalle.com.cn/` to the end. Use `zh` and `trends-and-insights` as the parameters to fill in. Therefore, the route will be [`/joneslanglasalle/en/trends-and-insights`](https://rsshub.app/joneslanglasalle/en/trends-and-insights).\n:::\n\n| Category  | ID                            |\n| --------- | ----------------------------- |\n| Latest    | trends-and-insights           |\n| Workplace | trends-and-insights/workplace |\n| Investor  | trends-and-insights/investor  |\n| Cities    | trends-and-insights/cities    |\n| Research  | trends-and-insights/research  |\n",
         "categories": [
           "new-media"
         ],
