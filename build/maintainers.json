@@ -922,7 +922,8 @@
     "fashioncj"
   ],
   "/bloomberg/authors/:id/:slug/:source?": [
-    "josh"
+    "josh",
+    "pseudoyu"
   ],
   "/bloomberg/:site?": [
     "bigfei"
@@ -6638,7 +6639,8 @@
     "nczitzk"
   ],
   "/theatlantic/:category": [
-    "EthanWng97"
+    "EthanWng97",
+    "pseudoyu"
   ],
   "/theblockbeats/:channel?/:original?": [
     "Fatpandac",
