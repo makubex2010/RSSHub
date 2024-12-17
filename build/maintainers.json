@@ -491,6 +491,9 @@
     "mjysci",
     "TonyRL"
   ],
+  "/apnic/blog": [
+    "p3psi-boo"
+  ],
   "/app-center/release/:user/:app/:distribution_group": [
     "Rongronggg9"
   ],
@@ -665,7 +668,8 @@
   "/bast*": [],
   "/bbc/:site?/:channel?": [
     "HenryQW",
-    "DIYgod"
+    "DIYgod",
+    "pseudoyu"
   ],
   "/bbcnewslabs/news": [
     "elxy"
@@ -2516,6 +2520,12 @@
     "StevenRCE0"
   ],
   "/gdsrx/:id?": [],
+  "/gdufs/news": [
+    "gz4zzxc"
+  ],
+  "/gdufs/xwxy-news": [
+    "gz4zzxc"
+  ],
   "/gdut/oa_news/:type?": [
     "jim-kirisame"
   ],
@@ -3203,6 +3213,9 @@
     "hellodword ",
     "TonyRL",
     "Mas0n"
+  ],
+  "/hexun/pe/news": [
+    "p3psi-boo"
   ],
   "/hfut/hf/notice/:type?": [
     "batemax"
@@ -4665,6 +4678,9 @@
   ],
   "/news/whxw": [
     "nczitzk"
+  ],
+  "/newseed/latest": [
+    "p3psi-boo"
   ],
   "/newsmarket/:category?": [
     "nczitzk"
@@ -6211,7 +6227,8 @@
     "LogicJake"
   ],
   "/smzdm/haowen/:day?": [
-    "LogicJake"
+    "LogicJake",
+    "pseudoyu"
   ],
   "/smzdm/keyword/:keyword": [
     "DIYgod",
@@ -6272,6 +6289,9 @@
   ],
   "/spankbang/new_videos": [
     "TonyRL"
+  ],
+  "/spglobal/ratings/:language?": [
+    "FYLSen"
   ],
   "/spotify/artist/:id": [
     "outloudvi"
@@ -6602,6 +6622,9 @@
   ],
   "/techpowerup/review/:keyword?": [
     "TonyRL"
+  ],
+  "/techsir/": [
+    "p3psi-boo"
   ],
   "/telecompaper/news/:caty/:year?/:country?/:type?": [
     "nczitzk"
@@ -7203,6 +7226,9 @@
   "/voronoiapp/search/:keyword": [
     "Cesaryuan"
   ],
+  "/wabei/hot-recommend": [
+    "p3psi-boo"
+  ],
   "/wallhaven/search/:filter?/:needDetails?": [
     "nczitzk",
     "Fatpandac"
@@ -7369,6 +7395,9 @@
   "/whu/news/:category{.+}?": [],
   "/whu/rsgis/:type/:sub?": [
     "HPDell"
+  ],
+  "/whu/swrh/:type": [
+    "FanofZY"
   ],
   "/whu/gs/:type?": [
     "Delreyaa"
@@ -7583,7 +7612,8 @@
     "AiraNadih"
   ],
   "/xueqiu/column/:id": [
-    "TonyRL"
+    "TonyRL",
+    "pseudoyu"
   ],
   "/xueqiu/favorite/:id": [
     "imlonghao"
