@@ -3306,6 +3306,9 @@
   "/hnu/careers": [
     "ningyougan"
   ],
+  "/home-assistant/hacs/repositories": [
+    "DIYgod"
+  ],
   "/hongkong/chp/:category?/:language?": [
     "nczitzk"
   ],
@@ -5065,6 +5068,9 @@
     "HenryQW",
     "pseudoyu",
     "dzx-dzx"
+  ],
+  "/obsidian/plugins": [
+    "DIYgod"
   ],
   "/obsidian/publish/:id": [
     "Xy2002"
