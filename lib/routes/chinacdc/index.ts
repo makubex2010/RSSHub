@@ -31,8 +31,19 @@ export const handler = async (ctx: Context): Promise<Data> => {
             const $item: Cheerio<Element> = $(item);
 
             const aEl: Cheerio<Element> = $item.find('a');
+            const title: string = aEl.prop('title') === undefined ? aEl.text() : aEl.prop('title');
 
-            const title: string = aEl.prop('title') || aEl.text();
+            const dateMatch = title.match(/(\d{4}-\d{2}-\d{2})$/);
+            let pubDate;
+            let cleanTitle = title;
+
+            if (dateMatch) {
+                pubDate = parseDate(dateMatch[0]);
+                cleanTitle = title.replace(/\d{4}-\d{2}-\d{2}$/, '').trim();
+            } else {
+                const spanText = $item.find('span').text().trim();
+                pubDate = spanText ? parseDate(spanText) : undefined;
+            }
 
             const description: string = art(path.join(__dirname, 'templates/description.art'), {
                 intro: $item.find('p.zy').text(),
@@ -48,9 +59,9 @@ export const handler = async (ctx: Context): Promise<Data> => {
             }
 
             return {
-                title,
+                title: cleanTitle,
                 description,
-                pubDate: parseDate($item.find('span').text()),
+                pubDate,
                 link: new URL(aEl.prop('href') as string, targetUrl).href,
                 content: {
                     html: description,
@@ -74,16 +85,19 @@ export const handler = async (ctx: Context): Promise<Data> => {
                     const detailResponse = await ofetch(item.link);
                     const $$: CheerioAPI = load(detailResponse);
 
-                    const title: string = $$('h5').text();
+                    const detailTitle: string = $$('h5').text();
                     const description: string = art(path.join(__dirname, 'templates/description.art'), {
                         description: $$('div.TRS_Editor').html(),
                     });
 
+                    const detailDate = $$('span.fb em').text().trim();
+                    const pubDate = detailDate ? parseDate(detailDate) : item.pubDate;
+
                     return {
-                        title,
+                        title: detailTitle || item.title, // Use original title as fallback
                         description,
                         link: item.link,
-                        pubDate: parseDate($$('span.fb em').text()),
+                        pubDate,
                         content: {
                             html: description,
                             text: $$('div.TRS_Editor').text(),
