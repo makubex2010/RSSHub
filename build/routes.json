@@ -12202,6 +12202,27 @@
         "maintainers": [],
         "location": "fdy.ts"
       },
+      "/fe/:category": {
+        "path": "/fe/:category",
+        "categories": [
+          "university"
+        ],
+        "example": "/bnu/fe/18",
+        "parameters": {},
+        "radar": [
+          {
+            "source": [
+              "fe.bnu.edu.cn/pc/cms1info/list/1/:category"
+            ]
+          }
+        ],
+        "name": "教育学部-培养动态",
+        "maintainers": [
+          "etShaw-zh"
+        ],
+        "description": "`https://fe.bnu.edu.cn/pc/cms1info/list/1/18` 则对应为 `/bnu/fe/18",
+        "location": "fe.ts"
+      },
       "/jwb": {
         "path": "/jwb",
         "categories": [
@@ -43276,6 +43297,37 @@
         ],
         "description": "支持分类：早报、评测、糖纸众测、产品",
         "location": "category.ts"
+      },
+      "/digest": {
+        "path": "/digest",
+        "name": "快讯",
+        "url": "www.ifanr.com",
+        "maintainers": [
+          "nczitzk"
+        ],
+        "example": "/ifanr/digest",
+        "categories": [
+          "new-media"
+        ],
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportRadar": true,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "www.ifanr.comdigest"
+            ],
+            "target": "/digest"
+          }
+        ],
+        "view": 0,
+        "location": "digest.ts"
       },
       "/index": {
         "path": "/index",
@@ -95811,7 +95863,7 @@
         "view": 3,
         "example": "/youtube/user/@JFlaMusic",
         "parameters": {
-          "username": "YouTuber username with @",
+          "username": "YouTuber handle with @",
           "embed": "Default to embed the video, set to any value to disable embedding"
         },
         "features": {
@@ -95836,7 +95888,7 @@
             "target": "/user/:username"
           }
         ],
-        "name": "Channel with username",
+        "name": "Channel with user handle",
         "maintainers": [
           "DIYgod"
         ],

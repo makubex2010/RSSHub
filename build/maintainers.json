@@ -963,6 +963,9 @@
     "Fatpandac"
   ],
   "/bnu/fdy/:path{.+}?": [],
+  "/bnu/fe/:category": [
+    "etShaw-zh"
+  ],
   "/bnu/jwb": [
     "ladeng07"
   ],
@@ -3556,6 +3559,9 @@
   ],
   "/ifanr/category/:name": [
     "donghongfei"
+  ],
+  "/ifanr/digest": [
+    "nczitzk"
   ],
   "/ifanr/index": [
     "donghongfei"
