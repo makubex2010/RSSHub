@@ -5141,6 +5141,19 @@
       }
     ]
   },
+  "catticenter.com": {
+    "_name": "全国翻译专业资格水平考试 (CATTI)",
+    "www": [
+      {
+        "title": "CATTI 考试消息",
+        "docs": "https://docs.rsshub.app/routes/study",
+        "source": [
+          "/:category"
+        ],
+        "target": "/catti/news/:category"
+      }
+    ]
+  },
   "cau.edu.cn": {
     "_name": "中国农业大学",
     "ciee": [
@@ -23683,6 +23696,16 @@
   },
   "oschina.net": {
     "_name": "开源中国",
+    "www": [
+      {
+        "title": "专栏",
+        "docs": "https://docs.rsshub.app/routes/programming",
+        "source": [
+          "/"
+        ],
+        "target": "/oschina(_,url)=>{const urlObj=new URL(url);const id=urlObj.searchParams.get(\"id\")??void 0;return`/oschina/column/${id}`}"
+      }
+    ],
     ".": [
       {
         "title": "资讯",
@@ -23856,6 +23879,19 @@
           "/:section/"
         ],
         "target": "/p-articles/section/:section"
+      }
+    ]
+  },
+  "pacilution.com": {
+    "_name": "普世社会科学研究所",
+    "www": [
+      {
+        "title": "最新文章",
+        "docs": "https://docs.rsshub.app/routes/journal",
+        "source": [
+          "/"
+        ],
+        "target": "/pacilution/latest"
       }
     ]
   },
@@ -25475,6 +25511,20 @@
           "/"
         ],
         "target": "/ruancan/user/:id"
+      }
+    ]
+  },
+  "ruankao.org.cn": {
+    "_name": "中国计算机职业技术资格考试",
+    "www": [
+      {
+        "title": "软考新闻动态",
+        "docs": "https://docs.rsshub.app/routes/study",
+        "source": [
+          "/index/work",
+          "/"
+        ],
+        "target": "/ruankao/news"
       }
     ]
   },
