@@ -9076,7 +9076,7 @@
     "_name": "DL NEWS",
     ".": [
       {
-        "title": "Unknown",
+        "title": "Latest News",
         "docs": "https://docs.rsshub.app/routes/other",
         "source": [
           "/articles/:category"
@@ -10200,7 +10200,7 @@
         "source": [
           "/:category"
         ],
-        "target": "/finology/:category"
+        "target": "/finology/category/:category"
       },
       {
         "title": "Most Viewed",
@@ -10208,7 +10208,7 @@
         "source": [
           "/most-viewed"
         ],
-        "target": "/finology/most-viewed/monthly"
+        "target": "/finology/most-viewed"
       },
       {
         "title": "Trending Topic",
@@ -31015,6 +31015,27 @@
           "/channels/:channel/videos/:sort/:format"
         ],
         "target": "/vimeo/channel/:channel"
+      }
+    ]
+  },
+  "visionias.in": {
+    "_name": "VisionIAS",
+    ".": [
+      {
+        "title": "News Today",
+        "docs": "https://docs.rsshub.app/routes/study",
+        "source": [
+          "/current-affairs/news-today"
+        ],
+        "target": "/visionias/newsToday"
+      },
+      {
+        "title": "Weekly Focus",
+        "docs": "https://docs.rsshub.app/routes/study",
+        "source": [
+          "/current-affairs/weekly-focus"
+        ],
+        "target": "/visionias/weeklyFocus"
       }
     ]
   },
