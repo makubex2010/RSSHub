@@ -138,6 +138,12 @@
   "/2cycd/:fid/:sort?": [
     "shelken"
   ],
+  "/30secondsofcode/category/:category?/:subCategory?": [
+    "Rjnishant530"
+  ],
+  "/30secondsofcode/latest": [
+    "Rjnishant530"
+  ],
   "/36kr/hot-list/:category?": [
     "nczitzk"
   ],
@@ -1657,19 +1663,22 @@
   "/dahecube/:type?": [
     "linbuxiao"
   ],
-  "/daily/discussed": [
+  "/daily/discussed/:period?/:innerSharedContent?/:dateSort?": [
     "Rjnishant530"
   ],
-  "/daily/": [
+  "/daily/popular/:innerSharedContent?/:dateSort?": [
     "Rjnishant530"
   ],
-  "/daily/source/:sourceId": [
+  "/daily/source/:sourceId/:innerSharedContent?": [
     "TonyRL"
   ],
-  "/daily/upvoted": [
+  "/daily/squads/:squads/:innerSharedContent?": [
     "Rjnishant530"
   ],
-  "/daily/user/:userId": [
+  "/daily/upvoted/:period?/:innerSharedContent?/:dateSort?": [
+    "Rjnishant530"
+  ],
+  "/daily/user/:userId/:innerSharedContent?": [
     "TonyRL"
   ],
   "/damai/activity/:city/:category/:subcategory/:keyword?": [
@@ -3194,6 +3203,18 @@
   "/hbr/topic/:topic?/:type?": [
     "nczitzk",
     "pseudoyu"
+  ],
+  "/hdu/auto/graduate": [
+    "jalenzz"
+  ],
+  "/hdu/auto": [
+    "jalenzz"
+  ],
+  "/hdu/auto/student": [
+    "jalenzz"
+  ],
+  "/hdu/auto/undergraduate": [
+    "jalenzz"
   ],
   "/hdu/cs": [
     "legr4ndk"
@@ -7183,6 +7204,9 @@
   ],
   "/upc/yjs": [
     "shengmaosu"
+  ],
+  "/ups/track/:trackingNumber": [
+    "Aquabet"
   ],
   "/uptimerobot/rss/:id/:routeParams?": [
     "Rongronggg9"

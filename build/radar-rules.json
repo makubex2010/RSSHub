@@ -319,6 +319,28 @@
       }
     ]
   },
+  "30secondsofcode.org": {
+    "_name": "30 Seconds of code",
+    ".": [
+      {
+        "title": "Category and Subcategory",
+        "docs": "https://docs.rsshub.app/routes/programming",
+        "source": [
+          "/:category/:subCategory/",
+          "/:category/"
+        ],
+        "target": "/30secondsofcode/category/:category/:subCategory"
+      },
+      {
+        "title": "New & Popular Snippets",
+        "docs": "https://docs.rsshub.app/routes/programming",
+        "source": [
+          "/"
+        ],
+        "target": "/30secondsofcode/latest"
+      }
+    ]
+  },
   "36kr.com": {
     "_name": "36kr",
     ".": [
@@ -3189,7 +3211,7 @@
     "_name": "A List Apart",
     ".": [
       {
-        "title": "Unknown",
+        "title": "Home Feed",
         "docs": "https://docs.rsshub.app/routes/programming",
         "source": [
           "/articles/"
@@ -8415,7 +8437,7 @@
         "source": [
           "/discussed"
         ],
-        "target": "/daily/discussed"
+        "target": "/daily/discussed/:period?/:innerSharedContent?/:dateSort?"
       },
       {
         "title": "Popular",
@@ -8423,7 +8445,7 @@
         "source": [
           "/popular"
         ],
-        "target": "/daily/"
+        "target": "/daily/popular/:innerSharedContent?/:dateSort?"
       },
       {
         "title": "Source Posts",
@@ -8431,7 +8453,15 @@
         "source": [
           "/sources/:sourceId"
         ],
-        "target": "/daily/source/:sourceId"
+        "target": "/daily/source/:sourceId/:innerSharedContent?"
+      },
+      {
+        "title": "Squads",
+        "docs": "https://docs.rsshub.app/routes/social-media",
+        "source": [
+          "/squads/:squads"
+        ],
+        "target": "/daily/squads/:squads/:innerSharedContent?"
       },
       {
         "title": "Most upvoted",
@@ -8439,7 +8469,7 @@
         "source": [
           "/upvoted"
         ],
-        "target": "/daily/upvoted"
+        "target": "/daily/upvoted/:period?/:innerSharedContent?/:dateSort?"
       },
       {
         "title": "User Posts",
@@ -8448,7 +8478,7 @@
           "/:userId/posts",
           "/:userId"
         ],
-        "target": "/daily/user/:userId"
+        "target": "/daily/user/:userId/:innerSharedContent?"
       }
     ]
   },
@@ -14251,6 +14281,44 @@
   },
   "hdu.edu.cn": {
     "_name": "杭州电子科技大学",
+    "auto": [
+      {
+        "title": "自动化学院 - 研究生教育通知",
+        "docs": "https://docs.rsshub.app/routes/university",
+        "source": [
+          "/main.htm",
+          "/3754/list.htm"
+        ],
+        "target": "/hdu/auto/graduate"
+      },
+      {
+        "title": "自动化学院 - 通知公告",
+        "docs": "https://docs.rsshub.app/routes/university",
+        "source": [
+          "/main.htm",
+          "/3779/list.htm"
+        ],
+        "target": "/hdu/auto"
+      },
+      {
+        "title": "自动化学院 - 学生工作",
+        "docs": "https://docs.rsshub.app/routes/university",
+        "source": [
+          "/main.htm",
+          "/3726/list.htm"
+        ],
+        "target": "/hdu/auto/student"
+      },
+      {
+        "title": "自动化学院 - 本科教学",
+        "docs": "https://docs.rsshub.app/routes/university",
+        "source": [
+          "/main.htm",
+          "/3745/list.htm"
+        ],
+        "target": "/hdu/auto/undergraduate"
+      }
+    ],
     "computer": [
       {
         "title": "计算机学院 - 通知公告",

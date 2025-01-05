@@ -1466,6 +1466,96 @@
     "url": "2cycd.com",
     "lang": "zh-CN"
   },
+  "30secondsofcode": {
+    "routes": {
+      "/category/:category?/:subCategory?": {
+        "path": "/category/:category?/:subCategory?",
+        "categories": [
+          "programming"
+        ],
+        "example": "/category/css/interactivity",
+        "parameters": {
+          "category": {
+            "description": "Main Category. For Complete list visit site \"https://www.30secondsofcode.org/collections/p/1/\"",
+            "options": [
+              {
+                "value": "js",
+                "label": "Javascript"
+              },
+              {
+                "value": "css",
+                "label": "CSS"
+              },
+              {
+                "value": "algorithm",
+                "label": "JavaScript Algorithms"
+              },
+              {
+                "value": "react",
+                "label": "React"
+              }
+            ]
+          },
+          "subCategory": {
+            "description": "Filter within Category. Visit Individual Category site for subCategories"
+          }
+        },
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "30secondsofcode.org/:category/:subCategory/",
+              "30secondsofcode.org/:category/"
+            ],
+            "target": "/category/:category/:subCategory"
+          }
+        ],
+        "name": "Category and Subcategory",
+        "maintainers": [
+          "Rjnishant530"
+        ],
+        "location": "category.ts"
+      },
+      "/latest": {
+        "path": "/latest",
+        "categories": [
+          "programming"
+        ],
+        "example": "/latest",
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "30secondsofcode.org"
+            ],
+            "target": "/latest"
+          }
+        ],
+        "name": "New & Popular Snippets",
+        "maintainers": [
+          "Rjnishant530"
+        ],
+        "location": "new-and-popular.ts"
+      }
+    },
+    "name": "30 Seconds of code",
+    "url": "www.30secondsofcode.org",
+    "lang": "en"
+  },
   "36kr": {
     "routes": {
       "/hot-list/:category?": {
@@ -6259,19 +6349,23 @@
     "routes": {
       "/": {
         "path": "/",
+        "categories": [
+          "programming"
+        ],
         "radar": [
           {
             "source": [
               "alistapart.com/articles/"
             ],
-            "target": ""
+            "target": "/"
           }
         ],
-        "name": "Unknown",
+        "name": "Home Feed",
         "maintainers": [
           "Rjnishant530"
         ],
         "url": "alistapart.com/articles/",
+        "example": "/alistapart",
         "location": "index.ts"
       },
       "/:topic": {
@@ -6295,7 +6389,8 @@
           {
             "source": [
               "alistapart.com/blog/topic/:topic"
-            ]
+            ],
+            "target": "/:topic"
           }
         ],
         "name": "Topics",
@@ -21159,9 +21254,10 @@
   },
   "daily": {
     "routes": {
-      "/discussed": {
-        "path": "/discussed",
-        "example": "/daily/discussed",
+      "/discussed/:period?/:innerSharedContent?/:dateSort?": {
+        "path": "/discussed/:period?/:innerSharedContent?/:dateSort?",
+        "example": "/daily/discussed/30",
+        "view": 0,
         "radar": [
           {
             "source": [
@@ -21174,11 +21270,60 @@
           "Rjnishant530"
         ],
         "url": "app.daily.dev/discussed",
+        "parameters": {
+          "innerSharedContent": {
+            "description": "Where to Fetch inner Shared Posts instead of original",
+            "default": "false",
+            "options": [
+              {
+                "value": "false",
+                "label": "False"
+              },
+              {
+                "value": "true",
+                "label": "True"
+              }
+            ]
+          },
+          "dateSort": {
+            "description": "Sort posts by publication date instead of popularity",
+            "default": "true",
+            "options": [
+              {
+                "value": "false",
+                "label": "False"
+              },
+              {
+                "value": "true",
+                "label": "True"
+              }
+            ]
+          },
+          "period": {
+            "description": "Period of Lookup",
+            "default": "7",
+            "options": [
+              {
+                "value": "7",
+                "label": "Last Week"
+              },
+              {
+                "value": "30",
+                "label": "Last Month"
+              },
+              {
+                "value": "365",
+                "label": "Last Year"
+              }
+            ]
+          }
+        },
         "location": "discussed.ts"
       },
-      "/": {
-        "path": "/",
-        "example": "/daily",
+      "/popular/:innerSharedContent?/:dateSort?": {
+        "path": "/popular/:innerSharedContent?/:dateSort?",
+        "example": "/daily/popular",
+        "view": 0,
         "radar": [
           {
             "source": [
@@ -21186,18 +21331,62 @@
             ]
           }
         ],
+        "parameters": {
+          "innerSharedContent": {
+            "description": "Where to Fetch inner Shared Posts instead of original",
+            "default": "false",
+            "options": [
+              {
+                "value": "false",
+                "label": "False"
+              },
+              {
+                "value": "true",
+                "label": "True"
+              }
+            ]
+          },
+          "dateSort": {
+            "description": "Sort posts by publication date instead of popularity",
+            "default": "true",
+            "options": [
+              {
+                "value": "false",
+                "label": "False"
+              },
+              {
+                "value": "true",
+                "label": "True"
+              }
+            ]
+          }
+        },
         "name": "Popular",
         "maintainers": [
           "Rjnishant530"
         ],
         "url": "app.daily.dev/popular",
-        "location": "index.ts"
+        "location": "popular.ts"
       },
-      "/source/:sourceId": {
-        "path": "/source/:sourceId",
+      "/source/:sourceId/:innerSharedContent?": {
+        "path": "/source/:sourceId/:innerSharedContent?",
         "example": "/daily/source/hn",
         "parameters": {
-          "sourceId": "The source id"
+          "sourceId": "The source id",
+          "innerSharedContent": {
+            "description": "Where to Fetch inner Shared Posts instead of original",
+            "default": "false",
+            "options": [
+              {
+                "value": "false",
+                "label": "False"
+              },
+              {
+                "value": "true",
+                "label": "True"
+              }
+            ]
+          }
         },
         "radar": [
           {
@@ -21213,9 +21402,44 @@
         "url": "app.daily.dev",
         "location": "source.ts"
       },
-      "/upvoted": {
-        "path": "/upvoted",
-        "example": "/daily/upvoted",
+      "/squads/:squads/:innerSharedContent?": {
+        "path": "/squads/:squads/:innerSharedContent?",
+        "example": "/daily/squads/watercooler",
+        "view": 0,
+        "parameters": {
+          "innerSharedContent": {
+            "description": "Where to Fetch inner Shared Posts instead of original",
+            "default": "false",
+            "options": [
+              {
+                "value": "false",
+                "label": "False"
+              },
+              {
+                "value": "true",
+                "label": "True"
+              }
+            ]
+          }
+        },
+        "radar": [
+          {
+            "source": [
+              "app.daily.dev/squads/:squads"
+            ]
+          }
+        ],
+        "name": "Squads",
+        "maintainers": [
+          "Rjnishant530"
+        ],
+        "url": "app.daily.dev/squads/discover",
+        "location": "squads.ts"
+      },
+      "/upvoted/:period?/:innerSharedContent?/:dateSort?": {
+        "path": "/upvoted/:period?/:innerSharedContent?/:dateSort?",
+        "example": "/daily/upvoted/7",
+        "view": 0,
         "radar": [
           {
             "source": [
@@ -21223,6 +21447,54 @@
             ]
           }
         ],
+        "parameters": {
+          "innerSharedContent": {
+            "description": "Where to Fetch inner Shared Posts instead of original",
+            "default": "false",
+            "options": [
+              {
+                "value": "false",
+                "label": "False"
+              },
+              {
+                "value": "true",
+                "label": "True"
+              }
+            ]
+          },
+          "dateSort": {
+            "description": "Sort posts by publication date instead of popularity",
+            "default": "true",
+            "options": [
+              {
+                "value": "false",
+                "label": "False"
+              },
+              {
+                "value": "true",
+                "label": "True"
+              }
+            ]
+          },
+          "period": {
+            "description": "Period of Lookup",
+            "default": "7",
+            "options": [
+              {
+                "value": "7",
+                "label": "Last Week"
+              },
+              {
+                "value": "30",
+                "label": "Last Month"
+              },
+              {
+                "value": "365",
+                "label": "Last Year"
+              }
+            ]
+          }
+        },
         "name": "Most upvoted",
         "maintainers": [
           "Rjnishant530"
@@ -21230,8 +21502,8 @@
         "url": "app.daily.dev/upvoted",
         "location": "upvoted.ts"
       },
-      "/user/:userId": {
-        "path": "/user/:userId",
+      "/user/:userId/:innerSharedContent?": {
+        "path": "/user/:userId/:innerSharedContent?",
         "example": "/daily/user/kramer",
         "radar": [
           {
@@ -21241,6 +21513,22 @@
             ]
           }
         ],
+        "parameters": {
+          "innerSharedContent": {
+            "description": "Where to Fetch inner Shared Posts instead of original",
+            "default": "false",
+            "options": [
+              {
+                "value": "false",
+                "label": "False"
+              },
+              {
+                "value": "true",
+                "label": "True"
+              }
+            ]
+          }
+        },
         "name": "User Posts",
         "maintainers": [
           "TonyRL"
@@ -38742,6 +39030,130 @@
   },
   "hdu": {
     "routes": {
+      "/auto/graduate": {
+        "path": "/auto/graduate",
+        "categories": [
+          "university"
+        ],
+        "example": "/hdu/auto/graduate",
+        "parameters": {},
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "name": "自动化学院 - 研究生教育通知",
+        "maintainers": [
+          "jalenzz"
+        ],
+        "description": "杭州电子科技大学自动化学院研究生教育",
+        "radar": [
+          {
+            "source": [
+              "auto.hdu.edu.cn/main.htm",
+              "auto.hdu.edu.cn/3754/list.htm"
+            ],
+            "target": "/auto/graduate"
+          }
+        ],
+        "location": "auto/graduate.ts"
+      },
+      "/auto": {
+        "path": "/auto",
+        "categories": [
+          "university"
+        ],
+        "example": "/hdu/auto",
+        "parameters": {},
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "name": "自动化学院 - 通知公告",
+        "maintainers": [
+          "jalenzz"
+        ],
+        "description": "杭州电子科技大学自动化学院通知公告",
+        "radar": [
+          {
+            "source": [
+              "auto.hdu.edu.cn/main.htm",
+              "auto.hdu.edu.cn/3779/list.htm"
+            ],
+            "target": "/auto"
+          }
+        ],
+        "location": "auto/notice.ts"
+      },
+      "/auto/student": {
+        "path": "/auto/student",
+        "categories": [
+          "university"
+        ],
+        "example": "/hdu/auto/student",
+        "parameters": {},
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "name": "自动化学院 - 学生工作",
+        "maintainers": [
+          "jalenzz"
+        ],
+        "description": "杭州电子科技大学自动化学院学生工作",
+        "radar": [
+          {
+            "source": [
+              "auto.hdu.edu.cn/main.htm",
+              "auto.hdu.edu.cn/3726/list.htm"
+            ],
+            "target": "/auto/student"
+          }
+        ],
+        "location": "auto/student.ts"
+      },
+      "/auto/undergraduate": {
+        "path": "/auto/undergraduate",
+        "categories": [
+          "university"
+        ],
+        "example": "/hdu/auto/undergraduate",
+        "parameters": {},
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "name": "自动化学院 - 本科教学",
+        "maintainers": [
+          "jalenzz"
+        ],
+        "description": "杭州电子科技大学自动化学院本科教学",
+        "radar": [
+          {
+            "source": [
+              "auto.hdu.edu.cn/main.htm",
+              "auto.hdu.edu.cn/3745/list.htm"
+            ],
+            "target": "/auto/undergraduate"
+          }
+        ],
+        "location": "auto/undergraduate.ts"
+      },
       "/cs": {
         "path": "/cs",
         "categories": [
@@ -38802,7 +39214,7 @@
       }
     },
     "name": "杭州电子科技大学",
-    "url": "computer.hdu.edu.cn",
+    "url": "hdu.edu.cn",
     "lang": "zh-CN"
   },
   "hebtv": {
@@ -88512,6 +88924,40 @@
     "name": "中国石油大学（华东）",
     "url": "computer.upc.edu.cn",
     "lang": "zh-CN"
+  },
+  "ups": {
+    "routes": {
+      "/track/:trackingNumber": {
+        "path": "/track/:trackingNumber",
+        "categories": [
+          "other"
+        ],
+        "example": "/ups/track/1Z78R6790470567520",
+        "parameters": {
+          "trackingNumber": "The UPS tracking number (e.g., 1Z78R6790470567520)."
+        },
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "name": "Tracking",
+        "maintainers": [
+          "Aquabet"
+        ],
+        "location": "track.ts"
+      }
+    },
+    "name": "UPS",
+    "url": "ups.com",
+    "description": "United Parcel Service (UPS) updates, news, and tracking RSS feeds.",
+    "zh": {
+      "name": "UPS(联合包裹服务公司)",
+      "description": "联合包裹服务公司（UPS）的更新、新闻和追踪 RSS 源。"
+    }
   },
   "uptimerobot": {
     "routes": {
