@@ -135,6 +135,9 @@
   "/2023game/:category?/:tab?": [
     "xzzpig"
   ],
+  "/21caijing/channel/:name{.+}?": [
+    "nczitzk"
+  ],
   "/2cycd/:fid/:sort?": [
     "shelken"
   ],
@@ -1335,6 +1338,9 @@
     "yuxinliu-alex"
   ],
   "/chinania/:category{.+}?": [
+    "nczitzk"
+  ],
+  "/chinaratings/CreditResearch/:category{.+}?": [
     "nczitzk"
   ],
   "/chinathinktanks/:id": [
@@ -6519,6 +6525,10 @@
   ],
   "/steam/appcommunityfeed/:appid/:routeParams?": [
     "NyaaaDoge"
+  ],
+  "/steam/curator/:id/:routeParams?": [
+    "naremloa",
+    "fenxer"
   ],
   "/steam/search/:params": [
     "moppman"
