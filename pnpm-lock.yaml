@@ -133,8 +133,8 @@ importers:
         specifier: 0.6.3
         version: 0.6.3
       imapflow:
-        specifier: 1.0.171
-        version: 1.0.171
+        specifier: 1.0.172
+        version: 1.0.172
       instagram-private-api:
         specifier: 1.46.1
         version: 1.46.1
@@ -169,8 +169,8 @@ importers:
         specifier: 2.2.3
         version: 2.2.3
       narou:
-        specifier: 1.0.0
-        version: 1.0.0
+        specifier: 1.1.0
+        version: 1.1.0
       notion-to-md:
         specifier: 3.1.2
         version: 3.1.2
@@ -262,8 +262,8 @@ importers:
         specifier: 6.21.0
         version: 6.21.0
       uuid:
-        specifier: 11.0.3
-        version: 11.0.3
+        specifier: 11.0.4
+        version: 11.0.4
       winston:
         specifier: 3.17.0
         version: 3.17.0
@@ -2638,8 +2638,8 @@ packages:
     resolution: {integrity: sha512-ZYP5VBHshaDAiVZxjbRVcFJpc+4xGgT0bK3vzy1HLN8jTO975HEbuYzZJcHoQEY5K1a0z8YayJkyVETa08eNTg==}
     engines: {node: '>=18'}
 
-  date-fns@3.6.0:
-    resolution: {integrity: sha512-fRHTG8g/Gif+kSh50gaGEdToemgfj74aRX3swtiouboip5JDLAyDE9F11nHMIcvOaXeOC6D7SpNhi7uFyB7Uww==}
+  date-fns@4.1.0:
+    resolution: {integrity: sha512-Ukq0owbQXxa/U3EGtsdVBkR1w7KOQ5gIBqdH2hkvknzZPYvBxb/aa6E8L7tmjFtkwZBu3UXBbjIgPo/Ez4xaNg==}
 
   dayjs@1.11.8:
     resolution: {integrity: sha512-LcgxzFoWMEPO7ggRv1Y2N31hUf2R0Vj7fuy/m+Bg1K8rr+KAs1AEy4y9jd5DXe8pbHgX+srkHNS7TH6Q6ZhYeQ==}
@@ -3522,8 +3522,8 @@ packages:
     engines: {node: '>=6.9.0'}
     hasBin: true
 
-  imapflow@1.0.171:
-    resolution: {integrity: sha512-4H33FkLk1bDBdfSF0uacFFHuha83S1F7njhskh20vO1CweZ+jO65f3SD47ZcoE9HEQ5SqeaEwCkiQPBPkjcIhw==}
+  imapflow@1.0.172:
+    resolution: {integrity: sha512-hFIO5PDFkHAbUU+/GXdYVBZLks9wxtolciPw8S1idjl8sz6xlzGlSqBszMQ5IK5VUw0dfxlprFfw2amiTvbNuA==}
 
   immediate@3.0.6:
     resolution: {integrity: sha512-XXOFtyqDjNDAQxVfYxuF7g9Il/IbWmmlQg2MYKOH8ExIT1qg6xc4zyS3HaEEATgs1btfzxq15ciUiY7gjSXRGQ==}
@@ -4229,8 +4229,8 @@ packages:
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
-  narou@1.0.0:
-    resolution: {integrity: sha512-+rlk2kT6+Tdse8E2Z57xR7uLuEDjJ7EgZFRL7F7hMEPRCgU+KV/V2twg+3dcUy0OYHq79RLxuUzKv2kDKTsNRQ==}
+  narou@1.1.0:
+    resolution: {integrity: sha512-UwYk9x+5cidHwqiKiklEdsQy4tID0pn6HYYweah+7bamze2hDE7gnFdjaqRCrp2INzptdp3mCiauKV49trTVFg==}
     engines: {node: '>=16.0.0', pnpm: '>=8'}
 
   natural-compare@1.4.0:
@@ -4513,8 +4513,8 @@ packages:
   pino-std-serializers@7.0.0:
     resolution: {integrity: sha512-e906FRY0+tV27iq4juKzSYPbUj2do2X2JX4EzSca1631EB2QJQUqGbDuERal7LCtOpxl6x3+nvo9NPZcmjkiFA==}
 
-  pino@9.5.0:
-    resolution: {integrity: sha512-xSEmD4pLnV54t0NOUN16yCl7RIB1c5UUOse5HSyEXtBp+FgFQyPeDutc+Q2ZO7/22vImV7VfEjH/1zV2QuqvYw==}
+  pino@9.6.0:
+    resolution: {integrity: sha512-i85pKRCt4qMjZ1+L7sy2Ag4t1atFcdbEt76+7iRJn1g2BvsnRMGu9p8pivl9fs63M2kF/A0OacFZhTub+m/qMg==}
     hasBin: true
 
   pluralize@8.0.0:
@@ -5442,8 +5442,8 @@ packages:
     resolution: {integrity: sha512-6Z7Ma2aVEWisaL6TvBCy7P8rm2LQoPv6dJ7ecIaIixHcwfbJ0x7mWdbcwlIM5IGQxPZSFYeqRCqlOOeKoJYMkw==}
     engines: {node: '>= 4'}
 
-  uuid@11.0.3:
-    resolution: {integrity: sha512-d0z310fCWv5dJwnX1Y/MncBAqGMKEzlBb1AOf7z9K8ALnd0utBX/msg/fA0+sbyN1ihbMsLhrBlnl1ak7Wa0rg==}
+  uuid@11.0.4:
+    resolution: {integrity: sha512-IzL6VtTTYcAhA/oghbFJ1Dkmqev+FpQWnCBaKq/gUluLxliWvO8DPFWfIviRmYbtaavtSQe4WBL++rFjdcGWEg==}
     hasBin: true
 
   uuid@3.4.0:
@@ -8117,7 +8117,7 @@ snapshots:
       whatwg-mimetype: 4.0.0
       whatwg-url: 14.0.0
 
-  date-fns@3.6.0: {}
+  date-fns@4.1.0: {}
 
   dayjs@1.11.8: {}
 
@@ -9176,7 +9176,7 @@ snapshots:
 
   image-size@0.7.5: {}
 
-  imapflow@1.0.171:
+  imapflow@1.0.172:
     dependencies:
       encoding-japanese: 2.2.0
       iconv-lite: 0.6.3
@@ -9185,7 +9185,7 @@ snapshots:
       libqp: 2.1.1
       mailsplit: 5.4.2
       nodemailer: 6.9.16
-      pino: 9.5.0
+      pino: 9.6.0
       socks: 2.8.3
 
   immediate@3.0.6: {}
@@ -9977,9 +9977,9 @@ snapshots:
 
   nanoid@3.3.8: {}
 
-  narou@1.0.0:
+  narou@1.1.0:
     dependencies:
-      date-fns: 3.6.0
+      date-fns: 4.1.0
 
   natural-compare@1.4.0: {}
 
@@ -10265,7 +10265,7 @@ snapshots:
 
   pino-std-serializers@7.0.0: {}
 
-  pino@9.5.0:
+  pino@9.6.0:
     dependencies:
       atomic-sleep: 1.0.0
       fast-redact: 3.5.0
@@ -11234,7 +11234,7 @@ snapshots:
 
   utility-types@3.11.0: {}
 
-  uuid@11.0.3: {}
+  uuid@11.0.4: {}
 
   uuid@3.4.0: {}
 

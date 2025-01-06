@@ -89,7 +89,7 @@
         "http-cookie-agent": "6.0.8",
         "https-proxy-agent": "7.0.6",
         "iconv-lite": "0.6.3",
-        "imapflow": "1.0.171",
+        "imapflow": "1.0.172",
         "instagram-private-api": "1.46.1",
         "ioredis": "5.4.2",
         "ip-regex": "5.0.0",
@@ -101,7 +101,7 @@
         "mailparser": "3.7.2",
         "markdown-it": "14.1.0",
         "module-alias": "2.2.3",
-        "narou": "1.0.0",
+        "narou": "1.1.0",
         "notion-to-md": "3.1.2",
         "oauth-1.0a": "2.2.6",
         "ofetch": "1.4.1",
@@ -132,7 +132,7 @@
         "twitter-api-v2": "1.19.0",
         "ufo": "1.5.4",
         "undici": "6.21.0",
-        "uuid": "11.0.3",
+        "uuid": "11.0.4",
         "winston": "3.17.0",
         "xxhash-wasm": "1.1.0",
         "zod": "3.24.1"
@@ -197,7 +197,7 @@
         "vitest": "2.0.5",
         "yaml-eslint-parser": "1.2.3"
     },
-    "packageManager": "pnpm@9.14.4",
+    "packageManager": "pnpm@9.15.3",
     "engines": {
         "node": ">=22"
     },
