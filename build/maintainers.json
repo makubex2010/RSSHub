@@ -2587,6 +2587,9 @@
   "/gelonghui/user/:id": [
     "nczitzk"
   ],
+  "/genossenschaften*": [
+    "sk22"
+  ],
   "/geocaching/blogs": [
     "HankChow"
   ],
@@ -3629,6 +3632,9 @@
   ],
   "/ikea/gb/offer": [
     "HenryQW"
+  ],
+  "/iknowwhatyoudownload/stats/daily/:country": [
+    "p3psi-boo"
   ],
   "/imagemagick/changelog": [
     "nczitzk"
