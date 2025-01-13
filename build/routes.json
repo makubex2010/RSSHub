@@ -52050,6 +52050,93 @@
     "url": "www.iyingdi.com",
     "lang": "zh-CN"
   },
+  "lhratings": {
+    "routes": {
+      "/research/:type?": {
+        "path": "/research/:type?",
+        "name": "研究报告",
+        "url": "www.lhratings.com",
+        "maintainers": [
+          "nczitzk"
+        ],
+        "example": "/lhratings/research/1",
+        "parameters": {
+          "type": "分类，默认为 `1`，即宏观经济，可在对应分类页 URL 中找到"
+        },
+        "description": ":::tip\n若订阅 [宏观经济](https://www.lhratings.com/research.html?type=1)，网址为 `https://www.lhratings.com/research.html?type=1`，请截取 `https://www.lhratings.com/research.html?type=` 到末尾的部分 `1` 作为 `type` 参数填入，此时目标路由为 [`/lhratings/research/1`](https://rsshub.app/lhratings/research/1)。\n:::\n\n| 宏观经济 | 债券市场 | 行业研究 | 评级理论与方法 | 国际债券市场与评级 | 评级表现 |\n| -------- | -------- | -------- | -------------- | ------------------ | -------- |\n| 1        | 2        | 3        | 4              | 5                  | 6        |\n",
+        "categories": [
+          "finance"
+        ],
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportRadar": true,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "www.lhratings.com/research.html"
+            ]
+          },
+          {
+            "title": "宏观经济",
+            "source": [
+              "www.lhratings.com/research.html?type=1"
+            ],
+            "target": "/research/1"
+          },
+          {
+            "title": "债券市场",
+            "source": [
+              "www.lhratings.com/research.html?type=2"
+            ],
+            "target": "/research/2"
+          },
+          {
+            "title": "行业研究",
+            "source": [
+              "www.lhratings.com/research.html?type=3"
+            ],
+            "target": "/research/3"
+          },
+          {
+            "title": "评级理论与方法",
+            "source": [
+              "www.lhratings.com/research.html?type=4"
+            ],
+            "target": "/research/4"
+          },
+          {
+            "title": "国际债券市场与评级",
+            "source": [
+              "www.lhratings.com/research.html?type=5"
+            ],
+            "target": "/research/5"
+          },
+          {
+            "title": "评级表现",
+            "source": [
+              "www.lhratings.com/research.html?type=6"
+            ],
+            "target": "/research/6"
+          }
+        ],
+        "view": 0,
+        "location": "research.ts"
+      }
+    },
+    "name": "联合资信评估股份有限公司",
+    "url": "lhratings.com",
+    "categories": [
+      "finance"
+    ],
+    "description": "",
+    "lang": "zh-CN"
+  },
   "lianxh": {
     "routes": {
       "/:category?": {
@@ -70591,6 +70678,70 @@
         ],
         "location": "kg/user.ts"
       },
+      "/lol/news/:category?": {
+        "path": "/lol/news/:category?",
+        "name": "英雄联盟新闻",
+        "url": "lol.qq.com",
+        "maintainers": [
+          "nczitzk"
+        ],
+        "example": "/qq/lol/news",
+        "parameters": {
+          "category": "分类，默认为 `23`，即综合，见下表"
+        },
+        "description": ":::tip\n若订阅 [英雄联盟首页新闻列表 - 公告](https://lol.qq.com/news/index.shtml)，网址为 `https://lol.qq.com/news/index.shtml`，请选择 `24` 作为 `category` 参数填入，此时目标路由为 [`/qq/lol/news/24`](https://rsshub.app/qq/lol/news/24)。\n:::\n\n| 综合 | 公告 | 赛事 | 攻略 | 社区 |\n| ---- | ---- | ---- | ---- | ---- |\n| 23   | 24   | 25   | 27   | 28   |\n",
+        "categories": [
+          "game"
+        ],
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportRadar": true,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "title": "综合",
+            "source": [
+              "lol.qq.com/news/index.shtml"
+            ],
+            "target": "/lol/news/23"
+          },
+          {
+            "title": "公告",
+            "source": [
+              "lol.qq.com/news/index.shtml"
+            ],
+            "target": "/lol/news/24"
+          },
+          {
+            "title": "赛事",
+            "source": [
+              "lol.qq.com/news/index.shtml"
+            ],
+            "target": "/lol/news/25"
+          },
+          {
+            "title": "攻略",
+            "source": [
+              "lol.qq.com/news/index.shtml"
+            ],
+            "target": "/lol/news/27"
+          },
+          {
+            "title": "社区",
+            "source": [
+              "lol.qq.com/news/index.shtml"
+            ],
+            "target": "/lol/news/28"
+          }
+        ],
+        "view": 0,
+        "location": "lol/news.ts"
+      },
       "/pd/guild/:id/:sub?/:sort?": {
         "path": [
           "/pd/guild/:id/:sub?/:sort?"
@@ -85031,10 +85182,7 @@
   "taoguba": {
     "routes": {
       "/blog/:id": {
-        "path": [
-          "/blog/:id",
-          "/user/:id"
-        ],
+        "path": "/blog/:id",
         "categories": [
           "finance"
         ],
@@ -85053,8 +85201,8 @@
         "radar": [
           {
             "source": [
-              "taoguba.com.cn/blog/:id",
-              "taoguba.com.cn/"
+              "tgb.cn/blog/:id",
+              "tgb.cn/"
             ]
           }
         ],
@@ -85063,59 +85211,17 @@
           "nczitzk"
         ],
         "location": "blog.ts"
-      },
-      "/user/:id": {
-        "path": [
-          "/blog/:id",
-          "/user/:id"
-        ],
-        "categories": [
-          "finance"
-        ],
-        "example": "/taoguba/blog/252069",
-        "parameters": {
-          "id": "博客 id，可在对应博客页中找到"
-        },
-        "features": {
-          "requireConfig": false,
-          "requirePuppeteer": false,
-          "antiCrawler": false,
-          "supportBT": false,
-          "supportPodcast": false,
-          "supportScihub": false
-        },
-        "radar": [
-          {
-            "source": [
-              "taoguba.com.cn/blog/:id",
-              "taoguba.com.cn/"
-            ]
-          }
-        ],
-        "name": "用户博客",
-        "maintainers": [
-          "nczitzk"
-        ],
-        "location": "blog.ts"
-      },
-      "/index": {
-        "path": [
-          "/index",
-          "/:category?"
-        ],
-        "name": "Unknown",
-        "maintainers": [
-          "nczitzk"
-        ],
-        "description": "| 淘股论坛 | 社区总版 | 精华加油 | 网友点赞 |\n  | -------- | -------- | -------- | -------- |\n  | bbs      | zongban  | jinghua  | dianzan  |",
-        "location": "index.ts"
       },
       "/:category?": {
-        "path": [
-          "/index",
-          "/:category?"
+        "path": "/:category?",
+        "categories": [
+          "finance"
         ],
-        "name": "Unknown",
+        "example": "/taoguba",
+        "parameters": {
+          "id": "分类，见下表，默认为社区总版"
+        },
+        "name": "淘股论坛",
         "maintainers": [
           "nczitzk"
         ],
@@ -85124,7 +85230,7 @@
       }
     },
     "name": "淘股吧",
-    "url": "taoguba.com.cn",
+    "url": "tgb.cn",
     "lang": "zh-CN"
   },
   "taptap": {
