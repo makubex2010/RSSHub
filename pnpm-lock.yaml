@@ -55,8 +55,8 @@ importers:
         specifier: 2.2.3
         version: 2.2.3
       '@rss3/sdk':
-        specifier: 0.0.23
-        version: 0.0.23
+        specifier: 0.0.25
+        version: 0.0.25
       '@scalar/hono-api-reference':
         specifier: 0.5.165
         version: 0.5.165(hono@4.6.16)
@@ -133,8 +133,8 @@ importers:
         specifier: 0.6.3
         version: 0.6.3
       imapflow:
-        specifier: 1.0.174
-        version: 1.0.174
+        specifier: 1.0.176
+        version: 1.0.176
       instagram-private-api:
         specifier: 1.46.1
         version: 1.46.1
@@ -208,8 +208,8 @@ importers:
         specifier: 9.1.1
         version: 9.1.1
       rate-limiter-flexible:
-        specifier: 5.0.4
-        version: 5.0.4
+        specifier: 5.0.5
+        version: 5.0.5
       re2js:
         specifier: 0.4.3
         version: 0.4.3
@@ -241,8 +241,8 @@ importers:
         specifier: 4.0.1
         version: 4.0.1
       tldts:
-        specifier: 6.1.71
-        version: 6.1.71
+        specifier: 6.1.72
+        version: 6.1.72
       tosource:
         specifier: 2.0.0-alpha.3
         version: 2.0.0-alpha.3
@@ -344,8 +344,8 @@ importers:
         specifier: 2.0.4
         version: 2.0.4
       '@types/node':
-        specifier: 22.10.6
-        version: 22.10.6
+        specifier: 22.10.7
+        version: 22.10.7
       '@types/sanitize-html':
         specifier: 2.13.0
         version: 2.13.0
@@ -372,7 +372,7 @@ importers:
         version: 0.29.0(rollup@4.24.4)
       '@vitest/coverage-v8':
         specifier: 2.0.5
-        version: 2.0.5(vitest@2.0.5(@types/node@22.10.6)(jsdom@26.0.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)))
+        version: 2.0.5(vitest@2.0.5(@types/node@22.10.7)(jsdom@26.0.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)))
       discord-api-types:
         specifier: 0.37.115
         version: 0.37.115
@@ -398,8 +398,8 @@ importers:
         specifier: 1.16.0
         version: 1.16.0(eslint@9.18.0)
       fs-extra:
-        specifier: 11.2.0
-        version: 11.2.0
+        specifier: 11.3.0
+        version: 11.3.0
       globals:
         specifier: 15.14.0
         version: 15.14.0
@@ -413,8 +413,8 @@ importers:
         specifier: 1.15.1
         version: 1.15.1
       lint-staged:
-        specifier: 15.3.0
-        version: 15.3.0
+        specifier: 15.4.0
+        version: 15.4.0
       mockdate:
         specifier: 3.0.5
         version: 3.0.5
@@ -441,10 +441,10 @@ importers:
         version: 11.0.5
       vite-tsconfig-paths:
         specifier: 5.1.4
-        version: 5.1.4(typescript@5.7.3)(vite@5.4.10(@types/node@22.10.6))
+        version: 5.1.4(typescript@5.7.3)(vite@5.4.10(@types/node@22.10.7))
       vitest:
         specifier: 2.0.5
-        version: 2.0.5(@types/node@22.10.6)(jsdom@26.0.0(bufferutil@4.0.8)(utf-8-validate@5.0.10))
+        version: 2.0.5(@types/node@22.10.7)(jsdom@26.0.0(bufferutil@4.0.8)(utf-8-validate@5.0.10))
       yaml-eslint-parser:
         specifier: 1.2.3
         version: 1.2.3
@@ -1801,14 +1801,14 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@rss3/api-core@0.0.23':
-    resolution: {integrity: sha512-J7CK1ZfUfEavuVJwuNvoZ0PWeGEZueHGPej6O50k583iAsKc/T+1p8C3sP2mWAfKeHPkkvya5wlup1PjNWwUUg==}
+  '@rss3/api-core@0.0.25':
+    resolution: {integrity: sha512-YVH1QwF4P4r1JCYkkfK+UrKsa2PlJCOjViKhybRUanyR8TwwebpFPV+f5rcDDLRISlCdvhErpiFk9TntstYiCw==}
 
-  '@rss3/api-utils@0.0.23':
-    resolution: {integrity: sha512-lKFD1Dedj35ThvereZa1uqD9WHCYk4Q6bEDVEwgiBVileJ5EDyhcaHXrkizROGauuu4YeNMcWrtzJkRQ1CG1EA==}
+  '@rss3/api-utils@0.0.25':
+    resolution: {integrity: sha512-tQtyjbPOYRaxgT0QIDq0/QV/vVwDp0CHQsVF+w+wkHu9pMnGTNi46WcK4L8n21fIoiOV2DLUuV+YN1C00w5gaA==}
 
-  '@rss3/sdk@0.0.23':
-    resolution: {integrity: sha512-1cF1AqLU0k6dMwqQ5Fch3rOAbh4UXJ4UZLtOwzp/RWyGoCvu3lUOUIdJF41omunuH/JJSP2z6rJTPj4S6a60eg==}
+  '@rss3/sdk@0.0.25':
+    resolution: {integrity: sha512-jyXT4YTwefxxRZ0tt5xjbnw8e7zPg2OGdo/0xb+h/7qWnMNhLtWpc95DsYs/1C/I0rIyiDpZBhLI2DieQ9y+tw==}
 
   '@scalar/hono-api-reference@0.5.165':
     resolution: {integrity: sha512-UOdH9vKQxNC5wi3fQufq44g93x3oE7YoeI1bdLncbrK3Nm+XtLe4Wc0kSpz1n6gsjvqSJij/ioXmkC8OJpM5hA==}
@@ -1978,8 +1978,8 @@ packages:
   '@types/node-fetch@2.6.11':
     resolution: {integrity: sha512-24xFj9R5+rfQJLRyM56qh+wnVSYhyXC2tkoBndtY0U+vubqNsYXGjufB2nn8Q6gt0LrARwL6UBtMCSVCwl4B1g==}
 
-  '@types/node@22.10.6':
-    resolution: {integrity: sha512-qNiuwC4ZDAUNcY47xgaSuS92cjf8JbSUoaKS77bmLG1rU7MlATVSiw/IlrjtIyyskXBZ8KkNfjK/P5na7rgXbQ==}
+  '@types/node@22.10.7':
+    resolution: {integrity: sha512-V09KvXxFiutGp6B7XkpaDXlNadZxrzajcY50EuoLIpQ6WWYCSvf19lVIazzfIzQvhUN2HjX12spLojTnhuKlGg==}
 
   '@types/normalize-package-data@2.4.4':
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
@@ -3284,8 +3284,8 @@ packages:
     resolution: {integrity: sha512-oRXApq54ETRj4eMiFzGnHWGy+zo5raudjuxN0b8H7s/RU2oW0Wvsx9O0ACRN/kRq9E8Vu/ReskGB5o3ji+FzHQ==}
     engines: {node: '>=12'}
 
-  fs-extra@11.2.0:
-    resolution: {integrity: sha512-PmDi3uwK5nFuXh7XDTlVnS17xJS7vW36is2+w3xcv8SVxiB4NyATf4ctkVY5bkSjX0Y4nbvZCq1/EjtEyr9ktw==}
+  fs-extra@11.3.0:
+    resolution: {integrity: sha512-Z4XaCL6dUDHfP/jT25jJKMmtxvuwbkrD1vNSMFlo9lNLY2c5FHYSQgHPRZUjAB26TpDEoW9HCOgplrdbaPV/ew==}
     engines: {node: '>=14.14'}
 
   fs.realpath@1.0.0:
@@ -3553,8 +3553,8 @@ packages:
     engines: {node: '>=6.9.0'}
     hasBin: true
 
-  imapflow@1.0.174:
-    resolution: {integrity: sha512-GLpinGBVZHgi09rSZLP5YoTjb2Z+p9Sc5fUrmka/WEkAVlsSVKFqO0AobQPIRBsyDIXqWuvV2e1/DZOfHYaBUQ==}
+  imapflow@1.0.176:
+    resolution: {integrity: sha512-46Qeb0PSh0Np17hO2/d7XmFtxNGRga+SUgmLkq3UcCYkWJxNazCJj4l3V+fPCTLOsZag7siGpXGry5nzwMO3Vg==}
 
   immediate@3.0.6:
     resolution: {integrity: sha512-XXOFtyqDjNDAQxVfYxuF7g9Il/IbWmmlQg2MYKOH8ExIT1qg6xc4zyS3HaEEATgs1btfzxq15ciUiY7gjSXRGQ==}
@@ -3904,8 +3904,8 @@ packages:
   linkify-it@5.0.0:
     resolution: {integrity: sha512-5aHCbzQRADcdP+ATqnDuhhJ/MRIqDkZX5pyjFHRRysS8vZ5AbqGEoFIb6pYHPZ+L/OC2Lc+xT8uHVVR5CAK/wQ==}
 
-  lint-staged@15.3.0:
-    resolution: {integrity: sha512-vHFahytLoF2enJklgtOtCtIjZrKD/LoxlaUusd5nh7dWv/dkKQJY74ndFSzxCdv7g0ueGg1ORgTSt4Y9LPZn9A==}
+  lint-staged@15.4.0:
+    resolution: {integrity: sha512-UdODqEZiQimd7rCzZ2vqFuELRNUda3mdv7M93jhE4SmDiqAj/w/msvwKgagH23jv2iCPw6Q5m+ltX4VlHvp2LQ==}
     engines: {node: '>=18.12.0'}
     hasBin: true
 
@@ -4721,8 +4721,8 @@ packages:
     resolution: {integrity: sha512-WuyALRjWPDGtt/wzJiadO5AXY+8hZ80hVpe6MyivgraREW751X3SbhRvG3eLKOYN+8VEvqLcf3wdnt44Z4S4SA==}
     engines: {node: '>=10'}
 
-  rate-limiter-flexible@5.0.4:
-    resolution: {integrity: sha512-ftYHrIfSqWYDIJZ4yPTrgOduByAp+86gUS9iklv0JoXVM8eQCAjTnydCj1hAT4MmhmkSw86NaFEJ28m/LC1pKA==}
+  rate-limiter-flexible@5.0.5:
+    resolution: {integrity: sha512-+/dSQfo+3FYwYygUs/V2BBdwGa9nFtakDwKt4l0bnvNB53TNT++QSFewwHX9qXrZJuMe9j+TUaU21lm5ARgqdQ==}
 
   re2js@0.4.3:
     resolution: {integrity: sha512-EuNmh7jurhHEE8Ge/lBo9JuMLb3qf866Xjjfyovw3wPc7+hlqDkZq4LwhrCQMEI+ARWfrKrHozEndzlpNT0WDg==}
@@ -5227,11 +5227,11 @@ packages:
     resolution: {integrity: sha512-tcwMRIioTcF/FcxLev8MJWxCp+GUALRhFEqbDoZrnowmKSGqPrl5pqS+Sut2m8BgJ6S4FExCSSpGffZ0Tks6Aw==}
     hasBin: true
 
-  tldts-core@6.1.71:
-    resolution: {integrity: sha512-LRbChn2YRpic1KxY+ldL1pGXN/oVvKfCVufwfVzEQdFYNo39uF7AJa/WXdo+gYO7PTvdfkCPCed6Hkvz/kR7jg==}
+  tldts-core@6.1.72:
+    resolution: {integrity: sha512-FW3H9aCaGTJ8l8RVCR3EX8GxsxDbQXuwetwwgXA2chYdsX+NY1ytCBl61narjjehWmCw92tc1AxlcY3668CU8g==}
 
-  tldts@6.1.71:
-    resolution: {integrity: sha512-LQIHmHnuzfZgZWAf2HzL83TIIrD8NhhI0DVxqo9/FdOd4ilec+NTNZOlDZf7EwrTNoutccbsHjvWHYXLAtvxjw==}
+  tldts@6.1.72:
+    resolution: {integrity: sha512-QNtgIqSUb9o2CoUjX9T5TwaIvUUJFU1+12PJkgt42DFV2yf9J6549yTF2uGloQsJ/JOC8X+gIB81ind97hRiIQ==}
     hasBin: true
 
   tmp@0.0.33:
@@ -6822,7 +6822,7 @@ snapshots:
       '@inquirer/figures': 1.0.7
       '@inquirer/type': 2.0.0
       '@types/mute-stream': 0.0.4
-      '@types/node': 22.10.6
+      '@types/node': 22.10.7
       '@types/wrap-ansi': 3.0.0
       ansi-escapes: 4.3.2
       cli-width: 4.1.0
@@ -7190,20 +7190,20 @@ snapshots:
   '@rollup/rollup-win32-x64-msvc@4.24.4':
     optional: true
 
-  '@rss3/api-core@0.0.23':
+  '@rss3/api-core@0.0.25':
     dependencies:
       openapi-fetch: 0.11.3
       ts-case-convert: 2.1.0
       type-fest: 4.26.1
 
-  '@rss3/api-utils@0.0.23':
+  '@rss3/api-utils@0.0.25':
     dependencies:
-      '@rss3/api-core': 0.0.23
+      '@rss3/api-core': 0.0.25
 
-  '@rss3/sdk@0.0.23':
+  '@rss3/sdk@0.0.25':
     dependencies:
-      '@rss3/api-core': 0.0.23
-      '@rss3/api-utils': 0.0.23
+      '@rss3/api-core': 0.0.25
+      '@rss3/api-utils': 0.0.25
 
   '@scalar/hono-api-reference@0.5.165(hono@4.6.16)':
     dependencies:
@@ -7309,12 +7309,12 @@ snapshots:
 
   '@types/etag@1.8.3':
     dependencies:
-      '@types/node': 22.10.6
+      '@types/node': 22.10.7
 
   '@types/fs-extra@11.0.4':
     dependencies:
       '@types/jsonfile': 6.1.4
-      '@types/node': 22.10.6
+      '@types/node': 22.10.7
 
   '@types/html-to-text@9.0.4': {}
 
@@ -7322,13 +7322,13 @@ snapshots:
 
   '@types/imapflow@1.0.19':
     dependencies:
-      '@types/node': 22.10.6
+      '@types/node': 22.10.7
 
   '@types/js-beautify@1.14.3': {}
 
   '@types/jsdom@21.1.7':
     dependencies:
-      '@types/node': 22.10.6
+      '@types/node': 22.10.7
       '@types/tough-cookie': 4.0.5
       parse5: 7.2.1
 
@@ -7338,7 +7338,7 @@ snapshots:
 
   '@types/jsonfile@6.1.4':
     dependencies:
-      '@types/node': 22.10.6
+      '@types/node': 22.10.7
 
   '@types/jsrsasign@10.5.13': {}
 
@@ -7348,7 +7348,7 @@ snapshots:
 
   '@types/mailparser@3.4.5':
     dependencies:
-      '@types/node': 22.10.6
+      '@types/node': 22.10.7
       iconv-lite: 0.6.3
 
   '@types/markdown-it@14.1.2':
@@ -7370,14 +7370,14 @@ snapshots:
 
   '@types/mute-stream@0.0.4':
     dependencies:
-      '@types/node': 22.10.6
+      '@types/node': 22.10.7
 
   '@types/node-fetch@2.6.11':
     dependencies:
-      '@types/node': 22.10.6
+      '@types/node': 22.10.7
       form-data: 4.0.1
 
-  '@types/node@22.10.6':
+  '@types/node@22.10.7':
     dependencies:
       undici-types: 6.20.0
 
@@ -7391,7 +7391,7 @@ snapshots:
   '@types/request@2.48.12':
     dependencies:
       '@types/caseless': 0.12.5
-      '@types/node': 22.10.6
+      '@types/node': 22.10.7
       '@types/tough-cookie': 4.0.5
       form-data: 2.5.2
 
@@ -7405,7 +7405,7 @@ snapshots:
     dependencies:
       '@types/cookiejar': 2.1.5
       '@types/methods': 1.1.4
-      '@types/node': 22.10.6
+      '@types/node': 22.10.7
       form-data: 4.0.1
 
   '@types/supertest@6.0.2':
@@ -7429,7 +7429,7 @@ snapshots:
 
   '@types/yauzl@2.10.3':
     dependencies:
-      '@types/node': 22.10.6
+      '@types/node': 22.10.7
     optional: true
 
   '@typescript-eslint/eslint-plugin@8.20.0(@typescript-eslint/parser@8.20.0(eslint@9.18.0)(typescript@5.7.3))(eslint@9.18.0)(typescript@5.7.3)':
@@ -7572,7 +7572,7 @@ snapshots:
       - rollup
       - supports-color
 
-  '@vitest/coverage-v8@2.0.5(vitest@2.0.5(@types/node@22.10.6)(jsdom@26.0.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)))':
+  '@vitest/coverage-v8@2.0.5(vitest@2.0.5(@types/node@22.10.7)(jsdom@26.0.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)))':
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@bcoe/v8-coverage': 0.2.3
@@ -7586,7 +7586,7 @@ snapshots:
       std-env: 3.7.0
       test-exclude: 7.0.1
       tinyrainbow: 1.2.0
-      vitest: 2.0.5(@types/node@22.10.6)(jsdom@26.0.0(bufferutil@4.0.8)(utf-8-validate@5.0.10))
+      vitest: 2.0.5(@types/node@22.10.7)(jsdom@26.0.0(bufferutil@4.0.8)(utf-8-validate@5.0.10))
     transitivePeerDependencies:
       - supports-color
 
@@ -8914,7 +8914,7 @@ snapshots:
       jsonfile: 6.1.0
       universalify: 2.0.1
 
-  fs-extra@11.2.0:
+  fs-extra@11.3.0:
     dependencies:
       graceful-fs: 4.2.11
       jsonfile: 6.1.0
@@ -8972,7 +8972,7 @@ snapshots:
       basic-ftp: 5.0.5
       data-uri-to-buffer: 6.0.2
       debug: 4.4.0
-      fs-extra: 11.2.0
+      fs-extra: 11.3.0
     transitivePeerDependencies:
       - supports-color
 
@@ -9239,7 +9239,7 @@ snapshots:
 
   image-size@0.7.5: {}
 
-  imapflow@1.0.174:
+  imapflow@1.0.176:
     dependencies:
       encoding-japanese: 2.2.0
       iconv-lite: 0.6.3
@@ -9607,7 +9607,7 @@ snapshots:
     dependencies:
       uc.micro: 2.1.0
 
-  lint-staged@15.3.0:
+  lint-staged@15.4.0:
     dependencies:
       chalk: 5.4.1
       commander: 12.1.0
@@ -10403,7 +10403,7 @@ snapshots:
       '@protobufjs/path': 1.1.2
       '@protobufjs/pool': 1.1.0
       '@protobufjs/utf8': 1.1.0
-      '@types/node': 22.10.6
+      '@types/node': 22.10.7
       long: 5.2.3
 
   proxy-agent@6.4.0:
@@ -10546,7 +10546,7 @@ snapshots:
 
   quick-lru@5.1.1: {}
 
-  rate-limiter-flexible@5.0.4: {}
+  rate-limiter-flexible@5.0.5: {}
 
   re2js@0.4.3: {}
 
@@ -11095,11 +11095,11 @@ snapshots:
 
   tlds@1.255.0: {}
 
-  tldts-core@6.1.71: {}
+  tldts-core@6.1.72: {}
 
-  tldts@6.1.71:
+  tldts@6.1.72:
     dependencies:
-      tldts-core: 6.1.71
+      tldts-core: 6.1.72
 
   tmp@0.0.33:
     dependencies:
@@ -11135,7 +11135,7 @@ snapshots:
 
   tough-cookie@5.1.0:
     dependencies:
-      tldts: 6.1.71
+      tldts: 6.1.72
 
   tr46@0.0.3: {}
 
@@ -11328,13 +11328,13 @@ snapshots:
       '@types/unist': 3.0.3
       vfile-message: 4.0.2
 
-  vite-node@2.0.5(@types/node@22.10.6):
+  vite-node@2.0.5(@types/node@22.10.7):
     dependencies:
       cac: 6.7.14
       debug: 4.4.0
       pathe: 1.1.2
       tinyrainbow: 1.2.0
-      vite: 5.4.10(@types/node@22.10.6)
+      vite: 5.4.10(@types/node@22.10.7)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -11346,27 +11346,27 @@ snapshots:
       - supports-color
       - terser
 
-  vite-tsconfig-paths@5.1.4(typescript@5.7.3)(vite@5.4.10(@types/node@22.10.6)):
+  vite-tsconfig-paths@5.1.4(typescript@5.7.3)(vite@5.4.10(@types/node@22.10.7)):
     dependencies:
       debug: 4.3.7
       globrex: 0.1.2
       tsconfck: 3.1.4(typescript@5.7.3)
     optionalDependencies:
-      vite: 5.4.10(@types/node@22.10.6)
+      vite: 5.4.10(@types/node@22.10.7)
     transitivePeerDependencies:
       - supports-color
       - typescript
 
-  vite@5.4.10(@types/node@22.10.6):
+  vite@5.4.10(@types/node@22.10.7):
     dependencies:
       esbuild: 0.21.5
       postcss: 8.4.47
       rollup: 4.24.4
     optionalDependencies:
-      '@types/node': 22.10.6
+      '@types/node': 22.10.7
       fsevents: 2.3.3
 
-  vitest@2.0.5(@types/node@22.10.6)(jsdom@26.0.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)):
+  vitest@2.0.5(@types/node@22.10.7)(jsdom@26.0.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)):
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@vitest/expect': 2.0.5
@@ -11384,11 +11384,11 @@ snapshots:
       tinybench: 2.9.0
       tinypool: 1.0.1
       tinyrainbow: 1.2.0
-      vite: 5.4.10(@types/node@22.10.6)
-      vite-node: 2.0.5(@types/node@22.10.6)
+      vite: 5.4.10(@types/node@22.10.7)
+      vite-node: 2.0.5(@types/node@22.10.7)
       why-is-node-running: 2.3.0
     optionalDependencies:
-      '@types/node': 22.10.6
+      '@types/node': 22.10.7
       jsdom: 26.0.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
     transitivePeerDependencies:
       - less
