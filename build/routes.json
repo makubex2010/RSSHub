@@ -11784,7 +11784,8 @@
         },
         "name": "UP 主频道的合集",
         "maintainers": [
-          "shininome"
+          "shininome",
+          "cscnk52"
         ],
         "location": "user-collection.ts"
       },
@@ -42763,11 +42764,17 @@
         "parameters": {
           "category": "栏目标识，默认为 lgyw（理工要闻）"
         },
-        "description": "| 理工要闻 | 新闻导读 | 综合新闻 | 教学科研 | 院处动态 | 学术科创 | 交流合作 | 招生就业 | 党建思政 | 在线播放 | 理工校报 | 媒体理工 | 讲座论坛 | 人才招聘 |\n|----------|----------|----------|----------|----------|----------|----------|----------|----------|----------|----------|----------|----------|----------|\n| lgyw     | xwdd     | zhenew   | jxky     | ycdt     | xskc     | jlhz     | zsjy     | djsz     | zxbf     | lgxb     | mtlg     | jzlt     | rczp     |",
+        "description": "| 理工要闻 | 新闻导读 | 图文报道 | 综合新闻 | 教学科研 | 院处动态 | 学术科创 | 交流合作 | 学生天地 | 招生就业 | 党建思政 | 在线播放 | 理工人物 | 理工校报 | 媒体理工 | 讲座论坛 | 人才招聘 | 学科建设 |\n|----------|----------|----------|----------|----------|----------|----------|----------|----------|----------|----------|----------|----------|----------|----------|----------|----------|----------|\n| lgyw     | xwdd     | twbd     | zhenew   | jxky     | ycdt     | xskc     | jlhz     | xstd     | zsjy     | djsz     | zxbf     | lgrw     | lgxb     | mtlg     | jzlt     | rczp     | xkjs     |",
         "categories": [
           "university"
         ],
         "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false,
           "supportRadar": true
         },
         "radar": [
@@ -88267,6 +88274,44 @@
     "url": "www.tkww.hk",
     "lang": "zh-HK"
   },
+  "tmtpost": {
+    "routes": {
+      "/nictation": {
+        "path": "/nictation",
+        "categories": [
+          "new-media"
+        ],
+        "example": "/tmtpost/word",
+        "parameters": {},
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": {
+          "source": [
+            "www.tmtpost.com"
+          ]
+        },
+        "name": "快报",
+        "maintainers": [
+          "defp"
+        ],
+        "url": "www.tmtpost.com/nictation",
+        "location": "nictation.ts"
+      }
+    },
+    "name": "钛媒体",
+    "url": "tmtpost.com",
+    "categories": [
+      "new-media"
+    ],
+    "description": "钛媒体是一家专注于新媒体领域的科技媒体",
+    "lang": "zh-CN"
+  },
   "tokeninsight": {
     "routes": {
       "/blog/:lang?": {
@@ -88396,6 +88441,36 @@
         "url": "bksy.tongji.edu.cn/",
         "location": "bks.ts"
       },
+      "/gs": {
+        "path": "/gs",
+        "categories": [
+          "university"
+        ],
+        "example": "/tongji/gs",
+        "parameters": {},
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "gs.tongji.edu.cn/tzgg.htm",
+              "gs.tongji.edu.cn/"
+            ]
+          }
+        ],
+        "name": "研究生院通知公告",
+        "maintainers": [
+          "sitdownkevin"
+        ],
+        "url": "gs.tongji.edu.cn/tzgg.htm",
+        "location": "gs.ts"
+      },
       "/yjs": {
         "path": "/yjs",
         "categories": [
@@ -88419,9 +88494,10 @@
             ]
           }
         ],
-        "name": "研究生院通知公告",
+        "name": "研究生招生网通知公告",
         "maintainers": [
-          "shengmaosu"
+          "shengmaosu",
+          "sitdownkevin"
         ],
         "url": "yz.tongji.edu.cn/zsxw/ggtz.htm",
         "location": "yjs.ts"
