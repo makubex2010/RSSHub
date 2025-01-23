@@ -3,7 +3,8 @@ import cache from '@/utils/cache';
 import got from '@/utils/got';
 import { parseDate } from '@/utils/parse-date';
 import { load } from 'cheerio';
-const BASE_URL = 'https://www.ruankao.org.cn/index/work';
+
+const BASE_URL = 'https://www.txks.org.cn/index/work';
 
 const removeFontPresetting = (html: string = ''): string => {
     const $ = load(html);
@@ -45,10 +46,10 @@ const handler: Route['handler'] = async () => {
     });
 
     return {
-        title: '计算机职业技术资格考试（软考）动态',
-        description: '计算机职业技术资格考试（软考）消息推送',
+        title: '全国通信专业技术人员职业水平考试',
+        description: '全国通信专业技术人员职业水平考试网站最新动态和消息推送',
         link: BASE_URL,
-        image: 'https://bm.ruankao.org.cn/asset/image/public/logo.png',
+        image: 'https://www.txks.org.cn/asset/image/logo/logo.png',
         item: (await Promise.all(
             contentLinkList.map((item) =>
                 cache.tryGet(item.link, async () => {
@@ -64,7 +65,7 @@ const handler: Route['handler'] = async () => {
                         category: ['study'],
                         guid: item.link,
                         id: item.link,
-                        image: 'https://bm.ruankao.org.cn/asset/image/public/logo.png',
+                        image: 'https://www.txks.org.cn/asset/image/logo/logo.png',
                         content,
                         updated: item.date,
                         language: 'zh-CN',
@@ -74,14 +75,14 @@ const handler: Route['handler'] = async () => {
         )) as DataItem[],
         allowEmpty: true,
         language: 'zh-CN',
-        feedLink: 'https://rsshub.app/ruankao/news',
-        id: 'https://rsshub.app/ruankao/news',
+        feedLink: 'https://rsshub.app/txks/news',
+        id: 'https://rsshub.app/txks/news',
     };
 };
 
 export const route: Route = {
     path: '/news',
-    name: '软考动态',
+    name: '通信考试动态',
     description: '**注意：** 官方网站限制了国外网络请求，可能需要通过部署在中国大陆内的 RSSHub 实例访问。',
     maintainers: ['PrinOrange'],
     handler,
@@ -97,10 +98,10 @@ export const route: Route = {
     },
     radar: [
         {
-            title: '计算机职业技术资格考试（软考）动态',
-            source: ['www.ruankao.org.cn/index/work', 'www.ruankao.org.cn'],
+            title: '全国通信专业技术人员职业水平考试动态',
+            source: ['www.txks.org.cn/index/work', 'www.txks.org.cn'],
             target: `/news`,
         },
     ],
-    example: '/ruankao/news',
+    example: '/txks/news',
 };
