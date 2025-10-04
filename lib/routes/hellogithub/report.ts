@@ -1,6 +1,4 @@
 import { Route } from '@/types';
-import { getCurrentPath } from '@/utils/helpers';
-const __dirname = getCurrentPath(import.meta.url);
 
 import got from '@/utils/got';
 import { parseDate } from '@/utils/parse-date';
@@ -20,8 +18,8 @@ export const route: Route = {
     maintainers: ['moke8', 'nczitzk'],
     handler,
     description: `| 编程语言 | 服务器   | 数据库     |
-  | -------- | -------- | ---------- |
-  | tiobe    | netcraft | db-engines |`,
+| -------- | -------- | ---------- |
+| tiobe    | netcraft | db-engines |`,
 };
 
 async function handler(ctx) {

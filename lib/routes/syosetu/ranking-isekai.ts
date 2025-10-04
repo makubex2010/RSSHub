@@ -2,12 +2,9 @@ import { Data, DataItem } from '@/types';
 import { NarouNovelFetch, SearchBuilder, SearchParams, BigGenre } from 'narou';
 import { art } from '@/utils/render';
 import path from 'node:path';
-import { getCurrentPath } from '@/utils/helpers';
 import InvalidParameterError from '@/errors/types/invalid-parameter';
 import { Join } from 'narou/util/type';
 import { RankingPeriod, NovelType, periodToJapanese, novelTypeToJapanese, periodToOrder, periodToPointField, IsekaiCategory, isekaiCategoryToJapanese } from './types/ranking';
-
-const __dirname = getCurrentPath(import.meta.url);
 
 export function parseIsekaiRankingType(type: string): { period: RankingPeriod; category: IsekaiCategory; novelType: NovelType } {
     const [periodStr, categoryStr, novelTypeStr = NovelType.TOTAL] = type.split('_');
@@ -73,11 +70,11 @@ export async function handleIsekaiRanking(type: string, limit: number): Promise<
     }
 
     const items = uniqueNovels
-        .sort((a, b) => (b[pointField] || 0) - (a[pointField] || 0))
+        .toSorted((a, b) => (b[pointField] || 0) - (a[pointField] || 0))
         .map((novel, index) => ({
             title: `#${index + 1} ${novel.title}`,
             link: `https://ncode.syosetu.com/${String(novel.ncode).toLowerCase()}`,
-            description: art(path.join(__dirname, 'templates', 'description.art'), {
+            description: art(path.join(__dirname, 'templates/description.art'), {
                 novel,
             }),
             author: novel.writer,

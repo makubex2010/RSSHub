@@ -3,11 +3,9 @@ import { parseDate } from '@/utils/parse-date';
 import got from '@/utils/got';
 import { load } from 'cheerio';
 import { art } from '@/utils/render';
-import { getCurrentPath } from '@/utils/helpers';
 import cache from '@/utils/cache';
 import path from 'node:path';
 
-const __dirname = getCurrentPath(import.meta.url);
 export const route: Route = {
     path: '/books/:language',
     categories: ['design'],
@@ -36,7 +34,7 @@ export const route: Route = {
 | en | English |
 | jp | 日本語 |
     `,
-    maintainers: ['FYLSen'],
+    maintainers: ['Cedaric'],
     handler,
 };
 

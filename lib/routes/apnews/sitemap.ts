@@ -1,5 +1,6 @@
 import { Route, ViewType } from '@/types';
-import { asyncPoolAll, fetchArticle } from './utils';
+import { fetchArticle } from './utils';
+import pMap from 'p-map';
 import ofetch from '@/utils/ofetch';
 import { load } from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
@@ -78,10 +79,10 @@ async function handler(ctx) {
             return res;
         })
         .filter((e) => Boolean(e.link) && !new URL(e.link).pathname.split('/').includes('hub'))
-        .sort((a, b) => (a.pubDate && b.pubDate ? b.pubDate - a.pubDate : b.lastmod - a.lastmod))
+        .toSorted((a, b) => (a.pubDate && b.pubDate ? b.pubDate - a.pubDate : b.lastmod - a.lastmod))
         .slice(0, ctx.req.query('limit') ? Number.parseInt(ctx.req.query('limit'), 10) : 20);
 
-    const items = ctx.req.query('fulltext') === 'true' ? await asyncPoolAll(20, list, (item) => fetchArticle(item)) : list;
+    const items = ctx.req.query('fulltext') === 'true' ? await pMap(list, (item) => fetchArticle(item), { concurrency: 20 }) : list;
 
     return {
         title: `AP News sitemap:${route}`,

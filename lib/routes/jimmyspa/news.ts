@@ -3,8 +3,6 @@ import { parseDate } from '@/utils/parse-date';
 import got from '@/utils/got';
 import { load } from 'cheerio';
 import { art } from '@/utils/render';
-import { getCurrentPath } from '@/utils/helpers';
-const __dirname = getCurrentPath(import.meta.url);
 import path from 'node:path';
 
 export const route: Route = {
@@ -35,7 +33,7 @@ export const route: Route = {
 | en | English |
 | jp | 日本語 |
     `,
-    maintainers: ['FYLSen'],
+    maintainers: ['Cedaric'],
     handler,
 };
 

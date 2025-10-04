@@ -19,8 +19,8 @@ export const route: Route = {
     maintainers: ['xyqfer', 'laampui'],
     handler,
     description: `| 推荐      | 热门 | 上班摸鱼            | 内推招聘            | 一图胜千言          | 今天学到了          | 每天一道算法题      | 开发工具推荐        | 树洞一下            |
-  | --------- | ---- | ------------------- | ------------------- | ------------------- | ------------------- | ------------------- | ------------------- | ------------------- |
-  | recommend | hot  | 6824710203301167112 | 6819970850532360206 | 6824710202487472141 | 6824710202562969614 | 6824710202378436621 | 6824710202000932877 | 6824710203112423437 |`,
+| --------- | ---- | ------------------- | ------------------- | ------------------- | ------------------- | ------------------- | ------------------- | ------------------- |
+| recommend | hot  | 6824710203301167112 | 6819970850532360206 | 6824710202487472141 | 6824710202562969614 | 6824710202378436621 | 6824710202000932877 | 6824710203112423437 |`,
 };
 
 async function handler(ctx) {
@@ -59,12 +59,10 @@ async function handler(ctx) {
         const link = `https://juejin.cn/pin/${guid}`;
         const pubDate = parseDate(item.msg_Info.ctime * 1000);
         const author = item.author_user_info.user_name;
-        const imgs = item.msg_Info.pic_list.reduce((imgs, item) => {
-            imgs += `
-          <img src="${item}"><br>
-        `;
-            return imgs;
-        }, '');
+        let imgs = '';
+        for (const img of item.msg_Info.pic_list) {
+            imgs += `<img src="${img}"><br>`;
+        }
         const description = `
             ${content.replaceAll('\n', '<br>')}<br>
             ${imgs}<br>
