@@ -1,3 +1,3 @@
-const rootUrl = 'https://www.agemys.com';
+const rootUrl = 'https://agefans.com;
 
 export { rootUrl };
