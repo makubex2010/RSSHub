@@ -11663,6 +11663,19 @@
       }
     ]
   },
+  "cognition.ai": {
+    "_name": "cognition",
+    ".": [
+      {
+        "title": "Blog",
+        "docs": "https://docs.rsshub.app/routes/programming",
+        "source": [
+          "/blog/1"
+        ],
+        "target": "/cognition/blog"
+      }
+    ]
+  },
   "cohere.com": {
     "_name": "Cohere",
     ".": [
@@ -31213,6 +31226,19 @@
           "/toh/:band/:model"
         ],
         "target": "/openwrt/releases/:model"
+      }
+    ]
+  },
+  "ornl.gov": {
+    "_name": "Oak Ridge National Laboratory",
+    "www": [
+      {
+        "title": "All News",
+        "docs": "https://docs.rsshub.app/routes/government",
+        "source": [
+          "/all-news"
+        ],
+        "target": "/ornl/all-news"
       }
     ]
   },

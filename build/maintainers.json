@@ -1740,6 +1740,9 @@
     "Fatpandac"
   ],
   "/codeforces/recent-actions/:minrating?": [],
+  "/cognition/blog": [
+    "Loongphy"
+  ],
   "/cohere/blog": [
     "Loongphy"
   ],
@@ -6098,6 +6101,9 @@
   ],
   "/oreno3d/tags/:tagid/:sort/:pagelimit?": [
     "xueli_sherryli"
+  ],
+  "/ornl/all-news": [
+    "nczitzk"
   ],
   "/oschina/column/:id": [
     "nczitzk"
