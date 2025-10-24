@@ -139,7 +139,7 @@
         "zod": "3.25.76"
     },
     "devDependencies": {
-        "@babel/preset-env": "7.28.3",
+        "@babel/preset-env": "7.28.5",
         "@babel/preset-typescript": "7.27.1",
         "@bbob/types": "4.3.1",
         "@eslint/eslintrc": "3.3.1",
@@ -182,7 +182,7 @@
         "husky": "9.1.7",
         "js-beautify": "1.15.4",
         "lint-staged": "16.2.6",
-        "magic-string": "0.30.19",
+        "magic-string": "0.30.21",
         "mockdate": "3.0.5",
         "msw": "2.4.3",
         "node-network-devtools": "1.0.29",
