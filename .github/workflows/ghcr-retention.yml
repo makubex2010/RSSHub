@@ -1,15 +1,8 @@
 name: 'Clean up GHCR Packages'
 
 on:
-  # 每天 UTC 00:00 执行
   schedule:
-    - cron: '0 0 * * *'
-  # Docker 发布完成后自动触发
-  workflow_run:
-    workflows: ['Docker Release']
-    types:
-      - completed
-  # 支持手动触发
+    - cron: '0 0 * * 0'
   workflow_dispatch:
 
 jobs:
@@ -20,11 +13,14 @@ jobs:
       contents: read
     steps:
       - name: Delete old container versions (30+ days)
-        uses: snok/container-retention-policy@v3.0.1
+        uses: dataaxiom/ghcr-cleanup-action@cd0cdb900b5dbf3a6f2cc869f0dbb0b8211f50c4 # v1.0.16
         with:
-          account: user
-          token: ${{ secrets.PAT }}
-          image-names: '*'
-          cut-off: 30d
-          keep-n-most-recent: 5
           dry-run: false
+          token: ${{ secrets.GITHUB_TOKEN }}
+          package: rsshub
+          older-than: 30 days
+          keep-n-tagged: 5
+          delete-untagged: true
+          delete-ghost-images: true
+          delete-orphaned-images: true
+          delete-partial-images: true
