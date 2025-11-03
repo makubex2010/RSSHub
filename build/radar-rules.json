@@ -12125,6 +12125,19 @@
       }
     ]
   },
+  "cqu.edu.cn": {
+    "_name": "重庆大学",
+    "jwc": [
+      {
+        "title": "本科教学信息网通知",
+        "docs": "https://docs.rsshub.app/routes/university",
+        "source": [
+          "/:path"
+        ],
+        "target": "/cqu/jwc/:path"
+      }
+    ]
+  },
   "crac.org.cn": {
     "_name": "中国无线电协会业余无线电分会",
     "www": [
@@ -12305,6 +12318,20 @@
           "/index/xxgg.htm"
         ],
         "target": "/ctbu/xxgg"
+      }
+    ]
+  },
+  "ctinews.com": {
+    "_name": "中天新聞網",
+    ".": [
+      {
+        "title": "話題",
+        "docs": "https://docs.rsshub.app/routes/new-media",
+        "source": [
+          "/news/topics/:topic",
+          "/"
+        ],
+        "target": "/ctinews/topic/:topic?"
       }
     ]
   },
