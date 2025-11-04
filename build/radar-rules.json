@@ -7328,6 +7328,14 @@
           "/"
         ],
         "target": "/bilibili/hot-search"
+      },
+      {
+        "title": "排行榜",
+        "docs": "https://docs.rsshub.app/routes/social-media",
+        "source": [
+          "/v/popular/rank/:rid"
+        ],
+        "target": "/bilibili/ranking/:rid"
       }
     ],
     "live": [
