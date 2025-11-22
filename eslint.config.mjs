@@ -300,7 +300,8 @@ export default [
             'n/no-unsupported-features/node-builtins': [
                 'error',
                 {
-                    version: '>=22.16.0',
+                    version: '^22.20.0 || ^24',
+                    allowExperimental: true,
                     ignores: [],
                 },
             ],
