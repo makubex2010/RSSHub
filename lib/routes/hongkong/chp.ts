@@ -1,7 +1,8 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
 
 const titles = {
@@ -69,8 +70,8 @@ async function handler(ctx) {
         url: apiUrl,
     });
 
-    const list = JSON.parse(response.data.match(/"data":(\[{.*}])}/)[1]).map((item) => {
-        let link = '';
+    const list = JSON.parse(response.data.match(/"data":(\[\{.*\}\])\}/)[1]).map((item) => {
+        let link: string;
 
         if (item.UrlPath_en) {
             link = item[`UrlPath_${language}`].includes('http') ? item[`UrlPath_${language}`] : `${rootUrl}${item[`UrlPath_${language}`]}`;

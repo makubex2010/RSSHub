@@ -1,7 +1,8 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
 
 const baseUrl = 'https://jwc.ecust.edu.cn';
@@ -66,12 +67,13 @@ async function handler(ctx) {
                 const { data: response } = await got(item.link);
                 const content = load(response);
                 // remove all attrs and empty objects
-                content('div.wp_articlecontent *').each(function () {
-                    if (!content(this).text().trim()) {
-                        return content(this).remove();
+                content('div.wp_articlecontent *').each((_, el) => {
+                    if (!content(el).text().trim()) {
+                        content(el).remove();
+                        return;
                     }
-                    for (const attr in this.attribs) {
-                        content(this).removeAttr(attr);
+                    for (const attr in el.attribs) {
+                        content(el).removeAttr(attr);
                     }
                 });
                 const description = content('div.wp_articlecontent').first().html();

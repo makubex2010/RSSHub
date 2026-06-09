@@ -1,4 +1,4 @@
-import { ofetch } from 'ofetch';
+import ofetch from '@/utils/ofetch';
 
 export interface TraderData {
     address: string;
@@ -21,7 +21,6 @@ export async function fetchTopTraders(): Promise<TraderData[]> {
     const traders: TraderData[] = await ofetch(apiUrl, {
         headers: {
             'x-api-key': 'hyperdash_public_7vN3mK8pQ4wX2cL9hF5tR1bY6gS0jD',
-            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36',
         },
     });
 

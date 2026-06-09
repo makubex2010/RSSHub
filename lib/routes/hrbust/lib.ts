@@ -1,9 +1,11 @@
-import { Route, ViewType } from '@/types';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
+import { ViewType } from '@/types';
 import cache from '@/utils/cache';
+import ofetch from '@/utils/ofetch';
 import { parseDate } from '@/utils/parse-date';
 import timezone from '@/utils/timezone';
-import { load } from 'cheerio';
-import { ofetch } from 'ofetch';
 
 export const route: Route = {
     path: '/lib/:category?',
@@ -14,8 +16,8 @@ export const route: Route = {
     example: '/hrbust/lib',
     parameters: { category: '栏目标识，默认为 3421（公告消息）' },
     description: `| 公告消息 | 资源动态 | 参考中心 | 常用工具 | 外借服务 | 报告厅及研讨间服务 | 外文引进数据库 | 外文电子图书 | 外文试用数据库 | 中文引进数据库 | 中文电子图书 | 中文试用数据库 |
-|----------|----------|----------|----------|----------|--------------------|----------------|--------------|----------------|----------------|--------------|----------------|
-| 3421     | 3422     | ckzx     | cygj     | wjfw     | ytjfw              | yw             | yw_3392      | yw_3395        | zw             | zw_3391      | zw_3394        |`,
+| -------- | -------- | -------- | -------- | -------- | ------------------ | -------------- | ------------ | -------------- | -------------- | ------------ | -------------- |
+| 3421     | 3422     | ckzx     | cygj     | wjfw     | ytjfw              | yw             | yw\\_3392     | yw\\_3395       | zw             | zw\\_3391     | zw\\_3394       |`,
     categories: ['university'],
     features: {
         requireConfig: false,

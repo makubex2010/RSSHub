@@ -1,8 +1,9 @@
-import { Route } from '@/types';
-import got from '@/utils/got';
 import { load } from 'cheerio';
-import timezone from '@/utils/timezone';
+
+import type { Route } from '@/types';
+import got from '@/utils/got';
 import { parseDate } from '@/utils/parse-date';
+import timezone from '@/utils/timezone';
 
 export const route: Route = {
     path: '/desktop',
@@ -64,7 +65,7 @@ async function handler(ctx) {
                     .toArray()
                     .map((c) => $(c).text()),
                 guid: `tradingview-desktop#${title.split(/versions?\s/).pop()}`,
-                pubDate: timezone(parseDate(title.split(/\./)[0], 'MMMM D, YYYY'), +8),
+                pubDate: timezone(parseDate(title.split(/\./, 1)[0], 'MMMM D, YYYY'), +8),
             };
         });
 

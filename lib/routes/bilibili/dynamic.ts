@@ -1,15 +1,18 @@
-import { Route, ViewType } from '@/types';
-import cache from '@/utils/cache';
-import got from '@/utils/got';
 import JSONbig from 'json-bigint';
-import utils, { getLiveUrl, getVideoUrl } from './utils';
-import { parseDate } from '@/utils/parse-date';
-import { fallback, queryToBoolean } from '@/utils/readable-social';
-import cacheIn from './cache';
-import { BilibiliWebDynamicResponse, Item2, Modules } from './api-interface';
-import { parseDuration } from '@/utils/helpers';
+
 import { config } from '@/config';
 import CaptchaError from '@/errors/types/captcha';
+import type { Route } from '@/types';
+import { ViewType } from '@/types';
+import cache from '@/utils/cache';
+import got from '@/utils/got';
+import { parseDuration } from '@/utils/helpers';
+import { parseDate } from '@/utils/parse-date';
+import { fallback, queryToBoolean } from '@/utils/readable-social';
+
+import type { BilibiliWebDynamicResponse, Item2, Modules } from './api-interface';
+import cacheIn from './cache';
+import utils, { getLiveUrl, getVideoUrl } from './utils';
 
 export const route: Route = {
     path: '/user/dynamic/:uid/:routeParams?',
@@ -35,7 +38,7 @@ export const route: Route = {
             {
                 name: 'BILIBILI_COOKIE_*',
                 optional: true,
-                description: `如果没有此配置，那么必须开启 puppeteer 支持；BILIBILI_COOKIE_{uid}: 用于用户关注动态系列路由，对应 uid 的 b 站用户登录后的 Cookie 值，\`{uid}\` 替换为 uid，如 \`BILIBILI_COOKIE_2267573\`，获取方式：
+                description: `如果没有此配置，那么必须开启 Playwright 支持；BILIBILI_COOKIE_{uid}: 用于用户关注动态系列路由，对应 uid 的 b 站用户登录后的 Cookie 值，\`{uid}\` 替换为 uid，如 \`BILIBILI_COOKIE_2267573\`，获取方式：
 1.  打开 [https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/dynamic_new?uid=0&type=8](https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/dynamic_new?uid=0&type=8)
 2.  打开控制台，切换到 Network 面板，刷新
 3.  点击 dynamic_new 请求，找到 Cookie
@@ -126,11 +129,11 @@ const getIframe = (data?: Modules, embed: boolean = true) => {
 };
 
 const getImgs = (data?: Modules) => {
-    const imgUrls: {
+    const imgUrls: Array<{
         url: string;
         width?: number;
         height?: number;
-    }[] = [];
+    }> = [];
     const major = data?.module_dynamic?.major;
     if (!major) {
         return '';

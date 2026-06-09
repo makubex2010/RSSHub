@@ -1,9 +1,10 @@
-import got from '@/utils/got';
 import { load } from 'cheerio';
-import timezone from '@/utils/timezone';
+
+import got from '@/utils/got';
 import { parseDate } from '@/utils/parse-date';
-import { art } from '@/utils/render';
-import path from 'node:path';
+import timezone from '@/utils/timezone';
+
+import { renderDescription } from './templates/description';
 
 const rootUrl = 'https://www.yicai.com';
 
@@ -15,11 +16,11 @@ const ProcessItems = async (apiUrl, tryGet) => {
 
     const items = response.data.map((item) => ({
         title: item.NewsTitle,
-        link: item.url.startsWith('http') ? item.url : `${rootUrl}${item.AppID === 0 ? `/vip` : ''}${item.url}`,
+        link: item.url.startsWith('http') ? item.url : `${rootUrl}${item.AppID === 0 ? '/vip' : ''}${item.url}`,
         author: item.NewsAuthor || item.NewsSource || item.CreaterName,
         pubDate: timezone(parseDate(item.CreateDate), +8),
         category: [item.ChannelName],
-        description: art(path.join(__dirname, 'templates/description.art'), {
+        description: renderDescription({
             image: {
                 src: item.originPic,
                 alt: item.NewsTitle,
@@ -46,7 +47,7 @@ function fetchFullArticles(items, tryGet) {
 
             if (!item.pubDate) {
                 const dataScript = content("script[src='/js/alert.min.js']").next().text() || content('title').next().text();
-                const pb = new Map(JSON.parse(dataScript.match(/_pb = (\[.*?]);/)[1].replaceAll("'", '"')));
+                const pb = new Map(JSON.parse(dataScript.match(/_pb = (\[.*?\]);/)[1].replaceAll("'", '"')));
                 item.pubDate = parseDate(`${pb.get('actime')}:00`);
             }
 
@@ -59,4 +60,4 @@ function fetchFullArticles(items, tryGet) {
         })
     );
 }
-export { rootUrl, ProcessItems, fetchFullArticles };
+export { fetchFullArticles, ProcessItems, rootUrl };

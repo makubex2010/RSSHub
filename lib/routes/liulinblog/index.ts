@@ -1,7 +1,8 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
 
 export const route: Route = {
@@ -94,7 +95,7 @@ async function handler(ctx) {
 
     return {
         item: items,
-        title: `${title} - ${params ? $('h1.term-title').text().split('搜索到')[0] : '最新'}`,
+        title: `${title} - ${params ? $('h1.term-title').text().split('搜索到', 1)[0] : '最新'}`,
         link: currentUrl,
         description: $('meta[name="description"]').prop('content'),
         language: 'zh-cn',

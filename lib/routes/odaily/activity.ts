@@ -1,9 +1,11 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
-import timezone from '@/utils/timezone';
 import { parseDate } from '@/utils/parse-date';
+import timezone from '@/utils/timezone';
+
 import { rootUrl } from './utils';
 
 export const route: Route = {
@@ -52,12 +54,12 @@ async function handler(ctx) {
                     url: item.link,
                 });
 
-                const content = load(detailResponse.data.match(/"content":"(.*)"}},"secondaryList":/)[1]);
+                const content = load(detailResponse.data.match(/"content":"(.*)"\}\},"secondaryList":/)[1]);
 
-                content('img').each(function () {
-                    content(this).attr(
+                content('img').each((_, el) => {
+                    content(el).attr(
                         'src',
-                        content(this)
+                        content(el)
                             .attr('src')
                             .replaceAll(String.raw`\"`, '')
                     );

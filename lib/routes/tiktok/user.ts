@@ -1,12 +1,14 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
 
-import cache from '@/utils/cache';
 import { config } from '@/config';
+import type { Route } from '@/types';
+import cache from '@/utils/cache';
 import { parseDate } from '@/utils/parse-date';
-import { art } from '@/utils/render';
-import path from 'node:path';
+import playwright from '@/utils/playwright';
 import { queryToBoolean } from '@/utils/readable-social';
-import puppeteer from '@/utils/puppeteer';
+
+import { renderUserEmbed } from './templates/user';
+import type { Item } from './types';
 
 const baseUrl = 'https://www.tiktok.com';
 
@@ -25,7 +27,7 @@ export const route: Route = {
     },
     radar: [
         {
-            source: ['tiktok.com/:user'],
+            source: ['www.tiktok.com/:user'],
             target: '/user/:user',
         },
     ],
@@ -41,48 +43,56 @@ async function handler(ctx) {
     const data = await cache.tryGet(
         `tiktok:user:${user}`,
         async () => {
-            const browser = await puppeteer();
-            const page = await browser.newPage();
-            await page.setRequestInterception(true);
-            page.on('request', (request) => {
-                request.resourceType() === 'document' || request.resourceType() === 'script' ? request.continue() : request.abort();
+            const context = await playwright();
+            const page = await context.newPage();
+            let itemList = { itemList: [] };
+            await page.route('**/*', (route) => {
+                const request = route.request();
+                ['document', 'script', 'xhr', 'fetch'].includes(request.resourceType()) ? route.continue() : route.abort();
+            });
+            page.on('response', async (response) => {
+                const request = response.request();
+                if (request.url().startsWith('https://www.tiktok.com/api/post/item_list/')) {
+                    itemList = await response.json();
+                }
             });
             await page.goto(`${baseUrl}/${user}`, {
-                waitUntil: 'networkidle0',
+                waitUntil: 'networkidle',
             });
-            const SIGI_STATE = await page.evaluate(() => window.SIGI_STATE);
-            await browser.close();
 
-            const lang = SIGI_STATE.AppContext.lang;
-            const SharingMetaState = SIGI_STATE.SharingMetaState;
-            const ItemModule = SIGI_STATE.ItemModule;
+            const pageHtml = await page.content();
+            await context.close();
 
-            return { lang, SharingMetaState, ItemModule };
+            const $ = load(pageHtml);
+            const rehydrationData = JSON.parse($('script#__UNIVERSAL_DATA_FOR_REHYDRATION__').text());
+            const userDetail = rehydrationData.__DEFAULT_SCOPE__['webapp.user-detail'];
+
+            return { itemList, userDetail };
         },
         config.cache.routeExpire,
         false
     );
 
-    const items = Object.values(data.ItemModule).map((item) => ({
+    const { itemList, userDetail } = data;
+
+    const items = itemList.itemList.map((item: Item) => ({
         title: item.desc,
-        description: art(path.join(__dirname, 'templates/user.art'), {
+        description: renderUserEmbed({
             poster: item.video.cover,
             source: item.video.playAddr,
             useIframe,
             id: item.id,
         }),
-        author: item.nickname,
+        author: item.author.nickname,
         pubDate: parseDate(item.createTime, 'X'),
-        link: `${baseUrl}/@${item.author}/video/${item.id}`,
-        category: item.textExtra.map((t) => `#${t.hashtagName}`),
+        link: `${baseUrl}/@${item.author.uniqueId}/video/${item.id}`,
     }));
 
     return {
-        title: data.SharingMetaState.value['og:title'],
-        description: data.SharingMetaState.value['og:description'],
-        image: data.SharingMetaState.value['og:image'],
+        title: userDetail.shareMeta.title,
+        description: userDetail.shareMeta.desc,
+        image: userDetail.userInfo.user.avatarLarger,
         link: `${baseUrl}/${user}`,
         item: items,
-        language: data.lang,
     };
 }

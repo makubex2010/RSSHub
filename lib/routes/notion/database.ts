@@ -1,15 +1,17 @@
-import { Route } from '@/types';
-import cache from '@/utils/cache';
-import { Client, isNotionClientError, APIErrorCode } from '@notionhq/client';
-import logger from '@/utils/logger';
-import { config } from '@/config';
-import { parseDate } from '@/utils/parse-date';
-import got from '@/utils/got';
-import { NotionToMarkdown } from 'notion-to-md';
+import { APIErrorCode, Client, isNotionClientError } from '@notionhq/client';
 import { load } from 'cheerio';
 import MarkdownIt from 'markdown-it';
+import { NotionToMarkdown } from 'notion-to-md';
+
+import { config } from '@/config';
 import ConfigNotFoundError from '@/errors/types/config-not-found';
 import InvalidParameterError from '@/errors/types/invalid-parameter';
+import type { Route } from '@/types';
+import cache from '@/utils/cache';
+import got from '@/utils/got';
+import logger from '@/utils/logger';
+import { parseDate } from '@/utils/parse-date';
+
 const md = MarkdownIt({
     html: true,
     linkify: true,
@@ -44,15 +46,15 @@ export const route: Route = {
     handler,
     description: `There is an optional query parameter called \`properties=\` that can be used to customize field mapping. There are three built-in fields: author, pubTime and link, which can be used to add additional information.
 
-  For example, if you have set up three properties in your database - "Publish Time", "Author", and "Original Article Link" - then execute the following JavaScript code to get the result for the properties parameter.
+For example, if you have set up three properties in your database - "Publish Time", "Author", and "Original Article Link" - then execute the following JavaScript code to get the result for the properties parameter.
 
-  \`\`\`js
-  encodeURIComponent(JSON.stringify({"pubTime": "Publish Time", "author": "Author", "link": "Original Article Link"}))
-  \`\`\`
+\`\`\`js
+encodeURIComponent(JSON.stringify({"pubTime": "Publish Time", "author": "Author", "link": "Original Article Link"}))
+\`\`\`
 
-  There is an optional query parameter called \`query=\` that can be used to customize the search rules for your database, such as custom sorting and filtering rules.
+There is an optional query parameter called \`query=\` that can be used to customize the search rules for your database, such as custom sorting and filtering rules.
 
-  please refer to the [Notion API documentation](https://developers.notion.com/reference/post-database-query) and execute \`encodeURIComponent(JSON.stringify(custom rules))\` to provide the query parameter.`,
+please refer to the [Notion API documentation](https://developers.notion.com/reference/post-database-query) and execute \`encodeURIComponent(JSON.stringify(custom rules))\` to provide the query parameter.`,
 };
 
 async function handler(ctx) {

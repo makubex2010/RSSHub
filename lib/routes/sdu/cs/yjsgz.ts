@@ -1,7 +1,8 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
 import { finishArticleItem } from '@/utils/wechat-mp';
 
@@ -32,8 +33,8 @@ export const route: Route = {
     maintainers: ['kukeya', 'wiketool'],
     handler,
     description: `| 重要通知 | 公示栏 |
-| -------- | -------- |
-| zytz      | gsl       |`,
+| -------- | ------ |
+| zytz     | gsl    |`,
 };
 
 async function handler(ctx) {

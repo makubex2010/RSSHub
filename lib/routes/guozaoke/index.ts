@@ -1,10 +1,11 @@
-import { Route } from '@/types';
-import got from '@/utils/got';
 import { load } from 'cheerio';
-import { parseRelativeDate } from '@/utils/parse-date';
-import { config } from '@/config';
-import cache from '@/utils/cache';
 import pMap from 'p-map';
+
+import { config } from '@/config';
+import type { Route } from '@/types';
+import cache from '@/utils/cache';
+import got from '@/utils/got';
+import { parseRelativeDate } from '@/utils/parse-date';
 
 export const route: Route = {
     path: '/default',
@@ -49,7 +50,7 @@ async function handler() {
             const author = $item.find('span.username a').text();
             const lastTouched = $item.find('span.last-touched').text();
             const pubDate = parseRelativeDate(lastTouched);
-            const link = url ? url.split('#')[0] : undefined;
+            const link = url ? url.split('#', 1)[0] : undefined;
             return link ? { title, link, author, pubDate } : undefined;
         })
         .filter((item) => item !== undefined);

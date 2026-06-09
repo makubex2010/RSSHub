@@ -1,9 +1,10 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
-import timezone from '@/utils/timezone';
 import { parseDate } from '@/utils/parse-date';
+import timezone from '@/utils/timezone';
 
 const categories = {
     nba: 'NBA',
@@ -32,8 +33,7 @@ export const route: Route = {
         },
     ],
     name: '滚动新闻',
-    description: `
-| NBA | 足球  | 电竞     | 综合   |
+    description: `| NBA | 足球  | 电竞     | 综合   |
 | --- | ----- | -------- | ------ |
 | nba | zuqiu | dianjing | zonghe |`,
     maintainers: ['nczitzk'],
@@ -45,10 +45,10 @@ async function handler(ctx) {
 
     const rootUrl = 'https://news.zhibo8.cc';
 
-    let list,
-        apiUrl = '',
-        currentUrl = '',
-        response;
+    let list;
+    let apiUrl: string;
+    let currentUrl: string;
+    let response;
 
     if (category === 'nba' || category === 'zuqiu') {
         currentUrl = `${rootUrl}/${category}/more.htm`;

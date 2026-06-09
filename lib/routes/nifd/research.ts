@@ -1,7 +1,8 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
 
 const rootUrl = 'http://www.nifd.cn';
@@ -37,7 +38,7 @@ export const route: Route = {
     handler,
     description: `资讯类型可以从网址中获取，如：
 
-  \`http://www.nifd.cn/Research?categoryGuid=7a6a826d-b525-42aa-b550-4236e524227f\` 对应 \`/nifd/research/7a6a826d-b525-42aa-b550-4236e524227f\``,
+\`http://www.nifd.cn/Research?categoryGuid=7a6a826d-b525-42aa-b550-4236e524227f\` 对应 \`/nifd/research/7a6a826d-b525-42aa-b550-4236e524227f\``,
 };
 
 async function handler(ctx) {

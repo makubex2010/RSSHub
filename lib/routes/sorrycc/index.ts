@@ -1,11 +1,14 @@
-import { type DataItem, ViewType, type Data, type Route } from '@/types';
-import type { Context } from 'hono';
-import ofetch from '@/utils/ofetch';
 import { load } from 'cheerio';
-import cache from '@/utils/cache';
-import type { Post } from './types';
+import type { Context } from 'hono';
+
 import { config } from '@/config';
+import type { Data, DataItem, Route } from '@/types';
+import { ViewType } from '@/types';
+import cache from '@/utils/cache';
+import ofetch from '@/utils/ofetch';
 import { parseDate } from '@/utils/parse-date';
+
+import type { Post } from './types';
 
 const WORDPRESS_HASH = 'f05fca638390aed897fbe3c2fff03000';
 
@@ -32,7 +35,7 @@ export const route: Route = {
             },
         ],
     },
-    description: '云谦的博客，部分内容存在权限校验，访问完整内容请部署RSSHub私有实例并配置授权信息',
+    description: '云谦的博客，部分内容存在权限校验，访问完整内容请部署 RSSHub 私有实例并配置授权信息',
 };
 
 async function handler(ctx: Context): Promise<Data> {

@@ -1,7 +1,8 @@
-import { Route } from '@/types';
-import { getConfig } from './utils';
+import type { Route } from '@/types';
 import got from '@/utils/got';
 import RSSParser from '@/utils/rss-parser';
+
+import { getConfig } from './utils';
 
 export const route: Route = {
     path: '/:configId/official/:path{.+}',
@@ -15,7 +16,7 @@ export const route: Route = {
         requireConfig: [
             {
                 name: 'DISCOURSE_CONFIG_*',
-                description: `Configure the Discourse environment variables referring to [https://docs.rsshub.app/deploy/config#discourse](https://docs.rsshub.app/deploy/config#discourse).`,
+                description: 'Configure the Discourse environment variables referring to [https://docs.rsshub.app/deploy/config#discourse](https://docs.rsshub.app/deploy/config#discourse).',
             },
         ],
         requirePuppeteer: false,

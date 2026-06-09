@@ -1,8 +1,9 @@
+import { load } from 'cheerio';
+
 import type { DataItem, Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
 import { parseDate } from '@/utils/parse-date';
-import { load } from 'cheerio';
 
 const BASE_URL = 'https://www.txks.org.cn/index/work.html';
 
@@ -100,7 +101,7 @@ export const route: Route = {
         {
             title: '全国通信专业技术人员职业水平考试动态',
             source: ['www.txks.org.cn/index/work', 'www.txks.org.cn'],
-            target: `/news`,
+            target: '/news',
         },
     ],
     example: '/txks/news',

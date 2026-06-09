@@ -1,6 +1,7 @@
-import { Route, DataItem } from '@/types';
-import cache from '@/utils/cache';
 import { load } from 'cheerio';
+
+import type { DataItem, Route } from '@/types';
+import cache from '@/utils/cache';
 import ofetch from '@/utils/ofetch';
 
 const typeMap = {
@@ -22,9 +23,9 @@ export const route: Route = {
         supportPodcast: false,
         supportScihub: false,
     },
-    description: `| 协会动态 | 通知公告 |行业动态 |
+    description: `| 协会动态 | 通知公告     | 行业动态 |
 | -------- | ------------ | -------- |
-| dynamic | announcement | industry |`,
+| dynamic  | announcement | industry |`,
 
     name: '新闻资讯',
     maintainers: ['HChenZi'],

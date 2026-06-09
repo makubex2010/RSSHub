@@ -1,6 +1,7 @@
-import { type Data, type Route, ViewType } from '@/types';
+import type { Context } from 'hono';
 
-import { type Context } from 'hono';
+import type { Data, Route } from '@/types';
+import { ViewType } from '@/types';
 
 import { baseUrl, processItems } from './util';
 
@@ -34,8 +35,7 @@ export const route: Route = {
     },
     description: `::: tip
 若订阅 [我的年度总结](https://www.gcores.com/topics/581)，网址为 \`https://www.gcores.com/topics/581\`，请截取 \`https://www.gcores.com/topics/\` 到末尾的部分 \`581\` 作为 \`id\` 参数填入，此时目标路由为 [\`/gcores/topics/581/recommend\`](https://rsshub.app/gcores/topics/581/recommend)。
-:::
-`,
+:::`,
     categories: ['game'],
     features: {
         requireConfig: false,

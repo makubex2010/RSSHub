@@ -1,7 +1,8 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
 import { parseDate, parseRelativeDate } from '@/utils/parse-date';
 import timezone from '@/utils/timezone';
 
@@ -40,7 +41,7 @@ async function handler(ctx) {
     const response = await got.get(currentUrl);
     const $ = load(response.data);
     const lists = $('div.c-box > div > div.c-zx-list > ul > li');
-    const reg = /日期：(.*?(\s\(.*?\))?)\s/;
+    const reg = /日期：(.*?(?:\s\(.*?\))?)\s/;
     const list = lists.toArray().map((item) => {
         item = $(item).find('div');
         let date = reg.exec(item.find('div.r > p.other').text())[1];

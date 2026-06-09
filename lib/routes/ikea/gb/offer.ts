@@ -1,9 +1,9 @@
-import { Route } from '@/types';
-
-import got from '@/utils/got';
 import { load } from 'cheerio';
-import { art } from '@/utils/render';
-import path from 'node:path';
+
+import type { Route } from '@/types';
+import got from '@/utils/got';
+
+import { renderOffer } from '../templates/offer';
 
 export const route: Route = {
     path: '/gb/offer',
@@ -40,7 +40,7 @@ async function handler() {
             e = $(e);
             const title = e.find('h3');
             const img = e.find('.pub__image').each((_, e) => {
-                e.attribs.src = e.attribs.src.split('?')[0];
+                e.attribs.src = e.attribs.src.split('?', 1)[0];
                 delete e.attribs.srcset;
             });
             const link = new URL(e.find('pub-hide-empty-link a').attr('href'));
@@ -50,7 +50,7 @@ async function handler() {
             searchParams.delete('itm_campaign');
             return {
                 title: title.text(),
-                description: art(path.join(__dirname, '../templates/offer.art'), {
+                description: renderOffer({
                     img: img.parent().html(),
                     desc: title.next().parent().html(),
                 }),
@@ -66,7 +66,7 @@ async function handler() {
             const title = e.find('h2');
             const next = title.next();
             const img = e.find('.pub__image').each((_, e) => {
-                e.attribs.src = e.attribs.src.split('?')[0];
+                e.attribs.src = e.attribs.src.split('?', 1)[0];
                 delete e.attribs.srcset;
             });
 
@@ -77,7 +77,7 @@ async function handler() {
             searchParams.delete('itm_campaign');
             return {
                 title: title.text(),
-                description: art(path.join(__dirname, '../templates/offer.art'), {
+                description: renderOffer({
                     img: img.parent().html(),
                     desc: title.parent().html(),
                 }),

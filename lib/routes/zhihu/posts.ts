@@ -1,10 +1,12 @@
-import { Route } from '@/types';
 import { load } from 'cheerio';
-import ofetch from '@/utils/ofetch';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
-import { header, getSignedHeader, processImage } from './utils';
+import ofetch from '@/utils/ofetch';
 import { parseDate } from '@/utils/parse-date';
-import { Articles, Profile } from './types';
+
+import type { Articles, Profile } from './types';
+import { getSignedHeader, header, processImage } from './utils';
 
 export const route: Route = {
     path: '/posts/:usertype/:id',
@@ -88,7 +90,7 @@ async function handler(ctx) {
         title: `${userProfile.name} 的知乎文章`,
         link: `https://www.zhihu.com/${usertype}/${id}/posts`,
         description: userProfile.headline,
-        image: userProfile.avatarUrl.split('?')[0],
+        image: userProfile.avatarUrl.split('?', 1)[0],
         // banner: userData?.coverUrl?.split('?')[0],
         item: items,
     };

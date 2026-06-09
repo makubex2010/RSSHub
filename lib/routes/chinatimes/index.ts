@@ -1,11 +1,12 @@
-import { Route } from '@/types';
-import cache from '@/utils/cache';
-import ofetch from '@/utils/ofetch';
 import { load } from 'cheerio';
-import { parseDate } from '@/utils/parse-date';
-import timezone from '@/utils/timezone';
-import puppeteer from '@/utils/puppeteer';
+
+import type { Route } from '@/types';
+import cache from '@/utils/cache';
 import logger from '@/utils/logger';
+import ofetch from '@/utils/ofetch';
+import { parseDate } from '@/utils/parse-date';
+import playwright from '@/utils/playwright';
+import timezone from '@/utils/timezone';
 
 export const route: Route = {
     path: '/:category?',
@@ -42,7 +43,7 @@ async function handler(ctx) {
 
     const response = await ofetch(link);
     const $ = load(response);
-    const browser = await puppeteer();
+    const context = await playwright();
 
     const list = $('.articlebox-compact')
         .toArray()
@@ -65,10 +66,10 @@ async function handler(ctx) {
     const items = await Promise.all(
         list.map((item) =>
             cache.tryGet(item.link, async () => {
-                const page = await browser.newPage();
-                await page.setRequestInterception(true);
-                page.on('request', (request) => {
-                    request.resourceType() === 'document' ? request.continue() : request.abort();
+                const page = await context.newPage();
+                await page.route('**/*', (route) => {
+                    const request = route.request();
+                    request.resourceType() === 'document' ? route.continue() : route.abort();
                 });
                 logger.http(`Requesting ${item.link}`);
                 await page.goto(item.link, {
@@ -97,7 +98,7 @@ async function handler(ctx) {
         )
     );
 
-    await browser.close();
+    await context.close();
 
     return {
         title: $('head title').text(),

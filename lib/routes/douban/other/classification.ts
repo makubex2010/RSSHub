@@ -1,4 +1,4 @@
-import { Route } from '@/types';
+import type { Route } from '@/types';
 import got from '@/utils/got';
 
 export const route: Route = {
@@ -38,7 +38,7 @@ async function handler(ctx) {
 
     return {
         title: `豆瓣电影分类${score ? `超过 ${score} 分的` : ''}影视`,
-        link: `https://movie.douban.com/tag/#/?sort=U&range=0,10&tags=`,
+        link: 'https://movie.douban.com/tag/#/?sort=U&range=0,10&tags=',
         item: movies
             .map((item) => {
                 const itemScore = Number.parseFloat(item.rate) || 0;

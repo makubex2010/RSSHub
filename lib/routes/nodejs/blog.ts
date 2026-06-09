@@ -1,7 +1,8 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
 
 export const route: Route = {
@@ -25,7 +26,7 @@ export const route: Route = {
     name: 'News',
     maintainers: ['nczitzk'],
     handler,
-    description: `Official RSS Source: https://nodejs.org/en/feed/blog.xml
+    description: `Official RSS Source: <https://nodejs.org/en/feed/blog.xml>
 
 | العربية | Catalan | Deutsch | Español | زبان فارسی |
 | ------- | ------- | ------- | ------- | ---------- |

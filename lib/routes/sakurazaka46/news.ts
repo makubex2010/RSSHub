@@ -1,7 +1,8 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
 
 export const route: Route = {
@@ -47,7 +48,7 @@ async function handler(ctx) {
 
             return {
                 title: item.find('.lead').text(),
-                link: `${rootUrl}${item.attr('href').split('?')[0]}`,
+                link: `${rootUrl}${item.attr('href').split('?', 1)[0]}`,
                 pubDate: parseDate(item.find('.date').text()),
             };
         });

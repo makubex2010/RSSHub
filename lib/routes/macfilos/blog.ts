@@ -1,7 +1,8 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
 
 export const route: Route = {
@@ -68,8 +69,8 @@ async function handler(ctx) {
                 content('hr').nextAll().remove();
                 content('hr').remove();
 
-                content('img').each(function () {
-                    content(this).removeAttr('srcset');
+                content('img').each((_, el) => {
+                    content(el).removeAttr('srcset');
                 });
 
                 item.description = content('.td-post-content').html();

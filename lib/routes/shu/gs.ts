@@ -1,7 +1,8 @@
-import { Route } from '@/types';
+import { load } from 'cheerio'; // cheerio@1.0.0
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio'; // cheerio@1.0.0
 import { parseDate } from '@/utils/parse-date';
 import timezone from '@/utils/timezone';
 
@@ -35,8 +36,8 @@ export const route: Route = {
     handler,
     url: 'gs.shu.edu.cn/',
     description: `| 综合新闻 | 培养管理 | 国际交流 |
-| -------- | --------- | --------- |
-| zhxw     | pygl      | gjjl      |`,
+| -------- | -------- | -------- |
+| zhxw     | pygl     | gjjl     |`,
 };
 
 async function handler(ctx) {

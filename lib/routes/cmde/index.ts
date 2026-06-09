@@ -1,9 +1,10 @@
-import { Route } from '@/types';
-import cache from '@/utils/cache';
 import { load } from 'cheerio';
-import timezone from '@/utils/timezone';
+
+import type { Route } from '@/types';
+import cache from '@/utils/cache';
 import { parseDate } from '@/utils/parse-date';
-import puppeteer from '@/utils/puppeteer';
+import playwright from '@/utils/playwright';
+import timezone from '@/utils/timezone';
 
 const rootURL = 'https://www.cmde.org.cn';
 
@@ -17,12 +18,12 @@ export const route: Route = {
 async function handler(ctx) {
     const cate = ctx.req.param('cate') ?? 'xwdt/zxyw';
     const url = `${rootURL}/${cate}/`;
-    const browser = await puppeteer();
+    const context = await playwright();
     const data = await cache.tryGet(url, async () => {
-        const page = await browser.newPage();
-        await page.setRequestInterception(true);
-        page.on('request', (request) => {
-            request.resourceType() === 'document' || request.resourceType() === 'script' ? request.continue() : request.abort();
+        const page = await context.newPage();
+        await page.route('**/*', (route) => {
+            const request = route.request();
+            request.resourceType() === 'document' || request.resourceType() === 'script' ? route.continue() : route.abort();
         });
         await page.goto(url, {
             waitUntil: 'domcontentloaded',
@@ -51,10 +52,10 @@ async function handler(ctx) {
     const items = await Promise.all(
         data.items.map((item) =>
             cache.tryGet(item.link, async () => {
-                const page = await browser.newPage();
-                await page.setRequestInterception(true);
-                page.on('request', (request) => {
-                    request.resourceType() === 'document' || request.resourceType() === 'script' ? request.continue() : request.abort();
+                const page = await context.newPage();
+                await page.route('**/*', (route) => {
+                    const request = route.request();
+                    request.resourceType() === 'document' || request.resourceType() === 'script' ? route.continue() : route.abort();
                 });
                 await page.goto(item.link, {
                     waitUntil: 'domcontentloaded',
@@ -71,7 +72,7 @@ async function handler(ctx) {
         )
     );
 
-    await browser.close();
+    await context.close();
 
     return {
         title: data.title,

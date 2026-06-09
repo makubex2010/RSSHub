@@ -1,10 +1,12 @@
-import { Route, Data, DataItem } from '@/types';
-import { art } from '@/utils/render';
-import path from 'node:path';
-import { Context } from 'hono';
-import { SearchBuilderR18, SearchParams, NarouNovelFetch } from 'narou';
+import type { Context } from 'hono';
+import type { SearchParams } from 'narou';
+import { NarouNovelFetch, SearchBuilderR18 } from 'narou';
+
 import InvalidParameterError from '@/errors/types/invalid-parameter';
-import { RankingPeriod, periodToJapanese, novelTypeToJapanese, periodToOrder, NovelType, SyosetuSub, syosetuSubToJapanese, syosetuSubToNocgenre } from './types/ranking-r18';
+import type { Data, DataItem, Route } from '@/types';
+
+import { renderDescription } from './templates/description';
+import { NovelType, novelTypeToJapanese, periodToJapanese, periodToOrder, RankingPeriod, SyosetuSub, syosetuSubToJapanese, syosetuSubToNocgenre } from './types/ranking-r18';
 
 /**
  * Implementation of "Syosetu" R18 Rankings
@@ -78,21 +80,20 @@ export const route: Route = {
     url: 'syosetu.com/site/group',
     maintainers: ['SnowAgar25'],
     handler,
-    description: `
-| Period | Description | 説明 |
-| --- | --- | --- |
-| daily | Daily Ranking | 日間ランキング |
-| weekly | Weekly Ranking | 週間ランキング |
-| monthly | Monthly Ranking | 月間ランキング |
+    description: `| Period  | Description       | 説明             |
+| ------- | ----------------- | ---------------- |
+| daily   | Daily Ranking     | 日間ランキング   |
+| weekly  | Weekly Ranking    | 週間ランキング   |
+| monthly | Monthly Ranking   | 月間ランキング   |
 | quarter | Quarterly Ranking | 四半期ランキング |
-| yearly | Yearly Ranking | 年間ランキング |
+| yearly  | Yearly Ranking    | 年間ランキング   |
 
-| Novel Type | Description | 説明 |
-| --- | --- | --- |
-| total | All Works | 総合 |
-| t | Short Stories | 短編 |
-| r | Ongoing Series | 連載中 |
-| er | Completed Series | 完結済 |
+| Novel Type | Description      | 説明   |
+| ---------- | ---------------- | ------ |
+| total      | All Works        | 総合   |
+| t          | Short Stories    | 短編   |
+| r          | Ongoing Series   | 連載中 |
+| er         | Completed Series | 完結済 |
 
 ::: tip
 Combine Period and Novel Type with \`_\`.
@@ -173,9 +174,7 @@ async function handler(ctx: Context): Promise<Data> {
     const items = result.values.map((novel, index) => ({
         title: `#${index + 1} ${novel.title}`,
         link: `https://novel18.syosetu.com/${String(novel.ncode).toLowerCase()}`,
-        description: art(path.join(__dirname, 'templates/description.art'), {
-            novel,
-        }),
+        description: renderDescription({ novel }),
         author: novel.writer,
         category: novel.keyword.split(/[\s/\uFF0F]/).filter(Boolean),
     }));

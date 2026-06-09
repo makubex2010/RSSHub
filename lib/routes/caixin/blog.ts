@@ -1,11 +1,13 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import InvalidParameterError from '@/errors/types/invalid-parameter';
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
-import { isValidHost } from '@/utils/valid-host';
 import { parseDate } from '@/utils/parse-date';
+import { isValidHost } from '@/utils/valid-host';
+
 import { parseBlogArticle } from './utils';
-import InvalidParameterError from '@/errors/types/invalid-parameter';
 
 export const route: Route = {
     path: '/blog/:column?',
@@ -23,7 +25,7 @@ export const route: Route = {
     name: '用户博客',
     maintainers: [],
     handler,
-    description: `通过提取文章全文，以提供比官方源更佳的阅读体验.`,
+    description: '通过提取文章全文，以提供比官方源更佳的阅读体验.',
 };
 
 async function handler(ctx) {
@@ -39,7 +41,7 @@ async function handler(ctx) {
         const user = $('div.indexMainConri > script[type="text/javascript"]')
             .text()
             .slice('window.user = '.length + 1)
-            .split(';')[0]
+            .split(';', 1)[0]
             .replaceAll(/\s/g, '');
         const authorId = user.match(/id:"(\d+)"/)[1];
         const authorName = user.match(/name:"(.*?)"/)[1];
@@ -92,7 +94,7 @@ async function handler(ctx) {
         const items = await Promise.all(posts.map((item) => cache.tryGet(item.link, () => parseBlogArticle(item))));
 
         return {
-            title: `财新博客 - 全部`,
+            title: '财新博客 - 全部',
             link: 'https://blog.caixin.com',
             // description: introduce,
             // image: avatar,

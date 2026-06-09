@@ -1,7 +1,8 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
 
 export const route: Route = {
     path: '/tag/:tag?',
@@ -43,7 +44,7 @@ async function handler(ctx) {
         .match(/tralbum_url&quot;:&quot;(.*?)&quot;,&quot;audio_url/g)
         .slice(0, 10)
         .map((item) => ({
-            link: item.match(/tralbum_url&quot;:&quot;(.*?)&quot;,&quot;audio_url/)[1].split('&quot;')[0],
+            link: item.match(/tralbum_url&quot;:&quot;(.*?)&quot;,&quot;audio_url/)[1].split('&quot;', 1)[0],
         }));
 
     const items = await Promise.all(

@@ -1,6 +1,7 @@
-import { DataItem, Route } from '@/types';
-import ofetch from '@/utils/ofetch';
 import { load } from 'cheerio';
+
+import type { DataItem, Route } from '@/types';
+import ofetch from '@/utils/ofetch';
 
 /**
  * OpenGithub - Github开源项目精选
@@ -50,7 +51,7 @@ async function handler(ctx) {
     const $ = load(response);
 
     result.item = [...$('.tab-pane > .row > .card')].map((item) => {
-        const date = $(item).find('.d-flex.mt-3.ms-sm-auto').text()?.split(':')?.[1];
+        const date = $(item).find('.d-flex.mt-3.ms-sm-auto').text()?.split(':', 2)?.[1];
         const dataObject = date ? new Date(date) : undefined;
 
         return {

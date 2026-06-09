@@ -1,9 +1,10 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
-import timezone from '@/utils/timezone';
 import { parseDate } from '@/utils/parse-date';
+import timezone from '@/utils/timezone';
 
 export const route: Route = {
     path: '/:category?',
@@ -100,7 +101,7 @@ async function handler(ctx) {
 
                 mainContent.find('[class^=ev-article], svg').remove();
                 mainContent.find('img').each((_, img) => {
-                    img.attribs.src = img.attribs.src.split('?')[0];
+                    img.attribs.src = img.attribs.src.split('?', 1)[0];
                 });
 
                 item.description = mainContent.html();

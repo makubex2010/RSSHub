@@ -1,10 +1,10 @@
-import { Route, ViewType } from '@/types';
-
+import type { Route } from '@/types';
+import { ViewType } from '@/types';
 import cache from '@/utils/cache';
 import { parseDate } from '@/utils/parse-date';
-import { resolveHandle, getFeed, getFeedGenerator } from './utils';
-import { art } from '@/utils/render';
-import path from 'node:path';
+
+import { renderPost } from './templates/post';
+import { getFeed, getFeedGenerator, resolveHandle } from './utils';
 
 export const route: Route = {
     path: '/profile/:handle/feed/:space/:routeParams?',
@@ -38,15 +38,15 @@ async function handler(ctx) {
     const feeds = await getFeed(uri, cache.tryGet);
 
     const items = feeds.feed.map(({ post }) => ({
-        title: post.record.text.split('\n')[0],
-        description: art(path.join(__dirname, 'templates/post.art'), {
+        title: post.record.text.split('\n', 1)[0],
+        description: renderPost({
             text: post.record.text.replaceAll('\n', '<br>'),
             embed: post.embed,
             // embed.$type "app.bsky.embed.record#view" and "app.bsky.embed.recordWithMedia#view" are not handled
         }),
         author: post.author.displayName,
         pubDate: parseDate(post.record.createdAt),
-        link: `https://bsky.app/profile/${post.author.handle}/post/${post.uri.split('app.bsky.feed.post/')[1]}`,
+        link: `https://bsky.app/profile/${post.author.handle}/post/${post.uri.split('app.bsky.feed.post/', 2)[1]}`,
         upvotes: post.likeCount,
         comments: post.replyCount,
     }));

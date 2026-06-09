@@ -1,9 +1,10 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
-import timezone from '@/utils/timezone';
 import { parseDate, parseRelativeDate } from '@/utils/parse-date';
+import timezone from '@/utils/timezone';
 
 export const route: Route = {
     path: '/qa/:category?/:state?',
@@ -35,7 +36,7 @@ export const route: Route = {
 | -------- | -------- | ---- |
 | 8        | 10       | all  |
 
-  状态
+状态
 
 | 全部 | 精华   | 已归档  |
 | ---- | ------ | ------- |

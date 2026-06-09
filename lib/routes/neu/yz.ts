@@ -1,7 +1,8 @@
-import { DataItem, Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { DataItem, Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
 import timezone from '@/utils/timezone';
 
@@ -39,7 +40,7 @@ const parsePage = async (items, type) => {
                 })(),
                 author: type === DOWNLOAD_ID ? DOWNLOAD_AUTHOR : '',
             };
-            if (type === DOWNLOAD_ID && /\.(pdf|docx?|xlsx?|zip|rar|7z)$/i.test(url)) {
+            if (type === DOWNLOAD_ID && /\.(?:pdf|docx?|xlsx?|zip|rar|7z)$/i.test(url)) {
                 resultItem.description = `
                         <p>${title}</p><br/>
                         <a href="${url}">点击进入下载地址传送门～</a>
@@ -161,12 +162,11 @@ export const route: Route = {
     url: 'yz.neu.edu.cn',
     maintainers: ['paintstar'],
     handler,
-    description: `
-| 分类名                     | 分类id      |
-| ------------------------- | ---------- |
-| 硕士公告                   | master1     |
-| 硕士简章                   | master2     |
-| 博士公告                   | phd1        |
-| 博士简章                   | phd2        |
-| 下载中心                   | download    |`,
+    description: `| 分类名   | 分类 id  |
+| -------- | -------- |
+| 硕士公告 | master1  |
+| 硕士简章 | master2  |
+| 博士公告 | phd1     |
+| 博士简章 | phd2     |
+| 下载中心 | download |`,
 };

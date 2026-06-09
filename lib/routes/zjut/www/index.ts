@@ -1,8 +1,9 @@
-import { Data, Route } from '@/types';
-import cache from '@/utils/cache';
-import { parseDate } from '@/utils/parse-date';
 import { load } from 'cheerio';
+
+import type { Data, Route } from '@/types';
+import cache from '@/utils/cache';
 import ofetch from '@/utils/ofetch';
+import { parseDate } from '@/utils/parse-date';
 import timezone from '@/utils/timezone';
 
 const rootUrl = 'https://www.zjut.edu.cn/';
@@ -31,15 +32,15 @@ export const route: Route = {
             target: '/www/:type',
         },
     ],
-    description: `| 板块 | 参数 |
-| ------- | ------- |
-| 学术动态 | xsdt_4662 |
-| 三创·人物 | 4527 |
-| 通知公告 | 4528 |
-| 美誉工大 | 5389 |
-| 智库工大 | 5390 |
-| 工大校历 | 4520 |
-| 校区班车 | xqbc |`,
+    description: `| 板块       | 参数       |
+| ---------- | ---------- |
+| 学术动态   | xsdt\\_4662 |
+| 三创・人物 | 4527       |
+| 通知公告   | 4528       |
+| 美誉工大   | 5389       |
+| 智库工大   | 5390       |
+| 工大校历   | 4520       |
+| 校区班车   | xqbc       |`,
 };
 
 async function handler(ctx) {

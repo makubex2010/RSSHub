@@ -1,7 +1,8 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
 
 export const route: Route = {
@@ -66,8 +67,8 @@ async function handler(ctx) {
 
                 const content = load(detailResponse.data);
 
-                content('.gatsby-resp-image-link').each(function () {
-                    content(this).html(`<img src="${content(this).find('img').attr('src')}">`);
+                content('.gatsby-resp-image-link').each((_, el) => {
+                    content(el).html(`<img src="${content(el).find('img').attr('src')}">`);
                 });
 
                 item.description = content('.article__content').html();

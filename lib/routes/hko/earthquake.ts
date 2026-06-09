@@ -1,6 +1,7 @@
-import { Route } from '@/types';
-import ofetch from '@/utils/ofetch';
 import { load } from 'cheerio';
+
+import type { Route } from '@/types';
+import ofetch from '@/utils/ofetch';
 import { parseDate } from '@/utils/parse-date';
 import timezone from '@/utils/timezone';
 
@@ -11,7 +12,7 @@ export const route: Route = {
     handler,
     example: '/hko/earthquake',
     categories: ['forecast'],
-    description: '来自香港天文台的全球5级以上地震记录',
+    description: '来自香港天文台的全球 5 级以上地震记录',
 };
 
 async function handler() {

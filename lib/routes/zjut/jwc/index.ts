@@ -1,8 +1,9 @@
-import { Data, Route } from '@/types';
-import cache from '@/utils/cache';
-import { parseDate } from '@/utils/parse-date';
 import { load } from 'cheerio';
+
+import type { Data, Route } from '@/types';
+import cache from '@/utils/cache';
 import ofetch from '@/utils/ofetch';
+import { parseDate } from '@/utils/parse-date';
 import timezone from '@/utils/timezone';
 
 const rootUrl = 'http://www.jwc.zjut.edu.cn/';
@@ -31,21 +32,21 @@ export const route: Route = {
             target: '/jwc/:type',
         },
     ],
-    description: `| 板块 | 参数 |
-| ------- | ------- |
-| 新闻动态 | 1838 |
-| 课程思政 | 1842 |
-| 校内动态 | 2613 |
-| 学习思考 | 2614 |
-| 成果展示 | 2615 |
-| 媒体聚焦 | 2616 |
-| 制度文件 | 2617 |
-| 教学运行 | 1849 |
-| 实践竞赛 | 1850 |
-| 留学生Notice | 1851 |
-| 项目申报 | 1852 |
-| 学籍管理 | 1853 |
-| 办事指南 | 1839 |`,
+    description: `| 板块          | 参数 |
+| ------------- | ---- |
+| 新闻动态      | 1838 |
+| 课程思政      | 1842 |
+| 校内动态      | 2613 |
+| 学习思考      | 2614 |
+| 成果展示      | 2615 |
+| 媒体聚焦      | 2616 |
+| 制度文件      | 2617 |
+| 教学运行      | 1849 |
+| 实践竞赛      | 1850 |
+| 留学生 Notice | 1851 |
+| 项目申报      | 1852 |
+| 学籍管理      | 1853 |
+| 办事指南      | 1839 |`,
 };
 
 async function handler(ctx) {

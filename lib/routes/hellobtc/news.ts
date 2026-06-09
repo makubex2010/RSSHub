@@ -1,6 +1,7 @@
-import { Route } from '@/types';
-import got from '@/utils/got';
 import { load } from 'cheerio';
+
+import type { Route } from '@/types';
+import got from '@/utils/got';
 import { parseDate } from '@/utils/parse-date';
 import timezone from '@/utils/timezone';
 
@@ -47,7 +48,7 @@ async function handler() {
         .filter(Boolean);
 
     return {
-        title: `白话区块链 - 快讯`,
+        title: '白话区块链 - 快讯',
         link: url,
         item: items,
     };

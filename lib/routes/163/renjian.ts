@@ -1,8 +1,9 @@
-import { Route } from '@/types';
-import cache from '@/utils/cache';
-import got from '@/utils/got';
 import { load } from 'cheerio';
 import iconv from 'iconv-lite';
+
+import type { DataItem, Route } from '@/types';
+import cache from '@/utils/cache';
+import got from '@/utils/got';
 import { parseDate } from '@/utils/parse-date';
 import timezone from '@/utils/timezone';
 
@@ -54,7 +55,7 @@ async function handler(ctx) {
 
     const data = iconv.decode(response.data, 'gbk');
 
-    let items = {};
+    let items: DataItem[];
 
     const urls = data.match(/url:"(.*)",/g);
 
@@ -90,7 +91,7 @@ async function handler(ctx) {
                     .text()
                     .match(/renjian_author = '(.*)'/)[1];
                 item.description = content('#endText').html() ?? content('#content').html();
-                item.pubDate = timezone(parseDate(content('.pub_time').text() ?? content('.post_info').text().split('来源:')[0].trim()), 8);
+                item.pubDate = timezone(parseDate(content('.pub_time').text() ?? content('.post_info').text().split('来源:', 1)[0].trim()), 8);
 
                 return item;
             })

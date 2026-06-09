@@ -1,8 +1,8 @@
-import { Route } from '@/types';
+import type { Route } from '@/types';
 import got from '@/utils/got';
 
 async function getCategoryId(categories) {
-    const baseUrl = `https://macmenubar.com/wp-json/wp/v2/categories`;
+    const baseUrl = 'https://macmenubar.com/wp-json/wp/v2/categories';
     const { data: response } = await got(baseUrl, {
         method: 'GET',
         searchParams: {

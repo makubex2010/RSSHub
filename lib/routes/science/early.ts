@@ -1,8 +1,9 @@
-import { Route } from '@/types';
-import cache from '@/utils/cache';
 import { load } from 'cheerio';
+
+import type { Route } from '@/types';
+import cache from '@/utils/cache';
 import got from '@/utils/got';
-import puppeteer from '@/utils/puppeteer';
+import playwright from '@/utils/playwright';
 
 import { baseUrl, fetchDesc, getItem } from './utils';
 
@@ -28,7 +29,7 @@ export const route: Route = {
     name: 'First Release',
     maintainers: ['y9c', 'TonyRL'],
     handler,
-    description: `*only Science, Science Immunology and Science Translational Medicine have first release*`,
+    description: '*only Science, Science Immunology and Science Translational Medicine have first release*',
 };
 
 async function handler(ctx) {
@@ -46,9 +47,9 @@ async function handler(ctx) {
         .toArray()
         .map((item) => getItem(item, $));
 
-    const browser = await puppeteer();
-    const items = await fetchDesc(list, browser, cache.tryGet);
-    await browser.close();
+    const context = await playwright();
+    const items = await fetchDesc(list, context, cache.tryGet);
+    await context.close();
 
     return {
         title: $('head title').text(),

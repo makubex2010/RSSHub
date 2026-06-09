@@ -1,11 +1,13 @@
-import type { Data, DataItem, Route } from '@/types';
-import type { Context } from 'hono';
-import { config } from '@/config';
-import ofetch from '@/utils/ofetch';
 import { load } from 'cheerio';
-import { fetchThread, generateDescription, getDate, bbsOrigin } from '../utils';
+import type { Context } from 'hono';
 import pMap from 'p-map';
+
+import { config } from '@/config';
+import type { Data, DataItem, Route } from '@/types';
 import cache from '@/utils/cache';
+import ofetch from '@/utils/ofetch';
+
+import { bbsOrigin, fetchThread, generateDescription, getDate } from '../utils';
 
 export const route: Route = {
     name: 'BBS - 板块',
@@ -36,7 +38,7 @@ export const route: Route = {
         ],
     },
     description: `::: warning
-百合会BBS访问部分板块需要用户登录认证，请参考配置说明
+百合会 BBS 访问部分板块需要用户登录认证，请参考配置说明
 :::`,
 };
 
@@ -61,7 +63,8 @@ async function handler(ctx: Context): Promise<Data> {
 
     const link = `${bbsOrigin}/forum.php?${params.toString()}`;
 
-    const $ = load(await ofetch<string>(link, { headers }));
+    const html = await ofetch<string>(link, { headers });
+    const $ = load(html);
 
     const title = $('title').text().replace(' -  百合会 -  Powered by Discuz!', '');
 

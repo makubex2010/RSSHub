@@ -1,9 +1,10 @@
-import { Route } from '@/types';
-import cache from '@/utils/cache';
 import { load } from 'cheerio';
+
+import type { Route } from '@/types';
+import cache from '@/utils/cache';
+import ofetch from '@/utils/ofetch';
 import { parseDate } from '@/utils/parse-date';
 import { fetchArticle } from '@/utils/wechat-mp';
-import ofetch from '@/utils/ofetch';
 
 const baseTitle = '上海交通大学研究生招生网招考信息';
 const baseUrl = 'https://yzb.sjtu.edu.cn/index/zkxx/';
@@ -68,7 +69,7 @@ async function handler(ctx) {
 
     return {
         link: pageUrl,
-        title: `${baseTitle} -- ${$('title').text().split('-')[0]}`,
+        title: `${baseTitle} -- ${$('title').text().split('-', 1)[0]}`,
         item: items,
     };
 }

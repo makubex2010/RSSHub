@@ -1,10 +1,11 @@
+import crypto from 'node:crypto';
+
+import { config } from '@/config';
 import type { DataItem, Route } from '@/types';
 import cache from '@/utils/cache';
-import crypto from 'node:crypto';
 import ofetch from '@/utils/ofetch';
-import timezone from '@/utils/timezone';
 import { parseDate } from '@/utils/parse-date';
-import { config } from '@/config';
+import timezone from '@/utils/timezone';
 
 const qingtingId = config.qingting.id ?? '';
 
@@ -31,7 +32,7 @@ export const route: Route = {
     name: '播客',
     maintainers: ['RookieZoe', 'huyyi', 'pseudoyu'],
     handler,
-    description: `获取的播放 URL 有效期只有 1 天，需要开启播客 APP 的自动下载功能。`,
+    description: '获取的播放 URL 有效期只有 1 天，需要开启播客 APP 的自动下载功能。',
 };
 
 function getMediaUrl(channelId: string, mediaId: string) {
@@ -82,7 +83,7 @@ async function handler(ctx) {
                     },
                 });
 
-                const detail = JSON.parse(detailRes.match(/},"program":(.*?),"plist":/)[1]);
+                const detail = JSON.parse(detailRes.match(/\},"program":(.*?),"plist":/)[1]);
 
                 const rssItem = {
                     title: item.title,

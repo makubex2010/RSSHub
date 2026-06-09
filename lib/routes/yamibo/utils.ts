@@ -1,9 +1,10 @@
+import type { Cheerio, Element } from 'cheerio';
+import { JSDOM } from 'jsdom';
+
+import { config } from '@/config';
+import ofetch from '@/utils/ofetch';
 import { parseDate } from '@/utils/parse-date';
 import timezone from '@/utils/timezone';
-import ofetch from '@/utils/ofetch';
-import { config } from '@/config';
-import { JSDOM } from 'jsdom';
-import type { Cheerio, Element } from 'cheerio';
 
 export const bbsOrigin = 'https://bbs.yamibo.com';
 
@@ -44,12 +45,12 @@ export async function fetchThread(
 
     // sometimes may trigger anti-crawling measures
     if (data.startsWith('<script type="text/javascript">') && retry <= 3) {
-        let script = data.match(/<script type="text\/javascript">([\S\s]*?)<\/script>/)![1];
+        let script = data.match(/<script type="text\/javascript">([\s\S]*?)<\/script>/)![1];
         script = script.replace(/= location;|=location;/, '=fakeLocation;');
         script = script.replace('location.replace', 'foo');
         script = script.replace('location.assign', 'foo');
-        script = script.replace(/location\[[^\]]*]\(/, 'foo(');
-        script = script.replace(/location\[[^\]]*]=/, 'window.locationValue=');
+        script = script.replace(/location\[[^\]]*\]\(/, 'foo(');
+        script = script.replace(/location\[[^\]]*\]=/, 'window.locationValue=');
         script = script.replace('location.href=', 'window.locationValue=');
         script = script.replace('location=', 'window.locationValue=');
         const dom = new JSDOM(
@@ -78,7 +79,7 @@ export async function fetchThread(
                 };
             }
         }
-        return await fetchThread(tid, options, ++retry);
+        return await fetchThread(tid, options, retry + 1);
     }
 
     return {

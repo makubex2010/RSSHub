@@ -1,6 +1,7 @@
-import { Route } from '@/types';
-import got from '@/utils/got';
 import { load } from 'cheerio';
+
+import type { Route } from '@/types';
+import got from '@/utils/got';
 import { parseDate } from '@/utils/parse-date';
 import timezone from '@/utils/timezone';
 
@@ -29,7 +30,7 @@ async function handler(ctx) {
         .toArray()
         .flatMap((item) => {
             item = $(item);
-            const dateStr = item.find('h2').text().split(' ')[0];
+            const dateStr = item.find('h2').text().split(' ', 1)[0];
             return item
                 .find('a')
                 .toArray()

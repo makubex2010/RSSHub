@@ -1,9 +1,10 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import { config } from '@/config';
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import ofetch from '@/utils/ofetch';
-import { load } from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
-import { config } from '@/config';
 
 type AnnounceItem = {
     announceId: string;
@@ -29,7 +30,7 @@ export const route: Route = {
 | :-----: | :----: | :------: |
 | Android |   IOS  | Bilibili |
 
-  分组
+分组
 
 | 全部 | 系统公告 | 活动公告 |
 | :--: | :------: | :------: |

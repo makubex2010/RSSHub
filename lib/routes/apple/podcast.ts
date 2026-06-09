@@ -1,9 +1,10 @@
-import { Route } from '@/types';
-import ofetch from '@/utils/ofetch';
 import { load } from 'cheerio';
-import { parseDate } from '@/utils/parse-date';
-import cache from '@/utils/cache';
+
 import { config } from '@/config';
+import type { Route } from '@/types';
+import cache from '@/utils/cache';
+import ofetch from '@/utils/ofetch';
+import { parseDate } from '@/utils/parse-date';
 
 export const route: Route = {
     path: '/podcast/:id/:region?',
@@ -36,14 +37,15 @@ async function handler(ctx) {
     const { id, region } = ctx.req.param();
     const numericId = id.match(/id(\d+)/)?.[1];
     const baseUrl = 'https://podcasts.apple.com';
-    const link = `${baseUrl}/${region || `cn`}/podcast/${id}`;
+    const link = `${baseUrl}/${region || 'cn'}/podcast/${id}`;
 
     const response = await ofetch(link);
 
     const $ = load(response);
 
-    const serializedServerData = JSON.parse($('#serialized-server-data').text());
-    const header = serializedServerData[0].data.shelves.find((item) => item.contentType === 'showHeaderRegular').items[0];
+    const rawServerData = JSON.parse($('#serialized-server-data').text());
+    const serverData = (Array.isArray(rawServerData) ? rawServerData : rawServerData.data)[0].data;
+    const header = serverData.shelves.find((item) => item.contentType === 'showHeaderRegular').items[0];
 
     const bearerToken = await cache.tryGet(
         'apple:podcast:bearer',
@@ -92,7 +94,7 @@ async function handler(ctx) {
         };
     });
 
-    const channel = episodeReponse.data.find((d) => d.type === 'podcast-episodes').relationships.channel.data.find((d) => d.type === 'podcast-channels')?.attributes;
+    const channel = episodeReponse.data.find((d) => d.type === 'podcast-episodes')?.relationships?.channel?.data?.find((d) => d.type === 'podcast-channels')?.attributes;
 
     return {
         title: channel?.name ?? header.title,

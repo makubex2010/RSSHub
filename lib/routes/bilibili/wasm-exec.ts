@@ -1,6 +1,8 @@
+// oxlint-disable unicorn/prefer-math-trunc unicorn-js/no-this-outside-of-class unicorn-js/no-array-from-fill
+// oxlint-disable no-unused-vars
 /* eslint-disable prefer-rest-params */
 /* eslint-disable default-case */
-/* eslint-disable unicorn/consistent-function-scoping */
+// oxlint-disable unicorn/consistent-function-scoping
 /* eslint-disable no-console */
 // Copyright 2018 The Go Authors. All rights reserved.
 // Use of this source code is governed by a BSD-style
@@ -147,7 +149,6 @@
         };
     }
 
-    // eslint-disable-next-line n/no-unsupported-features/node-builtins
     if (!globalThis.crypto) {
         throw new Error('globalThis.crypto is not available, polyfill required (crypto.getRandomValues only)');
     }
@@ -208,7 +209,7 @@
             };
 
             const storeValue = (addr, v) => {
-                const nanHead = 0x7F_F8_00_00;
+                const nanHead = 0x7f_f8_00_00;
 
                 if (typeof v === 'number' && v !== 0) {
                     if (Number.isNaN(v)) {
@@ -320,7 +321,7 @@
 
                     // func resetMemoryDataView()
                     'runtime.resetMemoryDataView': (sp) => {
-                        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                        // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-useless-assignment
                         sp >>>= 0;
                         this.mem = new DataView(this._inst.exports.mem.buffer);
                     },
@@ -373,7 +374,6 @@
                     // func getRandomData(r []byte)
                     'runtime.getRandomData': (sp) => {
                         sp >>>= 0;
-                        // eslint-disable-next-line n/no-unsupported-features/node-builtins
                         crypto.getRandomValues(loadSlice(sp + 8));
                     },
 
@@ -634,7 +634,7 @@
 
         _makeFuncWrapper(id) {
             // somehow avoiding aliasing this with an arrow function doesn't work
-            // eslint-disable-next-line unicorn/no-this-assignment, @typescript-eslint/no-this-alias
+            // oxlint-disable-next-line unicorn/no-this-assignment typescript/no-this-alias
             const go = this;
             return function () {
                 const event = { id, this: this, args: arguments };

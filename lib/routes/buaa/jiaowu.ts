@@ -1,8 +1,9 @@
-import { Data, Route } from '@/types';
-import { Context } from 'hono';
+import { load } from 'cheerio';
+import type { Context } from 'hono';
+
+import type { Data, Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
 import timezone from '@/utils/timezone';
 
@@ -25,6 +26,7 @@ export const route: Route = {
 
 1. 新闻快讯页面的链接中 \`onclick="javascript:onNewsList('03');return false;"\`，对应的路径参数为 \`03\`，完整路由为 \`/buaa/jiaowu/03\`；
 2. 通知公告 > 公示专区页面的链接中 \`onclick="javascript:onNewsList2('0203','2');return false;"\`，对应的路径参数为 \`0203\`，完整路由为 \`/buaa/jiaowu/0203\`。
+
 :::`,
     categories: ['university'],
     features: {

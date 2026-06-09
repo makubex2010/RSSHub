@@ -1,6 +1,7 @@
-import { Route } from '@/types';
-import got from '@/utils/got';
 import { load } from 'cheerio';
+
+import type { Route } from '@/types';
+import got from '@/utils/got';
 
 export const route: Route = {
     path: '/system-update',
@@ -46,7 +47,7 @@ async function handler() {
                 .toArray()
                 .map((element) => $(element).html())
                 .join('\n');
-            const matched_version = /(\d\.)+\d/.exec(heading);
+            const matched_version = /(?:\d\.)+\d/.exec(heading);
 
             return {
                 title: heading,

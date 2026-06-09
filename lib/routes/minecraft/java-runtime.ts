@@ -1,14 +1,15 @@
-import { DataItem, Route } from '@/types';
+import type { Context } from 'hono';
+
+import type { DataItem, Route } from '@/types';
 import got from '@/utils/got';
-import { Context } from 'hono';
 
 export const route: Route = {
     path: '/java-runtime/:arch?/:javaType?',
     categories: ['game'],
     example: '/minecraft/java-runtime',
     parameters: {
-        arch: `Arch, \`all\` by default`,
-        javaType: `Java runtime type, \`all\` by default`,
+        arch: 'Arch, `all` by default',
+        javaType: 'Java runtime type, `all` by default',
     },
     features: {
         requireConfig: false,
@@ -27,8 +28,7 @@ export const route: Route = {
     maintainers: ['xtexChooser'],
     handler,
     url: 'minecraft.net/',
-    description: `
-arch:
+    description: `arch:
 
 - gamecore (Currently not used by Mojang)
 - linux
@@ -47,8 +47,7 @@ javaType:
 - java-runtime-gamma
 - java-runtime-gamma-snapshot
 - jre-legacy
-- minecraft-java-exe (Only on Windows)
-`,
+- minecraft-java-exe (Only on Windows)`,
     zh: {
         name: 'Java运行时',
     },

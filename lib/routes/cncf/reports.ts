@@ -1,7 +1,8 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
 
 const rootURL = 'https://www.cncf.io';
@@ -46,7 +47,7 @@ async function handler() {
     );
 
     return {
-        title: `CNCF - Reports`,
+        title: 'CNCF - Reports',
         link: url,
         item: items,
     };

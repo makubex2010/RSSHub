@@ -1,12 +1,14 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import InvalidParameterError from '@/errors/types/invalid-parameter';
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
+import { isValidHost } from '@/utils/valid-host';
+
 import defaults from './defaults';
 import shortcuts from './shortcuts';
-import { isValidHost } from '@/utils/valid-host';
-import InvalidParameterError from '@/errors/types/invalid-parameter';
 
 export const route: Route = {
     path: ['/*/*', '/:0?'],
@@ -23,7 +25,7 @@ async function handler(ctx) {
 
     let items;
     let category = ctx.params[1] ?? (Object.hasOwn(defaults, site) ? defaults[site] : '');
-    category = Object.hasOwn(shortcuts, site) ? (Object.hasOwn(shortcuts[site], category) ? shortcuts[site][category] : category) : category;
+    category = Object.hasOwn(shortcuts, site) && Object.hasOwn(shortcuts[site], category) ? shortcuts[site][category] : category;
 
     const rootUrl = `https://${site}.dlut.edu.cn`;
     const currentUrl = `${rootUrl}/${category}.htm`;

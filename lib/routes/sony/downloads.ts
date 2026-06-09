@@ -1,6 +1,8 @@
-import { Route } from '@/types';
-import got from '@/utils/got';
 import { load } from 'cheerio';
+
+import type { Route } from '@/types';
+import got from '@/utils/got';
+
 const host = 'https://www.sony.com';
 export const route: Route = {
     path: '/downloads/:productType/:productId',
@@ -24,7 +26,7 @@ export const route: Route = {
     maintainers: ['EthanWng97'],
     handler,
     description: `::: tip
-  Open \`https://www.sony.com/electronics/support\` and search for the corresponding product, such as \`Sony A7M4\`, the website corresponding to which is \`https://www.sony.com/electronics/support/e-mount-body-ilce-7-series/ilce-7m4/downloads\`, where \`productType\` is \`e-mount-body-ilce-7-series\` and \`productId\` is \`ilce-7m4\`.
+Open \`https://www.sony.com/electronics/support\` and search for the corresponding product, such as \`Sony A7M4\`, the website corresponding to which is \`https://www.sony.com/electronics/support/e-mount-body-ilce-7-series/ilce-7m4/downloads\`, where \`productType\` is \`e-mount-body-ilce-7-series\` and \`productId\` is \`ilce-7m4\`.
 :::`,
 };
 
@@ -40,7 +42,7 @@ async function handler(ctx) {
     const $ = load(data);
     const contents = $('script:contains("window.__PRELOADED_STATE__.downloads")').text();
 
-    const regex = /window\.__PRELOADED_STATE__\.downloads\s*=\s*({.*?});\s*window\.__PRELOADED_STATE__/s;
+    const regex = /window\.__PRELOADED_STATE__\.downloads\s*=\s*(\{.*?\});\s*window\.__PRELOADED_STATE__/s;
 
     const match = contents.match(regex);
     let results = {};

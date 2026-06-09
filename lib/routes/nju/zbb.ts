@@ -1,6 +1,7 @@
-import { Route } from '@/types';
-import got from '@/utils/got';
 import { load } from 'cheerio';
+
+import type { Route } from '@/types';
+import got from '@/utils/got';
 import { parseDate } from '@/utils/parse-date';
 import timezone from '@/utils/timezone';
 
@@ -28,7 +29,7 @@ export const route: Route = {
 async function handler(ctx) {
     const type = ctx.req.param('type');
     if (type === 'zfcgyxgk') {
-        const url = `https://zbb.nju.edu.cn/zfcgyxgk/index.chtml`;
+        const url = 'https://zbb.nju.edu.cn/zfcgyxgk/index.chtml';
 
         const response = await got({
             method: 'get',

@@ -1,6 +1,7 @@
-import { Route } from '@/types';
-import got from '@/utils/got';
 import { load } from 'cheerio';
+
+import type { Route } from '@/types';
+import got from '@/utils/got';
 import { parseDate } from '@/utils/parse-date';
 import timezone from '@/utils/timezone';
 
@@ -35,7 +36,7 @@ async function handler() {
 
     const items = await Promise.all(
         Object.keys(category_dict).map(async (c) => {
-            const response = await got(`https://dafls.nju.edu.cn/13167/list.htm`);
+            const response = await got('https://dafls.nju.edu.cn/13167/list.htm');
 
             const data = response.data;
             const $ = load(data);

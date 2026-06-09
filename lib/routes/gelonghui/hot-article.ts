@@ -1,7 +1,10 @@
-import { Route, ViewType } from '@/types';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
+import { ViewType } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
+
 import { parseItem } from './utils';
 
 export const route: Route = {
@@ -40,7 +43,7 @@ export const route: Route = {
 
 async function handler(ctx) {
     const type = ctx.req.param('type') === 'week' ? 1 : 0;
-    const baseUrl = `https://www.gelonghui.com`;
+    const baseUrl = 'https://www.gelonghui.com';
     const { data: response } = await got(baseUrl);
     const $ = load(response);
 

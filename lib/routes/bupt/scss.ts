@@ -1,9 +1,10 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
-import timezone from '@/utils/timezone';
 import { parseDate } from '@/utils/parse-date';
+import timezone from '@/utils/timezone';
 
 export const route: Route = {
     path: '/scss/tzgg',
@@ -72,8 +73,8 @@ async function handler() {
                 const content = load(detailResponse.data);
                 const newsContent = content('.v_news_content');
 
-                newsContent.find('p, span, strong').each(function () {
-                    const element = content(this);
+                newsContent.find('p, span, strong').each((_, el) => {
+                    const element = content(el);
                     const text = element.text().trim();
                     if (text === '') {
                         element.remove();

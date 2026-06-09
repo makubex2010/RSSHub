@@ -1,9 +1,10 @@
+import { load } from 'cheerio';
+
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
+import logger from '@/utils/logger';
 import { parseDate } from '@/utils/parse-date';
 import timezone from '@/utils/timezone';
-import logger from '@/utils/logger';
 
 export async function handler(ctx) {
     const { category, topic } = ctx.req.param();
@@ -43,7 +44,7 @@ export async function handler(ctx) {
                     .map((item) => $(item).find('a').text());
                 // Process date
                 const timeText = $('p.dna-update').text();
-                const dateMatch = timeText.match(/Updated\s*:\s*([\w\s,:\d]+?)(?:\s*\||$)/);
+                const dateMatch = timeText.match(/Updated\s*:([\w\s,:]+)/);
                 let time = dateMatch ? dateMatch[1].trim() : '';
                 time = time.replace(/\s+IST$/, '');
                 const pubDate = timezone(parseDate(time), +5.5);

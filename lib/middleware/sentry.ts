@@ -1,8 +1,9 @@
-import { MiddlewareHandler } from 'hono';
-import logger from '@/utils/logger';
-import { config } from '@/config';
 import * as Sentry from '@sentry/node';
+import type { MiddlewareHandler } from 'hono';
+
+import { config } from '@/config';
 import { getRouteNameFromPath } from '@/utils/helpers';
+import logger from '@/utils/logger';
 
 if (config.sentry.dsn) {
     Sentry.init({
@@ -16,7 +17,7 @@ if (config.sentry.dsn) {
 const middleware: MiddlewareHandler = async (ctx, next) => {
     const time = Date.now();
     await next();
-    if (config.sentry.dsn && Date.now() - time >= config.sentry.routeTimeout) {
+    if (config.sentry.dsn && Date.now() - time >= config.errorTrackingRouteTimeout) {
         Sentry.withScope((scope) => {
             scope.setTag('name', getRouteNameFromPath(ctx.req.path));
             Sentry.captureException(new Error('Route Timeout'));

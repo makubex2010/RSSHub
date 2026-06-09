@@ -1,11 +1,12 @@
-import { Route } from '@/types';
-import cache from '@/utils/cache';
-import { getToken } from './token';
-import getIllustFollows from './api/get-illust-follows';
 import { config } from '@/config';
-import pixivUtils from './utils';
-import { parseDate } from '@/utils/parse-date';
 import ConfigNotFoundError from '@/errors/types/config-not-found';
+import type { Route } from '@/types';
+import cache from '@/utils/cache';
+import { parseDate } from '@/utils/parse-date';
+
+import getIllustFollows from './api/get-illust-follows';
+import { getToken } from './token';
+import pixivUtils from './utils';
 
 export const route: Route = {
     path: '/user/illustfollows',
@@ -36,7 +37,7 @@ export const route: Route = {
     handler,
     url: 'www.pixiv.net/bookmark_new_illust.php',
     description: `::: warning
-  Only for self-hosted
+Only for self-hosted
 :::`,
 };
 
@@ -53,9 +54,9 @@ async function handler() {
     const response = await getIllustFollows(token);
     const illusts = response.data.illusts;
     return {
-        title: `Pixiv关注的新作品`,
+        title: 'Pixiv关注的新作品',
         link: 'https://www.pixiv.net/bookmark_new_illust.php',
-        description: `Pixiv关注的画师们的最新作品`,
+        description: 'Pixiv关注的画师们的最新作品',
         item: illusts.map((illust) => {
             const images = pixivUtils.getImgs(illust);
             return {

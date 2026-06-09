@@ -1,8 +1,9 @@
-import { Route } from '@/types';
-import got from '@/utils/got';
 import { load } from 'cheerio';
-import { parseDate } from '@/utils/parse-date';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
+import got from '@/utils/got';
+import { parseDate } from '@/utils/parse-date';
 import timezone from '@/utils/timezone';
 
 export const route: Route = {
@@ -27,8 +28,8 @@ export const route: Route = {
     name: '计算机学院',
     maintainers: ['vicguo0724'],
     description: `| 最新动态 | 学院公告 | 学生工作通知 | 科研信息 | 本科生教学 | 党团园地 | 研究生招生 | 研究生教学 | 境外交流 |
-| -------- | -------- | ---------- | -------- | ---------- | -------- | ---------- | ---------- | -------- |
-| 13291    | 13292    | 13293      | 13294    | 13295      | 13296    | 13297      | 13298      | 13299    |`,
+| -------- | -------- | ------------ | -------- | ---------- | -------- | ---------- | ---------- | -------- |
+| 13291    | 13292    | 13293        | 13294    | 13295      | 13296    | 13297      | 13298      | 13299    |`,
     url: 'cc.nankai.edu.cn',
     handler: async (ctx) => {
         // 从 URL 参数中获取通知分类

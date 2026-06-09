@@ -1,6 +1,7 @@
-import { Route } from '@/types';
-import got from '@/utils/got';
 import { load } from 'cheerio';
+
+import type { Route } from '@/types';
+import got from '@/utils/got';
 import { parseDate } from '@/utils/parse-date';
 
 export const route: Route = {
@@ -51,7 +52,7 @@ async function handler() {
             let description = rightNode.text();
             const imgUrl = $item('.news-img img');
             if (imgUrl.length) {
-                imgUrl.attr('src', imgUrl.attr('src').split('?x-')[0]);
+                imgUrl.attr('src', imgUrl.attr('src').split('?x-', 1)[0]);
                 description += `<br>${imgUrl.parent().html()}`;
             }
             return {

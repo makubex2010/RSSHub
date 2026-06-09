@@ -1,8 +1,9 @@
-import { Data, Route } from '@/types';
-import cache from '@/utils/cache';
-import { parseDate } from '@/utils/parse-date';
 import { load } from 'cheerio';
+
+import type { Data, Route } from '@/types';
+import cache from '@/utils/cache';
 import ofetch from '@/utils/ofetch';
+import { parseDate } from '@/utils/parse-date';
 import timezone from '@/utils/timezone';
 
 const rootUrl = 'https://www.qztc.edu.cn/sjxy/';
@@ -31,8 +32,8 @@ export const route: Route = {
             target: '/sjxy/:type',
         },
     ],
-    description: `| 板块 | 参数 |
-| ------- | ------- |
+    description: `| 板块     | 参数 |
+| -------- | ---- |
 | 学院概况 | 1938 |
 | 学院动态 | 1939 |
 | 学科建设 | 1940 |
@@ -43,8 +44,7 @@ export const route: Route = {
 | 团学工作 | 1945 |
 | 资料下载 | 1947 |
 | 采购信息 | 1948 |
-| 信息公开 | xxgk |
-`,
+| 信息公开 | xxgk |`,
     // | 学院简介 | 1949 |
     // | 学院领导 | 1950 |
     // | 组织机构 | 1951 |

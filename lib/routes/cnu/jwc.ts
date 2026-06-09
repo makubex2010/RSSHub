@@ -1,7 +1,8 @@
-import got from '@/utils/got';
 import { load } from 'cheerio';
+
+import type { Route } from '@/types';
+import got from '@/utils/got';
 import { parseDate } from '@/utils/parse-date';
-import { Route } from '@/types';
 
 export const route: Route = {
     path: '/jwc',
@@ -51,7 +52,7 @@ async function handler() {
             return {
                 title: item.find('span.title').text().trim(),
                 link: linkUrl,
-                pubDate: pubDate || undefined,
+                pubDate,
                 category: categoryName ? [categoryName] : undefined,
                 description: '',
             };

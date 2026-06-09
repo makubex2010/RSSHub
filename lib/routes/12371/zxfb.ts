@@ -1,10 +1,10 @@
-import got from '@/utils/got';
 import * as cheerio from 'cheerio';
+
+import type { Route } from '@/types';
+import cache from '@/utils/cache';
+import got from '@/utils/got';
 import { parseDate } from '@/utils/parse-date';
 import timezone from '@/utils/timezone';
-import cache from '@/utils/cache';
-
-import { Route } from '@/types';
 
 const handler = async (ctx) => {
     const { category = 'zxfb' } = ctx.req.param();
@@ -16,7 +16,7 @@ const handler = async (ctx) => {
 
     const $ = cheerio.load(response.data);
 
-    const pattern = /item=(\[{.*?}]);/;
+    const pattern = /item=(\[\{.*?\}\]);/;
     const newsList = JSON.parse($('script[language="javascript"]').text().match(pattern)?.[1].replaceAll("'", '"') || '[]');
 
     const topNewsList = newsList.slice(0, limit).map((item) => ({

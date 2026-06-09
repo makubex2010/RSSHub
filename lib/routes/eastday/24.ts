@@ -1,9 +1,10 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
-import timezone from '@/utils/timezone';
 import { parseDate } from '@/utils/parse-date';
+import timezone from '@/utils/timezone';
 
 const categories = {
     社会: 'shehui',
@@ -102,8 +103,8 @@ async function handler(ctx) {
                             });
                             const subContent = load(pageResponse.data);
 
-                            subContent('img').each(function () {
-                                subContent(this).attr('src', subContent(this).attr('data-url'));
+                            subContent('img').each((_, el) => {
+                                subContent(el).attr('src', subContent(el).attr('data-url'));
                             });
 
                             item.description += subContent('#J-contain_detail_cnt').html();

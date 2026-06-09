@@ -1,7 +1,8 @@
-import { Route } from '@/types';
-import ofetch from '@/utils/ofetch';
-import { config } from '@/config';
 import { load } from 'cheerio';
+
+import { config } from '@/config';
+import type { Route } from '@/types';
+import ofetch from '@/utils/ofetch';
 
 async function handler(ctx) {
     const { params } = ctx.req.param();
@@ -52,7 +53,7 @@ async function handler(ctx) {
     const maxTagsToShow = 3;
     const displayedTags = tags.slice(0, maxTagsToShow).join(', ') + (tags.length > maxTagsToShow ? ', ...' : '');
 
-    const feedTitle = `Hanime1 搜索结果` + (genre ? ` | 类型: ${genre}` : '') + (query ? ` | 关键词: ${query}` : '') + (tags.length ? ` | 标签: ${displayedTags}` : '');
+    const feedTitle = 'Hanime1 搜索结果' + (genre ? ` | 类型: ${genre}` : '') + (query ? ` | 关键词: ${query}` : '') + (tags.length ? ` | 标签: ${displayedTags}` : '');
 
     return {
         title: feedTitle,

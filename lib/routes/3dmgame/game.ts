@@ -1,8 +1,10 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
+
 import { parseArticle } from './utils';
 
 export const route: Route = {
@@ -41,7 +43,7 @@ async function handler(ctx) {
     const items = await Promise.all(list.map((item) => parseArticle(item, cache.tryGet)));
 
     return {
-        title: $('head title').text().split('_')[0],
+        title: $('head title').text().split('_', 1)[0],
         description: $('head meta[name="Description"]').attr('content'),
         link: url,
         item: items,

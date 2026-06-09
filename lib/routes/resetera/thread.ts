@@ -1,7 +1,8 @@
 // lib/routes/resetera/thread.ts
+import { load } from 'cheerio';
+
 import type { Route } from '@/types';
 import ofetch from '@/utils/ofetch';
-import { load } from 'cheerio';
 
 const BASE = 'https://www.resetera.com';
 
@@ -29,7 +30,7 @@ const pickFromSrcset = (v?: string) =>
     v
         ? v
               .split(',')
-              .map((s) => s.trim().split(' ')[0])
+              .map((s) => s.trim().split(' ', 1)[0])
               .find(Boolean)
         : undefined;
 
@@ -139,7 +140,7 @@ const handler: Route['handler'] = async (ctx) => {
                     category: hasImage ? ['image'] : undefined, // 有图打标签，供全局过滤使用
                 };
             })
-            .filter(Boolean) as NonNullable<any>[];
+            .filter(Boolean) as Array<NonNullable<any>>;
     });
 
     // 4) 显式排序：postId 降序；再按时间兜底

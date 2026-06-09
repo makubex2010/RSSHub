@@ -1,9 +1,10 @@
-import { Route } from '@/types';
-import cache from '@/utils/cache';
-import got from '@/utils/got';
 import { load } from 'cheerio';
 
-import { rootUrl, getItems, getItemInfo, processItems } from './util';
+import type { Route } from '@/types';
+import cache from '@/utils/cache';
+import got from '@/utils/got';
+
+import { getItemInfo, getItems, processItems, rootUrl } from './util';
 
 export const route: Route = {
     path: '/:id?/:downLinkType?',
@@ -29,7 +30,7 @@ export const route: Route = {
     handler,
     url: 'newzmz.com/',
     description: `::: tip
-  [雪国列车 (剧版)](https://nzmz.xyz/details-qEzRyY3v.html) 的下载页 URL 为 \`https://v.ys99.xyz/view/qEzRyY3v.html\`，即剧集 id 为 \`qEzRyY3v\`
+[雪国列车 (剧版)](https://nzmz.xyz/details-qEzRyY3v.html) 的下载页 URL 为 \`https://v.ys99.xyz/view/qEzRyY3v.html\`，即剧集 id 为 \`qEzRyY3v\`
 :::`,
 };
 

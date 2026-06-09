@@ -1,7 +1,8 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
 
 export const route: Route = {
     path: '/articles/:id?',
@@ -78,7 +79,7 @@ async function handler(ctx) {
     const headers = {
         Accept: 'application/json, text/plain, */*',
         'Content-Type': 'application/json;charset=UTF-8',
-        Referer: `https://m.igetget.com/share/course/free/detail?id=nb9L2q1e3OxKBPNsdoJrgN8P0Rwo6B`,
+        Referer: 'https://m.igetget.com/share/course/free/detail?id=nb9L2q1e3OxKBPNsdoJrgN8P0Rwo6B',
         Origin: 'https://m.igetget.com',
     };
     const max_id = 0;

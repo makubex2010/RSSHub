@@ -1,7 +1,8 @@
-import { Route } from '@/types';
-import got from '@/utils/got';
-import iconv from 'iconv-lite';
 import { load } from 'cheerio';
+import iconv from 'iconv-lite';
+
+import type { Route } from '@/types';
+import got from '@/utils/got';
 import { parseDate } from '@/utils/parse-date';
 
 export const route: Route = {
@@ -30,7 +31,7 @@ export const route: Route = {
 
 async function handler(ctx) {
     const id = ctx.req.param('id');
-    const baseUrl = `https://www.laimanhua8.com`;
+    const baseUrl = 'https://www.laimanhua8.com';
     const link = `${baseUrl}/kanmanhua/${id}/`;
 
     const { data: response } = await got(link, {

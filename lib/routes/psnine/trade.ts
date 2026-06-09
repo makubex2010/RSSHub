@@ -1,7 +1,7 @@
-import type { Route } from '@/types';
-
-import ofetch from '@/utils/ofetch';
 import * as cheerio from 'cheerio';
+
+import type { Route } from '@/types';
+import ofetch from '@/utils/ofetch';
 import { parseRelativeDate } from '@/utils/parse-date';
 
 const handler = async () => {
@@ -26,7 +26,7 @@ const handler = async () => {
                         .filter((_, i) => i.nodeType === 3)
                         .text()
                         .trim()
-                        .split(/\s{2,}/)[0]
+                        .split(/\s{2,}/, 1)[0]
                 ),
                 author: $item.find('.psnnode').text(),
                 category: $item

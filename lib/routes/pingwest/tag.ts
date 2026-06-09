@@ -1,7 +1,9 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
+
 import utils from './utils';
 
 export const route: Route = {
@@ -26,12 +28,12 @@ export const route: Route = {
 | ---- | ---- |
 | 1    | 2    |
 
-  参数
+参数
 
-  -   \`fulltext\`，全文输出，例如：\`/pingwest/tag/ChinaJoy/1/fulltext\`
+- \`fulltext\`，全文输出，例如：\`/pingwest/tag/ChinaJoy/1/fulltext\`
 
 ::: tip
-  该路由一次最多显示 30 条文章
+该路由一次最多显示 30 条文章
 :::`,
 };
 

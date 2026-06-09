@@ -1,6 +1,7 @@
-import { Route } from '@/types';
-import cache from '@/utils/cache';
 import { load } from 'cheerio';
+
+import type { Route } from '@/types';
+import cache from '@/utils/cache';
 import got from '@/utils/got';
 import { parseDate } from '@/utils/parse-date';
 import timezone from '@/utils/timezone';
@@ -41,9 +42,9 @@ export const route: Route = {
 | ------- | --- | ------- | ------ | ------- | ----- | ---- | -------- |
 | tuijian | TMT | jinrong | dichan | xiaofei | yiyao | wine | IPO      |
 
-  > Note: The default news num is \`30\`.
+> Note: The default news num is \`30\`.
 
-  > 注意：默认新闻条数是 \`30\`。`,
+> 注意：默认新闻条数是 \`30\`。`,
 };
 
 async function handler(ctx) {

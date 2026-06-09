@@ -1,9 +1,11 @@
+import path from 'node:path';
+
+import { load } from 'cheerio';
+
+import { config } from '@/config';
 import got from '@/utils/got';
 import logger from '@/utils/logger';
 import timezone from '@/utils/timezone';
-import { load } from 'cheerio';
-import path from 'node:path';
-import { config } from '@/config';
 
 const headers = {};
 const has_cookie = config.ehentai.ipb_member_id && config.ehentai.ipb_pass_hash && config.ehentai.sk;
@@ -159,7 +161,7 @@ function getBittorrent(cache, bittorrent_page_url) {
                     const match = onclick.match(/'(.*?)'/);
                     if (match) {
                         bittorrent_url = match[1];
-                        const match_p = bittorrent_url.match(/torrent\?p=(.*?)$/);
+                        const match_p = bittorrent_url.match(/torrent\?p=(.*)$/);
                         if (match_p) {
                             p = match_p[1];
                         }

@@ -1,9 +1,11 @@
-import { Route } from '@/types';
-import { getOriginUrl, getArticleDesc } from './utils';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import ofetch from '@/utils/ofetch';
-import { load } from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
+
+import { getArticleDesc, getOriginUrl } from './utils';
 
 export const route: Route = {
     path: '/tab/:tab?',
@@ -34,7 +36,7 @@ async function handler(ctx) {
     const topTitle = $('div.toptip > a').get(1);
     let feedTitle = $('title').text();
     if (isSpecial) {
-        feedTitle = feedTitle.split('_')[1];
+        feedTitle = feedTitle.split('_', 2)[1];
     } else if (topTitle) {
         feedTitle = $(topTitle).text();
     }

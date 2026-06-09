@@ -1,6 +1,7 @@
 import got from '@/utils/got';
-import { art } from '@/utils/render';
-import path from 'node:path';
+
+import { renderMedia } from './templates/desc';
+
 const baseUrl = 'https://meteor.today';
 
 const getBoards = (tryGet) =>
@@ -24,7 +25,7 @@ const getBoards = (tryGet) =>
     });
 
 const renderDesc = (desc) => {
-    const youTube = /(?:https?:\/\/)?(?:www\.)?youtu\.?be(?:\.com)?\/?.*(?:watch|embed)?(?:.*v=|v\/|\/)([\w-]+)&?/g;
+    const youTube = /(?:https?:\/\/)?(?:www\.)?youtu\.?be.*(?:v=|v\/|\/)([\w-]+)&?/g;
     const matchYouTube = desc.match(youTube);
     const matchImgur = desc.match(/https:\/\/i.imgur.com\/\w*.(jpg|png|gif|jpeg)/g);
     const matchVideo = desc.match(/(https:\/\/storage\.meteor\.today\/video\/[\da-f]{24}\.)(mp4|mov|avi|flv|wmv|mpeg|mkv)/gi);
@@ -34,7 +35,7 @@ const renderDesc = (desc) => {
     if (matchYouTube) {
         desc = desc.replaceAll(
             youTube,
-            art(path.join(__dirname, 'templates/desc.art'), {
+            renderMedia({
                 youTube: '$1',
             })
         );
@@ -43,7 +44,7 @@ const renderDesc = (desc) => {
         for (const img of matchImgur) {
             desc = desc.replace(
                 img,
-                art(path.join(__dirname, 'templates/desc.art'), {
+                renderMedia({
                     img,
                 })
             );
@@ -53,7 +54,7 @@ const renderDesc = (desc) => {
         for (const video of matchVideo) {
             desc = desc.replace(
                 video,
-                art(path.join(__dirname, 'templates/desc.art'), {
+                renderMedia({
                     video,
                 })
             );
@@ -63,7 +64,7 @@ const renderDesc = (desc) => {
         for (const sticker of matchSticker) {
             desc = desc.replace(
                 sticker,
-                art(path.join(__dirname, 'templates/desc.art'), {
+                renderMedia({
                     img: sticker,
                 })
             );
@@ -73,7 +74,7 @@ const renderDesc = (desc) => {
         for (const emoji of matchEmoji) {
             desc = desc.replace(
                 emoji,
-                art(path.join(__dirname, 'templates/desc.art'), {
+                renderMedia({
                     img: emoji,
                 })
             );

@@ -1,11 +1,12 @@
-import { Route } from '@/types';
+import { load } from 'cheerio'; // 可以使用类似 jQuery 的 API HTML 解析器
+
+import { config } from '@/config';
+import ConfigNotFoundError from '@/errors/types/config-not-found';
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 // 导入必要的模组
 import got from '@/utils/got'; // 自订的 got
-import { load } from 'cheerio'; // 可以使用类似 jQuery 的 API HTML 解析器
 import { parseDate } from '@/utils/parse-date';
-import { config } from '@/config';
-import ConfigNotFoundError from '@/errors/types/config-not-found';
 
 const baseUrl = 'https://sehuatang.org/';
 
@@ -107,8 +108,8 @@ async function handler(ctx) {
                 info.description = (postMessage.html() || '抓取原帖失败').replaceAll('ignore_js_op', 'div');
 
                 const dateString = $('.authi em').first().text();
-                const datestampString = dateString.split(' ')[1];
-                const timestampString = dateString.split(' ')[2];
+                const datestampString = dateString.split(' ', 2)[1];
+                const timestampString = dateString.split(' ', 3)[2];
                 const datetimeString = `${datestampString} ${timestampString}`;
                 const timestamp = new Date(datetimeString).getTime();
 

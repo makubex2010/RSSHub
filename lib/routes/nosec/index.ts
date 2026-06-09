@@ -1,7 +1,8 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
 import got from '@/utils/got';
 import ofetch from '@/utils/ofetch';
-import { load } from 'cheerio';
 
 const baseUrl = 'https://nosec.org/home/ajaxindexdata';
 const keykinds = {
@@ -58,9 +59,9 @@ async function handler(ctx) {
         link = `https://nosec.org/home/index/${keykind}.html`;
     } else {
         // keykind 未知时则获取全部
-        formdata = `keykind=&page=1`;
-        title = `NOSEC 安全讯息平台`;
-        link = `https://nosec.org/home/index`;
+        formdata = 'keykind=&page=1';
+        title = 'NOSEC 安全讯息平台';
+        link = 'https://nosec.org/home/index';
     }
 
     const response = await got({

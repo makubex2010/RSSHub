@@ -1,6 +1,7 @@
-import { Route } from '@/types';
-import got from '@/utils/got';
 import { load } from 'cheerio';
+
+import type { Route } from '@/types';
+import got from '@/utils/got';
 
 export const route: Route = {
     path: '/tag/:tag',
@@ -23,7 +24,7 @@ export const route: Route = {
     name: 'Tag',
     maintainers: ['suhang-only'],
     handler,
-    description: `| JSON    | Javascript     | Java | Apache | AWS | SQL | React | Golang    |
+    description: `| JSON | Javascript | Java | Apache | AWS | SQL | React | Golang |
 | ---- | ---------- | ---- | ------ | --- | --- | ----- | ------ |
 | json | javascript | java | apache | aws | sql | react | golang |`,
 };

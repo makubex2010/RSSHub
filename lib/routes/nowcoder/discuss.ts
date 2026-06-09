@@ -1,7 +1,8 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
 import timezone from '@/utils/timezone';
 
@@ -52,7 +53,7 @@ async function handler(ctx) {
     const out = await Promise.all(
         list.map((info) => {
             const title = info.title || 'tzgg';
-            const itemUrl = new URL(info.link, host).href.replace(/^(.*)\?(.*)$/, '$1');
+            const itemUrl = new URL(info.link, host).href.replace(/^([^\n\r\u2028\u2029]*)\?[^\n\r?\u2028\u2029]*$/, '$1');
 
             return cache.tryGet(itemUrl, async () => {
                 const response = await got.get(itemUrl);

@@ -1,6 +1,7 @@
+import { load } from 'cheerio';
+
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
 //
 // 测试http://localhost:1200/cctv/xinwen1j1
@@ -13,7 +14,7 @@ async function loadContent(link) {
     // console.log('********')
     const js_txt = '' + $('script');
 
-    const guid = js_txt.split('guid_Ad_VideoCode = "')[1].split('";')[0];
+    const guid = js_txt.split('guid_Ad_VideoCode = "', 2)[1].split('";', 1)[0];
     // console.log(guid+' js_txt********')
     const { data: videoDetail } = await got({
         method: 'get',

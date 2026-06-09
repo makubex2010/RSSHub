@@ -1,4 +1,4 @@
-import { Route } from '@/types';
+import type { Route } from '@/types';
 import ofetch from '@/utils/ofetch';
 import { parseDate } from '@/utils/parse-date';
 
@@ -24,7 +24,7 @@ export const route: Route = {
     maintainers: ['trganda'],
     handler,
     description: `::: tip
-  Freebuf 的文章页面带有反爬虫机制，所以目前无法获取文章的完整内容。
+Freebuf 的文章页面带有反爬虫机制，所以目前无法获取文章的完整内容。
 :::`,
 };
 

@@ -1,7 +1,8 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
 
 export const route: Route = {
     path: '/replied/:uid',
@@ -55,7 +56,7 @@ async function handler(ctx) {
                         method: 'get',
                         url: item.link,
                     });
-                    const match = detailResponse.data.match(/'comments':(.*)}],/);
+                    const match = detailResponse.data.match(/'comments':(.*)\}\],/);
 
                     if (match.length > 1) {
                         const content = load(detailResponse.data);

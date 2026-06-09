@@ -1,8 +1,8 @@
-import { Route } from '@/types';
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
 
-import { rootUrl, ProcessItems } from './utils';
+import { ProcessItems, rootUrl } from './utils';
 
 export const route: Route = {
     path: '/video/:id?',
@@ -58,7 +58,7 @@ export const route: Route = {
 | diyishengyin         | 第一声音                     |
 | sanliangboqianjin    | 财智双全                     |
 | weilaiyaoqinghan     | 未来邀请函                   |
-| zjdy                 | 主角 ▪ 大医                 |
+| zjdy                 | 主角 ▪ 大医                  |
 | leye                 | 乐业之城                     |
 | sanrenxing           | 价值三人行                   |
 | yuandongli           | 中国源动力                   |

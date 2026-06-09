@@ -1,7 +1,9 @@
-import { Route } from '@/types';
-import ofetch from '@/utils/ofetch';
 import { load } from 'cheerio';
+
+import type { Route } from '@/types';
+import ofetch from '@/utils/ofetch';
 import { parseDate } from '@/utils/parse-date';
+
 const url = 'https://www.ieee-security.org/';
 // https://www.ieee-security.org/TC/SP2023/program-papers.html
 
@@ -18,7 +20,7 @@ export const route: Route = {
     maintainers: ['ZeddYu'],
     handler,
     url: 'ieee-security.org/TC/SP-Index.html',
-    description: `Return results from 2020`,
+    description: 'Return results from 2020',
 };
 
 async function handler() {
@@ -36,7 +38,7 @@ async function handler() {
                 const link = urlList[i];
                 return {
                     title,
-                    author: item.html().trim().split('<br>')[1].trim(),
+                    author: item.html().trim().split('<br>', 2)[1].trim(),
                     link: `${link}#${title}`,
                     pubDate: parseDate(link.match(/SP(\d{4})/)[1], 'YYYY'),
                 };

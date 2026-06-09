@@ -1,18 +1,20 @@
-import { Route } from '@/types';
-import { config } from '@/config';
-import got from '@/utils/got';
 import { load } from 'cheerio';
+
+import type { Route } from '@/types';
+import got from '@/utils/got';
+import { PRESETS } from '@/utils/header-generator';
 import { parseDate } from '@/utils/parse-date';
 
 export const route: Route = {
     path: '/',
+    example: '/ddosi',
     radar: [
         {
             source: ['ddosi.org/'],
             target: '',
         },
     ],
-    name: 'Unknown',
+    name: '首页',
     maintainers: ['XinRoom'],
     handler,
     url: 'ddosi.org/',
@@ -20,14 +22,13 @@ export const route: Route = {
 
 async function handler() {
     const url = 'https://www.ddosi.org/';
-    const userAgent = config.ua || 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1';
     const response = await got({
         method: 'get',
         url: String(url),
         headers: {
-            'User-Agent': userAgent,
             Referer: url,
         },
+        headerGeneratorOptions: PRESETS.MODERN_IOS,
     });
     const $ = load(response.data);
     const list = $('main>article').toArray();
@@ -49,7 +50,7 @@ async function handler() {
     });
 
     return {
-        title: `雨苁`,
+        title: '雨苁',
         link: String(url),
         item: items,
     };

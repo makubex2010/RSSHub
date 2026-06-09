@@ -1,9 +1,10 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
-import timezone from '@/utils/timezone';
 import { parseDate, parseRelativeDate } from '@/utils/parse-date';
+import timezone from '@/utils/timezone';
 
 export const route: Route = {
     path: '/:params{.+}?',
@@ -90,7 +91,7 @@ async function handler(ctx) {
         )
     );
 
-    const title = $('title').text().split(/\s-/)[0];
+    const title = $('title').text().split(/\s-/, 1)[0];
     const icon = $('link[rel="apple-touch-icon"]').last().prop('href');
 
     return {

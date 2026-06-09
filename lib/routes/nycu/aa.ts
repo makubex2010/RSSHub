@@ -1,8 +1,10 @@
-import { Data, Route } from '@/types';
-import timezone from '@/utils/timezone';
-import { CheerioAPI, load } from 'cheerio';
-import { Context } from 'hono';
+import type { CheerioAPI } from 'cheerio';
+import { load } from 'cheerio';
+import type { Context } from 'hono';
+
+import type { Data, Route } from '@/types';
 import ofetch from '@/utils/ofetch';
+import timezone from '@/utils/timezone';
 
 function ROCDate(dateStr: string | Date): Date {
     const date = new Date(dateStr);
@@ -54,7 +56,7 @@ export const route: Route = {
     name: '教務處公告',
     categories: ['university'],
     maintainers: ['simbafs'],
-    description: `|           名稱           | :id  |
+    description: `|           名稱           |  :id |
 | :----------------------: | :--: |
 |           全部           | 2652 |
 |          註冊組          | 2462 |

@@ -1,10 +1,13 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
 import timezone from '@/utils/timezone';
+
 import { cookieJar, processArticle } from './utils';
+
 const baseUrl = 'http://www.playno1.com';
 
 export const route: Route = {
@@ -53,7 +56,7 @@ async function handler(ctx) {
                 author: item
                     .find('.fire_right')
                     .text()
-                    .match(/作者：(.*)\s*\|/)[1]
+                    .match(/作者：([^|]*)\|/)[1]
                     .trim(),
             };
         });

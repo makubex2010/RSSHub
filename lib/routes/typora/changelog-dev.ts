@@ -1,6 +1,7 @@
-import { Route } from '@/types';
-import got from '@/utils/got';
 import { load } from 'cheerio';
+
+import type { Route } from '@/types';
+import got from '@/utils/got';
 
 export const route: Route = {
     path: '/changelog/dev',
@@ -49,7 +50,7 @@ async function handler() {
         });
 
     return {
-        title: `Typora Changelog - Dev`,
+        title: 'Typora Changelog - Dev',
         link: currentUrl,
         description: 'Typora Changelog',
         item: items,

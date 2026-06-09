@@ -1,7 +1,8 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
 import timezone from '@/utils/timezone';
 
@@ -32,9 +33,9 @@ export const route: Route = {
     url: 'nowcoder.com/',
     description: `可选参数：
 
-  -   companyId：公司 id，[🔗查询链接](https://www.nowcoder.com/discuss/tag/exp), 复制打开
-  -   order：3 - 最新；1 - 最热
-  -   phaseId：0 - 所有；1 - 校招；2 - 实习；3 - 社招`,
+- companyId：公司 id，[🔗查询链接](https://www.nowcoder.com/discuss/tag/exp), 复制打开
+- order：3 - 最新；1 - 最热
+- phaseId：0 - 所有；1 - 校招；2 - 实习；3 - 社招`,
 };
 
 async function handler(ctx) {

@@ -1,9 +1,10 @@
-import { Route } from '@/types';
+import * as cheerio from 'cheerio';
+
+import { config } from '@/config';
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import ofetch from '@/utils/ofetch';
-import * as cheerio from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
-import { config } from '@/config';
 
 type NewsItem = {
     cid: string;
@@ -67,8 +68,7 @@ export const route: Route = {
     maintainers: ['Astrian'],
     handler,
     url: 'ak-conf.hypergryph.com/news',
-    description: `
-| 全部 | 最新   | 公告         | 活动     | 新闻 |
+    description: `| 全部 | 最新   | 公告         | 活动     | 新闻 |
 | ---- | ------ | ------------ | -------- | ---- |
 | ALL  | LATEST | ANNOUNCEMENT | ACTIVITY | NEWS |`,
 };

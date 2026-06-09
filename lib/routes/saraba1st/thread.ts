@@ -1,8 +1,9 @@
-import { Route } from '@/types';
-import got from '@/utils/got';
 import { load } from 'cheerio';
 import queryString from 'query-string';
+
 import { config } from '@/config';
+import type { Route } from '@/types';
+import got from '@/utils/got';
 import { parseDate } from '@/utils/parse-date';
 import timezone from '@/utils/timezone';
 
@@ -22,7 +23,7 @@ export const route: Route = {
     name: '帖子',
     maintainers: ['zengxs'],
     handler,
-    description: `帖子网址如果为 \`https://stage1st.com/2b/thread-751272-1-1.html\` 那么帖子 id 就是 \`751272\`。`,
+    description: '帖子网址如果为 `https://stage1st.com/2b/thread-751272-1-1.html` 那么帖子 id 就是 `751272`。',
 };
 
 async function handler(ctx) {

@@ -1,11 +1,12 @@
 import { load } from 'cheerio';
-import ofetch from '@/utils/ofetch';
 import iconv from 'iconv-lite';
+
+import ofetch from '@/utils/ofetch';
 import { parseDate as _parseDate } from '@/utils/parse-date';
 import _timezone from '@/utils/timezone';
 
 function transElemText($, prop) {
-    const regex = /\$\((.*)\)/g;
+    const regex = /\$\(.*\)/;
     let result = prop;
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const parseDate = _parseDate;
@@ -76,4 +77,4 @@ async function buildData(data) {
 }
 
 export default buildData;
-export { transElemText, replaceParams, getProp };
+export { getProp, replaceParams, transElemText };

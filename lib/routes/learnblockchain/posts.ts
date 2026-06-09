@@ -1,5 +1,6 @@
-import { Route } from '@/types';
 import { load } from 'cheerio';
+
+import type { Route } from '@/types';
 import got from '@/utils/got';
 import { parseRelativeDate } from '@/utils/parse-date';
 
@@ -60,7 +61,7 @@ async function handler(ctx) {
     return {
         title: `登链社区--${cid}`,
         link: url,
-        description: `登链社区`,
+        description: '登链社区',
         item: list.toArray().map((ite) => {
             const item = $(ite);
             const json = {

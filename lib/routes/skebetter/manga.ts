@@ -1,7 +1,8 @@
-import { Data, DataItem, Route } from '@/types';
-import cache from '@/utils/cache';
-import { processItems, fetchData } from './utils';
 import { config } from '@/config';
+import type { Data, DataItem, Route } from '@/types';
+import cache from '@/utils/cache';
+
+import { fetchData, processItems } from './utils';
 
 export const route: Route = {
     path: '/manga/:order',
@@ -32,10 +33,9 @@ export const route: Route = {
             target: '/manga/2',
         },
     ],
-    description: `
-| 新着 (Latest) | 人気 (Hot) |
-| ---- | ---- |
-| 1    | 2    |`,
+    description: `| 新着 (Latest) | 人気 (Hot) |
+| ------------- | ---------- |
+| 1             | 2          |`,
 };
 
 async function handler(ctx): Promise<Data> {

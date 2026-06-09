@@ -1,6 +1,7 @@
-import { Route } from '@/types';
-import got from '@/utils/got';
 import { load } from 'cheerio';
+
+import type { Route } from '@/types';
+import got from '@/utils/got';
 
 export const route: Route = {
     path: '/trophy/:id',
@@ -57,7 +58,7 @@ async function handler(ctx) {
                 };
                 return {
                     title: item.find('.title').text() + ' - ' + $('.page h3').eq(0).text().trim().replace(' Trophies', ''),
-                    description: `<img src="${item.find('.trophy source').attr('srcset').split(' ')[1]}"><br>${item
+                    description: `<img src="${item.find('.trophy source').attr('srcset').split(' ', 2)[1]}"><br>${item
                         .find('.title')
                         .parent()
                         .contents()

@@ -1,9 +1,11 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+import MarkdownIt from 'markdown-it';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import ofetch from '@/utils/ofetch';
-import { load } from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
-import MarkdownIt from 'markdown-it';
+
 const md = MarkdownIt({
     html: true,
     breaks: true,
@@ -57,20 +59,22 @@ async function handler() {
     const out = await Promise.all(
         list.map((info) =>
             cache.tryGet(info.link, async () => {
-                const titleSlug = info.link.split('/')[4];
+                const titleSlug = info.link.split('/', 5)[4];
 
                 const questionContent = await ofetch(gqlEndpoint, {
                     method: 'POST',
                     body: {
                         operationName: 'questionContent',
                         variables: { titleSlug },
-                        query: `query questionContent($titleSlug: String!) {
+                        query: /* GraphQL */ `
+                            query questionContent($titleSlug: String!) {
                                 question(titleSlug: $titleSlug) {
                                     content
                                     mysqlSchemas
                                     dataSchemas
                                 }
-                            }`,
+                            }
+                        `,
                     },
                 });
 
@@ -79,13 +83,15 @@ async function handler() {
                     body: {
                         operationName: 'officialSolution',
                         variables: { titleSlug },
-                        query: `query officialSolution($titleSlug: String!) {
+                        query: /* GraphQL */ `
+                            query officialSolution($titleSlug: String!) {
                                 question(titleSlug: $titleSlug) {
                                     solution {
                                         content
                                     }
                                 }
-                            }`,
+                            }
+                        `,
                     },
                 });
 

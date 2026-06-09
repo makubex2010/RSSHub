@@ -1,7 +1,8 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
 
 export const route: Route = {
@@ -25,7 +26,7 @@ export const route: Route = {
     name: '党委学生工作部',
     maintainers: ['Fatpandac'],
     handler,
-    description: `\`https://dwxgb.bnu.edu.cn/xwzx/tzgg/index.html\` 则对应为 \`/bnu/dwxgb/xwzx/tzgg`,
+    description: '`https://dwxgb.bnu.edu.cn/xwzx/tzgg/index.html` 则对应为 \\`/bnu/dwxgb/xwzx/tzgg',
 };
 
 async function handler(ctx) {

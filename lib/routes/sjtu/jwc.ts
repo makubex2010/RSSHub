@@ -1,7 +1,8 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
 
 const urlRoot = 'https://jwc.sjtu.edu.cn';
@@ -47,8 +48,8 @@ export const route: Route = {
     maintainers: ['SeanChao'],
     handler,
     description: `| 新闻中心 | 通知通告 | 教学运行  | 注册学务 | 研究办 | 教改办 | 综合办 | 语言文字 | 工会与支部 | 通识教育 | 面向学生的通知 |
-| -------- | -------- | --------- | -------- | ------ | ------ | ------ | -------- | ---------- | -------- |
-| news     | notice   | operation | affairs  | yjb    | jgb    | zhb    | language | party      | ge       | students  |`,
+| -------- | -------- | --------- | -------- | ------ | ------ | ------ | -------- | ---------- | -------- | -------------- |
+| news     | notice   | operation | affairs  | yjb    | jgb    | zhb    | language | party      | ge       | students       |`,
 };
 
 async function handler(ctx) {

@@ -1,9 +1,10 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
-import timezone from '@/utils/timezone';
 import { parseDate } from '@/utils/parse-date';
+import timezone from '@/utils/timezone';
 
 export const route: Route = {
     path: '/blog/:id?/:page?',
@@ -84,7 +85,7 @@ async function handler(ctx) {
             return {
                 title: item.text(),
                 author: item.find('.name').text(),
-                link: `${rootUrl}${item.attr('href').split('?')[0]}`,
+                link: `${rootUrl}${item.attr('href').split('?', 1)[0]}`,
             };
         });
 

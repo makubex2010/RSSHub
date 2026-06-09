@@ -1,15 +1,24 @@
-import http from 'node:http';
-import https from 'node:https';
-import logger from '@/utils/logger';
+// oxlint-disable unicorn-js/no-this-outside-of-class
+import type http from 'node:http';
+import type https from 'node:https';
+
+import type { HeaderGeneratorOptions } from 'header-generator';
+
 import { config } from '@/config';
+import { generatedHeaders as HEADER_LIST, generateHeaders } from '@/utils/header-generator';
+import logger from '@/utils/logger';
 import proxy from '@/utils/proxy';
 
 type Get = typeof http.get | typeof https.get | typeof http.request | typeof https.request;
 
+interface ExtendedRequestOptions extends http.RequestOptions {
+    headerGeneratorOptions?: Partial<HeaderGeneratorOptions>;
+}
+
 const getWrappedGet: <T extends Get>(origin: T) => T = (origin) =>
     function (this: any, ...args: Parameters<typeof origin>) {
         let url: URL | null;
-        let options: http.RequestOptions = {};
+        let options: ExtendedRequestOptions = {};
         let callback: ((res: http.IncomingMessage) => void) | undefined;
         if (typeof args[0] === 'string' || args[0] instanceof URL) {
             url = new URL(args[0]);
@@ -41,13 +50,20 @@ const getWrappedGet: <T extends Get>(origin: T) => T = (origin) =>
         const headersLowerCaseKeys = new Set(Object.keys(options.headers).map((key) => key.toLowerCase()));
 
         // ua
-        if (!headersLowerCaseKeys.has('user-agent')) {
-            options.headers['user-agent'] = config.ua;
-        }
+        if (config.isDefaultUA || options.headerGeneratorOptions) {
+            const generatedHeaders = generateHeaders(options.headerGeneratorOptions);
 
-        // Accept
-        if (!headersLowerCaseKeys.has('accept')) {
-            options.headers.accept = '*/*';
+            if (!headersLowerCaseKeys.has('user-agent')) {
+                options.headers['user-agent'] = generatedHeaders['user-agent'];
+            }
+
+            for (const header of HEADER_LIST) {
+                if (!headersLowerCaseKeys.has(header) && generatedHeaders[header]) {
+                    options.headers[header] = generatedHeaders[header];
+                }
+            }
+        } else if (!headersLowerCaseKeys.has('user-agent')) {
+            options.headers['user-agent'] = config.ua;
         }
 
         // referer
@@ -65,13 +81,17 @@ const getWrappedGet: <T extends Get>(origin: T) => T = (origin) =>
                 url.host !== proxy.proxyUrlHandler?.host &&
                 url.host !== 'localhost' &&
                 !url.host.startsWith('127.') &&
-                !(config.puppeteerWSEndpoint?.includes(url.host) ?? false)
+                ![config.playwrightWSEndpoint, config.playwrightCDPEndpoint].some((endpoint) => endpoint?.includes(url.host))
             ) {
                 options.agent = proxy.agent;
             }
         }
 
-        return Reflect.apply(origin, this, [url, options, callback]) as ReturnType<typeof origin>;
+        // Remove the headerGeneratorOptions before passing to the original function
+        // oxlint-disable-next-line no-unused-vars
+        const { headerGeneratorOptions, ...cleanOptions } = options;
+
+        return Reflect.apply(origin, this, [url, cleanOptions, callback]) as ReturnType<typeof origin>;
     };
 
 export default getWrappedGet;

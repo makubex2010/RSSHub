@@ -1,9 +1,11 @@
-import { Route, ViewType } from '@/types';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
+import { ViewType } from '@/types';
 import cache from '@/utils/cache';
 import ofetch from '@/utils/ofetch';
 import { parseDate } from '@/utils/parse-date';
 import timezone from '@/utils/timezone';
-import { load } from 'cheerio';
 
 export const route: Route = {
     path: '/nic/:category?',
@@ -14,7 +16,7 @@ export const route: Route = {
     example: '/hrbust/nic',
     parameters: { category: '栏目标识，默认为 3988（新闻动态）' },
     description: `| 服务指南 | 常见问题 | 新闻动态 | 通知公告 | 国家政策法规 | 学校规章制度 | 部门规章制度 | 宣传教育 | 安全法规 |
-|----------|----------|----------|----------|--------------|--------------|--------------|----------|----------|
+| -------- | -------- | -------- | -------- | ------------ | ------------ | ------------ | -------- | -------- |
 | 3982     | 3983     | 3988     | 3989     | 3990         | 3991         | 3992         | 3993     | 3994     |`,
     categories: ['university'],
     features: {

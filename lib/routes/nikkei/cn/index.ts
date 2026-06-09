@@ -1,12 +1,13 @@
-import { Route } from '@/types';
-import { getSubPath } from '@/utils/common-utils';
-import cache from '@/utils/cache';
-import got from '@/utils/got';
 import { load } from 'cheerio';
-import timezone from '@/utils/timezone';
-import { parseDate } from '@/utils/parse-date';
-import { config } from '@/config';
 import Parser from 'rss-parser';
+
+import { config } from '@/config';
+import type { DataItem, Route } from '@/types';
+import cache from '@/utils/cache';
+import { getSubPath } from '@/utils/common-utils';
+import got from '@/utils/got';
+import { parseDate } from '@/utils/parse-date';
+import timezone from '@/utils/timezone';
 
 const parser = new Parser({
     customFields: {
@@ -25,11 +26,11 @@ export const route: Route = {
     maintainers: ['nczitzk'],
     handler,
     description: `::: tip
-  如 [中国 经济 日经中文网](https://cn.nikkei.com/china/ceconomy.html) 的 URL 为 \`https://cn.nikkei.com/china/ceconomy.html\` 对应路由为 [\`/nikkei/cn/cn/china/ceconomy\`](https://rsshub.app/nikkei/cn/cn/china/ceconomy)
+如 [中国 经济 日经中文网](https://cn.nikkei.com/china/ceconomy.html) 的 URL 为 \`https://cn.nikkei.com/china/ceconomy.html\` 对应路由为 [\`/nikkei/cn/cn/china/ceconomy\`](https://rsshub.app/nikkei/cn/cn/china/ceconomy)
 
-  如 [中國 經濟 日經中文網](https://zh.cn.nikkei.com/china/ceconomy.html) 的 URL 为 \`https://zh.cn.nikkei.com/china/ceconomy.html\` 对应路由为 [\`/nikkei/cn/zh/china/ceconomy\`](https://rsshub.app/nikkei/cn/zh/china/ceconomy)
+如 [中國 經濟 日經中文網](https://zh.cn.nikkei.com/china/ceconomy.html) 的 URL 为 \`https://zh.cn.nikkei.com/china/ceconomy.html\` 对应路由为 [\`/nikkei/cn/zh/china/ceconomy\`](https://rsshub.app/nikkei/cn/zh/china/ceconomy)
 
-  特别地，当 \`path\` 填入 \`rss\` 后（如路由为 [\`/nikkei/cn/cn/rss\`](https://rsshub.app/nikkei/cn/cn/rss)），此时返回的是 [官方 RSS 的内容](https://cn.nikkei.com/rss.html)
+特别地，当 \`path\` 填入 \`rss\` 后（如路由为 [\`/nikkei/cn/cn/rss\`](https://rsshub.app/nikkei/cn/cn/rss)），此时返回的是 [官方 RSS 的内容](https://cn.nikkei.com/rss.html)
 :::`,
     radar: [
         {
@@ -41,7 +42,7 @@ export const route: Route = {
                 } else if (params.category && !params.type) {
                     return `/nikkei/cn/cn/${params.category.replace('.html', '')}`;
                 } else {
-                    return `/nikkei/cn/cn`;
+                    return '/nikkei/cn/cn';
                 }
             },
         },
@@ -54,7 +55,7 @@ export const route: Route = {
                 } else if (params.category && !params.type) {
                     return `/nikkei/cn/zh/${params.category.replace('.html', '')}`;
                 } else {
-                    return `/nikkei/cn/zh`;
+                    return '/nikkei/cn/zh';
                 }
             },
         },
@@ -62,10 +63,10 @@ export const route: Route = {
 };
 
 async function handler(ctx) {
-    let language = '';
+    let language: string;
     let path = getSubPath(ctx);
 
-    if (/^\/cn\/(cn|zh)/.test(path)) {
+    if (/^\/cn\/(?:cn|zh)/.test(path)) {
         language = path.match(/^\/cn\/(cn|zh)/)[1];
         path = path.match(new RegExp(String.raw`\/cn\/` + language + '(.*)'))[1];
     } else {
@@ -80,8 +81,8 @@ async function handler(ctx) {
 
     let officialFeed;
 
-    let items = [],
-        $;
+    let items: DataItem[];
+    let $;
 
     if (isOfficialRSS) {
         officialFeed = await parser.parseURL(currentUrl);

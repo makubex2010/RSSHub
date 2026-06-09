@@ -1,8 +1,10 @@
-import { Route } from '@/types';
 import * as cheerio from 'cheerio';
-import got from '@/utils/got';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
+import got from '@/utils/got';
 import { parseDate } from '@/utils/parse-date';
+
 import { baseUrl, parseContent } from './utils';
 
 export const route: Route = {
@@ -36,13 +38,13 @@ export const route: Route = {
 | ---------- | ------------ | ------------ | ------------ |
 | 7          | 8            | 16           | 20           |
 
-  **主题过滤**
+**主题过滤**
 
-  > 因为该类型无法搭配子类型使用，所以使用时 \`type\` 子类型需使用 \`-999\` 占位
+> 因为该类型无法搭配子类型使用，所以使用时 \`type\` 子类型需使用 \`-999\` 占位
 
-| 今日主题 | 热门主题 | 精华主题 | 原创主题 | 今日新作  |
-| ------- | ------- | ------- | ------- | ------ |
-| today   | hot     | digest  | 1       | 2      |`,
+| 今日主题 | 热门主题 | 精华主题 | 原创主题 | 今日新作 |
+| -------- | -------- | -------- | -------- | -------- |
+| today    | hot      | digest   | 1        | 2        |`,
 };
 
 const SEARCH_NAMES = {

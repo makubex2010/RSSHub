@@ -1,6 +1,7 @@
-import { Route } from '@/types';
-import got from '@/utils/got';
 import { load } from 'cheerio';
+
+import type { Route } from '@/types';
+import got from '@/utils/got';
 
 export const route: Route = {
     path: '/',
@@ -44,12 +45,12 @@ async function handler(ctx) {
                 title: a.text(),
                 link,
                 description: item.find('p.p2').html(),
-                author: item.find('p.p3 span').text() || a.text().split('：')[0],
+                author: item.find('p.p3 span').text() || a.text().split('：', 1)[0],
                 category: [
                     item
                         .find('p.p4')
                         .text()
-                        .match(/] (\d+\.\d+);/)[1],
+                        .match(/\] (\d+\.\d+);/)[1],
                 ],
                 enclosure_url: link,
                 enclosure_length:

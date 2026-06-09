@@ -1,9 +1,10 @@
-import { Route } from '@/types';
 import { load } from 'cheerio';
+
+import type { Route } from '@/types';
+import cache from '@/utils/cache';
+import got from '@/utils/got';
 import { parseDate } from '@/utils/parse-date';
 import timezone from '@/utils/timezone';
-import got from '@/utils/got';
-import cache from '@/utils/cache';
 
 const HOST = 'https://www.dykszx.com';
 
@@ -82,7 +83,7 @@ export const route: Route = {
     maintainers: ['zytomorrow'],
     handler,
     url: 'www.dykszx.com',
-    description: `| 新闻中心 | 公务员考试 | 事业单位 | （职）业资格、职称考试 | 其他 |
-| :------: | :------: | :------: |:------: |:------: |
-|   all   |   gwy   |  sydw | zyzc  | other |`,
+    description: `| 新闻中心 | 公务员考试 | 事业单位 | （职）业资格、职称考试 |  其他 |
+| :------: | :--------: | :------: | :--------------------: | :---: |
+|    all   |     gwy    |   sydw   |          zyzc          | other |`,
 };

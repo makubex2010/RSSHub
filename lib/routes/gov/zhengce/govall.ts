@@ -1,7 +1,8 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
 import timezone from '@/utils/timezone';
 
@@ -42,7 +43,7 @@ export const route: Route = {
 
 async function handler(ctx) {
     const advance = ctx.req.param('advance');
-    const link = `http://sousuo.gov.cn/list.htm`;
+    const link = 'http://sousuo.gov.cn/list.htm';
     const params = new URLSearchParams({
         n: 20,
         t: 'govall',
@@ -51,7 +52,7 @@ async function handler(ctx) {
     });
     const query = `${params.toString()}&${advance}`;
     const res = await got.get(link, {
-        searchParams: query.replaceAll(/([\u4E00-\u9FA5])/g, (str) => encodeURIComponent(str)),
+        searchParams: query.replaceAll(/[\u4E00-\u9FA5]/g, (str) => encodeURIComponent(str)),
     });
     const $ = load(res.data);
 
@@ -70,7 +71,7 @@ async function handler(ctx) {
     const items = await Promise.all(
         list.map((item) =>
             cache.tryGet(item.link, async () => {
-                let description = '';
+                let description: string;
                 try {
                     const contentData = await got(item.link);
                     const $ = load(contentData.data);

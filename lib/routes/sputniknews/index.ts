@@ -1,7 +1,8 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
 
 const languages = {
@@ -59,13 +60,13 @@ export const route: Route = {
 | ----- | -------- | -------- | ----- | ---- | ------- |
 | world | covid-19 | business | sport | tech | opinion |
 
-  Categories for Chinese site:
+Categories for Chinese site:
 
 | 新闻 | 中国  | 俄罗斯 | 国际            | 俄中关系                 | 评论    |
 | ---- | ----- | ------ | --------------- | ------------------------ | ------- |
-| news | china | russia | category\_guoji | russia\_china\_relations | opinion |
+| news | china | russia | category\\_guoji | russia\\_china\\_relations | opinion |
 
-  Language
+Language
 
 | Language    | Id          |
 | ----------- | ----------- |

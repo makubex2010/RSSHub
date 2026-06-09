@@ -1,7 +1,8 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
 
 export const route: Route = {
@@ -62,8 +63,8 @@ async function handler() {
                 content('.wp-block-spacer').remove();
                 content('.elementor-widget-container p').eq(0).remove();
 
-                content('img').each(function () {
-                    content(this).attr('src', content(this).attr('data-lazy-src'));
+                content('img').each((_, el) => {
+                    content(el).attr('src', content(el).attr('data-lazy-src'));
                 });
 
                 item.description = content('.elementor-widget-theme-post-content').html();

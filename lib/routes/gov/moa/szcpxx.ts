@@ -1,16 +1,16 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
 
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
-import timezone from '@/utils/timezone';
 import { parseDate } from '@/utils/parse-date';
+import timezone from '@/utils/timezone';
 
 export const handler = async (ctx) => {
     const limit = ctx.req.query('limit') ? Number.parseInt(ctx.req.query('limit'), 10) : 6;
 
     const rootUrl = 'http://www.moa.gov.cn';
-    const currentUrl = new URL(`ztzl/szcpxx/zyzc/index.htm`, rootUrl).href;
+    const currentUrl = new URL('ztzl/szcpxx/zyzc/index.htm', rootUrl).href;
 
     const { data: response } = await got(currentUrl);
 

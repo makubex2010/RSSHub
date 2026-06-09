@@ -1,10 +1,11 @@
-import { Route } from '@/types';
-import ofetch from '@/utils/ofetch';
 import { load } from 'cheerio';
-import { parseDate } from '@/utils/parse-date';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
+import ofetch from '@/utils/ofetch';
+import { parseDate } from '@/utils/parse-date';
+import { getPlaywrightPage } from '@/utils/playwright';
 import timezone from '@/utils/timezone';
-import { getPuppeteerPage } from '@/utils/puppeteer';
 
 const host = 'https://yjsy.cjlu.edu.cn/';
 
@@ -76,8 +77,8 @@ export const route: Route = {
     maintainers: ['chrisis58'],
     handler,
     description: `| 研究生通知 | 教师通知 |
-| -------- | -------- |
-| yjstz    | jstz     |`,
+| ---------- | -------- |
+| yjstz      | jstz     |`,
 };
 
 async function handler(ctx) {
@@ -85,23 +86,22 @@ async function handler(ctx) {
     const limit = ctx.req.query('limit') ? Number.parseInt(ctx.req.query('limit'), 10) : 10;
     const url = `${host}index/${cate}.htm`;
 
-    const { page, destory, browser } = await getPuppeteerPage(url, {
+    const { page, destroy } = await getPlaywrightPage(url, {
         onBeforeLoad: async (page) => {
             await page.setExtraHTTPHeaders(headers);
-            await page.setUserAgent(headers['User-Agent']);
-            await page.setRequestInterception(true);
-            page.on('request', (request) => {
-                allowedResourceTypes.has(request.resourceType()) ? request.continue() : request.abort();
+            await page.route('**/*', (route) => {
+                const request = route.request();
+                allowedResourceTypes.has(request.resourceType()) ? route.continue() : route.abort();
             });
         },
-        gotoConfig: { waitUntil: 'networkidle2' },
+        gotoConfig: { waitUntil: 'networkidle' },
     });
 
-    const cookies = await browser.cookies();
+    const cookies = await page.context().cookies();
     const cookieString = cookies.map((c) => `${c.name}=${c.value}`).join('; ');
 
     const response = await page.content();
-    await destory();
+    await destroy();
 
     const $ = load(response);
 

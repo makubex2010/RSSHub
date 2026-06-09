@@ -1,6 +1,7 @@
-import { Route, Data } from '@/types';
-import { getBySlug, getPostsBy, processItems } from './utils';
+import type { Data, Route } from '@/types';
 import parser from '@/utils/rss-parser';
+
+import { getBySlug, getPostsBy, processItems } from './utils';
 
 export const route: Route = {
     path: '/:keyword',
@@ -19,9 +20,9 @@ export const route: Route = {
     name: 'Navigation',
     maintainers: ['SnowAgar25'],
     handler,
-    description: `| 殿堂 | 動畫 | VR | 漫畫 | 音聲 | CG・イラスト |
-| ---- | ----- | -- | ----- | ----- | -- |
-| best | video | vr | comic | voice | cg |`,
+    description: `| 殿堂 | 動畫  | VR | 漫畫  | 音聲  | CG・イラスト |
+| ---- | ----- | -- | ----- | ----- | ------------ |
+| best | video | vr | comic | voice | cg           |`,
 };
 
 const navigationItems = {

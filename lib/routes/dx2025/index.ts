@@ -1,7 +1,8 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
 
 export const route: Route = {
     path: '/:type?/:category?',
@@ -25,7 +26,7 @@ export const route: Route = {
 | -------------------- | ---------------- | ------ | ---- |
 | industry-observation | industry-reports | policy | data |
 
-  行业分类
+行业分类
 
 | 行业                 | 行业名称                                                          |
 | -------------------- | ----------------------------------------------------------------- |

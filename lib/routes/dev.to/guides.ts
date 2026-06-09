@@ -1,8 +1,9 @@
-import { Data, DataItem, Route } from '@/types';
-import got from '@/utils/got';
 import { load } from 'cheerio';
-import { parseDate } from '@/utils/parse-date';
+
+import type { Data, DataItem, Route } from '@/types';
 import cache from '@/utils/cache';
+import got from '@/utils/got';
+import { parseDate } from '@/utils/parse-date';
 
 export const route: Route = {
     path: '/guides',
@@ -63,7 +64,7 @@ async function handler() {
                 const authorAvatar = $article('.crayons-article__header__meta .radius-full').attr('src');
                 // Extract publication date
                 const dateElement = $article('time[datetime]').first();
-                const dateString = dateElement.attr('datetime') || undefined;
+                const dateString = dateElement.attr('datetime');
                 const pubDate = dateString ? parseDate(dateString) : undefined;
                 // Extract tags
                 const tags = $article('.spec__tags .crayons-tag')

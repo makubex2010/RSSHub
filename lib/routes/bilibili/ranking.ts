@@ -1,9 +1,11 @@
-import { Route, ViewType } from '@/types';
-import ofetch from '@/utils/ofetch';
-import utils, { getVideoUrl } from './utils';
-import { parseDate } from '@/utils/parse-date';
 import { config } from '@/config';
+import type { Route } from '@/types';
+import { ViewType } from '@/types';
+import ofetch from '@/utils/ofetch';
+import { parseDate } from '@/utils/parse-date';
+
 import cache from './cache';
+import utils, { getVideoUrl } from './utils';
 
 // https://www.bilibili.com/v/popular/rank/all
 
@@ -191,7 +193,7 @@ function getAPI(isNumericRid: boolean, rid: string | number) {
     const ridEnglish = zone[1].english;
 
     let apiBase = 'https://api.bilibili.com/x/web-interface/ranking/v2';
-    let apiParams = '';
+    let apiParams: string;
 
     switch (ridType) {
         case 'x/rid':

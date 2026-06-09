@@ -1,11 +1,13 @@
-import { Route } from '@/types';
-import cache from '@/utils/cache';
 import { load } from 'cheerio';
-import { host, puppeteerGet } from './utils';
+
 import { config } from '@/config';
+import type { Route } from '@/types';
+import cache from '@/utils/cache';
 import { parseDate } from '@/utils/parse-date';
+import playwright from '@/utils/playwright';
 import timezone from '@/utils/timezone';
-import puppeteer from '@/utils/puppeteer';
+
+import { host, playwrightGet } from './utils';
 
 export const route: Route = {
     path: '/customs/list/:gchannel?',
@@ -37,7 +39,7 @@ export const route: Route = {
 
 async function handler(ctx) {
     const { gchannel = 'paimai' } = ctx.req.param();
-    let channelName = '';
+    let channelName: string;
     let link = '';
 
     switch (gchannel) {
@@ -59,12 +61,12 @@ async function handler(ctx) {
             break;
     }
 
-    const browser = await puppeteer();
+    const context = await playwright();
 
     const list = await cache.tryGet(
         link,
         async () => {
-            const response = await puppeteerGet(link, browser);
+            const response = await playwrightGet(link, context);
             const $ = load(response);
             const list = $('[class^="conList_ul"] li')
                 .toArray()
@@ -88,7 +90,7 @@ async function handler(ctx) {
                 if (info.link.endsWith('.pdf') || info.link.endsWith('.doc')) {
                     return info;
                 }
-                const response = await puppeteerGet(info.link, browser);
+                const response = await playwrightGet(info.link, context);
                 const $ = load(response);
                 let date;
 
@@ -108,7 +110,7 @@ async function handler(ctx) {
         )
     );
 
-    await browser.close();
+    await context.close();
 
     return {
         title: `中国海关-${channelName}`,

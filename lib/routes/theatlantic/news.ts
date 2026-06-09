@@ -1,7 +1,10 @@
-import { Route } from '@/types';
-import ofetch from '@/utils/ofetch';
 import { load } from 'cheerio';
+
+import type { Route } from '@/types';
+import ofetch from '@/utils/ofetch';
+
 import { getArticleDetails } from './utils';
+
 export const route: Route = {
     path: '/:category',
     categories: ['traditional-media'],
@@ -27,7 +30,7 @@ export const route: Route = {
 | ------------ | ------ | -------- | ---------- | -------- |
 | most-popular | latest | politics | technology | business |
 
-  More categories (except photo) can be found within the navigation bar at [https://www.theatlantic.com](https://www.theatlantic.com)`,
+More categories (except photo) can be found within the navigation bar at <https://www.theatlantic.com>`,
 };
 
 async function handler(ctx) {

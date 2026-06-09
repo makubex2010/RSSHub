@@ -1,5 +1,6 @@
 import InvalidParameterError from '@/errors/types/invalid-parameter';
-import { Route, ViewType } from '@/types';
+import type { Route } from '@/types';
+import { ViewType } from '@/types';
 import got from '@/utils/got';
 import { parseDate } from '@/utils/parse-date';
 
@@ -82,7 +83,7 @@ async function handler(ctx) {
     const channelVideoShelvesQueryData = response.data[0].data;
 
     if (!channelVideoShelvesQueryData.user.id) {
-        throw new InvalidParameterError(`Username does not exist`);
+        throw new InvalidParameterError('Username does not exist');
     }
 
     const displayName = channelVideoShelvesQueryData.user.displayName;

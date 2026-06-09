@@ -1,7 +1,8 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
 
 export const route: Route = {
@@ -51,8 +52,8 @@ async function handler() {
 
                 content('d-contents').remove();
 
-                content('img').each(function () {
-                    content(this).attr('src', `${item.link}/${content(this).attr('src')}`);
+                content('img').each((_, el) => {
+                    content(el).attr('src', `${item.link}/${content(el).attr('src')}`);
                 });
 
                 item.doi = content('meta[name="citation_doi"]').attr('content');

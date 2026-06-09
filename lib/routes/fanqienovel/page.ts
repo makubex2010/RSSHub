@@ -1,7 +1,8 @@
-import type { Data, Route } from '@/types';
-import type { Context } from 'hono';
-import ofetch from '@/utils/ofetch';
 import * as cheerio from 'cheerio';
+import type { Context } from 'hono';
+
+import type { Data, Route } from '@/types';
+import ofetch from '@/utils/ofetch';
 import { parseDate } from '@/utils/parse-date';
 
 interface Chapter {
@@ -75,7 +76,7 @@ async function handler(ctx: Context): Promise<Data> {
     const initialState = JSON.parse(
         $('script:contains("window.__INITIAL_STATE__")')
             .text()
-            .match(/window\.__INITIAL_STATE__\s*=\s*(.*);/)?.[1] ?? '{}'
+            .match(/window\.__INITIAL_STATE__\s*=\s*(\S.*);/)?.[1] ?? '{}'
     );
 
     const page = initialState.page as Page;

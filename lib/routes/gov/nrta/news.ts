@@ -1,7 +1,8 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
 import timezone from '@/utils/timezone';
 
@@ -44,7 +45,7 @@ async function handler(ctx) {
         url: currentUrl,
     });
 
-    const regex = /<!\[cdata\[([\S\s]*?)]]>(?=\s*<)/gi;
+    const regex = /<!\[cdata\[([\s\S]*?)\]\]>(?=\s*<)/gi;
     const data = response.data.replaceAll(regex, '$1');
 
     const $ = load(data, {

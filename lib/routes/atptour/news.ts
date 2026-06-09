@@ -1,11 +1,11 @@
-import { Route } from '@/types';
-import { parseDate } from '@/utils/parse-date';
-import got from '@/utils/got';
 import { config } from '@/config';
+import type { Route } from '@/types';
+import got from '@/utils/got';
+import { parseDate } from '@/utils/parse-date';
 
 export const route: Route = {
     path: '/news/:lang?',
-    categories: ['other'],
+    categories: ['sport'],
     example: '/atptour/news/en',
     parameters: { lang: 'en or es.' },
     radar: [

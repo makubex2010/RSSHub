@@ -1,9 +1,10 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+import pMap from 'p-map';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
-import pMap from 'p-map';
 
 export const route: Route = {
     path: '/posts',
@@ -43,8 +44,8 @@ async function handler() {
                 const response = await got(`${link}?sn_f=1`);
                 const $ = load(response.data);
                 const article = $('.left article .htmlview');
-                article.find('d-image').each(function () {
-                    $(this).replaceWith(`<img src="${$(this).attr('lg')}">`);
+                article.find('d-image').each((_, el) => {
+                    $(el).replaceWith(`<img src="${$(el).attr('lg')}">`);
                 });
 
                 return {

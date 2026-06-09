@@ -1,5 +1,6 @@
-import got from '@/utils/got';
 import { load } from 'cheerio';
+
+import got from '@/utils/got';
 
 const host = 'https://www.hpoi.net';
 
@@ -23,7 +24,7 @@ const MAPs = {
 };
 
 const ProcessFeed = async (type, id, order) => {
-    let link = MAPs[type].url.replace(/{id}/, id).replace(/{order}/, order || 'add');
+    let link = MAPs[type].url.replace(/\{id\}/, id).replace(/\{order\}/, order || 'add');
     let response = await got({
         method: 'get',
         url: link,
@@ -34,7 +35,7 @@ const ProcessFeed = async (type, id, order) => {
     let $ = load(response.data);
 
     if (type === 'work') {
-        const overviewLink = MAPs.overview.url.replace(/{id}/, id);
+        const overviewLink = MAPs.overview.url.replace(/\{id\}/, id);
         const overviewResponse = await got({
             method: 'get',
             url: overviewLink,

@@ -1,6 +1,7 @@
-import { Route } from '@/types';
+import type { Route } from '@/types';
+import playwright from '@/utils/playwright';
+
 import { baseUrl, parsePage } from './utils';
-import puppeteer from '@/utils/puppeteer';
 
 export const route: Route = {
     path: '/master/:channel',
@@ -36,11 +37,11 @@ export const route: Route = {
 };
 
 async function handler(ctx) {
-    const browser = await puppeteer();
+    const context = await playwright();
 
-    const { $, items } = await parsePage('master', browser, ctx);
+    const { $, items } = await parsePage('master', context, ctx);
 
-    await browser.close();
+    await context.close();
 
     return {
         title: $('head title').text(),

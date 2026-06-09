@@ -1,9 +1,11 @@
-import { Route, ViewType } from '@/types';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
+import { ViewType } from '@/types';
 import cache from '@/utils/cache';
+import ofetch from '@/utils/ofetch';
 import { parseDate } from '@/utils/parse-date';
 import timezone from '@/utils/timezone';
-import { load } from 'cheerio';
-import { ofetch } from 'ofetch';
 
 export const route: Route = {
     path: '/district/:category?',
@@ -14,7 +16,7 @@ export const route: Route = {
     example: '/ce/district',
     parameters: { category: '栏目标识，默认为 roll（即时新闻）' },
     description: `| 即时新闻 | 经济动态 | 独家视角 | 专题 | 数说地方 | 地方播报 | 专稿 | 港澳台 |
-|----------|----------|----------|------|----------|----------|------|--------|
+| -------- | -------- | -------- | ---- | -------- | -------- | ---- | ------ |
 | roll     | jjdt     | poll     | ch   | ssdf     | dfbb     | zg   | gat    |`,
     categories: ['traditional-media'],
     features: {

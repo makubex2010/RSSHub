@@ -1,10 +1,14 @@
-import { Route, ViewType } from '@/types';
-import { fetchArticle } from './utils';
-import pMap from 'p-map';
-import ofetch from '@/utils/ofetch';
 import { load } from 'cheerio';
+import pMap from 'p-map';
+
+import type { Route } from '@/types';
+import { ViewType } from '@/types';
+import ofetch from '@/utils/ofetch';
 import { parseDate } from '@/utils/parse-date';
 import timezone from '@/utils/timezone';
+
+import { fetchArticle } from './utils';
+
 const HOME_PAGE = 'https://apnews.com';
 
 export const route: Route = {
@@ -57,7 +61,7 @@ async function handler(ctx) {
                     .find(String.raw`news\:publication_date`)
                     .text()
             );
-            const lastmod = timezone(parseDate($(e).find(`lastmod`).text()), -4);
+            const lastmod = timezone(parseDate($(e).find('lastmod').text()), -4);
             const language = LANGUAGE_MAP.get(
                 $(e)
                     .find(String.raw`news\:language`)

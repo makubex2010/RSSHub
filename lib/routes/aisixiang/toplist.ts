@@ -1,10 +1,11 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
 
-import { rootUrl, ossUrl, ProcessFeed } from './utils';
+import { ossUrl, ProcessFeed, rootUrl } from './utils';
 
 export const route: Route = {
     path: ['/ranking/:id?/:period?', '/toplist/:id?/:period?'],
@@ -26,7 +27,7 @@ async function handler(ctx) {
 
     const $ = load(response);
 
-    const title = `${$('a.hl').text() || ''}${$('title').text().split('_')[0]}`;
+    const title = `${$('a.hl').text() || ''}${$('title').text().split('_', 1)[0]}`;
 
     const items = $('div.tops_list')
         .slice(0, limit)

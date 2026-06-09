@@ -1,8 +1,10 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
+
 const baseUrl = 'https://neunews.neu.edu.cn';
 
 export const route: Route = {
@@ -70,7 +72,7 @@ async function handler(ctx) {
                 const result = await got(item.link);
                 const $ = load(result.data);
 
-                item.author = $('.arti-metas').text().split('更新日期')[0];
+                item.author = $('.arti-metas').text().split('更新日期', 1)[0];
                 item.description = $('.article_content').html();
 
                 return item;

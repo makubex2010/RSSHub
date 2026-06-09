@@ -1,10 +1,10 @@
-import type { Route } from '@/types';
-
-import ofetch from '@/utils/ofetch';
 import * as cheerio from 'cheerio';
+
+import type { Route } from '@/types';
+import cache from '@/utils/cache';
+import ofetch from '@/utils/ofetch';
 import { parseDate } from '@/utils/parse-date';
 import timezone from '@/utils/timezone';
-import cache from '@/utils/cache';
 
 const handler = async (ctx) => {
     const { id = 'news', order = 'obdate' } = ctx.req.param();
@@ -32,7 +32,7 @@ const handler = async (ctx) => {
                             .filter((_, i) => i.nodeType === 3)
                             .text()
                             .trim()
-                            .split(/\s{2,}/)[0],
+                            .split(/\s{2,}/, 1)[0],
                         ['YYYY-MM-DD HH:mm', 'MM-DD HH:mm']
                     ),
                     8

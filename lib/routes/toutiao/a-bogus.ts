@@ -1,5 +1,6 @@
-/* eslint-disable unicorn/prefer-spread */
-/* eslint-disable unicorn/prefer-math-trunc */
+// oxlint-disable no-undef unicorn-js/no-this-outside-of-class
+// oxlint-disable unicorn/prefer-spread
+// oxlint-disable unicorn/prefer-math-trunc
 // @ts-nocheck
 
 // Credits:
@@ -43,9 +44,9 @@ function rotateLeft32(e, r) {
 
 function T(j) {
     if (0 <= j && j < 16) {
-        return 0x79_CC_45_19;
+        return 0x79_cc_45_19;
     } else if (16 <= j && j < 64) {
-        return 0x7A_87_9D_8A;
+        return 0x7a_87_9d_8a;
     } else {
         logger.error('invalid j for constant Tj');
     }
@@ -74,14 +75,14 @@ function GG(j, x, y, z) {
 }
 
 function reset(this: any) {
-    this.reg[0] = 0x73_80_16_6F;
-    this.reg[1] = 0x49_14_B2_B9;
-    this.reg[2] = 0x17_24_42_D7;
-    this.reg[3] = 0xDA_8A_06_00;
-    this.reg[4] = 0xA9_6F_30_BC;
-    this.reg[5] = 0x16_31_38_AA;
-    this.reg[6] = 0xE3_8D_EE_4D;
-    this.reg[7] = 0xB0_FB_0E_4E;
+    this.reg[0] = 0x73_80_16_6f;
+    this.reg[1] = 0x49_14_b2_b9;
+    this.reg[2] = 0x17_24_42_d7;
+    this.reg[3] = 0xda_8a_06_00;
+    this.reg[4] = 0xa9_6f_30_bc;
+    this.reg[5] = 0x16_31_38_aa;
+    this.reg[6] = 0xe3_8d_ee_4d;
+    this.reg[7] = 0xb0_fb_0e_4e;
     this.chunk = [];
     this.size = 0;
 }
@@ -172,17 +173,17 @@ function _compress(this: any, t) {
         const i = this.reg.slice(0);
         for (let c = 0; c < 64; c++) {
             let o = rotateLeft32(i[0], 12) + i[4] + rotateLeft32(T(c), c);
-            o = (0xFF_FF_FF_FF & o) >>> 0;
+            o = (0xff_ff_ff_ff & o) >>> 0;
             o = rotateLeft32(o, 7);
 
             const s = (o ^ rotateLeft32(i[0], 12)) >>> 0;
             let u = FF(c, i[0], i[1], i[2]);
             u = u + i[3] + s + f[c + 68];
-            u = (0xFF_FF_FF_FF & u) >>> 0;
+            u = (0xff_ff_ff_ff & u) >>> 0;
 
             let b = GG(c, i[4], i[5], i[6]);
             b = b + i[7] + o + f[c];
-            b = (0xFF_FF_FF_FF & b) >>> 0;
+            b = (0xff_ff_ff_ff & b) >>> 0;
             i[3] = i[2];
             i[2] = rotateLeft32(i[1], 9);
             i[1] = i[0];
@@ -206,10 +207,10 @@ function _fill(this: any) {
     }
     for (let i = 0; i < 4; i++) {
         const c = Math.floor(a / 0x1_00_00_00_00);
-        this.chunk.push((c >>> (8 * (3 - i))) & 0xFF);
+        this.chunk.push((c >>> (8 * (3 - i))) & 0xff);
     }
     for (let i = 0; i < 4; i++) {
-        this.chunk.push((a >>> (8 * (3 - i))) & 0xFF);
+        this.chunk.push((a >>> (8 * (3 - i))) & 0xff);
     }
 }
 
@@ -303,7 +304,7 @@ function generate_rc4_bb_str(url_search_params, user_agent, window_env_str, suff
     // 对后缀两次sm3之的结果
     const cus = sm3.sum(sm3.sum(suffix));
     // 对ua处理之后的结果
-    const ua = sm3.sum(result_encrypt(rc4_encrypt(user_agent, Reflect.apply(String.fromCharCode, null, [0.003_906_25, 1, 14])), 's3'));
+    const ua = sm3.sum(result_encrypt(rc4_encrypt(user_agent, Reflect.apply(String.fromCodePoint, null, [Math.floor(0.003_906_25), 1, 14])), 's3'));
     //
     const end_time = Date.now();
     // b
@@ -348,7 +349,7 @@ function generate_rc4_bb_str(url_search_params, user_agent, window_env_str, suff
     b[29] = Arguments[0] & 255;
 
     b[30] = (Arguments[1] / 256) & 255;
-    b[31] = Arguments[1] % 256 & 255;
+    b[31] = (Arguments[1] % 256) & 255;
     b[32] = (Arguments[1] >> 24) & 255;
     b[33] = (Arguments[1] >> 16) & 255;
 
@@ -523,7 +524,7 @@ function generate_rc4_bb_str(url_search_params, user_agent, window_env_str, suff
         b[71],
     ];
     bb = bb.concat(window_env_list).concat(b[72]);
-    return rc4_encrypt(String.fromCharCode.apply(null, bb), Reflect.apply(String.fromCharCode, null, [121]));
+    return rc4_encrypt(String.fromCodePoint.apply(null, bb), Reflect.apply(String.fromCodePoint, null, [121]));
 }
 
 function generate_random_str() {
@@ -531,7 +532,7 @@ function generate_random_str() {
     random_str_list = random_str_list.concat(gener_random(Math.random() * 10000, [3, 45]));
     random_str_list = random_str_list.concat(gener_random(Math.random() * 10000, [1, 0]));
     random_str_list = random_str_list.concat(gener_random(Math.random() * 10000, [1, 5]));
-    return String.fromCharCode.apply(null, random_str_list);
+    return String.fromCodePoint.apply(null, random_str_list);
 }
 
 export function generate_a_bogus(url_search_params, user_agent) {

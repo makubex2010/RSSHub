@@ -1,9 +1,11 @@
-import { Route, ViewType } from '@/types';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
+import { ViewType } from '@/types';
 import cache from '@/utils/cache';
+import ofetch from '@/utils/ofetch';
 import { parseDate } from '@/utils/parse-date';
 import timezone from '@/utils/timezone';
-import { load } from 'cheerio';
-import { ofetch } from 'ofetch';
 
 export const route: Route = {
     path: '/gzc/:category?',
@@ -14,7 +16,7 @@ export const route: Route = {
     example: '/hrbust/gzc',
     parameters: { category: '栏目标识，默认为 1305（热点新闻）' },
     description: `| 政策规章 | 资料下载 | 处务公开 | 招标信息 | 岗位职责 | 管理办法 | 物资处理 | 工作动态 | 热点新闻 |
-|----------|----------|----------|----------|----------|----------|----------|----------|----------|
+| -------- | -------- | -------- | -------- | -------- | -------- | -------- | -------- | -------- |
 | 1287     | 1288     | 1289     | 1291     | 1300     | 1301     | 1302     | 1304     | 1305     |`,
     categories: ['university'],
     features: {

@@ -1,9 +1,11 @@
-import { Route } from '@/types';
-import { namespace } from './namespace';
-import ofetch from '@/utils/ofetch';
-import cache from '@/utils/cache';
 import { load } from 'cheerio';
+
+import type { Route } from '@/types';
+import cache from '@/utils/cache';
+import ofetch from '@/utils/ofetch';
 import { parseDate } from '@/utils/parse-date';
+
+import { namespace } from './namespace';
 
 const baseUrl = `https://${namespace.url}`;
 
@@ -17,7 +19,7 @@ export const route: Route = {
             source: ['mashiro.best/', 'mashiro.best/:lang/'],
         },
     ],
-    name: `Blog`,
+    name: 'Blog',
     maintainers: ['MuenYu'],
     handler: async (ctx) => {
         const { lang = 'en' } = ctx.req.param();

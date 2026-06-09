@@ -1,9 +1,10 @@
-import { Route } from '@/types';
-import cache from '@/utils/cache';
 import { load } from 'cheerio';
+
+import type { Route } from '@/types';
+import cache from '@/utils/cache';
 import got from '@/utils/got';
-import timezone from '@/utils/timezone';
 import { parseDate } from '@/utils/parse-date';
+import timezone from '@/utils/timezone';
 
 export const route: Route = {
     path: '/:type?',
@@ -58,7 +59,7 @@ async function handler(ctx) {
                 const content = load(response.data);
                 const info = content('div.info')
                     .text()
-                    .match(/作者：(.*?)\s+发布于：(.*?\s+.*?)\s/);
+                    .match(/作者：(\S*)\s+发布于：(\S*\s+.*?)\s/);
                 item.author = info[1];
                 item.pubDate = timezone(parseDate(info[2], 'YYYY-MM-DD HH:mm:ss'), +8);
                 item.description = content('div#con').html().trim().replaceAll('\n', '');

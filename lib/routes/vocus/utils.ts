@@ -1,5 +1,6 @@
-import got from '@/utils/got';
 import { load } from 'cheerio';
+
+import got from '@/utils/got';
 import { parseDate } from '@/utils/parse-date';
 
 const baseUrl = 'https://vocus.cc';
@@ -32,7 +33,7 @@ const ProcessFeed = (list, tryGet) =>
                 $('div.draft--imgNormal').each((_, elem) => (elem.name = 'figure'));
                 $('.image-block-prerender').each((_, elem) => {
                     elem.name = 'img';
-                    elem.attribs.src = elem.attribs['data-src'].split('?')[0];
+                    elem.attribs.src = elem.attribs['data-src'].split('?', 1)[0];
                 });
 
                 item.description = $.html();
@@ -43,4 +44,4 @@ const ProcessFeed = (list, tryGet) =>
         )
     );
 
-export { processList, ProcessFeed, baseUrl, apiUrl };
+export { apiUrl, baseUrl, ProcessFeed, processList };

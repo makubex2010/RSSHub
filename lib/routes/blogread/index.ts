@@ -1,6 +1,7 @@
-import { Route } from '@/types';
-import got from '@/utils/got';
 import * as cheerio from 'cheerio';
+
+import type { Route } from '@/types';
+import got from '@/utils/got';
 
 export const route: Route = {
     path: '/newest',
@@ -33,7 +34,7 @@ async function handler() {
                 description: elem.find('dd').eq(0).text(),
                 link: $link.attr('href'),
                 author: elem.find('.small a').eq(0).text(),
-                pubDate: elem.find('dd').eq(1).text().split('\n')[2],
+                pubDate: elem.find('dd').eq(1).text().split('\n', 3)[2],
             };
         });
     return {

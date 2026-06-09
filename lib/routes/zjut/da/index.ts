@@ -1,9 +1,10 @@
-import { Route } from '@/types';
-import got from '@/utils/got';
-import cache from '@/utils/cache';
-import { parseDate } from '@/utils/parse-date';
 import { load } from 'cheerio';
 import iconv from 'iconv-lite';
+
+import type { Route } from '@/types';
+import cache from '@/utils/cache';
+import got from '@/utils/got';
+import { parseDate } from '@/utils/parse-date';
 
 const rootUrl = 'http://www.design.zjut.edu.cn/';
 const host = 'http://www.design.zjut.edu.cn/BigClass.jsp?';
@@ -35,8 +36,8 @@ export const route: Route = {
     url: 'www.design.zjut.edu.cn',
     handler,
     description: `| 学院新闻 | 公告通知 | 科研申报 | 科研成果 | 文件与资源 | 学术交流 |
-| -------- | -------- | -------- | -------- | -------- | -------- |
-| 1        | 2        | 3        | 4        | 5        | 6        |`,
+| -------- | -------- | -------- | -------- | ---------- | -------- |
+| 1        | 2        | 3        | 4        | 5          | 6        |`,
 };
 
 async function handler(ctx) {

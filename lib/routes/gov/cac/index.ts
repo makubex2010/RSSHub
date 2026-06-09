@@ -1,10 +1,11 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import { config } from '@/config';
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
 import timezone from '@/utils/timezone';
-import { config } from '@/config';
 
 export const route: Route = {
     path: '/cac/*',
@@ -28,7 +29,7 @@ async function handler(ctx) {
                 .toArray()
                 .map((item) => {
                     const href = $(item).attr('href');
-                    if (href && /(?:http:)?\/\/www\.cac\.gov\.cn(.*?)\/(A.*?\.htm)/.test(href)) {
+                    if (href && /(?:http:)?\/\/www\.cac\.gov\.cn.*?\/A.*?\.htm/.test(href)) {
                         const matchArray = href.match(/(?:http:)?\/\/www\.cac\.gov\.cn(.*?)\/(A.*?\.htm)/);
                         if (matchArray && matchArray.length > 2) {
                             const path = matchArray[1];

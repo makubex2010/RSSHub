@@ -1,7 +1,8 @@
-import { Route } from '@/types';
-import got from '@/utils/got';
-import { config } from '@/config';
 import queryString from 'query-string';
+
+import { config } from '@/config';
+import type { Route } from '@/types';
+import got from '@/utils/got';
 
 export const route: Route = {
     path: '/file/:user/:repo/:branch/:filepath{.+}',
@@ -50,7 +51,7 @@ async function handler(ctx) {
     const resultItems = count.map((i) => {
         const each = list[i];
         return {
-            title: each.commit.message.split('\n')[0],
+            title: each.commit.message.split('\n', 1)[0],
             description: `<pre>${each.commit.message}</pre>`,
             link: each.html_url,
             author: each.commit.author.name,

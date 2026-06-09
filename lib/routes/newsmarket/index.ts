@@ -1,7 +1,8 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
 
 export const route: Route = {
@@ -70,10 +71,10 @@ async function handler(ctx) {
 
                 const content = load(detailResponse.data);
 
-                content('figure img').each(function () {
-                    content(this)
+                content('figure img').each((_, el) => {
+                    content(el)
                         .parent()
-                        .html(`<img src="${content(this).attr('data-src')}">`);
+                        .html(`<img src="${content(el).attr('data-src')}">`);
                 });
 
                 content('.inline-post').remove();

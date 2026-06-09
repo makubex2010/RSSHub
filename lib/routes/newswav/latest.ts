@@ -1,7 +1,8 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import ofetch from '@/utils/ofetch';
-import { load } from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
 
 export const route: Route = {
@@ -29,7 +30,7 @@ export const route: Route = {
 async function handler() {
     const baseUrl = 'https://newswav.com';
 
-    const response = await ofetch(`https://feed-api.newswav.com/api/web/feeds/latest`, {
+    const response = await ofetch('https://feed-api.newswav.com/api/web/feeds/latest', {
         query: {
             languages: 'en,ms,zh',
         },

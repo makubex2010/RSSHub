@@ -1,7 +1,9 @@
-import { Data, Route, ViewType } from '@/types';
 import { load } from 'cheerio';
-import { parseDate } from '@/utils/parse-date';
+
+import type { Data, Route } from '@/types';
+import { ViewType } from '@/types';
 import ofetch from '@/utils/ofetch';
+import { parseDate } from '@/utils/parse-date';
 
 export const route: Route = {
     path: '/bullets',
@@ -38,7 +40,7 @@ async function handler() {
         .toArray()
         .map((item) => {
             const $item = $(item);
-            const time = $item.find('div.timeline-info span').text().split(', ')[1];
+            const time = $item.find('div.timeline-info span').text().split(', ', 2)[1];
             const a = $item.find('a.timeline-title');
             const description = $item.find('div.bullet-desc').html();
             return {

@@ -1,9 +1,10 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import timezone from '@/utils/timezone';
 import { parseDate } from '@/utils/parse-date';
-import { load } from 'cheerio';
+import timezone from '@/utils/timezone';
 
 export const route: Route = {
     path: '/index/:category?',
@@ -65,7 +66,7 @@ async function handler(ctx) {
         // 源链接
         link: 'http://www.xaut.edu.cn',
         // 源说明
-        description: `西安理工大学官网-` + dic_title[category],
+        description: '西安理工大学官网-' + dic_title[category],
         // 遍历此前获取的数据
         item: await Promise.all(
             list.map((item) =>

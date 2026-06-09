@@ -1,10 +1,10 @@
-import { type Context } from 'hono';
+import type { Context } from 'hono';
 
-import { type DataItem, type Route, type Data, ViewType } from '@/types';
-
+import type { Data, DataItem, Route } from '@/types';
+import { ViewType } from '@/types';
 import ofetch from '@/utils/ofetch';
 
-import { author, language, rootUrl, processItems } from './util';
+import { author, language, processItems, rootUrl } from './util';
 
 export const handler = async (ctx: Context): Promise<Data> => {
     const { id } = ctx.req.param();
@@ -54,14 +54,12 @@ export const route: Route = {
     parameters: {
         id: '分类 id，默认为空，即全部，见下表',
     },
-    description: `
-| 名称     | ID  |
-| -------- | --- |
-| 全部     |     |
-| 通告     | 1   |
-| 故事盐选 | 2   |
-| 趣集精选 | 3   |
-    `,
+    description: `| 名称     | ID |
+| -------- | -- |
+| 全部     |    |
+| 通告     | 1  |
+| 故事盐选 | 2  |
+| 趣集精选 | 3  |`,
     categories: ['new-media'],
     features: {
         requireConfig: false,

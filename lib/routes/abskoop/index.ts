@@ -1,7 +1,8 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
 
 export const route: Route = {
@@ -47,8 +48,8 @@ async function handler(ctx) {
                 $detail('article.post-content').find('.lwptoc').remove();
                 $detail('article.post-content').find('#related_posts').remove();
                 $detail('article.post-content').find('.entry-copyright').remove();
-                $detail('article.post-content img').each(function () {
-                    $detail(this).replaceWith(`<img src=https:${$detail(this).attr('src')}>`);
+                $detail('article.post-content img').each((_, el) => {
+                    $detail(el).replaceWith(`<img src=https:${$detail(el).attr('src')}>`);
                 });
                 item.description = $detail('article.post-content').html();
                 return item;

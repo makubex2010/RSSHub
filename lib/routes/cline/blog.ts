@@ -1,7 +1,9 @@
-import { load, type CheerioAPI } from 'cheerio';
+import type { CheerioAPI } from 'cheerio';
+import { load } from 'cheerio';
+
+import type { DataItem, Route } from '@/types';
 import got from '@/utils/got';
 import { parseDate } from '@/utils/parse-date';
-import { Route, DataItem } from '@/types';
 
 const rootUrl = 'https://cline.bot';
 const blogUrl = `${rootUrl}/blog`;
@@ -19,7 +21,7 @@ function extractArticlesFromDOM($: CheerioAPI): DataItem[] {
 
             // Extract date and author with single regex
             const metaText = element.find('.text-sm.text-slate-500').text().trim();
-            const metaMatch = metaText.match(/^([^•]+)\s*•\s*([A-Za-z]+\s+\d{1,2},?\s+\d{4})/);
+            const metaMatch = metaText.match(/^([^•]+)•\s*([A-Z]+\s+\d{1,2},?\s+\d{4})/i);
             const author = metaMatch ? metaMatch[1].trim() : 'Cline Team';
             const pubDate = metaMatch ? parseDate(metaMatch[2]) : undefined;
 

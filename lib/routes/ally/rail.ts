@@ -1,6 +1,7 @@
-import { DataItem, Route } from '@/types';
-import cache from '@/utils/cache';
 import { load } from 'cheerio';
+
+import type { DataItem, Route } from '@/types';
+import cache from '@/utils/cache';
 import got from '@/utils/got';
 import { parseDate } from '@/utils/parse-date';
 import timezone from '@/utils/timezone';
@@ -28,7 +29,7 @@ export const route: Route = {
     handler,
     url: 'rail.ally.net.cn/',
     description: `::: tip
-  默认抓取前 20 条，可通过 \`?limit=\` 改变。
+默认抓取前 20 条，可通过 \`?limit=\` 改变。
 :::`,
 };
 

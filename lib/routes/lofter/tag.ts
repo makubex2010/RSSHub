@@ -1,10 +1,11 @@
-import { Route } from '@/types';
-import got from '@/utils/got';
-import { config } from '@/config';
 import { load } from 'cheerio';
-import { parseDate } from '@/utils/parse-date';
 import { JSDOM } from 'jsdom';
+
+import { config } from '@/config';
 import ConfigNotFoundError from '@/errors/types/config-not-found';
+import type { Route } from '@/types';
+import got from '@/utils/got';
+import { parseDate } from '@/utils/parse-date';
 
 export const route: Route = {
     path: '/tag/:name?/:type?',
@@ -32,7 +33,7 @@ export const route: Route = {
     maintainers: ['hoilc', 'nczitzk', 'LucunJi'],
     handler,
     description: `::: warning
-  搜索标签下的最新内容需要 Lofter 登录后的 Cookie 值，所以只能自建，详情见部署页面的配置模块。
+搜索标签下的最新内容需要 Lofter 登录后的 Cookie 值，所以只能自建，详情见部署页面的配置模块。
 :::
 
 | new  | date | week | month | total |

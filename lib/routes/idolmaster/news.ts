@@ -1,11 +1,13 @@
-import { Route, Data, DataItem } from '@/types';
-import type { Context } from 'hono';
-import got from '@/utils/got';
 import querystring from 'node:querystring';
-import timezone from '@/utils/timezone';
-import { parseDate } from '@/utils/parse-date';
-import cache from '@/utils/cache';
+
 import { load } from 'cheerio';
+import type { Context } from 'hono';
+
+import type { Data, DataItem, Route } from '@/types';
+import cache from '@/utils/cache';
+import got from '@/utils/got';
+import { parseDate } from '@/utils/parse-date';
+import timezone from '@/utils/timezone';
 
 export const route: Route = {
     url: 'idolmaster-official.jp/news',
@@ -16,15 +18,16 @@ export const route: Route = {
         routeParams: 'The `brand` and `category` params in the path. The available values are as follows.',
     },
     description: `**Brand**
-| THE IDOLM@STER | シンデレラガールズ | ミリオンライブ！ | SideM | シャイニーカラーズ | 学園アイドルマスター | その他 |
-| -------------- | --------------- | ------------- | ----- | --------------- | ----------------- | ----- |
-| IDOLMASTER | CINDERELLAGIRLS | MILLIONLIVE | SIDEM | SHINYCOLORS | GAKUEN | OTHER |
+
+| THE IDOLM\\@STER | シンデレラガールズ | ミリオンライブ！ | SideM | シャイニーカラーズ | 学園アイドルマスター | その他 |
+| --------------- | ------------------ | ---------------- | ----- | ------------------ | -------------------- | ------ |
+| IDOLMASTER      | CINDERELLAGIRLS    | MILLIONLIVE      | SIDEM | SHINYCOLORS        | GAKUEN               | OTHER  |
 
 **Category**
-| ゲーム | ライブ・イベント | アニメ | 配信番組 | ラジオ | グッズ | コラボ・キャンペーン | ミュージック | ブック・コミック | メディア | その他 |
-| ----- | ------------- | ----- | ------- | ----- | ----- | ----------------- | --------- | -------------- | ------ | ----- |
-| GAME | LIVE-EVENT | ANIME | LIVESTREAM | RADIO | GOODS | COLLABO-CAMP | CD | BOOK | MEDIA | OTHER |
-    `,
+
+| ゲーム | ライブ・イベント | アニメ | 配信番組   | ラジオ | グッズ | コラボ・キャンペーン | ミュージック | ブック・コミック | メディア | その他 |
+| ------ | ---------------- | ------ | ---------- | ------ | ------ | -------------------- | ------------ | ---------------- | -------- | ------ |
+| GAME   | LIVE-EVENT       | ANIME  | LIVESTREAM | RADIO  | GOODS  | COLLABO-CAMP         | CD           | BOOK             | MEDIA    | OTHER  |`,
     features: {
         requireConfig: false,
         requirePuppeteer: false,

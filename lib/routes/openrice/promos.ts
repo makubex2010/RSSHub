@@ -1,8 +1,10 @@
-import { Route } from '@/types';
-import ofetch from '@/utils/ofetch';
 import { load } from 'cheerio';
-import { art } from '@/utils/render';
-import path from 'node:path';
+
+import type { Route } from '@/types';
+import ofetch from '@/utils/ofetch';
+
+import { renderDescription } from './templates/description';
+
 const baseUrl = 'https://www.openrice.com';
 
 export const route: Route = {
@@ -13,11 +15,9 @@ export const route: Route = {
     example: '/openrice/zh/hongkong/promos',
     parameters: { lang: '语言，缺省为 zh' },
     name: '香港餐厅滋讯',
-    description: `
-| 简体 | 繁體 | EN |
-| ----- | ------ | ----- |
-| zh-cn | zh | en |
-  `,
+    description: `| 简体  | 繁體 | EN |
+| ----- | ---- | -- |
+| zh-cn | zh   | en |`,
 };
 
 async function handler(ctx) {
@@ -52,7 +52,7 @@ async function handler(ctx) {
                 .find('.cover-photo')
                 .attr('style')
                 ?.match(/url\(['"]?(.*?)['"]?\)/)?.[1] ?? null;
-        const description = art(path.join(__dirname, 'templates/description.art'), {
+        const description = renderDescription({
             description: $item.find('.article-details .desc').text() ?? '',
             image: coverImg,
         });

@@ -1,7 +1,9 @@
-import { Route, ViewType } from '@/types';
+import type { Route } from '@/types';
+import { ViewType } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { apiUrl, favicon, getBParam, getBuildId, getGToken, parseList, parseItem } from './utils';
+
+import { apiUrl, favicon, getBParam, getBuildId, getGToken, parseItem, parseList } from './utils';
 
 export const route: Route = {
     path: '/:categoryId?/:lang?',
@@ -52,7 +54,7 @@ export const route: Route = {
 | ------- | ------ | ---- | ----- | --- | ------ | -------- | --------- | ------ |
 | 1       | 9      | 13   | 14    | 3   | 5      | 6        | 8         | 11     |
 
-  Language
+Language
 
 | English | 简体中文 | 繁體中文 | Tiếng Việt |
 | ------- | -------- | -------- | ---------- |

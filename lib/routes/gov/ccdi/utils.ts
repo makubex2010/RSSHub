@@ -1,15 +1,16 @@
-import cache from '@/utils/cache';
 import { load } from 'cheerio';
-import { parseDate } from '@/utils/parse-date';
+import { Cookie, CookieJar } from 'tough-cookie';
+
+import cache from '@/utils/cache';
 import got from '@/utils/got';
+import { parseDate } from '@/utils/parse-date';
 import timezone from '@/utils/timezone';
 
-import { CookieJar, Cookie } from 'tough-cookie';
 const cookieJar = new CookieJar();
 
 const owner = '中央纪委国家监委网站';
 const rootUrl = 'https://www.ccdi.gov.cn';
-const regex = /(?<key>[A-Z_]+)=(?<value>(?:.*?(?=; max-age)|[\dA-Fa-f]+))/gm;
+const regex = /(?<key>[A-Z_]+)=(?<value>.*?(?=; max-age)|[\dA-Fa-f]+)/g;
 
 const parseCookie = async (body) => {
     let m;
@@ -88,4 +89,4 @@ const parseArticle = async (item) => {
     });
 };
 
-export { rootUrl, parseNewsList, parseArticle };
+export { parseArticle, parseNewsList, rootUrl };

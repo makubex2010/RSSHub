@@ -1,6 +1,7 @@
-import { Route } from '@/types';
-import got from '@/utils/got';
 import { load } from 'cheerio';
+
+import type { Route } from '@/types';
+import got from '@/utils/got';
 import { parseDate } from '@/utils/parse-date';
 
 const rootUrl = 'https://antibody-software.com';
@@ -59,7 +60,7 @@ async function handler() {
         });
 
     return {
-        title: `WziFile - 更新日志`,
+        title: 'WziFile - 更新日志',
         link: currentUrl,
         item: items,
     };

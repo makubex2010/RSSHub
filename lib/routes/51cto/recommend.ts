@@ -1,11 +1,13 @@
-import { Route } from '@/types';
-import { parseDate } from '@/utils/parse-date';
-import got from '@/utils/got';
-import { getToken, sign } from './utils';
 import { load } from 'cheerio';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
-import ofetch from '@/utils/ofetch';
+import got from '@/utils/got';
 import logger from '@/utils/logger';
+import ofetch from '@/utils/ofetch';
+import { parseDate } from '@/utils/parse-date';
+
+import { getToken, sign } from './utils';
 
 export const route: Route = {
     path: '/index/recommend',
@@ -25,7 +27,6 @@ export const route: Route = {
 const pattern = /'(WTKkN|bOYDu|wyeCN)':\s*(\d+)/g;
 
 async function getFullcontent(item, cookie = '') {
-    let fullContent: null | string = null;
     const articleResponse = await ofetch(item.url, {
         headers: {
             cookie,
@@ -33,14 +34,14 @@ async function getFullcontent(item, cookie = '') {
     });
     const $ = load(articleResponse);
 
-    fullContent = new URL(item.url).host === 'ost.51cto.com' ? $('.posts-content').html() : $('article').html();
+    const fullContent = new URL(item.url).host === 'ost.51cto.com' ? $('.posts-content').html() : $('article').html();
 
     if (!fullContent && cookie === '') {
         // If fullContent is null and haven't tried to request with cookie, try to get fullContent with cookie
         try {
             // More details: https://github.com/DIYgod/RSSHub/pull/16583#discussion_r1738643033
             const _matches = articleResponse!.match(pattern)!.slice(0, 3);
-            const matches = _matches.map((str) => Number(str.split(':')[1]));
+            const matches = _matches.map((str) => Number(str.split(':', 2)[1]));
             const [v1, v2, v3] = matches;
             const cookie = '__tst_status=' + (v1 + v2 + v3) + '#;';
             return await getFullcontent(item, cookie);

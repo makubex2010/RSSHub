@@ -1,9 +1,10 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import timezone from '@/utils/timezone';
 import { parseDate } from '@/utils/parse-date';
-import { load } from 'cheerio';
+import timezone from '@/utils/timezone';
 
 const rootUrl = 'https://www.chinanews.com.cn';
 
@@ -60,9 +61,7 @@ async function handler(ctx) {
                     item.description = content('div.left_zw').html();
                     const info = content('div.left-t')
                         .contents()
-                        .filter(function () {
-                            return this.type === 'text';
-                        })
+                        .filter((_, el) => el.type === 'text')
                         .text()
                         .split('　');
                     item.pubDate = timezone(parseDate(info[0], 'YYYY年MM月DD日 HH:mm'), +8);

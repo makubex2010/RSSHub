@@ -1,7 +1,8 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
 import { finishArticleItem } from '@/utils/wechat-mp';
 
@@ -46,9 +47,9 @@ export const route: Route = {
     name: '学生在线（青岛）',
     maintainers: ['kukeya'],
     handler,
-    description: `| 学团通知-研究生 | 学团通知-本科生 | 学团通知-团学 | 学团通知-心理 | 学团要闻
-| -------- | -------- |-------- |-------- |-------- |
-| xttz-yjs   | xttz-bks  |  xttz-tx  | xttz-xl  | xtyw  |`,
+    description: `| 学团通知 - 研究生 | 学团通知 - 本科生 | 学团通知 - 团学 | 学团通知 - 心理 | 学团要闻 |
+| ----------------- | ----------------- | --------------- | --------------- | -------- |
+| xttz-yjs          | xttz-bks          | xttz-tx         | xttz-xl         | xtyw     |`,
 };
 
 async function handler(ctx) {

@@ -1,11 +1,11 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
 
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
-import { art } from '@/utils/render';
-import path from 'node:path';
+
+import { renderDescription } from './templates/description';
 
 export const route: Route = {
     path: '/news/:category?',
@@ -86,14 +86,14 @@ async function handler(ctx) {
     let items = response.news_articles.slice(0, limit).map((item) => ({
         title: item.list_title,
         link: new URL(item.path, rootUrl).href,
-        description: art(path.join(__dirname, 'templates/description.art'), {
-            image: item.list_image_path
+        description: renderDescription(
+            item.list_image_path
                 ? {
                       src: new URL(item.list_image_path, rootUrl).href,
                       alt: item.list_title,
                   }
-                : undefined,
-        }),
+                : undefined
+        ),
         author: item.author,
         category: [item.category_name, item.category_2_name].filter(Boolean),
         guid: `kamen-rider-official-${item.id}`,
@@ -107,16 +107,14 @@ async function handler(ctx) {
 
                 const content = load(detailResponse);
 
-                content('a.c-button').each(function () {
-                    content(this).parent().remove();
+                content('a.c-button').each((_, el) => {
+                    content(el).parent().remove();
                 });
 
-                content('img').each(function () {
-                    content(this).replaceWith(
-                        art(path.join(__dirname, 'templates/description.art'), {
-                            image: {
-                                src: content(this).prop('src'),
-                            },
+                content('img').each((_, el) => {
+                    content(el).replaceWith(
+                        renderDescription({
+                            src: content(el).prop('src'),
                         })
                     );
                 });
@@ -149,7 +147,7 @@ async function handler(ctx) {
 
     return {
         item: items,
-        title: `${$('title').text().split(/ー/)[0]}${category ? ` - ${category}` : ''}`,
+        title: `${$('title').text().split(/ー/, 1)[0]}${category ? ` - ${category}` : ''}`,
         link: currentUrl,
         description: $('meta[property="og:description"]').prop('content'),
         language: $('html').prop('lang'),

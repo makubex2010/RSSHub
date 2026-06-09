@@ -1,29 +1,28 @@
-import { type Data, type DataItem, type Route, ViewType } from '@/types';
+import type { Cheerio, CheerioAPI } from 'cheerio';
+import { load } from 'cheerio';
+import type { Element } from 'domhandler';
+import type { Context } from 'hono';
 
+import type { Data, DataItem, Route } from '@/types';
+import { ViewType } from '@/types';
 import cache from '@/utils/cache';
 import ofetch from '@/utils/ofetch';
 import { parseDate } from '@/utils/parse-date';
-
-import { type CheerioAPI, type Cheerio, load } from 'cheerio';
-import type { Element } from 'domhandler';
-import { type Context } from 'hono';
 
 export const handler = async (ctx: Context): Promise<Data> => {
     const { category = 'ywgg/tzgg' } = ctx.req.param();
     const limit: number = Number.parseInt(ctx.req.query('limit') ?? '15', 10);
 
-    const baseUrl: string = 'https://www.cccmc.org.cn';
+    const baseUrl = 'https://www.cccmc.org.cn';
     const targetUrl: string = new URL(category.endsWith('/') ? category : `${category}/`, baseUrl).href;
 
     const response = await ofetch(targetUrl);
     const $: CheerioAPI = load(response);
     const language = $('html').attr('lang') ?? 'zh-CN';
 
-    let items: DataItem[] = [];
+    const regex = /\{url:'(.*)',title:'(.*)',time:'(.*)'\},/g;
 
-    const regex: RegExp = /\{url:'(.*)',title:'(.*)',time:'(.*)'\},/g;
-
-    items =
+    let items: DataItem[] =
         response
             .match(regex)
             ?.slice(0, limit)
@@ -96,7 +95,7 @@ export const handler = async (ctx: Context): Promise<Data> => {
 
     return {
         title,
-        description: title.split(/-/)[0].trim(),
+        description: title.split(/-/, 1)[0].trim(),
         link: targetUrl,
         item: items,
         allowEmpty: true,
@@ -153,8 +152,8 @@ export const route: Route = {
 | [党群动态](https://www.cccmc.org.cn/shdj/dqdt/) | [党内法规](https://www.cccmc.org.cn/shdj/dnfg/) | [青年工作](https://www.cccmc.org.cn/shdj/qngz/) |
 | ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
 | [shdj/dqdt](https://rsshub.app/cccmc/shdj/dqdt) | [shdj/dnfg](https://rsshub.app/cccmc/shdj/dnfg) | [shdj/qngz](https://rsshub.app/cccmc/shdj/qngz) |
-</details>
-`,
+
+</details>`,
     categories: ['new-media'],
     features: {
         requireConfig: false,

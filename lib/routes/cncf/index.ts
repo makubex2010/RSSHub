@@ -1,7 +1,8 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
 
 const rootURL = 'https://www.cncf.io';
@@ -39,7 +40,7 @@ async function handler(ctx) {
         .map((item) => ({
             title: $(item).find('span.post-archive__title').text().trim(),
             link: $(item).find('span.post-archive__title > a').attr('href'),
-            pubDate: parseDate($(item).find('span.post-archive__item_date').text().split('|')[0]),
+            pubDate: parseDate($(item).find('span.post-archive__item_date').text().split('|', 1)[0]),
         }));
 
     const items = await Promise.all(

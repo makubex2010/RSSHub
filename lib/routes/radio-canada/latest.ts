@@ -1,8 +1,9 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import ofetch from '@/utils/ofetch';
 import { parseDate } from '@/utils/parse-date';
-import { load } from 'cheerio';
 
 export const route: Route = {
     path: '/latest/:language?',
@@ -57,7 +58,7 @@ async function handler(ctx) {
                     .text()
                     .match(/window\._rcState_ = (.*);/)?.[1];
 
-                item.description = rcState ? parseDescriptionFromState(rcState) : ($(`div[data-testid="newsStoryMedia"]`).html() ?? '') + ($('article > main').html() ?? '');
+                item.description = rcState ? parseDescriptionFromState(rcState) : ($('div[data-testid="newsStoryMedia"]').html() ?? '') + ($('article > main').html() ?? '');
 
                 return item;
             })

@@ -1,7 +1,9 @@
-import { Data, Route } from '@/types';
-import { TITLE, HOST } from './const';
+import type { Context } from 'hono';
+
+import type { Data, Route } from '@/types';
+
+import { HOST, TITLE } from './const';
 import { fetchActivityList, fetchSiteInfo } from './service';
-import { Context } from 'hono';
 
 export const route: Route = {
     path: '/site/:siteId',
@@ -25,7 +27,9 @@ export const route: Route = {
     maintainers: ['lchtao26'],
     handler,
     description: `::: tip
--   演出场地 ID 查询: \`/showstart/search/site/:keyword\`, 如: [https://rsshub.app/showstart/search/site/酒球会](https://rsshub.app/showstart/search/site/酒球会)
+
+- 演出场地 ID 查询: \`/showstart/search/site/:keyword\`, 如: [https://rsshub.app/showstart/search/site/ 酒球会](https://rsshub.app/showstart/search/site/酒球会)
+
 :::`,
 };
 

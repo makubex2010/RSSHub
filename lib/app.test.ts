@@ -1,9 +1,7 @@
+import undici from 'undici';
 import { describe, expect, it, vi } from 'vitest';
 
 import app from '@/app';
-import undici from 'undici';
-
-const { config } = await import('@/config');
 
 describe('index', () => {
     it('serve index', async () => {
@@ -20,6 +18,6 @@ describe('request-rewriter', () => {
 
         // headers
         const headers: Headers = fetchSpy.mock.lastCall?.[0].headers;
-        expect(headers.get('user-agent')).toBe(config.ua);
+        expect(headers.get('user-agent')).toMatch(/Chrome/);
     });
 });

@@ -1,8 +1,9 @@
-import type { DataItem, Route } from '@/types';
-import { parseDate } from '@/utils/parse-date';
-import cache from '@/utils/cache';
 import { load } from 'cheerio';
+
+import type { DataItem, Route } from '@/types';
+import cache from '@/utils/cache';
 import ofetch from '@/utils/ofetch';
+import { parseDate } from '@/utils/parse-date';
 
 const handler: Route['handler'] = async () => {
     const data = await ofetch('https://react.dev/blog');
@@ -25,7 +26,7 @@ const handler: Route['handler'] = async () => {
                         title: $('h1').first().text().trim(),
                         link,
                         description: $('article div:nth-child(2)').html() ?? '',
-                        pubDate: parseDate($('p.whitespace-pre-wrap').first().text().split(/\s+by/)[0]),
+                        pubDate: parseDate($('p.whitespace-pre-wrap').first().text().split(/\s+by/, 1)[0]),
                     };
                 });
             })

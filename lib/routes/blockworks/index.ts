@@ -1,11 +1,12 @@
-import { Route, Data, DataItem } from '@/types';
+import { load } from 'cheerio';
+
+import { config } from '@/config';
+import type { Data, DataItem, Route } from '@/types';
 import cache from '@/utils/cache';
+import logger from '@/utils/logger';
 import ofetch from '@/utils/ofetch';
 import { parseDate } from '@/utils/parse-date';
-import { load } from 'cheerio';
-import logger from '@/utils/logger';
 import parser from '@/utils/rss-parser';
-import { config } from '@/config';
 
 export const route: Route = {
     path: '/',
@@ -45,7 +46,7 @@ async function handler(ctx): Promise<Data> {
         limitedItems
             .map((item) => ({
                 ...item,
-                link: item.link?.split('?')[0],
+                link: item.link?.split('?', 1)[0],
             }))
             .map((item) =>
                 cache.tryGet(item.link!, async () => {

@@ -1,7 +1,8 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
 
 export const route: Route = {
@@ -42,7 +43,7 @@ async function handler(ctx) {
                 author: item
                     .find(String.raw`dc\:creator`)
                     .html()
-                    .match(/CDATA\[(.*?)]/)[1],
+                    .match(/CDATA\[(.*?)\]/)[1],
                 category: item
                     .find('category')
                     .toArray()
@@ -50,7 +51,7 @@ async function handler(ctx) {
                         (c) =>
                             $(c)
                                 .html()
-                                .match(/CDATA\[(.*?)]/)[1]
+                                .match(/CDATA\[(.*?)\]/)[1]
                     ),
                 pubDate: parseDate(item.find('pubDate').text()),
             };

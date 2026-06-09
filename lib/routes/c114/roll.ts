@@ -1,18 +1,18 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+import iconv from 'iconv-lite';
 
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
-import timezone from '@/utils/timezone';
 import { parseDate } from '@/utils/parse-date';
-import iconv from 'iconv-lite';
+import timezone from '@/utils/timezone';
 
 export const handler = async (ctx) => {
     const { original = 'false' } = ctx.req.param();
     const limit = ctx.req.query('limit') ? Number.parseInt(ctx.req.query('limit'), 10) : 15;
 
     const rootUrl = 'https://www.c114.com.cn';
-    const currentUrl = new URL(`news/roll.asp${original === 'true' ? `?o=true` : ''}`, rootUrl).href;
+    const currentUrl = new URL(`news/roll.asp${original === 'true' ? '?o=true' : ''}`, rootUrl).href;
 
     const { data: response } = await got(currentUrl, {
         responseType: 'buffer',

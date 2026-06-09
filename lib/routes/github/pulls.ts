@@ -1,18 +1,42 @@
-import { Route } from '@/types';
-import ofetch from '@/utils/ofetch';
-import { config } from '@/config';
 import MarkdownIt from 'markdown-it';
+
+import { config } from '@/config';
+import type { Route } from '@/types';
+import ofetch from '@/utils/ofetch';
+import { parseDate } from '@/utils/parse-date';
+
 const md = MarkdownIt({
     html: true,
     linkify: true,
 });
-import { parseDate } from '@/utils/parse-date';
 
 export const route: Route = {
     path: '/pull/:user/:repo/:state?/:labels?',
     categories: ['programming'],
     example: '/github/pull/DIYgod/RSSHub',
-    parameters: { user: 'User name', repo: 'Repo name', state: 'the state of pull requests. Can be either `open`, `closed`, or `all`. Default: `open`.', labels: 'a list of comma separated label names' },
+    parameters: {
+        user: 'GitHub username',
+        repo: 'GitHub repo name',
+        state: {
+            description: 'the state of pull requests.',
+            default: 'open',
+            options: [
+                {
+                    label: 'Open',
+                    value: 'open',
+                },
+                {
+                    label: 'Closed',
+                    value: 'closed',
+                },
+                {
+                    label: 'All',
+                    value: 'all',
+                },
+            ],
+        },
+        labels: 'a list of comma separated label names',
+    },
     features: {
         requireConfig: false,
         requirePuppeteer: false,
@@ -59,7 +83,7 @@ async function handler(ctx) {
 
     return {
         allowEmpty: true,
-        title: `${user}/${repo} Pull requests`,
+        title: `${user}/${repo} ${state.replace(/^\S/, (s) => s.toUpperCase())} Pull Requests${labels ? ' - ' + labels : ''}`,
         link: host,
         item: data.map((item) => ({
             title: item.title,

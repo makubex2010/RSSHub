@@ -1,6 +1,7 @@
-import { Route } from '@/types';
-import got from '@/utils/got';
 import { load } from 'cheerio';
+
+import type { Route } from '@/types';
+import got from '@/utils/got';
 import { parseDate } from '@/utils/parse-date';
 import timezone from '@/utils/timezone';
 
@@ -37,7 +38,7 @@ async function handler() {
     return {
         title: 'Rust语言中文社区 | 新闻/聚合',
         link: newsUrl,
-        description: `获取Rust语言中文社区的新闻/聚合`,
+        description: '获取Rust语言中文社区的新闻/聚合',
         item: list.map((item) => getFeedItem(item)),
     };
 }

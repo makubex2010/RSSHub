@@ -1,7 +1,9 @@
-import { Route, ViewType } from '@/types';
+import type { Route } from '@/types';
+import { ViewType } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
 import { parseDate } from '@/utils/parse-date';
+
 import { parseItem } from './utils';
 
 export const route: Route = {
@@ -52,7 +54,7 @@ async function handler(ctx) {
     return {
         title: `格隆汇 - 用户 ${data.result[0].user.nick} 的文章`,
         description: data.result.find((i) => i.user).user.brief,
-        image: data.result.find((i) => i.user).user.avatar.split('@')[0],
+        image: data.result.find((i) => i.user).user.avatar.split('@', 1)[0],
         link: data.result.find((i) => i.user).user.route.replace('https://m.gelonghui.com', 'https://www.gelonghui.com'),
         item: items,
     };

@@ -1,7 +1,8 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
 
 export const route: Route = {
     name: 'Award Winners',
@@ -30,8 +31,8 @@ async function handler() {
 
     $('.cameo').remove();
 
-    $('.topvote_title_desc, .topvote_title_minimal, .topvote_minimal').each(function () {
-        $(this).find('a').first().remove();
+    $('.topvote_title_desc, .topvote_title_minimal, .topvote_minimal').each((_, el) => {
+        $(el).find('a').first().remove();
     });
 
     let items = $('#article_index a')

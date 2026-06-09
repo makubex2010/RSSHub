@@ -1,8 +1,9 @@
-import { Route } from '@/types';
-import got from '@/utils/got';
 import { load } from 'cheerio';
-import { parseDate } from '@/utils/parse-date';
 import { SourceMapConsumer } from 'source-map';
+
+import type { Route } from '@/types';
+import got from '@/utils/got';
+import { parseDate } from '@/utils/parse-date';
 
 export const route: Route = {
     path: '/essay',
@@ -52,7 +53,7 @@ async function handler(ctx) {
             .map((item) => {
                 const source = consumer.sourceContentFor(item).replaceAll(/\s\n/g, '');
 
-                const processedSource = source.replaceAll(/(\w+)={+([^{}]+)}+/g, (match, key, value) => {
+                const processedSource = source.replaceAll(/(\w+)=\{+([^{}]+)\}+/g, (match, key, value) => {
                     const processedValue = value.slice(1, -1).replaceAll('"', "'").trim();
                     return `${key}="${processedValue}"`;
                 });

@@ -1,6 +1,7 @@
+import { load } from 'cheerio';
+
 import cache from '@/utils/cache';
 import ofetch from '@/utils/ofetch'; // 使用ofetch库
-import { load } from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
 import timezone from '@/utils/timezone';
 
@@ -47,8 +48,8 @@ async function getItems(ctx, url, host, tableClass, timeStyleClass1, titleStyleC
                 } else {
                     const contentHtml = $('.v_news_content').html();
                     const $content = load(contentHtml);
-                    $content('a').each(function () {
-                        const a = $(this);
+                    $content('a').each((_, el) => {
+                        const a = $(el);
                         const href = a.attr('href');
                         if (href && !href.startsWith('http')) {
                             a.attr('href', new URL(href, host).href);

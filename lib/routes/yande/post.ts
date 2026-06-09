@@ -1,6 +1,8 @@
-import { Route, ViewType } from '@/types';
-import got from '@/utils/got';
 import queryString from 'query-string';
+
+import type { Route } from '@/types';
+import { ViewType } from '@/types';
+import got from '@/utils/got';
 
 export const route: Route = {
     path: '/post/popular_recent/:period?',
@@ -26,9 +28,9 @@ export const route: Route = {
     ],
     name: 'Popular Recent Posts',
     maintainers: ['magic-akari', 'SettingDust', 'fashioncj', 'NekoAria'],
-    description: `| 最近 24 小时    | 最近一周     | 最近一月    | 最近一年     |
-| ------- | -------- | ------- | -------- |
-| 1d | 1w | 1m | 1y |`,
+    description: `| 最近 24 小时 | 最近一周 | 最近一月 | 最近一年 |
+| ------------ | -------- | -------- | -------- |
+| 1d           | 1w       | 1m       | 1y       |`,
     handler,
     features: {
         nsfw: true,

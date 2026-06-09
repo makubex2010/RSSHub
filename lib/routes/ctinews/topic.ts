@@ -1,8 +1,9 @@
-import { Route } from '@/types';
-import ofetch from '@/utils/ofetch';
 import { load } from 'cheerio';
-import { parseDate } from '@/utils/parse-date';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
+import ofetch from '@/utils/ofetch';
+import { parseDate } from '@/utils/parse-date';
 import timezone from '@/utils/timezone';
 
 export const route: Route = {
@@ -70,7 +71,7 @@ async function handler(ctx) {
     ];
 
     const seen = new Set<string>();
-    const dedupedList: { title?: string; link?: string }[] = [];
+    const dedupedList: Array<{ title?: string; link?: string }> = [];
     for (const item of list) {
         const link = item.link || '';
         if (seen.has(link)) {
@@ -87,7 +88,7 @@ async function handler(ctx) {
                 const $ = load(response);
                 if (item.link?.includes('/videos/')) {
                     const ldJson = JSON.parse($('script[type="application/ld+json"]:contains("VideoObject")').text());
-                    const videoId = ldJson.embedUrl.match(/embed\/([a-zA-Z0-9_-]+)/)?.[1];
+                    const videoId = ldJson.embedUrl.match(/embed\/([\w-]+)/)?.[1];
 
                     item.description =
                         `<iframe id="ytplayer" type="text/html" width="640" height="360" src="https://www.youtube-nocookie.com/embed/${videoId}" frameborder="0" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe><br>` +

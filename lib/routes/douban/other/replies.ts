@@ -1,7 +1,8 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
 
 export const route: Route = {
     path: '/replies/:uid',
@@ -54,10 +55,10 @@ async function handler(ctx) {
                     url: item.link,
                 });
 
-                const comments = JSON.parse(detailResponse.data.match(/'comments':(.*)}],/)[1] + '}]');
+                const comments = JSON.parse(detailResponse.data.match(/'comments':(.*)\}\],/)[1] + '}]');
 
                 for (const c of comments) {
-                    if (c.id === item.link.split('#')[1]) {
+                    if (c.id === item.link.split('#', 2)[1]) {
                         return {
                             link: item.link,
                             title: `${c.author.name} 于 ${c.create_time} 的回应`,

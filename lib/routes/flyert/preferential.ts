@@ -1,8 +1,9 @@
-import { Route } from '@/types';
-import cache from '@/utils/cache';
-import got from '@/utils/got';
 import { load } from 'cheerio';
 import iconv from 'iconv-lite';
+
+import type { Route } from '@/types';
+import cache from '@/utils/cache';
+import got from '@/utils/got';
 import { parseDate } from '@/utils/parse-date';
 import timezone from '@/utils/timezone';
 
@@ -60,7 +61,7 @@ async function handler() {
                 content('div.artical_top').remove();
 
                 item.description = content('#artMain').html();
-                item.pubDate = timezone(parseDate(content('p.xg1 > span:nth-child(1)').attr('title') || content('p.xg1').text().split('|')[0], 'YYYY-M-D HH:mm'), +8);
+                item.pubDate = timezone(parseDate(content('p.xg1 > span:nth-child(1)').attr('title') || content('p.xg1').text().split('|', 1)[0], 'YYYY-M-D HH:mm'), +8);
                 return item;
             })
         )

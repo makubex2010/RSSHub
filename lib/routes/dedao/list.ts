@@ -1,7 +1,8 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
 
 export const route: Route = {
     path: '/list/:category?',
@@ -44,7 +45,7 @@ async function handler(ctx) {
         url: listUrl,
     });
 
-    const currentUrl = `${rootUrl}${listResponse.data.match(new RegExp('<span>' + category + String.raw`<\/span><a href="(.*)" rel="tag"><\/a>`))[1].split('"')[0]}`;
+    const currentUrl = `${rootUrl}${listResponse.data.match(new RegExp('<span>' + category + String.raw`<\/span><a href="(.*)" rel="tag"><\/a>`))[1].split('"', 1)[0]}`;
 
     const currentResponse = await got({
         method: 'get',

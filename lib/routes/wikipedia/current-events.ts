@@ -1,7 +1,7 @@
-import { Route } from '@/types';
+import { config } from '@/config';
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { config } from '@/config';
 
 /* The different ways to query Wikipedia's Current Events
 
@@ -51,12 +51,12 @@ function parseCurrentEventsTemplate(wikitext: string): string | null {
 
     // Look for {{Current events|content=...}} template
     // The closing }} is always at the end of wikitext
-    const contentMatch = wikitext.match(/\{\{Current events\s*\|[\s\S]*?content\s*=\s*([\s\S]*)\}\}$/);
+    const contentMatch = wikitext.match(/\{\{Current events\s*\|[\s\S]*?content(?=(\s*=))\1\s*((?:\S[\s\S]*)?)\}\}$/);
     if (!contentMatch) {
         return null;
     }
 
-    let content = contentMatch[1].trim();
+    let content = contentMatch[2].trim();
 
     // Strip comments to detect empty content
     content = stripComments(content);
@@ -71,7 +71,7 @@ function parseCurrentEventsTemplate(wikitext: string): string | null {
 
 function stripTemplates(wikitext: string): string {
     // Remove MediaWiki template delimiters {{...}} but keep the content
-    // This prevents conflicts with art-template's {{ }} delimiters in RSS generation
+    // This prevents conflicts with template delimiters during JSX-based rendering
     return wikitext.replaceAll(/\{\{([^}]+)\}\}/g, '$1');
 }
 
@@ -84,7 +84,7 @@ function convertWikiLinks(html: string): string {
 
 function convertExternalLinks(html: string): string {
     // Convert external links [URL Text] or [URL]
-    html = html.replaceAll(/\[([^\s\]]+)\s+([^\]]+)\]/g, '<a href="$1">$2</a>');
+    html = html.replaceAll(/\[([^\s\]]+)\s+([^\s\]][^\]]*|\s)\]/g, '<a href="$1">$2</a>');
     html = html.replaceAll(/\[([^\s\]]+)\]/g, '<a href="$1">$1</a>');
     return html;
 }
@@ -186,7 +186,7 @@ function processListsAndLines(html: string): string {
         }
 
         // Check for bullet points
-        const bulletMatch = trimmedLine.match(/^(\*+)\s*(.*)$/);
+        const bulletMatch = trimmedLine.match(/^(\*+)(?!\*)\s*((?:\S.*)?)$/);
         if (bulletMatch) {
             const depth = bulletMatch[1].length;
             const content = bulletMatch[2];
@@ -228,7 +228,7 @@ export function wikiToHtml(wikitext: string): string {
     let html = wikitext;
 
     // Apply transformations in order
-    html = stripTemplates(html); // Must be first to prevent art-template conflicts
+    html = stripTemplates(html); // Must be first to prevent template delimiter conflicts
     html = convertWikiLinks(html);
     html = convertExternalLinks(html);
     html = convertTextFormatting(html);
@@ -398,7 +398,7 @@ async function handler(ctx) {
         };
     } catch (error) {
         const message = error instanceof Error ? error.message : String(error);
-        throw new Error(`Failed to fetch Wikipedia current events: ${message}`);
+        throw new Error(`Failed to fetch Wikipedia current events: ${message}`, { cause: error });
     }
 }
 function determineDates(includeToday: any) {

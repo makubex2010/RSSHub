@@ -1,6 +1,7 @@
-import { Route } from '@/types';
-import got from '@/utils/got';
 import { load } from 'cheerio';
+
+import type { Route } from '@/types';
+import got from '@/utils/got';
 import { parseDate } from '@/utils/parse-date';
 
 export const route: Route = {
@@ -52,8 +53,8 @@ async function handler() {
             const title = item.attr('data-text');
 
             let description = '';
-            item.nextUntil('h4').each(function () {
-                description += $(this).html();
+            item.nextUntil('h4').each((_, el) => {
+                description += $(el).html();
             });
 
             return {

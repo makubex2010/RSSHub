@@ -1,8 +1,9 @@
-import { Route } from '@/types';
-import got from '@/utils/got';
 import { load } from 'cheerio';
 
-import { rootUrl, getInfo, processItems } from './util';
+import type { Route } from '@/types';
+import got from '@/utils/got';
+
+import { getInfo, processItems, rootUrl } from './util';
 
 export const route: Route = {
     path: '/rank/:range?',
@@ -46,7 +47,7 @@ async function handler(ctx) {
 
     let items = $('a')
         .toArray()
-        .filter((item) => /\/(\d+)\.html?/.test($(item).prop('href')))
+        .filter((item) => /\/\d+\.html?/.test($(item).prop('href')))
         .slice(0, limit)
         .map((item) => {
             item = $(item);

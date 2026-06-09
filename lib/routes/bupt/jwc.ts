@@ -1,10 +1,11 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+import type { Context } from 'hono';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
-import timezone from '@/utils/timezone';
 import { parseDate } from '@/utils/parse-date';
-import type { Context } from 'hono';
+import timezone from '@/utils/timezone';
 
 export const route: Route = {
     path: '/jwc/:type',
@@ -97,8 +98,8 @@ async function handler(ctx: Context) {
                 const newsContent = content('.v_news_content');
 
                 // 移除不必要的标签，比如 <p> 和 <span> 中无用的内容
-                newsContent.find('p, span, strong').each(function () {
-                    const element = content(this);
+                newsContent.find('p, span, strong').each((_, el) => {
+                    const element = content(el);
                     const text = element.text().trim();
 
                     // 删除没有有用文本的元素，防止空元素被保留

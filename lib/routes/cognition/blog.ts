@@ -1,13 +1,15 @@
-import { type Data, type DataItem, type Route, ViewType } from '@/types';
-import ofetch from '@/utils/ofetch';
-import { parseDate } from '@/utils/parse-date';
 import { load } from 'cheerio';
 
+import type { DataItem, Route } from '@/types';
+import { ViewType } from '@/types';
+import ofetch from '@/utils/ofetch';
+import { parseDate } from '@/utils/parse-date';
+
 export const route: Route = {
-    path: '/blog',
+    path: '/blog/:category?',
     name: 'Blog',
     url: 'cognition.ai/blog',
-    maintainers: ['Loongphy'],
+    maintainers: ['Loongphy', 'ttttmr'],
     example: '/cognition/blog',
     categories: ['programming'],
     features: {
@@ -21,12 +23,15 @@ export const route: Route = {
     },
     radar: [
         {
-            source: ['cognition.ai/blog/1'],
-            target: '/blog',
+            source: ['cognition.ai/blog/1', 'cognition.ai/blog/:category/1'],
+            target: '/blog/:category?',
         },
     ],
     view: ViewType.Articles,
     handler,
+    parameters: {
+        category: 'Category name, e.g., Research, Tutorials',
+    },
 };
 
 const splitAuthors = (text: string | undefined): DataItem['author'] => {
@@ -48,9 +53,10 @@ const splitAuthors = (text: string | undefined): DataItem['author'] => {
     }));
 };
 
-export async function handler(): Promise<Data> {
+export async function handler(ctx) {
     const baseUrl = 'https://cognition.ai';
-    const listPath = '/blog/1';
+    const { category } = ctx.req.param();
+    const listPath = category ? `/blog/${category}/1` : '/blog/1';
     const targetUrl = new URL(listPath, baseUrl).href;
     const html = await ofetch(targetUrl);
     const $ = load(html);

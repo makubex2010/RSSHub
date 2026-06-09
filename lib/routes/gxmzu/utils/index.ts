@@ -1,17 +1,18 @@
+import { load } from 'cheerio';
+
 import cache from '@/utils/cache';
 import ofetch from '@/utils/ofetch'; // 使用ofetch库代替got
-import { load } from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
 import timezone from '@/utils/timezone';
 
 async function getNoticeList(ctx, url, host, titleSelector, dateSelector, contentSelector) {
-    const response = await ofetch(url, { rejectUnauthorized: false });
+    const response = await ofetch(url);
     if (!response) {
         return [];
     }
     const $ = load(response);
 
-    const list = $(`tr[height=20]`)
+    const list = $('tr[height=20]')
         .toArray()
         .map((item) => {
             item = $(item);
@@ -32,7 +33,7 @@ async function getNoticeList(ctx, url, host, titleSelector, dateSelector, conten
                         description: '该通知无法直接预览，请点击原文链接↑查看',
                     };
                 }
-                const response = await ofetch(item.link, { rejectUnauthorized: false });
+                const response = await ofetch(item.link);
                 if (!response || (response.status >= 300 && response.status < 400)) {
                     item.description = '该通知无法直接预览，请点击原文链接↑查看';
                 } else {
@@ -45,8 +46,8 @@ async function getNoticeList(ctx, url, host, titleSelector, dateSelector, conten
                         item.description = '该通知无法直接预览，请点击原文链接↑查看';
                     } else {
                         const $content = load($(contentSelector.content).html());
-                        $content('a').each(function () {
-                            const a = $(this);
+                        $content('a').each((_, el) => {
+                            const a = $(el);
                             const href = a.attr('href');
                             if (href && !href.startsWith('http')) {
                                 a.attr('href', new URL(href, host).href);
@@ -54,7 +55,10 @@ async function getNoticeList(ctx, url, host, titleSelector, dateSelector, conten
                         });
                         item.description = $content.html();
                     }
-                    const preDate = $(contentSelector.date).text().replaceAll(/年|月/g, '-').replaceAll('日', '');
+                    const preDate = $(contentSelector.date)
+                        .text()
+                        .replaceAll(/年|月/g, '-')
+                        .replaceAll('日', '');
                     item.pubDate = timezone(parseDate(preDate), +8);
                 }
                 return item;

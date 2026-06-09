@@ -1,7 +1,8 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
 
 export const route: Route = {
@@ -26,7 +27,7 @@ export const route: Route = {
     name: '法定主动公开内容',
     maintainers: ['skeaven'],
     handler,
-    description: '应急管理部法定主动公开内容,包含通知、公告、督办、政策解读等，可供应急相关工作人员及时获取政策信息',
+    description: '应急管理部法定主动公开内容，包含通知、公告、督办、政策解读等，可供应急相关工作人员及时获取政策信息',
 };
 
 async function handler(ctx) {

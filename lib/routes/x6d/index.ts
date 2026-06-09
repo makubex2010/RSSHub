@@ -1,10 +1,10 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
 
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
-import timezone from '@/utils/timezone';
 import { parseDate } from '@/utils/parse-date';
+import timezone from '@/utils/timezone';
 
 export const route: Route = {
     path: '/:id?',
@@ -130,7 +130,7 @@ export async function handler(ctx) {
     const image = new URL($('div.header-logo img').prop('src'), rootUrl).href;
 
     return {
-        title: $('title').text().split(/\s-/)[0],
+        title: $('title').text().split(/\s-/, 1)[0],
         description: $('meta[name="description"]').prop('content'),
         link: currentUrl,
         item: items,

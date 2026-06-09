@@ -1,7 +1,8 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
 import { finishArticleItem } from '@/utils/wechat-mp';
 
@@ -30,9 +31,9 @@ export const route: Route = {
     name: '青岛校区学科建设与研究生教育办公室',
     maintainers: ['kukeya'],
     handler,
-    description: `| 工作通知 | 
+    description: `| 工作通知 |
 | -------- |
-| gztz     | `,
+| gztz     |`,
 };
 
 async function handler(ctx) {

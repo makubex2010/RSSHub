@@ -1,10 +1,11 @@
-import { DataItem, Route } from '@/types';
-import got from '@/utils/got';
 import { load } from 'cheerio';
+import sanitizeHtml from 'sanitize-html';
+
 import { config } from '@/config';
 import ConfigNotFoundError from '@/errors/types/config-not-found';
-import sanitizeHtml from 'sanitize-html';
+import type { DataItem, Route } from '@/types';
 import cache from '@/utils/cache';
+import got from '@/utils/got';
 
 export const route: Route = {
     path: '/transform/html/:url/:routeParams',
@@ -30,29 +31,29 @@ export const route: Route = {
 
 Specify options (in the format of query string) in parameter \`routeParams\` parameter to extract data from HTML.
 
-| Key                 | Meaning                                                                                                       | Accepted Values | Default                  |
-| ------------------- | ------------------------------------------------------------------------------------------------------------- | --------------- | ------------------------ |
-| \`title\`           | The title of the RSS                                                                                          | \`string\`      | Extract from \`<title>\` |
-| \`item\`            | The HTML elements as \`item\` using CSS selector                                                              | \`string\`      | html                     |
-| \`itemTitle\`       | The HTML elements as \`title\` in \`item\` using CSS selector                                                 | \`string\`      | \`item\` element         |
-| \`itemTitleAttr\`   | The attributes of \`title\` element as title                                                                  | \`string\`      | Element text             |
-| \`itemLink\`        | The HTML elements as \`link\` in \`item\` using CSS selector                                                  | \`string\`      | \`item\` element         |
-| \`itemLinkAttr\`    | The attributes of \`link\` element as link                                                                    | \`string\`      | \`href\`                 |
-| \`itemDesc\`        | The HTML elements as \`descrption\` in \`item\` using CSS selector                                            | \`string\`      | \`item\` element         |
-| \`itemDescAttr\`    | The attributes of \`descrption\` element as description                                                       | \`string\`      | Element html             |
-| \`itemPubDate\`     | The HTML elements as \`pubDate\` in \`item\` using CSS selector                                               | \`string\`      | \`item\` element         |
-| \`itemPubDateAttr\` | The attributes of \`pubDate\` element as pubDate                                                              | \`string\`      | Element html             |
-| \`itemContent\`     | The HTML elements as \`description\` in \`item\` using CSS selector ( in \`itemLink\` page for full content ) | \`string\`      |                          |
-| \`encoding\`        | The encoding of the HTML content                                                                              | \`string\`      | utf-8                    |
+| Key               | Meaning                                                                                                 | Accepted Values | Default                |
+| ----------------- | ------------------------------------------------------------------------------------------------------- | --------------- | ---------------------- |
+| \`title\`           | The title of the RSS                                                                                    | \`string\`        | Extract from \`<title>\` |
+| \`item\`            | The HTML elements as \`item\` using CSS selector                                                          | \`string\`        | html                   |
+| \`itemTitle\`       | The HTML elements as \`title\` in \`item\` using CSS selector                                               | \`string\`        | \`item\` element         |
+| \`itemTitleAttr\`   | The attributes of \`title\` element as title                                                              | \`string\`        | Element text           |
+| \`itemLink\`        | The HTML elements as \`link\` in \`item\` using CSS selector                                                | \`string\`        | \`item\` element         |
+| \`itemLinkAttr\`    | The attributes of \`link\` element as link                                                                | \`string\`        | \`href\`                 |
+| \`itemDesc\`        | The HTML elements as \`descrption\` in \`item\` using CSS selector                                          | \`string\`        | \`item\` element         |
+| \`itemDescAttr\`    | The attributes of \`descrption\` element as description                                                   | \`string\`        | Element html           |
+| \`itemPubDate\`     | The HTML elements as \`pubDate\` in \`item\` using CSS selector                                             | \`string\`        | \`item\` element         |
+| \`itemPubDateAttr\` | The attributes of \`pubDate\` element as pubDate                                                          | \`string\`        | Element html           |
+| \`itemContent\`     | The HTML elements as \`description\` in \`item\` using CSS selector ( in \`itemLink\` page for full content ) | \`string\`        |                        |
+| \`encoding\`        | The encoding of the HTML content                                                                        | \`string\`        | utf-8                  |
 
-  Parameters parsing in the above example:
+Parameters parsing in the above example:
 
 | Parameter     | Value                                     |
 | ------------- | ----------------------------------------- |
 | \`url\`         | \`https://wechat2rss.xlab.app/posts/list/\` |
 | \`routeParams\` | \`item=div[class='post-content'] p a\`      |
 
-  Parsing of \`routeParams\` parameter:
+Parsing of \`routeParams\` parameter:
 
 | Parameter | Value                           |
 | --------- | ------------------------------- |

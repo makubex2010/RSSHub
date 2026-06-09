@@ -1,7 +1,8 @@
-import { Route } from '@/types';
+import { load } from 'cheerio'; // an HTML parser with a jQuery-like API
+
+import type { Route } from '@/types';
 // Require necessary modules
 import got from '@/utils/got'; // a customised got
-import { load } from 'cheerio'; // an HTML parser with a jQuery-like API
 import { parseDate } from '@/utils/parse-date';
 
 export const route: Route = {
@@ -29,8 +30,8 @@ async function handler() {
             const title = $(story).find('a').first().text();
             const nextRow = $(story).next();
             const metas = nextRow.text().trimStart().split('|');
-            const upvotes = Number.parseInt(metas[0].split(' points')[0].trim());
-            const author = metas[0].split('by')[1].trim();
+            const upvotes = Number.parseInt(metas[0].split(' points', 1)[0].trim());
+            const author = metas[0].split('by', 2)[1].trim();
             const pubDate = parseDate(metas[1].trim());
             let category = [];
             // NOTE: If the summary is not already proceeded, we cannot get the category.

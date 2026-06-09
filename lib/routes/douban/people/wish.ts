@@ -1,9 +1,12 @@
-import { Route } from '@/types';
-import cache from '@/utils/cache';
 import querystring from 'node:querystring';
+
 import { load } from 'cheerio';
-import got from '@/utils/got';
+
 import { config } from '@/config';
+import type { Route } from '@/types';
+import cache from '@/utils/cache';
+import got from '@/utils/got';
+
 export const route: Route = {
     path: '/people/:userid/wish/:routeParams?',
     categories: ['social-media'],
@@ -31,7 +34,7 @@ async function handler(ctx) {
     const userid = ctx.req.param('userid');
     const routeParams = querystring.parse(ctx.req.param('routeParams'));
 
-    let userName;
+    let username;
 
     const pageSize = 15;
     const pagesCount = routeParams.pagesCount ? Number.parseInt(routeParams.pagesCount) : 1;
@@ -60,7 +63,7 @@ async function handler(ctx) {
                 .then((data) => {
                     const $ = load(data);
                     const list = $('div.article > div.grid-view > div.item');
-                    userName = userName || $('div.side-info-txt > h3').text();
+                    username = username || $('div.side-info-txt > h3').text();
 
                     if (list) {
                         return Promise.all(
@@ -89,7 +92,7 @@ async function handler(ctx) {
 
     const items = (await Promise.all(tasks)).flat();
     return {
-        title: `豆瓣想看 - ${userName || userid}`,
+        title: `豆瓣想看 - ${username || userid}`,
         link: `https://movie.douban.com/people/${userid}/wish`,
         item: items,
     };

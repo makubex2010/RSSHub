@@ -1,10 +1,13 @@
-import { Route, ViewType } from '@/types';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
+import { ViewType } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
+import playwright from '@/utils/playwright';
 import parser from '@/utils/rss-parser';
+
 import utils from './utils';
-import { load } from 'cheerio';
-import puppeteer from '@/utils/puppeteer';
 
 export const route: Route = {
     path: '/:lang?',
@@ -40,7 +43,7 @@ export const route: Route = {
     maintainers: ['HenryQW', 'pseudoyu'],
     handler,
     url: 'nytimes.com/',
-    description: `By extracting the full text of articles, we provide a better reading experience (full text articles) over the official one.`,
+    description: 'By extracting the full text of articles, we provide a better reading experience (full text articles) over the official one.',
 };
 
 async function handler(ctx) {
@@ -78,7 +81,7 @@ async function handler(ctx) {
         // Do nothing
     }
 
-    const browser = await puppeteer();
+    const context = await playwright();
     const feed = await parser.parseURL(rssUrl);
     const items = await Promise.all(
         feed.items.splice(0, 10).map(async (item) => {
@@ -119,7 +122,7 @@ async function handler(ctx) {
                         hasEnVersion = true;
                         link = $('.dual-btn a').last().attr().href;
 
-                        response = await utils.PuppeterGetter(ctx, browser, link);
+                        response = await utils.PuppeterGetter(ctx, context, link);
                     }
                 }
             }
@@ -151,7 +154,7 @@ async function handler(ctx) {
         })
     );
 
-    await browser.close();
+    await context.close();
 
     return {
         title,

@@ -1,8 +1,9 @@
+import { load } from 'cheerio';
+
 import { config } from '@/config';
-import { Route } from '@/types';
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import ofetch from '@/utils/ofetch';
-import { load } from 'cheerio';
 
 export const route: Route = {
     path: '/home/:column?',
@@ -23,7 +24,11 @@ export const route: Route = {
     },
     radar: [
         {
-            source: ['www.jumeili.cn/', 'jumeili.cn/'],
+            source: ['www.jumeili.cn/'],
+            target: '/home/:column?',
+        },
+        {
+            source: ['jumeili.cn/'],
             target: '/home/:column?',
         },
     ],
