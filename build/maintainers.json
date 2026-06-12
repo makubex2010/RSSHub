@@ -4213,6 +4213,9 @@
   "/hdu/auto/:type?": [
     "jalenzz"
   ],
+  "/hebeimuseum/list/:type?": [
+    "magazian"
+  ],
   "/hebtv/nbszxd": [
     "iamqiz",
     "nczitzk"
@@ -7691,6 +7694,12 @@
   ],
   "/scvtc/xygg": [
     "nczitzk"
+  ],
+  "/sdmuseum/exhibitions": [
+    "magazian"
+  ],
+  "/sdmuseum/news": [
+    "magazian"
   ],
   "/sdo/ff14risingstones/posts/:pid?/:type?": [
     "KarasuShin"

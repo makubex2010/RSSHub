@@ -1361,6 +1361,7 @@ export type RoutePath =
   | `/hdu/auto/:type?`
   | `/hdu/cs`
   | `/hdu/cs/pg`
+  | `/hebeimuseum/list/:type?`
   | `/hebtv/nbszxd`
   | `/hedwig/posts/:site`
   | `/hellobtc/information/:channel?`
@@ -2488,6 +2489,8 @@ export type RoutePath =
   | `/scut/smae/:category?`
   | `/scut/yjs`
   | `/scvtc/xygg`
+  | `/sdmuseum/exhibitions`
+  | `/sdmuseum/news`
   | `/sdo/ff14risingstones/posts/:pid?/:type?`
   | `/sdo/ff14risingstones/strats/:pid?/:type?`
   | `/sdo/ff14risingstones/timeline`
