@@ -6317,6 +6317,9 @@
   "/njit/tzgg": [
     "zefengdaguo"
   ],
+  "/njmuseum/exhibitionIndex/:type?": [
+    "magazian"
+  ],
   "/njnu/ceai/:type": [
     "Shujakuinkuraudo"
   ],
@@ -10137,6 +10140,9 @@
   ],
   "/zjgtjy/:type?": [
     "Fatpandac"
+  ],
+  "/zjmuseum/exhibition/:type?": [
+    "magazian"
   ],
   "/zjol/paper/:id?": [
     "nczitzk"

@@ -35114,6 +35114,19 @@
       }
     ]
   },
+  "njmuseum.com": {
+    "_name": "Nanjing Museum",
+    "www": [
+      {
+        "title": "Exhibitions",
+        "docs": "https://docs.rsshub.app/routes/travel",
+        "source": [
+          "/zh/exhibitionIndex"
+        ],
+        "target": "/njmuseum/exhibitionIndex"
+      }
+    ]
+  },
   "nju.edu.cn": {
     "_name": "南京大学",
     "rczp": [
@@ -50790,6 +50803,19 @@
           "/portfolio/:id"
         ],
         "target": "/zimuxia/portfolio/:id"
+      }
+    ]
+  },
+  "zjmuseum.com.cn": {
+    "_name": "Zhejiang Provincial Museum",
+    "www": [
+      {
+        "title": "Temporary Exhibition",
+        "docs": "https://docs.rsshub.app/routes/travel",
+        "source": [
+          "/cn/"
+        ],
+        "target": "/zjmuseum/exhibition/:type?"
       }
     ]
   },
