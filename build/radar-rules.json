@@ -4793,6 +4793,27 @@
       }
     ]
   },
+  "lnmuseum.com.cn": {
+    "_name": "Liaoning Provincial Museum",
+    "www": [
+      {
+        "title": "Information",
+        "docs": "https://docs.rsshub.app/routes/travel",
+        "source": [
+          "/"
+        ],
+        "target": "/lnmuseum/information"
+      },
+      {
+        "title": "Temporary Exhibition",
+        "docs": "https://docs.rsshub.app/routes/travel",
+        "source": [
+          "/"
+        ],
+        "target": "/lnmuseum/exhibition/temporary"
+      }
+    ]
+  },
   "lxixsxa.com": {
     "_name": "LiSA",
     "www": [
@@ -17599,6 +17620,29 @@
           "/"
         ],
         "target": "/cuc/yz"
+      }
+    ]
+  },
+  "cugb.edu.cn": {
+    "_name": "China University of Geosciences (Beijing)",
+    "jwc": [
+      {
+        "title": "教务处",
+        "docs": "https://docs.rsshub.app/routes/university",
+        "source": [
+          "/:channel"
+        ],
+        "target": "/cugb/jwc/:channel"
+      }
+    ],
+    "www": [
+      {
+        "title": "校园新闻",
+        "docs": "https://docs.rsshub.app/routes/university",
+        "source": [
+          "/:channel.jhtml"
+        ],
+        "target": "/cugb/news/:channel"
       }
     ]
   },
