@@ -1348,7 +1348,7 @@ export type RoutePath =
   | `/gxmzu/yjszsgg`
   | `/gzdaily/app/:column?`
   | `/gzhu/yjs`
-  | `/hackernews/:section?/:type?/:user?`
+  | `/hackernews/:section?/:type?/:value?`
   | `/hackertalk/`
   | `/hacking8/:category?`
   | `/hacking8/search/:keyword?`
@@ -1408,6 +1408,8 @@ export type RoutePath =
   | `/hkushop/vinyl/:cat?`
   | `/hlju/news/:category?`
   | `/hljucm/yjsy/:category?`
+  | `/hnmuseum/current-exhibitions/:type?`
+  | `/hnmuseum/hnmnews`
   | `/hnrb/:id?`
   | `/hnu/careers`
   | `/home-assistant/hacs/repositories`
