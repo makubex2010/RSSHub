@@ -1278,6 +1278,9 @@
   "/rattibha/user/:user": [
     "yshalsager"
   ],
+  "/scmuseum/exhibition/:type?": [
+    "magazian"
+  ],
   "/sctv/programme/:id?/:limit?/:isFull?": [
     "nczitzk"
   ],
@@ -2601,6 +2604,12 @@
   "/canada.ca/news/:lang/:department?": [
     "elibroftw"
   ],
+  "/capitalmuseum/exhibition/:type?": [
+    "magazian"
+  ],
+  "/capitalmuseum/news/:type?": [
+    "magazian"
+  ],
   "/cartoonmad/comic/:id": [
     "KellyHwong"
   ],
@@ -3126,6 +3135,12 @@
   ],
   "/csu/mail/:type?": [
     "j1g5awi"
+  ],
+  "/csust/tggs": [
+    "powerfullz"
+  ],
+  "/csust/xkxs": [
+    "powerfullz"
   ],
   "/ctbu/xxgg": [
     "Skylwn"
@@ -6998,6 +7013,9 @@
   "/szftedu/gonggao": [
     "valuex"
   ],
+  "/szmuseum/temporary": [
+    "magazian"
+  ],
   "/szse/inquire/:category?/:select?/:keyword?": [
     "Jeason0228",
     "nczitzk"
@@ -8534,12 +8552,6 @@
   ],
   "/css-tricks/popular": [
     "Rjnishant530"
-  ],
-  "/csust/tggs": [
-    "powerfullz"
-  ],
-  "/csust/xkxs": [
-    "powerfullz"
   ],
   "/cw/author/:channel": [
     "TonyRL"

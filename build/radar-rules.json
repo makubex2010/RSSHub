@@ -5018,6 +5018,19 @@
       }
     ]
   },
+  "scmuseum.cn": {
+    "_name": "Sichuan Museum",
+    "www": [
+      {
+        "title": "Exhibition",
+        "docs": "https://docs.rsshub.app/routes/travel",
+        "source": [
+          "/Visit/Exhibition"
+        ],
+        "target": "/scmuseum/exhibition"
+      }
+    ]
+  },
   "seekingalpha.com": {
     "_name": "Seeking Alpha",
     ".": [
@@ -13868,6 +13881,27 @@
       }
     ]
   },
+  "capitalmuseum.org.cn": {
+    "_name": "Capital Museum",
+    "www": [
+      {
+        "title": "Exhibitions",
+        "docs": "https://docs.rsshub.app/routes/travel",
+        "source": [
+          "/exhibition"
+        ],
+        "target": "/capitalmuseum/exhibition"
+      },
+      {
+        "title": "News",
+        "docs": "https://docs.rsshub.app/routes/travel",
+        "source": [
+          "/news"
+        ],
+        "target": "/capitalmuseum/news"
+      }
+    ]
+  },
   "cartoonmad.com": {
     "_name": "動漫狂",
     ".": [
@@ -17615,6 +17649,29 @@
           "/"
         ],
         "target": "/csu/career"
+      }
+    ]
+  },
+  "csust.edu.cn": {
+    "_name": "长沙理工大学",
+    "www": [
+      {
+        "title": "通告公示",
+        "docs": "https://docs.rsshub.app/routes/university",
+        "source": [
+          "/tggs.htm",
+          "/"
+        ],
+        "target": "/csust/tggs"
+      },
+      {
+        "title": "学科学术",
+        "docs": "https://docs.rsshub.app/routes/university",
+        "source": [
+          "/xkxs.htm",
+          "/"
+        ],
+        "target": "/csust/xkxs"
       }
     ]
   },
@@ -39254,6 +39311,19 @@
       }
     ]
   },
+  "szmuseum.com": {
+    "_name": "Suzhou Museum",
+    "www": [
+      {
+        "title": "Special Exhibition",
+        "docs": "https://docs.rsshub.app/routes/travel",
+        "source": [
+          "/Exhibition/Temporary"
+        ],
+        "target": "/szmuseum/temporary"
+      }
+    ]
+  },
   "szse.cn": {
     "_name": "深圳证券交易所",
     ".": [
@@ -44100,29 +44170,6 @@
           "/"
         ],
         "target": "/css-tricks/popular"
-      }
-    ]
-  },
-  "csust.edu.cn": {
-    "_name": "长沙理工大学",
-    "www": [
-      {
-        "title": "通告公示",
-        "docs": "https://docs.rsshub.app/routes/university",
-        "source": [
-          "/tggs.htm",
-          "/"
-        ],
-        "target": "/csust/tggs"
-      },
-      {
-        "title": "学科学术",
-        "docs": "https://docs.rsshub.app/routes/university",
-        "source": [
-          "/xkxs.htm",
-          "/"
-        ],
-        "target": "/csust/xkxs"
       }
     ]
   },
