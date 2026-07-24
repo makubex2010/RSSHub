@@ -148,8 +148,8 @@
         "@bbob/types": "4.3.1",
         "@cloudflare/containers": "0.3.7",
         "@cloudflare/playwright": "1.3.0",
-        "@cloudflare/vitest-pool-workers": "0.18.7",
-        "@cloudflare/workers-types": "5.20260723.1",
+        "@cloudflare/vitest-pool-workers": "0.18.8",
+        "@cloudflare/workers-types": "5.20260724.1",
         "@eslint/eslintrc": "3.3.6",
         "@eslint/js": "10.0.1",
         "@oxlint/plugins": "1.75.0",
@@ -183,7 +183,7 @@
         "eslint-plugin-unicorn": "72.0.0",
         "eslint-plugin-yml": "3.6.0",
         "fast-string-width": "3.0.2",
-        "fs-extra": "11.3.6",
+        "fs-extra": "11.4.0",
         "globals": "17.7.0",
         "husky": "9.1.7",
         "js-beautify": "2.0.3",
@@ -207,7 +207,7 @@
         "unrun": "0.3.1",
         "vite-tsconfig-paths": "7.0.0-alpha.1",
         "vitest": "4.1.10",
-        "wrangler": "4.113.0",
+        "wrangler": "4.114.0",
         "yaml-eslint-parser": "2.1.0"
     },
     "lint-staged": {
