@@ -89313,19 +89313,8 @@ export default {
   },
   "people": {
     "routes": {
-      "/:site?/:category{.+}?": {
-        "path": "/:site?/:category{.+}?",
-        "name": "首页头条",
-        "maintainers": [
-          "nczitzk",
-          "pseudoyu"
-        ],
-        "example": "/people",
-        "location": "index.ts",
-        "module": () => import('@/routes/people/index.ts')
-      },
-      "/liuyan/:id/:state?": {
-        "path": "/liuyan/:id/:state?",
+      "/liuyan/:id?/:state?": {
+        "path": "/liuyan/:id?/:state?",
         "categories": [
           "traditional-media"
         ],
@@ -89342,21 +89331,52 @@ export default {
           "supportPodcast": false,
           "supportScihub": false
         },
-        "radar": [
-          {
-            "source": [
-              "liuyan.people.com.cn/"
-            ]
-          }
-        ],
         "name": "领导留言板",
         "maintainers": [
-          "nczitzk"
+          "nczitzk",
+          "pseudoyu"
         ],
         "url": "liuyan.people.com.cn/",
         "description": "| 全部 | 待回复 | 办理中 | 已办理 |\n| ---- | ------ | ------ | ------ |\n| 1    | 2      | 3      | 4      |",
         "location": "liuyan.ts",
         "module": () => import('@/routes/people/liuyan.ts')
+      },
+      "/:site?/:category{.+}?": {
+        "path": "/:site?/:category{.+}?",
+        "name": "首页头条",
+        "maintainers": [
+          "nczitzk",
+          "pseudoyu"
+        ],
+        "example": "/people",
+        "location": "index.ts",
+        "module": () => import('@/routes/people/index.ts')
+      },
+      "/paper/:page?": {
+        "path": "/paper/:page?",
+        "categories": [
+          "traditional-media"
+        ],
+        "example": "/people/paper",
+        "parameters": {
+          "page": "版面编号，如 `01`；使用 `all` 或留空获取全部版面"
+        },
+        "radar": [
+          {
+            "source": [
+              "paper.people.com.cn/rmrb/pc/layout/index.html"
+            ],
+            "target": "/paper"
+          }
+        ],
+        "name": "人民日报电子版",
+        "maintainers": [
+          "pseudoyu"
+        ],
+        "url": "paper.people.com.cn/rmrb/pc/layout/index.html",
+        "description": "获取当日《人民日报》全部版面或指定版面的文章。",
+        "location": "paper.ts",
+        "module": () => import('@/routes/people/paper.ts')
       },
       "/xjpjh/:keyword?/:year?": {
         "path": "/xjpjh/:keyword?/:year?",
@@ -89379,16 +89399,16 @@ export default {
         "radar": [
           {
             "source": [
-              "people.com.cn/"
+              "jhsjk.people.cn/"
             ],
-            "target": "/:site?/:category?"
+            "target": "/xjpjh"
           }
         ],
         "name": "习近平系列重要讲话",
         "maintainers": [
           "LogicJake"
         ],
-        "url": "people.com.cn/",
+        "url": "jhsjk.people.cn",
         "location": "xjpjh.ts",
         "module": () => import('@/routes/people/xjpjh.ts')
       }
@@ -130088,7 +130108,7 @@ export default {
           "ciaranchen"
         ],
         "url": "www.gov.cn/",
-        "description": "|               选项              |                       意义                       |              备注              |\n| :-----------------------------: | :----------------------------------------------: | :----------------------------: |\n|              orpro              |             包含以下任意一个关键词。             |          用空格分隔。          |\n|              allpro             |                包含以下全部关键词                |                                |\n|              notpro             |                 不包含以下关键词                 |                                |\n|              inpro              |                完整不拆分的关键词                |                                |\n|           searchfield           | title: 搜索词在标题中；content: 搜索词在正文中。 |  默认为空，即网页的任意位置。  |\n| pubmintimeYear, pubmintimeMonth |                    从某年某月                    | 单独使用月份参数无法只筛选月份 |\n| pubmaxtimeYear, pubmaxtimeMonth |                    到某年某月                    | 单独使用月份参数无法只筛选月份 |\n|              colid              |                       栏目                       |      比较复杂，不建议使用      |",
+        "description": "|               选项              |                       意义                       |                    备注                    |\n| :-----------------------------: | :----------------------------------------------: | :----------------------------------------: |\n|              orpro              |             包含以下任意一个关键词。             |                用空格分隔。                |\n|              allpro             |                包含以下全部关键词                |                                            |\n|              notpro             |                 不包含以下关键词                 |                                            |\n|              inpro              |                完整不拆分的关键词                |                                            |\n|           searchfield           | title: 搜索词在标题中；content: 搜索词在正文中。 | 上游已不支持仅正文，content 将搜索全部位置 |\n| pubmintimeYear, pubmintimeMonth |                    从某年某月                    |       单独使用月份参数无法只筛选月份       |\n| pubmaxtimeYear, pubmaxtimeMonth |                    到某年某月                    |       单独使用月份参数无法只筛选月份       |\n|              colid              |                       栏目                       |            上游新接口已不再支持            |",
         "location": "govall.ts",
         "module": () => import('@/routes/gov/zhengce/govall.ts')
       },
