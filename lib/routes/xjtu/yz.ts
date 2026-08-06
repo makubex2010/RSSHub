@@ -1,9 +1,10 @@
-import type { Data, DataItem, Route } from '@/types';
-import ofetch from '@/utils/ofetch';
 import { load } from 'cheerio';
-import { parseDate } from '@/utils/parse-date';
+
+import type { Data, DataItem, Route } from '@/types';
 import cache from '@/utils/cache';
 import logger from '@/utils/logger';
+import ofetch from '@/utils/ofetch';
+import { parseDate } from '@/utils/parse-date';
 import timezone from '@/utils/timezone';
 
 export const route: Route = {
@@ -48,7 +49,7 @@ async function handler(ctx) {
             return {
                 title: a.attr('title'),
                 link: new URL(a.attr('href')!, baseUrl).href,
-                pubDate: timezone(parseDate(item.find('span.date.fr').text()), +8),
+                pubDate: timezone(parseDate(item.find('span.date.fr').text()), 8),
             } as DataItem;
         });
     const items = await Promise.all(

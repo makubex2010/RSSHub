@@ -1,6 +1,7 @@
-import { Route } from '@/types';
+import type { Language, Route } from '@/types';
 import { parseDate } from '@/utils/parse-date';
-import { getAccountByUsername, getTimelineByAccountId, parseDescription, baseUrl } from './utils';
+
+import { baseUrl, getAccountByUsername, getTimelineByAccountId, parseDescription } from './utils';
 
 export const route: Route = {
     path: '/user/:username',
@@ -33,7 +34,7 @@ async function handler(ctx) {
     const timeline = await getTimelineByAccountId(account.id);
 
     const items = timeline.posts.map((post) => ({
-        title: post.content.split('\n')[0],
+        title: post.content.split('\n', 1)[0],
         description: parseDescription(post, timeline),
         pubDate: parseDate(post.createdAt, 'X'),
         link: `${baseUrl}/post/${post.id}`,
@@ -47,7 +48,7 @@ async function handler(ctx) {
         image: account.banner.locations[0].location,
         icon: account.avatar.locations[0].location,
         logo: account.avatar.locations[0].location,
-        language: 'en',
+        language: 'en' as Language,
         allowEmpty: true,
         item: items,
     };

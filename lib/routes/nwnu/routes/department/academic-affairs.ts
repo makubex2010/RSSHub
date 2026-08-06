@@ -1,9 +1,11 @@
+import { load } from 'cheerio';
+
 import NotFoundError from '@/errors/types/not-found';
-import { DataItem, Route } from '@/types';
+import type { DataItem, Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
 import { parseDate } from '@/utils/parse-date';
-import { load } from 'cheerio';
+
 import { processEmbedPDF } from '../lib/embed-resource';
 
 const WEBSITE_LOGO = 'https://www.nwnu.edu.cn/_upload/tpl/02/d9/729/template729/favicon.ico';
@@ -21,7 +23,7 @@ const COLUMNS: Record<string, { title: string; description: string }> = {
 };
 
 const handler: Route['handler'] = async (ctx) => {
-    const columnParam = ctx.req.param('column');
+    const columnParam = ctx.req.param('column')!;
     if (COLUMNS[columnParam] === undefined) {
         throw new NotFoundError(`The column ${columnParam} does not exist`);
     }
@@ -100,15 +102,14 @@ export const route: Route = {
         supportPodcast: false,
         supportScihub: false,
     },
-    example: '/department/academic-affairs/tzgg',
+    example: '/nwnu/department/academic-affairs/tzgg',
     radar: [
         {
             source: ['jwc.nwnu.edu.cn/:column/list.htm'],
             target: '/department/academic-affairs/:column',
         },
     ],
-    description: `
-| column | 标题     | 描述                     |
+    description: `| column | 标题     | 描述                     |
 | ------ | -------- | ------------------------ |
 | tzgg   | 通知公告 | 西北师范大学教务通知公告 |
 | jwkx   | 教务快讯 | 西北师范大学教务快讯     |`,

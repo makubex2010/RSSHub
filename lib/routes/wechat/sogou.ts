@@ -1,9 +1,10 @@
-import { Route, DataItem } from '@/types';
-import ofetch from '@/utils/ofetch';
 import { load } from 'cheerio';
+
+import type { DataItem, Route } from '@/types';
+import logger from '@/utils/logger';
+import ofetch from '@/utils/ofetch';
 import { parseDate } from '@/utils/parse-date';
 import { finishArticleItem } from '@/utils/wechat-mp';
-import logger from '@/utils/logger';
 
 const host = 'https://weixin.sogou.com';
 const hardcodedCookie = 'SNUID=78725B470A0EF2C3F97AA5EB0BBF95C1; ABTEST=0|1680917938|v1; SUID=8F7B1C682B83A20A000000006430C5B2; PHPSESSID=le2lak0vghad5c98ijd3t51ls4; IPLOC=USUS5';
@@ -29,7 +30,6 @@ async function fetchAndParsePage(wechatId: string): Promise<SogouItemInternal[]>
                 page: '1',
             },
             headers: {
-                Referer: host,
                 Cookie: hardcodedCookie,
             },
         });
@@ -73,7 +73,7 @@ async function fetchAndParsePage(wechatId: string): Promise<SogouItemInternal[]>
             if (location) {
                 if (!location.startsWith('http')) {
                     try {
-                        location = new URL(location, sogouLink).toString();
+                        location = new URL(location, sogouLink).href;
                     } catch (error) {
                         logger.warn(`Invalid redirect location "${location}" for title "${title}" (wechatId: ${wechatId}): ${error instanceof Error ? error.message : String(error)}`);
                         location = null;
@@ -81,7 +81,7 @@ async function fetchAndParsePage(wechatId: string): Promise<SogouItemInternal[]>
                 }
 
                 if (typeof location === 'string' && location) {
-                    if (location.startsWith('http://mp.weixin.qq.com') || location.startsWith('https://mp.weixin.qq.com')) {
+                    if (location.startsWith('http://mp.weixin.qq.com/') || location.startsWith('https://mp.weixin.qq.com/')) {
                         realLink = location;
                     } else {
                         try {
@@ -94,7 +94,7 @@ async function fetchAndParsePage(wechatId: string): Promise<SogouItemInternal[]>
                                 ignoreResponseError: true,
                             });
                             const intermediateLocation = intermediateResponse.headers?.get('location');
-                            if (intermediateLocation && (intermediateLocation.startsWith('http://mp.weixin.qq.com') || intermediateLocation.startsWith('https://mp.weixin.qq.com'))) {
+                            if (intermediateLocation && (intermediateLocation.startsWith('http://mp.weixin.qq.com/') || intermediateLocation.startsWith('https://mp.weixin.qq.com/'))) {
                                 realLink = intermediateLocation;
                             } else {
                                 // logger.warn(`Could not resolve final WeChat link for title "${title}" (wechatId: ${wechatId}) after intermediate redirect`);
@@ -116,7 +116,7 @@ async function fetchAndParsePage(wechatId: string): Promise<SogouItemInternal[]>
             }
         }
 
-        const isWeChatLink = realLink.startsWith('http://mp.weixin.qq.com') || realLink.startsWith('https://mp.weixin.qq.com');
+        const isWeChatLink = realLink.startsWith('http://mp.weixin.qq.com/') || realLink.startsWith('https://mp.weixin.qq.com/');
         const author = $li.find('span.all-time-y2').text().trim();
 
         return {
@@ -149,7 +149,7 @@ export const route: Route = {
         supportScihub: false,
     },
     name: '公众号（搜狗来源）',
-    maintainers: ['EthanWng97', 'pseudoyu'],
+    maintainers: ['IvanWng97', 'pseudoyu'],
     handler,
 };
 

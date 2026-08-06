@@ -1,6 +1,7 @@
-import { Route } from '@/types';
-import got from '@/utils/got';
 import { load } from 'cheerio';
+
+import type { Language, Route } from '@/types';
+import got from '@/utils/got';
 
 export const route: Route = {
     path: '/cse',
@@ -21,7 +22,7 @@ export const route: Route = {
         },
     ],
     name: '数据科学与计算机学院动态',
-    maintainers: [],
+    maintainers: ['MegrezZhu', 'Neutrino3316', 'nczitzk'],
     handler,
     url: 'cse.sysu.edu.cn/',
 };
@@ -30,9 +31,6 @@ async function handler() {
     const response = await got({
         method: 'get',
         url: 'http://cse.sysu.edu.cn/',
-        headers: {
-            Referer: `http://cse.sysu.edu.cn/`,
-        },
     });
     const $ = load(response.data);
 
@@ -97,7 +95,7 @@ async function handler() {
         };
     }
 
-    const item_data = [];
+    const item_data: any[] = [];
     for (const element of block_index) {
         const block_news = $('#block-views-homepage-block-' + element.index + '> div > div.view-content > div > ul > li > a');
         for (const block_new of block_news) {
@@ -119,10 +117,10 @@ async function handler() {
     // console.log(item_data);
 
     return {
-        title: `中山大学 - 数据科学与计算机学院`,
-        link: `http://cse.sysu.edu.cn`,
-        description: `中山大学 - 数据科学与计算机学院`,
-        language: `zh-cn`,
+        title: '中山大学 - 数据科学与计算机学院',
+        link: 'http://cse.sysu.edu.cn',
+        description: '中山大学 - 数据科学与计算机学院',
+        language: 'zh-CN' as Language,
         item: item_data,
     };
 }

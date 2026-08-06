@@ -1,37 +1,36 @@
-import { type Data, type DataItem, type Route, ViewType } from '@/types';
+import type { Cheerio, CheerioAPI } from 'cheerio';
+import { load } from 'cheerio';
+import type { Element } from 'domhandler';
+import type { Context } from 'hono';
 
-import { art } from '@/utils/render';
+import type { Data, DataItem, Language, Route } from '@/types';
+import { ViewType } from '@/types';
 import cache from '@/utils/cache';
 import ofetch from '@/utils/ofetch';
 import { parseDate, parseRelativeDate } from '@/utils/parse-date';
 
-import { type CheerioAPI, type Cheerio, load } from 'cheerio';
-import type { Element } from 'domhandler';
-import { type Context } from 'hono';
-import path from 'node:path';
+import { renderDescription } from './templates/description';
 
 export const handler = async (ctx: Context): Promise<Data> => {
     const { category = 'newslists', id } = ctx.req.param();
-    const limit: number = Number.parseInt(ctx.req.query('limit') ?? '30', 10);
+    const limit = Number(ctx.req.query('limit') ?? '30');
 
-    const baseUrl: string = 'https://info.10000link.com';
+    const baseUrl = 'https://info.10000link.com';
     const targetUrl: string = new URL(`${category}.aspx${id ? `?chid=${id}` : ''}`, baseUrl).href;
 
     const response = await ofetch(targetUrl);
     const $: CheerioAPI = load(response);
     const language = $('html').attr('lang') ?? 'zh';
 
-    let items: DataItem[] = [];
-
-    items = $('ul.l_newshot li dl.lhotnew2')
+    let items: DataItem[] = $('ul.l_newshot li dl.lhotnew2')
         .slice(0, limit)
         .toArray()
-        .map((el): Element => {
+        .map((el) => {
             const $el: Cheerio<Element> = $(el);
             const $aEl: Cheerio<Element> = $el.find('dd h1 a');
 
             const title: string = $aEl.attr('title') ?? $aEl.text();
-            const description: string | undefined = art(path.join(__dirname, 'templates/description.art'), {
+            const description: string | undefined = renderDescription({
                 intro: $el.find('dd.title_l').text(),
             });
             const pubDateStr: string | undefined = $el.find('span.ymd_w').text();
@@ -56,7 +55,7 @@ export const handler = async (ctx: Context): Promise<Data> => {
                 image,
                 banner: image,
                 updated: upDatedStr ? parseRelativeDate(upDatedStr) : undefined,
-                language,
+                language: language as Language,
             };
 
             return processedItem;
@@ -70,22 +69,14 @@ export const handler = async (ctx: Context): Promise<Data> => {
                 }
 
                 return cache.tryGet(item.link, async (): Promise<DataItem> => {
-                    const detailResponse = await ofetch(item.link);
+                    const detailResponse = await ofetch(item.link!);
                     const $$: CheerioAPI = load(detailResponse);
 
                     const title: string = $$('div.entity_title h1 a').text();
                     const image: string | undefined = $$('div.entity_thumb img.img-responsive').attr('src');
 
-                    const description: string | undefined = art(path.join(__dirname, 'templates/description.art'), {
-                        images: image
-                            ? [
-                                  {
-                                      src: image,
-                                      alt: title,
-                                  },
-                              ]
-                            : undefined,
-                        description: $$('div.entity_content').html(),
+                    const description: string | undefined = renderDescription({
+                        description: $$('div.entity_content').html() ?? undefined,
                     });
                     const pubDateStr: string | undefined = detailResponse.match(/var\stime\s=\s"(.*?)";/)?.[1];
                     const categoryEls: Element[] = $$('div.entity_tag span a').toArray();
@@ -104,7 +95,7 @@ export const handler = async (ctx: Context): Promise<Data> => {
                         image,
                         banner: image,
                         updated: upDatedStr ? parseDate(upDatedStr) : item.updated,
-                        language,
+                        language: language as Language,
                     };
 
                     return {
@@ -116,7 +107,7 @@ export const handler = async (ctx: Context): Promise<Data> => {
         )
     ).filter((_): _ is DataItem => true);
 
-    const author: string = '10000万联网';
+    const author = '10000万联网';
     const title: string = $('h1').contents().first().text();
 
     return {
@@ -127,7 +118,7 @@ export const handler = async (ctx: Context): Promise<Data> => {
         allowEmpty: true,
         image: $('a.navbar-brand img').attr('src') ? new URL($('a.navbar-brand img').attr('src') as string, baseUrl).href : undefined,
         author,
-        language,
+        language: language as Language,
         id: $('meta[property="og:url"]').attr('content'),
     };
 };
@@ -223,8 +214,7 @@ export const route: Route = {
 
 | 政策          | 规划          | 案例           | 职场         | 供应链票据 |
 | ------------- | ------------- | -------------- | ------------ | ---------- |
-| newslists/A03 | newslists/A04 | newslists/GL03 | newslists/ZC | newsBill   |
-`,
+| newslists/A03 | newslists/A04 | newslists/GL03 | newslists/ZC | newsBill   |`,
     categories: ['new-media'],
     features: {
         requireConfig: false,

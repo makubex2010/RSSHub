@@ -1,21 +1,22 @@
-import { type Data, type DataItem, type Route, ViewType } from '@/types';
+import type { Cheerio, CheerioAPI } from 'cheerio';
+import { load } from 'cheerio';
+import type { Element } from 'domhandler';
+import type { Context } from 'hono';
 
-import { art } from '@/utils/render';
+import type { Data, DataItem, Language, Route } from '@/types';
+import { ViewType } from '@/types';
 import cache from '@/utils/cache';
 import ofetch from '@/utils/ofetch';
 import { parseDate } from '@/utils/parse-date';
 
-import { type CheerioAPI, type Cheerio, load } from 'cheerio';
-import type { Element } from 'domhandler';
-import { type Context } from 'hono';
-import path from 'node:path';
+import { renderDescription } from './templates/description';
 
 export const handler = async (ctx: Context): Promise<Data> => {
     const { category } = ctx.req.param();
-    const limit: number = Number.parseInt(ctx.req.query('limit') ?? '30', 10);
+    const limit = Number(ctx.req.query('limit') ?? '30');
 
-    const domain: string = 'surfshark.com';
-    const baseUrl: string = `https://${domain}`;
+    const domain = 'surfshark.com';
+    const baseUrl = `https://${domain}`;
     const targetUrl: string = new URL(`blog${category ? `/${category}` : ''}`, baseUrl).href;
 
     const headers = {
@@ -30,18 +31,16 @@ export const handler = async (ctx: Context): Promise<Data> => {
     const $: CheerioAPI = load(response);
     const language = $('html').attr('lang') ?? 'en';
 
-    let items: DataItem[] = [];
-
-    items = $('div.dg-article-single-card')
+    let items: DataItem[] = $('div.dg-article-single-card')
         .slice(0, limit)
         .toArray()
-        .map((el): Element => {
+        .map((el) => {
             const $el: Cheerio<Element> = $(el);
             const $aEl: Cheerio<Element> = $el.find('div.dg-article-content__info a[title]');
 
             const title: string = $aEl.text();
             const image: string | undefined = $el.find('a.dg-article-image img').attr('src');
-            const description: string | undefined = art(path.join(__dirname, 'templates/description.art'), {
+            const description: string | undefined = renderDescription({
                 images: image
                     ? [
                           {
@@ -91,7 +90,7 @@ export const handler = async (ctx: Context): Promise<Data> => {
                 image,
                 banner: image,
                 updated: parseDate(upDatedStr),
-                language,
+                language: language as Language,
             };
 
             return processedItem;
@@ -104,14 +103,14 @@ export const handler = async (ctx: Context): Promise<Data> => {
             }
 
             return cache.tryGet(item.link, async (): Promise<DataItem> => {
-                const detailResponse = await ofetch(item.link, {
+                const detailResponse = await ofetch(item.link!, {
                     headers,
                 });
                 const $$: CheerioAPI = load(detailResponse);
 
                 const title: string = $$('meta[property="og:title"]').attr('content') ?? item.title;
                 const image: string | undefined = $$('div.dg-featured-img-container img').attr('src');
-                const description: string | undefined = art(path.join(__dirname, 'templates/description.art'), {
+                const description: string | undefined = renderDescription({
                     images: image
                         ? [
                               {
@@ -120,7 +119,7 @@ export const handler = async (ctx: Context): Promise<Data> => {
                               },
                           ]
                         : undefined,
-                    description: $$('div.dg-blog-post-blocks').html(),
+                    description: $$('div.dg-blog-post-blocks').html() ?? undefined,
                 });
                 const pubDateStr: string | undefined = $$('meta[property="article:published_time"]').attr('content');
                 const authorEls: Element[] = $$('div.dg-blog-post-author-top').toArray();
@@ -147,7 +146,7 @@ export const handler = async (ctx: Context): Promise<Data> => {
                     image,
                     banner: image,
                     updated: upDatedStr ? parseDate(upDatedStr) : item.updated,
-                    language,
+                    language: language as Language,
                 };
 
                 return {
@@ -166,7 +165,7 @@ export const handler = async (ctx: Context): Promise<Data> => {
         allowEmpty: true,
         image: $('meta[property="og:image"]').attr('content'),
         author: $('meta[property="og:site_name"]').attr('content'),
-        language,
+        language: language as Language,
         id: $('meta[property="og:url"]').attr('content'),
     };
 };
@@ -235,8 +234,7 @@ To subscribe to [Cybersecurity](https://surfshark.com/blog/cybersecurity), where
 | [Video](https://surfshark.com/blog/video)                             | [video](https://rsshub.app/surfshark/blog/video)                             |
 | [News](https://surfshark.com/blog/news)                               | [news](https://rsshub.app/surfshark/blog/news)                               |
 
-</details>
-`,
+</details>`,
     categories: ['new-media'],
     features: {
         requireConfig: false,

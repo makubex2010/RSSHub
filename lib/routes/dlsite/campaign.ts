@@ -1,7 +1,8 @@
-import InvalidParameterError from '@/errors/types/invalid-parameter';
-import { Route } from '@/types';
-import got from '@/utils/got';
 import { load } from 'cheerio';
+
+import InvalidParameterError from '@/errors/types/invalid-parameter';
+import type { Language, Route } from '@/types';
+import got from '@/utils/got';
 
 const host = 'https://www.dlsite.com';
 const infos = {
@@ -196,7 +197,7 @@ async function handler(ctx) {
         title,
         link: `${host}/${link}`,
         description,
-        language: 'ja-jp',
+        language: 'ja' as Language,
         allowEmpty: true,
         item,
     };

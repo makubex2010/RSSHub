@@ -1,9 +1,10 @@
-import type { DataItem, Route } from '@/types';
 import { load } from 'cheerio';
+import day from 'dayjs';
+
+import type { DataItem, Route } from '@/types';
+import cache from '@/utils/cache';
 import ofetch from '@/utils/ofetch';
 import { parseDate } from '@/utils/parse-date';
-import cache from '@/utils/cache';
-import day from 'dayjs';
 
 const handler: Route['handler'] = async () => {
     const data = await ofetch('https://notion.so/releases', {
@@ -15,9 +16,9 @@ const handler: Route['handler'] = async () => {
     const $ = load(data);
 
     // the first post, do not cache
-    const title = $('h2').first().text() ?? '';
+    const title = $('h2').first().text();
     const pubDate = parseDate($('time').first().text());
-    const description = $('article.release article').first().html() ?? '';
+    const description = $('article.release article').first().html();
     const link = `https://notion.so/releases/${day(pubDate).format('YYYY-MM-DD')}`;
 
     // archive
@@ -38,9 +39,9 @@ const handler: Route['handler'] = async () => {
                     const $ = load(data);
 
                     return {
-                        title: $('h2').first().text() ?? '',
+                        title: $('h2').first().text(),
                         pubDate: parseDate($('time').first().text()),
-                        description: $('article.release article').first().html() ?? '',
+                        description: $('article.release article').first().html(),
                         link,
                     };
                 });

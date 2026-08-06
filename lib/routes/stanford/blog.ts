@@ -1,12 +1,13 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { Language, Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
 import timezone from '@/utils/timezone';
 
 export const route: Route = {
-    path: ['/hazyresearch/blog'],
+    path: '/hazyresearch/blog',
     categories: ['blog'],
     example: '/stanford/hazyresearch/blog',
     parameters: {},
@@ -71,7 +72,7 @@ async function handler() {
         title: 'Hazy Research Blog',
         link: currentUrl,
         description: 'Research updates from Stanford Hazy Research',
-        language: 'en',
+        language: 'en' as Language,
         item: items,
     };
 }

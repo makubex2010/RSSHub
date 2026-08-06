@@ -1,10 +1,10 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
 
+import type { Language, Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
-import timezone from '@/utils/timezone';
 import { parseDate } from '@/utils/parse-date';
+import timezone from '@/utils/timezone';
 
 export const route: Route = {
     path: '/:id?',
@@ -51,7 +51,7 @@ export const route: Route = {
 
 export async function handler(ctx) {
     const { id = 'latest' } = ctx.req.param();
-    const limit = ctx.req.query('limit') ? Number.parseInt(ctx.req.query('limit'), 10) : 22;
+    const limit = ctx.req.query('limit') ? Number(ctx.req.query('limit')) : 22;
 
     const rootUrl = 'https://xd.x6d.com';
 
@@ -87,12 +87,12 @@ export async function handler(ctx) {
     const query = id === 'latest' ? $('#newslist ul').first().find('li').not('li.addd').find('a').slice(0, limit) : $('a.soft-title').slice(0, limit);
 
     let items = query.toArray().map((item) => {
-        item = $(item);
+        const $item = $(item);
 
         return {
-            title: item.prop('title') ?? item.text(),
-            link: new URL(item.prop('href'), rootUrl).href,
-            language,
+            title: $item.prop('title') ?? $item.text(),
+            link: new URL($item.prop('href'), rootUrl).href,
+            language: language as Language,
         };
     });
 
@@ -105,11 +105,11 @@ export async function handler(ctx) {
 
                 const title = $$('h1.article-title').text();
                 const description = $$('div.article-content').html();
-                const image = new URL($$('div.article-content img').first().prop('src'), rootUrl).href;
+                const image = new URL($$('div.article-content img').first().prop('src')!, rootUrl).href;
 
                 item.title = title;
                 item.description = description;
-                item.pubDate = timezone(parseDate($$('time').text()), +8);
+                item.pubDate = timezone(parseDate($$('time').text()), 8);
                 item.category = $$('b.bq-wg')
                     .toArray()
                     .map((c) => $$(c).text());
@@ -130,12 +130,12 @@ export async function handler(ctx) {
     const image = new URL($('div.header-logo img').prop('src'), rootUrl).href;
 
     return {
-        title: $('title').text().split(/\s-/)[0],
+        title: $('title').text().split(/\s-/, 1)[0],
         description: $('meta[name="description"]').prop('content'),
         link: currentUrl,
         item: items,
         allowEmpty: true,
         image,
-        language,
+        language: language as Language,
     };
 }

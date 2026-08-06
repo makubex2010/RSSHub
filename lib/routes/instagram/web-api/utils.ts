@@ -1,10 +1,11 @@
-import ofetch from '@/utils/ofetch';
-import cache from '@/utils/cache';
-import { parseDate } from '@/utils/parse-date';
 import { config } from '@/config';
-import { art } from '@/utils/render';
-import path from 'node:path';
 import ConfigNotFoundError from '@/errors/types/config-not-found';
+import cache from '@/utils/cache';
+import ofetch from '@/utils/ofetch';
+import { parseDate } from '@/utils/parse-date';
+
+import { renderImages } from '../templates/images';
+import { renderVideo } from '../templates/video';
 
 const baseUrl = 'https://www.instagram.com';
 const COOKIE_URL = baseUrl;
@@ -42,7 +43,7 @@ const checkLogin = async (cookieJar) => {
     //     cache.set('instagram:wwwClaimV2', wwwClaimV2);
     // }
 
-    return Boolean(response.status === 'ok');
+    return response.status === 'ok';
 };
 
 const getUserInfo = async (username, cookieJar) => {
@@ -71,10 +72,10 @@ const getUserInfo = async (username, cookieJar) => {
             webProfileInfo = response._data.data.user;
             id = webProfileInfo.id;
 
-            await cache.set(`instagram:getIdByUsername:${username}`, id, 31_536_000); // 1 year since it will never change
+            await cache.set(`instagram:getIdByUsername:${username}`, id ?? '', 31_536_000); // 1 year since it will never change
             await cache.set(`instagram:userInfo:${id}`, webProfileInfo);
         } catch (error) {
-            if (error.message.includes("Cookie not in this host's domain")) {
+            if ((error as Error).message.includes("Cookie not in this host's domain")) {
                 throw new ConfigNotFoundError('Invalid cookie');
             }
             throw error;
@@ -133,8 +134,8 @@ const getTagsFeed = (tag, cookieJar) =>
     );
 
 const renderGuestItems = (items) => {
-    const renderVideo = (node, summary) =>
-        art(path.join(__dirname, '../templates/video.art'), {
+    const renderVideoItem = (node, summary) =>
+        renderVideo({
             summary,
             image: node.display_url,
             video: {
@@ -143,8 +144,8 @@ const renderGuestItems = (items) => {
                 width: node.dimensions.width,
             },
         });
-    const renderImages = (node, summary) =>
-        art(path.join(__dirname, '../templates/images.art'), {
+    const renderImagesItem = (node, summary) =>
+        renderImages({
             summary,
             images: [{ url: node.display_url, height: node.dimensions.height, width: node.dimensions.width }],
         });
@@ -153,7 +154,7 @@ const renderGuestItems = (items) => {
         const type = node.__typename;
         const summary = node.edge_media_to_caption.edges[0]?.node.text ?? '';
 
-        let description = '';
+        let description: string;
         switch (type) {
             // carousel, can include GraphVideo and GraphImage
             case 'GraphSidecar':
@@ -163,28 +164,28 @@ const renderGuestItems = (items) => {
                               const _type = node.__typename;
                               switch (_type) {
                                   case 'GraphVideo':
-                                      return renderVideo(node, i === 0 ? summary : '');
+                                      return renderVideoItem(node, i === 0 ? summary : '');
                                   case 'GraphImage':
-                                      return renderImages(node, i === 0 ? summary : '');
+                                      return renderImagesItem(node, i === 0 ? summary : '');
                                   default:
                                       throw new Error(`Instagram: Unhandled carousel type: ${_type}`);
                               }
                           })
                           .join('')
-                    : renderImages(node, summary);
+                    : renderImagesItem(node, summary);
                 break;
             case 'GraphVideo':
-                description = renderVideo(node, summary);
+                description = renderVideoItem(node, summary);
                 break;
             case 'GraphImage':
-                description = renderImages(node, summary);
+                description = renderImagesItem(node, summary);
                 break;
             default:
                 throw new Error(`Instagram: Unhandled feed type: ${type}`);
         }
 
         return {
-            title: summary.split('\n')[0],
+            title: summary.split('\n', 1)[0],
             id: node.id,
             pubDate: parseDate(node.taken_at_timestamp, 'X'),
             author: node.owner.username,
@@ -195,4 +196,4 @@ const renderGuestItems = (items) => {
     });
 };
 
-export { baseUrl, COOKIE_URL, checkLogin, getUserInfo, getUserFeedItems, getTagsFeed, renderGuestItems };
+export { baseUrl, checkLogin, COOKIE_URL, getTagsFeed, getUserFeedItems, getUserInfo, renderGuestItems };

@@ -1,5 +1,7 @@
-import { Data, DataItem, Route, ViewType } from '@/types';
-import { CrowdfundingDetailInfo, CrowdfundingList } from './types';
+import type { Data, DataItem, Route } from '@/types';
+import { ViewType } from '@/types';
+
+import type { CrowdfundingDetailInfo, CrowdfundingList } from './types';
 import utils from './utils';
 
 export const route: Route = {
@@ -28,7 +30,7 @@ export const route: Route = {
 };
 
 const getDetails = async (list: CrowdfundingList[]) => {
-    const result: Promise<CrowdfundingDetailInfo>[] = list.flatMap((section) => section.items.map((item) => utils.getCrowdfundingItem(item)));
+    const result: Array<Promise<CrowdfundingDetailInfo>> = list.flatMap((section) => section.items.map((item) => utils.getCrowdfundingItem(item)));
     return await Promise.all(result);
 };
 
@@ -38,7 +40,7 @@ const getDataItem = (item: CrowdfundingDetailInfo) =>
         description: utils.renderCrowdfunding(item),
         link: `https://m.mi.com/crowdfunding/proddetail/${item.project_id}`,
         image: item.big_image,
-        language: 'zh-cn',
+        language: 'zh-CN',
     }) as DataItem;
 
 async function handler() {
@@ -53,6 +55,6 @@ async function handler() {
         item: items,
         allowEmpty: true,
         image: 'https://m.mi.com/static/img/icons/apple-touch-icon-152x152.png',
-        language: 'zh-cn',
+        language: 'zh-CN',
     } as Data;
 }

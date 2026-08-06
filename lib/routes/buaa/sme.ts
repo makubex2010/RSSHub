@@ -1,7 +1,8 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { Language, Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
 import timezone from '@/utils/timezone';
 
@@ -57,7 +58,7 @@ async function handler(ctx) {
         // 源文章
         item: await getItems(list),
         // 语言
-        language: 'zh-CN',
+        language: 'zh-CN' as Language,
     };
 }
 
@@ -78,7 +79,7 @@ async function getList(url) {
             return {
                 title: item.find('a').text(),
                 link: link?.startsWith('http') ? link : `${BASE_URL}/${link}`, // 有些链接是相对路径
-                pubDate: timezone(parseDate(item.find('span').text()), +8),
+                pubDate: timezone(parseDate(item.find('span').text()), 8),
             };
         });
     return {

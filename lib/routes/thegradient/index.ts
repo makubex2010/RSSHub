@@ -1,8 +1,9 @@
-import { Route, DataItem } from '@/types';
-import got from '@/utils/got';
 import { load } from 'cheerio';
-import { parseDate } from '@/utils/parse-date';
+
+import type { DataItem, Route } from '@/types';
 import cache from '@/utils/cache';
+import got from '@/utils/got';
+import { parseDate } from '@/utils/parse-date';
 
 export const route: Route = {
     path: '/posts',
@@ -31,7 +32,7 @@ async function handler() {
         .toArray()
         .map((item) => {
             const $item = $(item);
-            const $link = $item.find('.c-post-card__title-link').first();
+            const $link = $item.find('.c-post-card__title-link');
             const $meta = $item.find('.c-post-card__meta');
 
             const href = $link.attr('href');
@@ -61,7 +62,7 @@ async function handler() {
                         const detailResponse = await got(item.link);
                         const $detail = load(detailResponse.data);
 
-                        item.description = $detail('.c-content').html() || '';
+                        item.description = $detail('.c-content').html();
 
                         return item as DataItem;
                     } catch {

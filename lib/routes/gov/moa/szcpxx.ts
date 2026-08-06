@@ -1,16 +1,16 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
 
+import type { DataItem, Language, Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
-import timezone from '@/utils/timezone';
 import { parseDate } from '@/utils/parse-date';
+import timezone from '@/utils/timezone';
 
 export const handler = async (ctx) => {
-    const limit = ctx.req.query('limit') ? Number.parseInt(ctx.req.query('limit'), 10) : 6;
+    const limit = ctx.req.query('limit') ? Number(ctx.req.query('limit')) : 6;
 
     const rootUrl = 'http://www.moa.gov.cn';
-    const currentUrl = new URL(`ztzl/szcpxx/zyzc/index.htm`, rootUrl).href;
+    const currentUrl = new URL('ztzl/szcpxx/zyzc/index.htm', rootUrl).href;
 
     const { data: response } = await got(currentUrl);
 
@@ -21,16 +21,16 @@ export const handler = async (ctx) => {
     let items = $('div.ztst_list_contBox_inner ul li')
         .slice(0, limit)
         .toArray()
-        .map((item) => {
-            item = $(item);
+        .map((item): DataItem & { link: string } => {
+            const $item = $(item);
 
-            const a = item.find('a.content');
+            const a = $item.find('a.content');
 
             return {
-                title: a.prop('title'),
-                pubDate: parseDate(item.find('div.pubTime').text().split(/：/).pop(), 'YYYY.MM.DD'),
-                link: new URL(a.prop('href'), currentUrl).href,
-                language,
+                title: a.prop('title') ?? '',
+                pubDate: parseDate($item.find('div.pubTime').text().split(/：/).pop()!, 'YYYY.MM.DD'),
+                link: new URL(a.prop('href')!, currentUrl).href,
+                language: language as Language,
             };
         });
 
@@ -47,7 +47,7 @@ export const handler = async (ctx) => {
 
                 item.title = title;
                 item.description = description;
-                item.pubDate = timezone(parseDate($$('meta[name="PubDate"]').prop('content')), +8);
+                item.pubDate = timezone(parseDate($$('meta[name="PubDate"]').prop('content')), 8);
                 item.category = [
                     ...new Set([
                         $$('meta[name="SiteName"]').prop('content'),
@@ -64,7 +64,7 @@ export const handler = async (ctx) => {
                     html: description,
                     text: $$('div.gsj_htmlcon_bot, div.TRS_Editor').text(),
                 };
-                item.language = language;
+                item.language = language as Language;
 
                 return item;
             })
@@ -72,7 +72,7 @@ export const handler = async (ctx) => {
     );
 
     const title = `${$('title').text()} - ${$('li.now').text()}`;
-    const image = new URL($('img.leftLogo').prop('src'), currentUrl).href;
+    const image = new URL($('img.leftLogo').prop('src')!, currentUrl).href;
 
     return {
         title,
@@ -82,13 +82,13 @@ export const handler = async (ctx) => {
         allowEmpty: true,
         image,
         author: '中华人民共和国农业农村部',
-        language,
+        language: language as Language,
     };
 };
 
 export const route: Route = {
-    path: '/moa/szcpxx',
-    name: '中华人民共和国农业农村部生猪专题重要政策',
+    path: '/szcpxx',
+    name: '生猪专题重要政策',
     url: 'www.moa.gov.cn',
     maintainers: ['nczitzk'],
     handler,
@@ -109,7 +109,7 @@ export const route: Route = {
     radar: [
         {
             source: ['www.moa.gov.cn/ztzl/szcpxx/zyzc/index.htm'],
-            target: '/moa/szcpxx',
+            target: '/szcpxx',
         },
     ],
 };

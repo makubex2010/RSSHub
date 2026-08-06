@@ -1,8 +1,9 @@
-import { Route, DataItem } from '@/types';
-import got from '@/utils/got';
 import { load } from 'cheerio';
-import { parseDate } from '@/utils/parse-date';
+
+import type { DataItem, Route } from '@/types';
 import cache from '@/utils/cache';
+import got from '@/utils/got';
+import { parseDate } from '@/utils/parse-date';
 
 export const route: Route = {
     path: '/blog',
@@ -33,7 +34,7 @@ async function handler() {
             const $item = $(item);
             const $link = $item.find('a').first();
             const href = $link.attr('href');
-            const title = $item.find('.post-title').first().text().trim();
+            const title = $item.find('.post-title').text().trim();
             const dateStr = $item.find('.post-meta').text().trim();
 
             if (!href || !title) {
@@ -59,7 +60,7 @@ async function handler() {
                         const detailResponse = await got(item.link);
                         const $detail = load(detailResponse.data);
 
-                        item.description = $detail('.post-container').html() || '';
+                        item.description = $detail('.post-container').html();
 
                         return item;
                     } catch {

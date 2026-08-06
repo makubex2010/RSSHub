@@ -1,4 +1,4 @@
-import { Data } from '@/types';
+import type { Data } from '@/types';
 
 /**
  * This function should be used by RSSHub middleware only.
@@ -19,8 +19,10 @@ const json = (data: Data) => {
             id: item.guid || item.id || item.link,
             url: item.link,
             title: item.title,
-            content_html: (item.content && item.content.html) || item.description || item.title,
-            content_text: item.content && item.content.text,
+            // content_html and content_text are each optional strings — but one or both must be present
+            content_html: item.description,
+            content_text: item.content?.text || (item.description ? undefined : item.title),
+            summary: item.summary,
             image: item.image || item.itunes_item_image,
             banner_image: item.banner,
             date_published: item.pubDate,

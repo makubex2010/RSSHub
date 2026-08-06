@@ -1,8 +1,9 @@
-import { Route, Data } from '@/types';
-import { parseDate } from '@/utils/parse-date';
-import logger from '@/utils/logger';
-import parser from '@/utils/rss-parser';
 import { load } from 'cheerio';
+
+import type { Data, Route } from '@/types';
+import logger from '@/utils/logger';
+import { parseDate } from '@/utils/parse-date';
+import parser from '@/utils/rss-parser';
 
 export const route: Route = {
     path: '/',
@@ -45,7 +46,7 @@ async function handler(ctx): Promise<Data> {
 
             try {
                 // Clean URL by removing query parameters
-                const cleanUrl = item.link.split('?')[0];
+                const cleanUrl = item.link.split('?', 1)[0];
 
                 return {
                     title: item.title || 'Untitled',

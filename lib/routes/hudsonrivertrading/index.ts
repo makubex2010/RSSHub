@@ -1,7 +1,7 @@
-import { Route, type Data } from '@/types';
+import InvalidParameterError from '@/errors/types/invalid-parameter';
+import type { Data, Route } from '@/types';
 import ofetch from '@/utils/ofetch';
 import { parseDate } from '@/utils/parse-date';
-import InvalidParameterError from '@/errors/types/invalid-parameter';
 
 type WordpressPost = {
     id: number;
@@ -111,7 +111,7 @@ async function handler(ctx): Promise<Data> {
             : undefined,
     }));
 
-    const sectionLabel = sectionParam && SECTION_LABELS[sectionParam] ? ` - ${SECTION_LABELS[sectionParam]}` : '';
+    const sectionLabel = sectionParam && Object.hasOwn(SECTION_LABELS, sectionParam) ? ` - ${SECTION_LABELS[sectionParam]}` : '';
 
     return {
         title: `Hudson River Trading${sectionLabel}`,

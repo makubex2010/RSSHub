@@ -1,9 +1,11 @@
-import { type Data, type DataItem, type Route } from '@/types';
-import { type CheerioAPI, load } from 'cheerio';
+import type { CheerioAPI } from 'cheerio';
+import { load } from 'cheerio';
+
+import type { Data, DataItem, Route } from '@/types';
+import md5 from '@/utils/md5';
 import ofetch from '@/utils/ofetch';
 import { parseDate } from '@/utils/parse-date';
 import timezone from '@/utils/timezone';
-import md5 from '@/utils/md5';
 
 const baseUrl = 'https://www.crush.ninja';
 
@@ -44,10 +46,10 @@ async function handler(ctx): Promise<Data> {
             const $el = $(el);
 
             const p1 = $el.find('.p-1').first();
-            const description = (p1.text() || '').trim();
+            const description = p1.text().trim();
 
             const publishedDiv = $el.children('div').last();
-            const publishedRaw = (publishedDiv.text() || '').trim();
+            const publishedRaw = publishedDiv.text();
 
             // Example
             // Published at: September 20, 2025 12:44:36 PM

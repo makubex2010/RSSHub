@@ -1,10 +1,11 @@
-import { Route } from '@/types';
-import cache from '@/utils/cache';
-import got from '@/utils/got';
 import { load } from 'cheerio';
 
+import type { Route } from '@/types';
+import cache from '@/utils/cache';
+import got from '@/utils/got';
+
 export const route: Route = {
-    path: '/miit/zcwj',
+    path: '/zcwj',
     categories: ['government'],
     example: '/gov/miit/zcwj',
     parameters: {},
@@ -39,11 +40,11 @@ async function handler() {
             const $ = load(item);
             const $a = $('a');
             let link = $a.attr('href');
-            if (link.startsWith('..')) {
+            if (link!.startsWith('..')) {
                 link = base_url + link;
             }
 
-            const cacheIn = await cache.get(link);
+            const cacheIn = await cache.get(link!);
             if (cacheIn) {
                 return JSON.parse(cacheIn);
             }
@@ -59,7 +60,7 @@ async function handler() {
                 link,
             };
 
-            cache.set(link, JSON.stringify(single));
+            cache.set(link!, JSON.stringify(single));
             return single;
         })
     );

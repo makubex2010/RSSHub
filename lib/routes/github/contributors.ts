@@ -1,6 +1,6 @@
-import { Route } from '@/types';
-import got from '@/utils/got';
 import { config } from '@/config';
+import type { Route } from '@/types';
+import got from '@/utils/got';
 
 export const route: Route = {
     path: '/contributors/:user/:repo/:order?/:anon?',
@@ -33,7 +33,7 @@ async function handler(ctx) {
     const url = `https://api.github.com/repos/${user}/${repo}/contributors?` + (anon ? 'anon=1' : '');
 
     // Use token if available
-    const headers = {};
+    const headers = {} as Record<string, any>;
     if (config.github && config.github.access_token) {
         headers.Authorization = `token ${config.github.access_token}`;
     }
@@ -52,7 +52,7 @@ async function handler(ctx) {
         const url_base = last_page_link.match(/<(.*)page=\d*/)[1];
         const page_count = Number(last_page_link.match(/page=(\d*)/)[1]);
 
-        const generate_array = (n) => Array.from({ length: n - 1 }).map((_, index) => index + 2);
+        const generate_array = (n) => Array.from({ length: n - 1 }, (_, index) => index + 2);
         const page_array = generate_array(page_count);
 
         // Get everypage

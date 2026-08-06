@@ -1,13 +1,14 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import InvalidParameterError from '@/errors/types/invalid-parameter';
+import type { Language, Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
 import { isValidHost } from '@/utils/valid-host';
-import InvalidParameterError from '@/errors/types/invalid-parameter';
 
 function getKeysRecursive(dic, key, attr, array) {
-    for (const v of Object.values(dic)) {
+    for (const v of Object.values<Record<string, any>>(dic)) {
         if (v[key] === undefined) {
             array.push(v[attr]);
         } else {
@@ -86,7 +87,7 @@ async function handler(ctx) {
                 item.description = content('textarea.article-content').text();
                 item.author = content('span', '.source').text();
                 item.pubDate = parseDate(Number.parseInt(content('textarea.article-time').text()));
-                item.category = content('meta[name="keywords"]').attr('content').split(',');
+                item.category = content('meta[name="keywords"]').attr('content')!.split(',');
 
                 return item;
             })
@@ -97,7 +98,7 @@ async function handler(ctx) {
         title: `${name} - 环球网`,
         link: host,
         description: '环球网',
-        language: 'zh-cn',
+        language: 'zh-CN' as Language,
         item: items,
     };
 }

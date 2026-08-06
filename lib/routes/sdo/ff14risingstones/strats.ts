@@ -1,8 +1,10 @@
-import type { Route } from '@/types';
-import { INDEX_URL, LOGO_URL, POST_TYPE, REQUIRE_CONFIG, STRAT_PART } from './constant';
 import type { Context } from 'hono';
-import { checkConfig, generatePostFeeds } from './utils';
+
+import type { Route } from '@/types';
+
 import { getPosts } from './api';
+import { INDEX_URL, LOGO_URL, POST_TYPE, REQUIRE_CONFIG, STRAT_PART } from './constant';
+import { checkConfig, generatePostFeeds } from './utils';
 
 export const route: Route = {
     path: '/ff14risingstones/strats/:pid?/:type?',
@@ -67,7 +69,7 @@ async function handler(ctx: Context) {
     });
 
     return {
-        title: `石之家 - ${POST_TYPE[type] ?? ''}攻略${stratPart ? ` - ${stratPart}` : ''}`,
+        title: `石之家 - ${POST_TYPE[type!] ?? ''}攻略${stratPart ? ` - ${stratPart}` : ''}`,
         link: `${INDEX_URL}#/strat`,
         image: LOGO_URL,
         item: await generatePostFeeds(posts),

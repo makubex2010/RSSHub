@@ -1,5 +1,6 @@
-import { Route } from '@/types';
 import { load } from 'cheerio';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
 import { parseDate } from '@/utils/parse-date';
@@ -56,7 +57,7 @@ const handler = async (ctx) => {
         .filter((v): v is { title: string; link: string; pubDate: Date | undefined } => !!v && !!v.title && !!v.link);
 
     // 尊重 limit 参数，默认 10（与仓库常见写法保持一致）
-    const limit = Number.parseInt(ctx.req.query('limit') ?? '') || 10;
+    const limit = Number.parseInt(ctx.req.query('limit')) || 10;
     const limitedItems = items.slice(0, limit);
 
     const enhancedItems = await Promise.all(
@@ -103,7 +104,7 @@ const handler = async (ctx) => {
                     }
                 });
 
-                const content = $content.html() || '';
+                const content = $content.html();
                 // 提取作者/编辑等信息，并去除"发布时间"和日期
                 const metaTexts = $$('.show01 p i')
                     .toArray()

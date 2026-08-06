@@ -1,4 +1,4 @@
-import { Route } from '@/types';
+import type { Route } from '@/types';
 import ofetch from '@/utils/ofetch';
 
 export const route: Route = {
@@ -53,7 +53,7 @@ async function handler(ctx) {
     return {
         title: 'Fur Affinity | Browse',
         link: 'https://www.furaffinity.net/browse/',
-        description: `Fur Affinity Browsing Artwork`,
+        description: 'Fur Affinity Browsing Artwork',
         item: items,
     };
 }

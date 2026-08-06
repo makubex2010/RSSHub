@@ -1,6 +1,7 @@
-import { Route } from '@/types';
-import ofetch from '@/utils/ofetch';
 import { load } from 'cheerio';
+
+import type { DataItem, Language, Route } from '@/types';
+import ofetch from '@/utils/ofetch';
 import { parseDate } from '@/utils/parse-date';
 
 export const route: Route = {
@@ -43,7 +44,7 @@ async function handler() {
             const $section = $(section);
 
             // Extract version and date from h3 title
-            const titleText = $section.find('h3').first().text().trim();
+            const titleText = $section.find('h3').text();
             const versionMatch = titleText.match(/^([\d.]+)\s*\[([^\]]+)\]/);
 
             if (!versionMatch) {
@@ -71,13 +72,13 @@ async function handler() {
                 guid: `kitty-${version}`,
             };
         })
-        .filter(Boolean);
+        .filter(Boolean) as DataItem[];
 
     return {
         title: 'Kitty Changelog',
         link: url,
         description: 'Changelog for Kitty terminal emulator',
-        language: 'en',
+        language: 'en' as Language,
         item: items,
     };
 }

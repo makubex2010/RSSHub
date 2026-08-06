@@ -1,4 +1,4 @@
-import { Route } from '@/types';
+import type { Route } from '@/types';
 import got from '@/utils/got';
 import { parseDate } from '@/utils/parse-date';
 import timezone from '@/utils/timezone';
@@ -89,7 +89,7 @@ async function handler(ctx) {
         title: item.sTitle,
         description: item.sContent,
         link: `${categories[location].link}/${item.iInfoId}`,
-        pubDate: timezone(parseDate(item.dtStartTime), +8),
+        pubDate: timezone(parseDate(item.dtStartTime), 8),
         category: item.sCategoryName,
     }));
 

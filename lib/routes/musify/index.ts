@@ -1,16 +1,17 @@
-import { type Data, type DataItem, type Route, ViewType } from '@/types';
-
-import ofetch from '@/utils/ofetch';
-
-import { type CheerioAPI, type Cheerio, load } from 'cheerio';
+import type { Cheerio, CheerioAPI } from 'cheerio';
+import { load } from 'cheerio';
 import type { Element } from 'domhandler';
-import { type Context } from 'hono';
+import type { Context } from 'hono';
+
+import type { Data, DataItem, Route } from '@/types';
+import { ViewType } from '@/types';
+import ofetch from '@/utils/ofetch';
 
 export const handler = async (ctx: Context): Promise<Data> => {
     const { language = '' } = ctx.req.param();
-    const limit: number = Number.parseInt(ctx.req.query('limit') ?? '30', 10);
+    const limit = Number(ctx.req.query('limit') ?? '30');
 
-    const baseUrl: string = 'https://musify.club';
+    const baseUrl = 'https://musify.club';
     const targetUrl: string = new URL(language, baseUrl).href;
 
     const response = await ofetch(targetUrl);
@@ -19,7 +20,7 @@ export const handler = async (ctx: Context): Promise<Data> => {
     const items: DataItem[] = $('div.playlist__item')
         .slice(0, limit)
         .toArray()
-        .map((el): Element => {
+        .map((el) => {
             const $el: Cheerio<Element> = $(el);
 
             const artist: string | undefined = $el.attr('data-artist');

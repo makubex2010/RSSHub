@@ -1,9 +1,11 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { Language, Route } from '@/types';
 import cache from '@/utils/cache';
 import ofetch from '@/utils/ofetch';
-import { load } from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
-import { baseUrl, headers, fixImages, parseReviews } from './utils';
+
+import { baseUrl, fixImages, headers, parseReviews } from './utils';
 
 export const route: Route = {
     path: '/review/:keyword?',
@@ -53,19 +55,17 @@ async function handler(ctx) {
             return {
                 title: a.text(),
                 link: baseUrl + a.attr('href'),
-                pubDate: parseDate($item.find('.date time').attr('datetime')), // 2023-05-21T16:05:14+00:00
+                pubDate: parseDate($item.find('.date time').attr('datetime')!), // 2023-05-21T16:05:14+00:00
                 author: $item
                     .find('.author')
                     .contents()
                     .filter((_, c) => c.type === 'text')
-                    .text()
-                    .trim(),
+                    .text(),
                 category: $item
                     .find('.category')
                     .contents()
                     .filter((_, c) => c.type === 'text')
-                    .text()
-                    .trim(),
+                    .text(),
             };
         });
 
@@ -89,7 +89,7 @@ async function handler(ctx) {
     return {
         title: 'Reviews | TechPowerUp',
         link: url.href,
-        language: 'en',
+        language: 'en' as Language,
         image: 'https://tpucdn.com/apple-touch-icon-v1684568903519.png',
         item: items,
     };

@@ -1,10 +1,11 @@
-import { Route } from '@/types';
+import type { DataItem, Language, Route } from '@/types';
+import cache from '@/utils/cache';
 import ofetch from '@/utils/ofetch';
 import { parseDate } from '@/utils/parse-date';
 import timezone from '@/utils/timezone';
-import { encrypt, decrypt } from './utils';
-import { EncryptedResponse, WebBlog } from './types';
-import cache from '@/utils/cache';
+
+import type { EncryptedResponse, WebBlog } from './types';
+import { decrypt, encrypt } from './utils';
 
 export const route: Route = {
     path: '/search',
@@ -38,14 +39,14 @@ async function handler() {
         ),
     });
 
-    const list = (JSON.parse(decrypt(response.data)).list as WebBlog[]).map((item) => ({
+    const list = (JSON.parse(decrypt(response.data)).list as WebBlog[]).map((item): DataItem & { link: string } => ({
         title: item.title,
         author: item.userName,
         pubDate: timezone(parseDate(item.ctime, 'YYYY-MM-DD HH:mm:ss'), 8),
         link: `${baseUrl}/article/${item.id}`,
         description: item.content,
         category: item.tags.map((t) => t.tagName),
-        id: item.id,
+        id: String(item.id),
     }));
 
     const items = await Promise.all(
@@ -73,7 +74,7 @@ async function handler() {
     return {
         title: '最新 - 远川研究所',
         link: `${baseUrl}/search`,
-        language: 'zh',
+        language: 'zh' as Language,
         item: items,
     };
 }

@@ -1,16 +1,17 @@
-import { type Data, type DataItem, type Route, ViewType } from '@/types';
+import type { CheerioAPI } from 'cheerio';
+import { load } from 'cheerio';
+import type { Context } from 'hono';
 
+import type { Data, DataItem, Language, Route } from '@/types';
+import { ViewType } from '@/types';
 import ofetch from '@/utils/ofetch';
 import { parseDate } from '@/utils/parse-date';
 
-import { type CheerioAPI, load } from 'cheerio';
-import { type Context } from 'hono';
-
 export const handler = async (ctx: Context): Promise<Data> => {
-    const limit: number = Number.parseInt(ctx.req.query('limit') ?? '10', 10);
+    const limit = Number(ctx.req.query('limit') ?? '10');
 
     const apiSlug = 'wp-json/wp/v2';
-    const baseUrl: string = 'https://www.trendforce.com';
+    const baseUrl = 'https://www.trendforce.com';
     const targetUrl: string = new URL('news/', baseUrl).href;
     const apiUrl = new URL(`${apiSlug}/posts`, targetUrl).href;
 
@@ -65,7 +66,7 @@ export const handler = async (ctx: Context): Promise<Data> => {
             image,
             banner: image,
             updated: updated ? parseDate(updated) : undefined,
-            language,
+            language: language as Language,
         };
 
         return processedItem;
@@ -79,7 +80,7 @@ export const handler = async (ctx: Context): Promise<Data> => {
         allowEmpty: true,
         image: $('meta[property="og:image"]').attr('content'),
         author: $('meta[property="og:site_name"]').attr('content'),
-        language,
+        language: language as Language,
         id: targetUrl,
     };
 };

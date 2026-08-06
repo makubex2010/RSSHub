@@ -1,30 +1,29 @@
-import { type Data, type DataItem, type Route, ViewType } from '@/types';
+import type { Cheerio, CheerioAPI } from 'cheerio';
+import { load } from 'cheerio';
+import type { Element } from 'domhandler';
+import type { Context } from 'hono';
 
+import type { Data, DataItem, Language, Route } from '@/types';
+import { ViewType } from '@/types';
 import cache from '@/utils/cache';
 import ofetch from '@/utils/ofetch';
 import { parseDate } from '@/utils/parse-date';
 
-import { type CheerioAPI, type Cheerio, load } from 'cheerio';
-import type { Element } from 'domhandler';
-import { type Context } from 'hono';
-
 export const handler = async (ctx: Context): Promise<Data> => {
     const { category = 'jiaotongyaowen' } = ctx.req.param();
-    const limit: number = Number.parseInt(ctx.req.query('limit') ?? '30', 10);
+    const limit = Number(ctx.req.query('limit') ?? '30');
 
-    const baseUrl: string = 'https://www.mot.gov.cn';
+    const baseUrl = 'https://www.mot.gov.cn';
     const targetUrl: string = new URL(category.endsWith('/') ? category : `${category}/`, baseUrl).href;
 
     const response = await ofetch(targetUrl);
     const $: CheerioAPI = load(response);
     const language = $('html').attr('lang') ?? 'zh';
 
-    let items: DataItem[] = [];
-
-    items = $('div.tab-pane a')
+    let items: DataItem[] = $('div.tab-pane a')
         .slice(0, limit)
         .toArray()
-        .map((el): Element => {
+        .map((el) => {
             const $el: Cheerio<Element> = $(el);
 
             const title: string = $el.attr('title') ?? $el.find('span').first().text();
@@ -37,7 +36,7 @@ export const handler = async (ctx: Context): Promise<Data> => {
                 pubDate: pubDateStr ? parseDate(pubDateStr) : undefined,
                 link: linkUrl ? (linkUrl.startsWith('http') ? linkUrl : new URL(linkUrl as string, targetUrl).href) : undefined,
                 updated: upDatedStr ? parseDate(upDatedStr) : undefined,
-                language,
+                language: language as Language,
             };
 
             return processedItem;
@@ -50,11 +49,11 @@ export const handler = async (ctx: Context): Promise<Data> => {
             }
 
             return cache.tryGet(item.link, async (): Promise<DataItem> => {
-                const detailResponse = await ofetch(item.link);
+                const detailResponse = await ofetch(item.link!);
                 const $$: CheerioAPI = load(detailResponse);
 
                 const title: string = $$('h1').first().text();
-                const description: string | undefined = $$('div.TRS_UEDITOR').html() ?? undefined;
+                const description = $$('div.TRS_UEDITOR').html();
                 const pubDateStr: string | undefined = $$('meta[name="PubDate"]').attr('content');
                 const categories: string[] = [
                     ...new Set(
@@ -63,11 +62,11 @@ export const handler = async (ctx: Context): Promise<Data> => {
                             $$('meta[name="ColumnType"]').attr('content'),
                             $$('meta[name="ContentSource"]').attr('content'),
                             ...($$('meta[name="Keywords"]').attr('content')?.split(';') ?? []),
-                        ].filter(Boolean)
+                        ].filter(Boolean) as string[]
                     ),
                 ];
                 const authors: DataItem['author'] = [$$('meta[name="ColumnSource"]').attr('content'), $$('meta[name="Author"]').attr('content')].filter(Boolean).map((author) => ({
-                    name: author,
+                    name: author!,
                     url: undefined,
                     avatar: undefined,
                 }));
@@ -87,7 +86,7 @@ export const handler = async (ctx: Context): Promise<Data> => {
                     image,
                     banner: image,
                     updated: upDatedStr ? parseDate(upDatedStr) : item.updated,
-                    language,
+                    language: language as Language,
                 };
 
                 return {
@@ -106,14 +105,14 @@ export const handler = async (ctx: Context): Promise<Data> => {
         allowEmpty: true,
         image: $('a.navbar-brand img').attr('src') ? new URL($('a.navbar-brand img').attr('src') as string, baseUrl).href : undefined,
         author: $('meta[name="SiteName"]').attr('content'),
-        language,
+        language: language as Language,
         id: targetUrl,
     };
 };
 
 export const route: Route = {
-    path: '/mot/:category{.+}?',
-    name: '中华人民共和国交通运输部',
+    path: '/:category{.+}?',
+    name: '通用',
     url: 'www.mot.gov.cn',
     maintainers: ['ladeng07', 'nczitzk'],
     handler,
@@ -162,17 +161,17 @@ export const route: Route = {
         {
             title: '交通要闻',
             source: ['www.mot.gov.cn/jiaotongyaowen/'],
-            target: '/mot/jiaotongyaowen',
+            target: '/jiaotongyaowen',
         },
         {
             title: '时政要闻',
             source: ['www.mot.gov.cn/shizhengyaowen/'],
-            target: '/mot/shizhengyaowen',
+            target: '/shizhengyaowen',
         },
         {
             title: '重要会议',
             source: ['www.mot.gov.cn/zhongyaohuiyi/'],
-            target: '/mot/zhongyaohuiyi',
+            target: '/zhongyaohuiyi',
         },
     ],
     view: ViewType.Articles,

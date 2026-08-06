@@ -1,12 +1,13 @@
-import { Route, ViewType } from '@/types';
-import cache from '@/utils/cache';
-import { getToken } from './token';
-import searchPopularIllust from './api/search-popular-illust';
-import searchIllust from './api/search-illust';
 import { config } from '@/config';
-import pixivUtils from './utils';
-import { parseDate } from '@/utils/parse-date';
 import ConfigNotFoundError from '@/errors/types/config-not-found';
+import type { Route } from '@/types';
+import { ViewType } from '@/types';
+import { parseDate } from '@/utils/parse-date';
+
+import searchIllust from './api/search-illust';
+import searchPopularIllust from './api/search-popular-illust';
+import { getToken } from './token';
+import pixivUtils from './utils';
 
 export const route: Route = {
     path: '/search/:keyword/:order?/:mode?/:include_ai?',
@@ -86,7 +87,7 @@ async function handler(ctx) {
     const mode = ctx.req.param('mode');
     const includeAI = ctx.req.param('include_ai');
 
-    const token = await getToken(cache.tryGet);
+    const token = await getToken();
     if (!token) {
         throw new ConfigNotFoundError('pixiv not login');
     }

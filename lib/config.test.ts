@@ -1,4 +1,4 @@
-import { describe, expect, it, afterEach, vi } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 
 afterEach(() => {
     vi.resetModules();
@@ -84,16 +84,85 @@ describe('config', () => {
         delete process.env.NO_RANDOM_UA;
     });
 
-    it('random ua', async () => {
+    it('default ua from preset', async () => {
         const { config } = await import('./config');
-        expect(config.ua).not.toBe('RSSHub/1.0 (+http://github.com/DIYgod/RSSHub; like FeedFetcher-Google)');
+        expect(config.ua).toContain('Chrome');
+        expect(config.ua).toContain('Macintosh');
+        expect(config.isDefaultUA).toBe(true);
+    });
+
+    it('http cache config', async () => {
+        process.env.CACHE_HTTP_URL = 'https://cache.example.com';
+        process.env.CACHE_HTTP_TOKEN = 'token';
+
+        const { config } = await import('./config');
+        expect(config.httpCache).toMatchObject({
+            url: 'https://cache.example.com',
+            token: 'token',
+        });
+
+        delete process.env.CACHE_HTTP_URL;
+        delete process.env.CACHE_HTTP_TOKEN;
     });
 
     it('remote config', async () => {
         process.env.REMOTE_CONFIG = 'http://rsshub.test/config';
 
         const { config } = await import('./config');
-        await new Promise((resolve) => setTimeout(resolve, 100));
-        expect(config.ua).toBe('test');
+        await vi.waitFor(() => {
+            expect(config.ua).toBe('test');
+        });
+        delete process.env.REMOTE_CONFIG;
+    });
+});
+
+const errorSpy = vi.fn();
+const infoSpy = vi.fn();
+const ofetchMock = vi.fn();
+
+const setupRemoteMocks = () => {
+    vi.resetModules();
+    vi.doMock('@/utils/logger', () => ({
+        default: {
+            error: errorSpy,
+            info: infoSpy,
+        },
+    }));
+    vi.doMock('ofetch', () => ({
+        ofetch: ofetchMock,
+    }));
+};
+
+describe('config remote errors', () => {
+    afterEach(() => {
+        vi.clearAllMocks();
+        vi.unmock('@/utils/logger');
+        vi.unmock('ofetch');
+        ofetchMock.mockReset();
+    });
+
+    it('logs when remote config returns empty', async () => {
+        process.env.REMOTE_CONFIG = 'http://rsshub.test/empty';
+        setupRemoteMocks();
+        ofetchMock.mockResolvedValueOnce(null);
+        await import('@/config');
+        await vi.waitFor(() => {
+            expect(errorSpy).toHaveBeenCalledWith('Remote config load failed.');
+        });
+
+        delete process.env.REMOTE_CONFIG;
+    });
+
+    it('logs when remote config throws', async () => {
+        process.env.REMOTE_CONFIG = 'http://rsshub.test/fail';
+        const error = new Error('boom');
+        setupRemoteMocks();
+        ofetchMock.mockRejectedValueOnce(error);
+        await import('@/config');
+        await vi.waitFor(() => {
+            expect(errorSpy).toHaveBeenCalledWith('Remote config load failed.', error);
+        });
+
+        delete process.env.REMOTE_CONFIG;
     });
 });

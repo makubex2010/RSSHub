@@ -1,7 +1,8 @@
-import { Route } from '@/types';
 import { load } from 'cheerio';
-import { parseDate } from '@/utils/parse-date';
+
+import type { Language, Route } from '@/types';
 import ofetch from '@/utils/ofetch';
+import { parseDate } from '@/utils/parse-date';
 
 export const route: Route = {
     path: '/changelog',
@@ -54,6 +55,6 @@ async function handler() {
         title: 'WebCatalog Changelog',
         link: url,
         item: items,
-        language: 'en',
+        language: 'en' as Language,
     };
 }

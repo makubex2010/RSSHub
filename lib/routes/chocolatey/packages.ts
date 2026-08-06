@@ -1,24 +1,25 @@
-import { type Data, type DataItem, type Route, ViewType } from '@/types';
+import type { Cheerio, CheerioAPI } from 'cheerio';
+import { load } from 'cheerio';
+import type { Element } from 'domhandler';
+import type { Context } from 'hono';
 
+import type { Data, DataItem, Language, Route } from '@/types';
+import { ViewType } from '@/types';
 import ofetch from '@/utils/ofetch';
 import { parseDate } from '@/utils/parse-date';
-
-import { type CheerioAPI, type Cheerio, load } from 'cheerio';
-import type { Element } from 'domhandler';
-import { type Context } from 'hono';
 
 export const handler = async (ctx: Context): Promise<Data> => {
     const { id } = ctx.req.param();
 
-    const baseUrl: string = 'https://community.chocolatey.org';
+    const baseUrl = 'https://community.chocolatey.org';
     const targetUrl: string = new URL(`packages/${id}`, baseUrl).href;
 
     const response = await ofetch(targetUrl);
     const $: CheerioAPI = load(response);
     const language = $('html').attr('lang') ?? 'en';
 
-    const title: string = $('meta[property="og:title"]').attr('content');
-    const description: string | undefined = $('div#description').html();
+    const title: string = $('meta[property="og:title"]').attr('content')!;
+    const description: string | undefined = $('div#description').html() ?? undefined;
     const pubDateStr: string | undefined = $('h3.mt-0.mb-3').last().text();
     const categoryEls: Element[] = $('a[data-package-tag]').toArray();
     const categories: string[] = [...new Set(categoryEls.map((el) => $(el).text()).filter(Boolean))];
@@ -32,7 +33,7 @@ export const handler = async (ctx: Context): Promise<Data> => {
             avatar: $authorEl.attr('src'),
         };
     });
-    const guid: string = `chocolatey-${title}`;
+    const guid = `chocolatey-${title}`;
     const image: string | undefined = $('div.package-logo img').attr('src') ? new URL($('div.package-logo img').attr('src') as string, baseUrl).href : undefined;
     const upDatedStr: string | undefined = pubDateStr;
 
@@ -52,7 +53,7 @@ export const handler = async (ctx: Context): Promise<Data> => {
         image,
         banner: image,
         updated: upDatedStr ? parseDate(upDatedStr) : undefined,
-        language,
+        language: language as Language,
     };
 
     const items: DataItem[] = [processedItem];
@@ -65,7 +66,7 @@ export const handler = async (ctx: Context): Promise<Data> => {
         allowEmpty: true,
         image: $('meta[property="og:image"]').attr('content'),
         author: $('meta[property="og:site_name"]').attr('content'),
-        language,
+        language: language as Language,
         id: $('meta[property="og:url"]').attr('content'),
     };
 };

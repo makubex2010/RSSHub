@@ -1,7 +1,8 @@
-import { Route } from '@/types';
-import { getConfig } from './utils';
+import type { Data, Route } from '@/types';
 import got from '@/utils/got';
 import RSSParser from '@/utils/rss-parser';
+
+import { getConfig } from './utils';
 
 export const route: Route = {
     path: '/:configId/posts',
@@ -27,7 +28,7 @@ export const route: Route = {
 };
 
 async function handler(ctx) {
-    const { link, key } = getConfig(ctx);
+    const { link, key } = getConfig(ctx) as any;
 
     const feed = await RSSParser.parseString(
         (
@@ -45,5 +46,5 @@ async function handler(ctx) {
         ...e,
     }));
 
-    return { item: feed.items, ...feed };
+    return { item: feed.items, ...feed } as Data;
 }

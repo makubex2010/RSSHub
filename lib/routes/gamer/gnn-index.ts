@@ -1,10 +1,12 @@
-import { Route, ViewType } from '@/types';
+import { load } from 'cheerio';
+import pMap from 'p-map';
+
+import type { DataItem, Route } from '@/types';
+import { ViewType } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
 import timezone from '@/utils/timezone';
-import pMap from 'p-map';
 
 export const route: Route = {
     path: '/gnn/:category?',
@@ -53,7 +55,7 @@ export const route: Route = {
 
 async function handler(ctx) {
     const category = ctx.req.param('category');
-    let url = '';
+    let url: string;
     let categoryName = '';
     const categoryTable = {
         1: 'PC',
@@ -99,32 +101,24 @@ async function handler(ctx) {
         .not('[data-news-id]')
         .slice(0, limit)
         .toArray()
-        .map((item) => {
-            item = $(item);
-            let aLabelNode;
-            let tag;
-            // a label with div
-            if (item.find('h1').length === 0) {
-                // a label without div
-                aLabelNode = item.find('a');
-                tag = item.find('div.platform-tag_list').text();
-            } else {
-                aLabelNode = item.find('h1').find('a');
-                tag = item.find('div.platform-tag_list').text();
-            }
+        .map((item): DataItem => {
+            const $item = $(item);
+            // a label with div / a label without div
+            const aLabelNode = $item.find('h1').length === 0 ? $item.find('a') : $item.find('h1').find('a');
+            const tag = $item.find('div.platform-tag_list').text();
 
             return {
                 title: '[' + tag + ']' + aLabelNode.text(),
-                link: aLabelNode.attr('href').replace('//', 'https://'),
+                link: aLabelNode.attr('href')!.replace('//', 'https://'),
             };
         });
 
     const items = await pMap(
         list,
         async (item) => {
-            item.description = await cache.tryGet(item.link, async () => {
+            item.description = await cache.tryGet(item.link!, async () => {
                 const response = await got.get(item.link);
-                let component = '';
+                let component: string;
                 const urlReg = /window\.lazySizesConfig/g;
 
                 let pubInfo;
@@ -142,7 +136,7 @@ async function handler(ctx) {
                         item.author = pubInfo[0].replace('（', '').replace(' 報導', '');
                         dateStr = pubInfo[1].replace('原文出處', '').trim();
                     }
-                    component = $('div.GN-lbox3B').html();
+                    component = $('div.GN-lbox3B').html() ?? '';
                 } else {
                     // url redirect
                     const _response = await got.get(item.link);
@@ -153,16 +147,16 @@ async function handler(ctx) {
                         pubInfo = _$('span.ST1').text().split('│');
                         item.author = pubInfo[0].replace('作者：', '');
                         dateStr = pubInfo[_$('span.ST1').find('a').length > 0 ? 2 : 1];
-                        component = _$('div.MSG-list8C').html();
+                        component = _$('div.MSG-list8C').html() ?? '';
                     } else {
                         // personal publish 2
                         pubInfo = _$('div.article-intro').text().replaceAll('\n', '').split('|');
                         item.author = pubInfo[0];
                         dateStr = pubInfo[1];
-                        component = _$('div.text-paragraph').html();
+                        component = _$('div.text-paragraph').html() ?? '';
                     }
                 }
-                item.pubDate = timezone(parseDate(dateStr, 'YYYY-MM-DD HH:mm:ss'), +8);
+                item.pubDate = timezone(parseDate(dateStr, 'YYYY-MM-DD HH:mm:ss'), 8);
                 component = component.replaceAll(/\b(data-src)\b/g, 'src');
                 return component;
             });

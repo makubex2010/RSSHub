@@ -1,40 +1,39 @@
-import { type Data, type DataItem, type Route, ViewType } from '@/types';
+import type { Cheerio, CheerioAPI } from 'cheerio';
+import { load } from 'cheerio';
+import type { Element } from 'domhandler';
+import type { Context } from 'hono';
 
-import { art } from '@/utils/render';
+import type { Data, DataItem, Language, Route } from '@/types';
+import { ViewType } from '@/types';
 import cache from '@/utils/cache';
 import ofetch from '@/utils/ofetch';
 import { parseDate } from '@/utils/parse-date';
 import timezone from '@/utils/timezone';
 
-import { type CheerioAPI, type Cheerio, load } from 'cheerio';
-import type { Element } from 'domhandler';
-import { type Context } from 'hono';
-import path from 'node:path';
+import { renderDescription } from './templates/description';
 
 export const handler = async (ctx: Context): Promise<Data> => {
     const { filter } = ctx.req.param();
-    const limit: number = Number.parseInt(ctx.req.query('limit') ?? '2', 10);
+    const limit = Number(ctx.req.query('limit') ?? '2');
 
-    const baseUrl: string = 'https://kpopping.com';
+    const baseUrl = 'https://kpopping.com';
     const targetUrl: string = new URL(`news${filter ? `/${filter}` : ''}`, baseUrl).href;
 
     const response = await ofetch(targetUrl);
     const $: CheerioAPI = load(response);
     const language = $('html').attr('lang') ?? 'en';
 
-    let items: DataItem[] = [];
-
-    items = $('section.news-list-item')
+    let items: DataItem[] = $('section.news-list-item')
         .slice(0, limit)
         .toArray()
-        .map((el): Element => {
+        .map((el) => {
             const $el: Cheerio<Element> = $(el);
             const $aEl: Cheerio<Element> = $el.find('h4.title-wr a').last();
 
             const title: string = $aEl.text();
             const pubDateStr: string | undefined = $el.find('time.datetime-wr').attr('datetime');
             const linkUrl: string | undefined = $aEl.attr('href');
-            const categoryEls: Element[] = [$el.find('h4.title-wr a').first()];
+            const categoryEls: Array<Cheerio<Element>> = [$el.find('h4.title-wr a').first()];
             const categories: string[] = [...new Set(categoryEls.map((el) => $(el).text()).filter(Boolean))];
             const authorEls: Element[] = $el.find('aside.author-wr').toArray();
             const authors: DataItem['author'] = authorEls.map((authorEl) => {
@@ -51,13 +50,13 @@ export const handler = async (ctx: Context): Promise<Data> => {
 
             const processedItem: DataItem = {
                 title,
-                pubDate: pubDateStr ? timezone(parseDate(pubDateStr, 'MMM D, YYYY h:mma'), +8) : undefined,
+                pubDate: pubDateStr ? timezone(parseDate(pubDateStr, 'MMM D, YYYY h:mma'), 8) : undefined,
                 link: linkUrl ? new URL(linkUrl, baseUrl).href : undefined,
                 category: categories,
                 author: authors,
                 doi: $el.find('meta[name="citation_doi"]').attr('content'),
-                updated: upDatedStr ? timezone(parseDate(upDatedStr, 'MMM D, YYYY h:mma'), +8) : undefined,
-                language,
+                updated: upDatedStr ? timezone(parseDate(upDatedStr, 'MMM D, YYYY h:mma'), 8) : undefined,
+                language: language as Language,
             };
 
             return processedItem;
@@ -71,11 +70,11 @@ export const handler = async (ctx: Context): Promise<Data> => {
                 }
 
                 return cache.tryGet(item.link, async (): Promise<DataItem> => {
-                    const detailResponse = await ofetch(item.link);
+                    const detailResponse = await ofetch(item.link!);
                     const $$: CheerioAPI = load(detailResponse);
 
                     const title: string = $$('h1').contents().first().text();
-                    const description: string = art(path.join(__dirname, 'templates/description.art'), {
+                    const description: string = renderDescription({
                         images: $$('figure.opening img').attr('src')
                             ? [
                                   {
@@ -84,7 +83,7 @@ export const handler = async (ctx: Context): Promise<Data> => {
                                   },
                               ]
                             : undefined,
-                        description: $$('div#article-content').html(),
+                        description: $$('div#article-content').html() ?? undefined,
                     });
                     const pubDateStr: string | undefined = $$('meta[property="article:published_time"]').attr('content');
                     const categoryEls: Element[] = $$('aside.info a, div.supplements a.item').toArray();
@@ -116,7 +115,7 @@ export const handler = async (ctx: Context): Promise<Data> => {
                         image,
                         banner: image,
                         updated: upDatedStr ? parseDate(upDatedStr) : item.updated,
-                        language,
+                        language: language as Language,
                     };
 
                     return {
@@ -136,7 +135,7 @@ export const handler = async (ctx: Context): Promise<Data> => {
         allowEmpty: true,
         image: $('meta[property="og:image"]').attr('content'),
         author: $('meta[property="og:site_name"]').attr('content'),
-        language,
+        language: language as Language,
         id: targetUrl,
     };
 };
@@ -153,8 +152,7 @@ export const route: Route = {
     },
     description: `::: tip
 If you subscribe to [All male articles](https://kpopping.com/news/gender-male/category-all/idol-any/group-any/order)，where the URL is \`https://kpopping.com/news/gender-male/category-all/idol-any/group-any/order\`, extract the part \`https://kpopping.com/news\` to the end, which is \`gender-male/category-all/idol-any/group-any/order\`, and use it as the parameter to fill in. Therefore, the route will be [\`/kpopping/news/gender-male/category-all/idol-any/group-any/order\`](https://rsshub.app/kpopping/news/gender-male/category-all/idol-any/group-any/order).
-:::
-`,
+:::`,
     categories: ['new-media'],
     features: {
         requireConfig: false,
@@ -189,7 +187,6 @@ If you subscribe to [All male articles](https://kpopping.com/news/gender-male/ca
         },
         description: `::: tip
 若订阅 [All male articles](https://kpopping.com/news/gender-male/category-all/idol-any/group-any/order)，网址为 \`https://kpopping.com/news/gender-male/category-all/idol-any/group-any/order\`，请截取 \`https://kpopping.com/news/\` 到末尾的部分 \`gender-male/category-all/idol-any/group-any/order\` 作为 \`filter\` 参数填入，此时目标路由为 [\`/kpopping/news/gender-male/category-all/idol-any/group-any/order\`](https://rsshub.app/kpopping/news/gender-male/category-all/idol-any/group-any/order)。
-:::
-`,
+:::`,
     },
 };

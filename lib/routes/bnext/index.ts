@@ -1,6 +1,7 @@
-import { Route } from '@/types';
-import parser from '@/utils/rss-parser';
 import type { Item } from 'rss-parser';
+
+import type { Route } from '@/types';
+import parser from '@/utils/rss-parser';
 
 const FEED_URL = 'https://rss.bnextmedia.com.tw/feed/bnext';
 
@@ -35,7 +36,7 @@ async function handler() {
         const enclosure = item.enclosure;
         const enclosure_url = enclosure?.url;
         const enclosure_type = enclosure?.type;
-        const enclosure_length = enclosure?.length ? Number(enclosure.length) : undefined;
+        const enclosure_length = enclosure?.length || undefined;
 
         return {
             title: item.title ?? item.link ?? 'Untitled',

@@ -1,9 +1,10 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+import { CookieJar } from 'tough-cookie';
+
+import type { DataItem, Language, Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
 import timezone from '@/utils/timezone';
-import { CookieJar } from 'tough-cookie';
 
 export const route: Route = {
     path: '/section77/:type?',
@@ -21,15 +22,15 @@ export const route: Route = {
     name: "Thailand Parliament Draft of Law's public hearing system",
     maintainers: ['itpcc'],
     handler,
-    description: `| Presented by MP \*       | Presented by People \* | Hearing Ongoing     | Hearing ended   | Hearing result reported  | Waiting for PM approval | Assigned into the session | Processed  | PM Rejected   |
-| ------------------------ | ---------------------- | ------------------- | --------------- | ------------------------ | ----------------------- | ------------------------- | ---------- | ------------- |
-| presentbymp              | presentbyperson        | openwsu             | closewsu        | reportwsu                | substatus1              | substatus2                | substatus3 | closewsubypm  |
-| เสนอโดยสมาชิกสภาผู้แทนราษฏร | เสนอโดยประชาชน         | กำลังเปิดรับฟังความคิดเห็น | ปิดรับฟังความคิดเห็น | รายงานผลการรับฟังความคิดเห็น | รอคำรับรองจากนายกรัฐมนตรี   | บรรจุเข้าระเบียบวาระ         | พิจารณาแล้ว  | นายกฯ ไม่รับรอง |
+    description: `| Presented by MP \\*       | Presented by People \\* | Hearing Ongoing      | Hearing ended   | Hearing result reported  | Waiting for PM approval | Assigned into the session | Processed  | PM Rejected   |
+| ------------------------ | ---------------------- | -------------------- | --------------- | ------------------------ | ----------------------- | ------------------------- | ---------- | ------------- |
+| presentbymp              | presentbyperson        | openwsu              | closewsu        | reportwsu                | substatus1              | substatus2                | substatus3 | closewsubypm  |
+| เสนอโดยสมาชิกสภาผู้แทนราษฏร | เสนอโดยประชาชน         | กำลังเปิดรับฟังความคิดเห็น | ปิดรับฟังความคิดเห็น | รายงานผลการรับฟังความคิดเห็น | รอคำรับรองจากนายกรัฐมนตรี  | บรรจุเข้าระเบียบวาระ         | พิจารณาแล้ว  | นายกฯ ไม่รับรอง |
 
-  *Note:* For \`presentbymp\` and \`presentbyperson\`, it can also add:
+*Note:* For \`presentbymp\` and \`presentbyperson\`, it can also add:
 
-  -   \`-m\` for the draft which Speaker of Parliament considered as a monetary draft (ประธานสภาผู้แทนราษฎรวินิจฉัยว่า เป็นร่างการเงิน), or
-  -   \`-nm\` for non-monetary one (ประธานสภาผู้แทนราษฎรวินิจฉัยว่า ไม่เป็นร่างการเงิน).`,
+- \`-m\` for the draft which Speaker of Parliament considered as a monetary draft (ประธานสภาผู้แทนราษฎรวินิจฉัยว่า เป็นร่างการเงิน), or
+- \`-nm\` for non-monetary one (ประธานสภาผู้แทนราษฎรวินิจฉัยว่า ไม่เป็นร่างการเงิน).`,
 };
 
 async function handler(ctx) {
@@ -40,7 +41,7 @@ async function handler(ctx) {
     let title = 'ร่างพระราชบัญญัติที่เปิดรับฟังความคิดเห็นตามมาตรา 77 ของรัฐธรรมนูญ';
 
     if (type) {
-        const [presenter, isMonetaryAct = ''] = type.split('-');
+        const [presenter, isMonetaryAct = ''] = type.split('-', 2);
 
         title +=
             {
@@ -65,12 +66,12 @@ async function handler(ctx) {
     const result = {
         title,
         link: `${baseUrl}/survey_more_news.php${type ? '?type=' + type : ''}`,
-        language: 'th-th',
-        item: [],
+        language: 'th-th' as Language,
+        item: [] as DataItem[],
     };
 
     const queryParams = {
-        page: 1,
+        page: '1',
         type,
     };
     if (type) {
@@ -90,12 +91,12 @@ async function handler(ctx) {
 
     const actList = $('div.item-77')
         .toArray()
-        .map((item) => {
-            item = $(item);
+        .map((item): DataItem => {
+            const $item = $(item);
             return {
-                title: item.find('a').text(),
-                link: `${baseUrl}/${item.find('a').attr('href')}`,
-                category: item
+                title: $item.find('a').text(),
+                link: `${baseUrl}/${$item.find('a').attr('href')}`,
+                category: $item
                     .find('label')
                     .toArray()
                     .map((l) => $(l).text()),
@@ -108,7 +109,7 @@ async function handler(ctx) {
 
     const actListFull = await Promise.all(
         actList.map((item) =>
-            cache.tryGet(item.link, async () => {
+            cache.tryGet(item.link!, async () => {
                 const { data: response } = await got({
                     url: item.link,
                     cookieJar,
@@ -124,10 +125,10 @@ async function handler(ctx) {
                 item.description = $('.des').first().html();
 
                 // Act draft status
-                const [, presenter, monetaryType] = $('.type77 h5').text().split(' ');
+                const [, presenter, monetaryType] = $('.type77 h5').text().split(' ', 3);
                 item.category = [
-                    ...item.category,
-                    $('.container-fluid .bg-status .col-md-8.p-0 h5 span,a')
+                    ...(item.category as string[]),
+                    ...$('.container-fluid .bg-status .col-md-8.p-0 h5 span,a')
                         .toArray()
                         .map((statusElem) => $(statusElem).text()),
                     presenter,
@@ -135,19 +136,19 @@ async function handler(ctx) {
                 ];
 
                 const voteText = $('.row.bg-status .col-md-4.text-right').text().trim();
-                const voteRegex = /^ผู้แสดงความคิดเห็น\s*(\d+)\s*คน\s*(\d+(?:\.\d+)?)%\s*(\d+(?:\.\d+)?)%/g.exec(voteText);
+                const voteRegex = /^ผู้แสดงความคิดเห็น\s*(\d+)\s*คน\s*(\d+(?:\.\d+)?)%\s*\d+(?:\.\d+)?%/.exec(voteText);
 
                 if (voteRegex) {
                     const voteTotal = Number.parseInt(voteRegex[0]);
-                    const upvotePercent = Number.parseFloat(voteRegex[1]);
-                    const downvotePercent = Number.parseFloat(voteRegex[2]);
+                    const upvotePercent = Number(voteRegex[1]);
+                    const downvotePercent = Number(voteRegex[2]);
 
-                    item.upvotes = Number.parseInt((upvotePercent / 100) * voteTotal);
-                    item.downvotes = Number.parseInt((downvotePercent / 100) * voteTotal);
+                    item.upvotes = Number.parseInt(((upvotePercent / 100) * voteTotal) as unknown as string);
+                    item.downvotes = Number.parseInt(((downvotePercent / 100) * voteTotal) as unknown as string);
                 }
 
                 const dateText = $('.banner-detail .banner-detail-caption .blockquote p:last-child').text();
-                const dateRegex = /^รับฟังตั้งแต่วันที่\s(\d{1,2})\s*([\u0E00-\u0E7F]+)\s*(\d{4})/g.exec(dateText);
+                const dateRegex = /^รับฟังตั้งแต่วันที่\s(\d{1,2})\s*([\u{0E00}-\u{0E7F}]+)\s*(\d{4})/u.exec(dateText);
 
                 if (dateRegex) {
                     item.pubDate = timezone(
@@ -166,10 +167,10 @@ async function handler(ctx) {
                                 ตุลาคม: 9,
                                 พฤศจิกายน: 10,
                                 ธันวาคม: 11,
-                            }[dateRegex[2].trim()],
+                            }[dateRegex[2].trim()]!,
                             Number.parseInt(dateRegex[1])
                         ),
-                        +7
+                        7
                     );
                 }
 

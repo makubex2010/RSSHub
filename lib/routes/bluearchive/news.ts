@@ -41,8 +41,8 @@ const handler: Route['handler'] = async (ctx) => {
 const ja: Route['handler'] = async (ctx) => {
     const { type = '0' } = ctx.req.param();
 
-    const data = await ofetch<{ data: { rows: { id: number; content: string; summary: string; publishTime: number }[] } }, 'json'>('https://api-web.bluearchive.jp/api/news/list', {
-        params: {
+    const data = await ofetch<{ data: { rows: Array<{ id: number; content: string; summary: string; publishTime: number }> } }, 'json'>('https://api-web.bluearchive.jp/api/news/list', {
+        query: {
             typeId: type,
             pageNum: 16,
             pageIndex: 1,
@@ -52,7 +52,7 @@ const ja: Route['handler'] = async (ctx) => {
     return {
         title: `ブルアカ - ${JP[type]}`,
         link: 'https://bluearchive.jp/news/newsJump',
-        language: 'ja-JP',
+        language: 'ja',
         image: 'https://webcnstatic.yostar.net/ba_cn_web/prod/web/favicon.png', // The CN website has a larger one
         icon: 'https://webcnstatic.yostar.net/ba_cn_web/prod/web/favicon.png',
         logo: 'https://webcnstatic.yostar.net/ba_cn_web/prod/web/favicon.png',

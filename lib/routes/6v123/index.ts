@@ -1,21 +1,22 @@
-import { type Data, type DataItem, type Route, ViewType } from '@/types';
+import type { Cheerio, CheerioAPI } from 'cheerio';
+import { load } from 'cheerio';
+import type { Element } from 'domhandler';
+import type { Context } from 'hono';
+import iconv from 'iconv-lite';
 
+import type { Data, DataItem, Language, Route } from '@/types';
+import { ViewType } from '@/types';
 import cache from '@/utils/cache';
 import ofetch from '@/utils/ofetch';
 import { parseDate } from '@/utils/parse-date';
 
-import { type CheerioAPI, type Cheerio, load } from 'cheerio';
-import type { Element } from 'domhandler';
-import { type Context } from 'hono';
-import iconv from 'iconv-lite';
-
 export const handler = async (ctx: Context): Promise<Data> => {
     const { category = 'dy' } = ctx.req.param();
-    const limit: number = Number.parseInt(ctx.req.query('limit') ?? '25', 10);
+    const limit = Number(ctx.req.query('limit') ?? '25');
 
-    const encoding: string = 'gb2312';
+    const encoding = 'gb2312';
 
-    const baseUrl: string = 'https://www.hao6v.me';
+    const baseUrl = 'https://www.hao6v.me';
     const targetUrl: string = new URL(category.startsWith('gvod') ? `${category}.html` : category, baseUrl).href;
 
     const response = await ofetch(targetUrl, {
@@ -24,12 +25,10 @@ export const handler = async (ctx: Context): Promise<Data> => {
     const $: CheerioAPI = load(iconv.decode(Buffer.from(response), encoding));
     const language = $('html').attr('lang') ?? 'zh';
 
-    let items: DataItem[] = [];
-
-    items = $('ul.list li')
+    let items: DataItem[] = $('ul.list li')
         .slice(0, limit)
         .toArray()
-        .map((el): Element => {
+        .map((el) => {
             const $el: Cheerio<Element> = $(el);
 
             const title: string = $el.find('a').text();
@@ -38,7 +37,7 @@ export const handler = async (ctx: Context): Promise<Data> => {
                 .text()
                 .replaceAll(/(\[|\])/g, '');
             const linkUrl: string | undefined = $el.find('a').attr('href');
-            const guid: string = `${linkUrl}#${title}`;
+            const guid = `${linkUrl}#${title}`;
             const upDatedStr: string | undefined = pubDateStr;
 
             const processedItem: DataItem = {
@@ -48,7 +47,7 @@ export const handler = async (ctx: Context): Promise<Data> => {
                 guid,
                 id: guid,
                 updated: upDatedStr ? parseDate(upDatedStr, ['MM-DD', 'YYYY-MM-DD']) : undefined,
-                language,
+                language: language as Language,
             };
 
             return processedItem;
@@ -61,7 +60,7 @@ export const handler = async (ctx: Context): Promise<Data> => {
             }
 
             return cache.tryGet(item.link, async (): Promise<DataItem> => {
-                const detailResponse = await ofetch(item.link, {
+                const detailResponse = await ofetch(item.link!, {
                     responseType: 'arrayBuffer',
                 });
                 const $$: CheerioAPI = load(iconv.decode(Buffer.from(detailResponse), encoding));
@@ -74,7 +73,7 @@ export const handler = async (ctx: Context): Promise<Data> => {
                 $$('div#endText div.downtps').remove();
 
                 const title: string = $$('h1').text();
-                const description: string | undefined = $$('div#endText').html() ?? undefined;
+                const description = $$('div#endText').html();
                 const pubDateStr: string | undefined = item.link?.match(/\/(\d{4}-\d{2}-\d{2})\/\d+\.html/)?.[1];
                 const categoryEls: Element[] = $$('div#endText p a').toArray();
                 const categories: string[] = [...new Set(categoryEls.map((el) => $$(el).text()?.trim()).filter(Boolean))];
@@ -93,14 +92,14 @@ export const handler = async (ctx: Context): Promise<Data> => {
                     image,
                     banner: image,
                     updated: upDatedStr ? parseDate(upDatedStr) : item.updated,
-                    language,
+                    language: language as Language,
                 };
 
                 const $enclosureEl: Cheerio<Element> = $$('td a[href^="magnet"]').last();
                 const enclosureUrl: string | undefined = $enclosureEl.attr('href');
 
                 if (enclosureUrl) {
-                    const enclosureType: string = 'application/x-bittorrent';
+                    const enclosureType = 'application/x-bittorrent';
                     const enclosureTitle: string = $enclosureEl.text();
 
                     processedItem = {
@@ -126,7 +125,7 @@ export const handler = async (ctx: Context): Promise<Data> => {
         item: items,
         allowEmpty: true,
         image: new URL('images/logo.gif', baseUrl).href,
-        language,
+        language: language as Language,
         id: targetUrl,
     };
 };
@@ -310,8 +309,7 @@ export const route: Route = {
 | [国产电影](https://www.hao6v.me/s/guochandianying/)  | [s/guochandianying](https://rsshub.app/6v123/s/guochandianying)   |
 | [欧洲电影](https://www.hao6v.me/s/xijudianying/)     | [s/xijudianying](https://rsshub.app/6v123/s/xijudianying)         |
 
-</details>
-`,
+</details>`,
     categories: ['multimedia'],
     features: {
         requireConfig: false,

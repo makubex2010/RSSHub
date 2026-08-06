@@ -1,7 +1,8 @@
-import { Route } from '@/types';
+import type { Context } from 'hono';
+
+import type { Language, Route } from '@/types';
 import ofetch from '@/utils/ofetch';
 import { parseDate } from '@/utils/parse-date';
-import type { Context } from 'hono';
 
 type ContentItem = {
     key: string;
@@ -51,7 +52,7 @@ export const route: Route = {
 };
 
 async function handler(ctx: Context) {
-    const limit = ctx.req.query('limit') ? Number.parseInt(ctx.req.query('limit'), 10) : 9;
+    const limit = ctx.req.query('limit') ? Number(ctx.req.query('limit')) : 9;
 
     const response = await ofetch('https://www.arknights.jp:10014/news', {
         query: {
@@ -72,7 +73,7 @@ async function handler(ctx: Context) {
         title: 'アークナイツ',
         link: 'https://www.arknights.jp/news',
         description: 'アークナイツ ニュース',
-        language: 'ja',
+        language: 'ja' as Language,
         item: newsList,
     };
 }

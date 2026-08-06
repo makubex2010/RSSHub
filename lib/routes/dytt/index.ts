@@ -1,21 +1,22 @@
-import { type Data, type DataItem, type Route, ViewType } from '@/types';
-
-import cache from '@/utils/cache';
+import type { Cheerio, CheerioAPI } from 'cheerio';
+import { load } from 'cheerio';
+import type { Element } from 'domhandler';
+import type { Context } from 'hono';
 import iconv from 'iconv-lite';
+
+import type { Data, DataItem, Language, Route } from '@/types';
+import { ViewType } from '@/types';
+import cache from '@/utils/cache';
 import ofetch from '@/utils/ofetch';
 import { parseDate } from '@/utils/parse-date';
 import timezone from '@/utils/timezone';
 
-import { type CheerioAPI, type Cheerio, load } from 'cheerio';
-import type { Element } from 'domhandler';
-import { type Context } from 'hono';
-
-const domain: string = 'www.dydytt.net';
-const baseUrl: string = `https://${domain}`;
+const domain = 'www.dydytt.net';
+const baseUrl = `https://${domain}`;
 
 export const handler = async (ctx: Context): Promise<Data> => {
     const { category = 'gndy/dyzz' } = ctx.req.param();
-    const limit: number = Number.parseInt(ctx.req.query('limit') ?? '25', 10);
+    const limit = Number(ctx.req.query('limit') ?? '25');
 
     const targetUrl: string = new URL(`html/${category.replace(/^html\//, '')}`, baseUrl).href;
 
@@ -25,12 +26,10 @@ export const handler = async (ctx: Context): Promise<Data> => {
     const $: CheerioAPI = load(iconv.decode(Buffer.from(response), 'gb2312'));
     const language = $('html').attr('lang') ?? 'zh-CN';
 
-    let items: DataItem[] = [];
-
-    items = $('div.co_content8 ul table')
+    let items: DataItem[] = $('div.co_content8 ul table')
         .slice(0, limit)
         .toArray()
-        .map((el): Element => {
+        .map((el) => {
             const $el: Cheerio<Element> = $(el);
 
             const $aEl: Cheerio<Element> = $el.find('a.ulink');
@@ -44,15 +43,15 @@ export const handler = async (ctx: Context): Promise<Data> => {
             const processedItem: DataItem = {
                 title,
                 description,
-                pubDate: pubDateStr ? timezone(parseDate(pubDateStr), +8) : undefined,
+                pubDate: pubDateStr ? timezone(parseDate(pubDateStr), 8) : undefined,
                 link: linkUrl ? new URL(linkUrl, baseUrl).href : undefined,
                 doi: $el.find('meta[name="citation_doi"]').attr('content'),
                 content: {
                     html: description,
                     text: description,
                 },
-                updated: upDatedStr ? timezone(parseDate(upDatedStr), +8) : undefined,
-                language,
+                updated: upDatedStr ? timezone(parseDate(upDatedStr), 8) : undefined,
+                language: language as Language,
             };
 
             return processedItem;
@@ -66,7 +65,7 @@ export const handler = async (ctx: Context): Promise<Data> => {
                 }
 
                 return cache.tryGet(item.link, async (): Promise<DataItem> => {
-                    const detailResponse = await ofetch(item.link, {
+                    const detailResponse = await ofetch(item.link!, {
                         responseType: 'arrayBuffer',
                     });
                     const $$: CheerioAPI = load(iconv.decode(Buffer.from(detailResponse), 'gb2312'));
@@ -93,14 +92,14 @@ export const handler = async (ctx: Context): Promise<Data> => {
                         image,
                         banner: image,
                         updated: upDatedStr ? parseDate(upDatedStr) : item.updated,
-                        language,
+                        language: language as Language,
                     };
 
                     const $enclosureEl: Cheerio<Element> = $descriptionEl.find('a[href^="magnet:"]').last();
                     const enclosureUrl: string | undefined = $enclosureEl.attr('href');
 
                     if (enclosureUrl) {
-                        const enclosureType: string = 'application/x-bittorrent';
+                        const enclosureType = 'application/x-bittorrent';
                         const enclosureTitle: string = $enclosureEl.text();
 
                         processedItem = {
@@ -133,7 +132,7 @@ export const handler = async (ctx: Context): Promise<Data> => {
         allowEmpty: true,
         image: new URL('images/logo.gif', baseUrl).href,
         author: title.split(/_/).pop(),
-        language,
+        language: language as Language,
         id: targetUrl,
     };
 };

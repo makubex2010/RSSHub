@@ -1,9 +1,11 @@
-import { Route } from '@/types';
-import got from '@/utils/got';
 import { load } from 'cheerio';
-import { SUB_NAME_PREFIX, SUB_URL } from './const';
+
+import type { Route } from '@/types';
+import got from '@/utils/got';
+
 import loadArticle from './article';
-import { WPPost } from './types';
+import { SUB_NAME_PREFIX, SUB_URL } from './const';
+import type { WPPost } from './types';
 
 export const route: Route = {
     path: '/popular/:period',
@@ -38,7 +40,8 @@ function getPeriodConfig(period) {
             range: 'last7days',
             title: `${SUB_NAME_PREFIX} - Top views in 7 days`,
         };
-    } else if (period === '30') {
+    }
+    if (period === '30') {
         return {
             url: `${SUB_URL}hot-of-month/`,
             range: 'last30days',
@@ -47,7 +50,7 @@ function getPeriodConfig(period) {
     }
     return {
         url: `${SUB_URL}most-view/`,
-        range: `all`,
+        range: 'all',
         title: `${SUB_NAME_PREFIX} - Most views`,
     };
 }

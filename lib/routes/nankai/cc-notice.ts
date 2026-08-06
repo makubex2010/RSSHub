@@ -1,8 +1,9 @@
-import { Route } from '@/types';
-import got from '@/utils/got';
 import { load } from 'cheerio';
-import { parseDate } from '@/utils/parse-date';
+
+import type { DataItem, Route } from '@/types';
 import cache from '@/utils/cache';
+import got from '@/utils/got';
+import { parseDate } from '@/utils/parse-date';
 import timezone from '@/utils/timezone';
 
 export const route: Route = {
@@ -27,8 +28,8 @@ export const route: Route = {
     name: '计算机学院',
     maintainers: ['vicguo0724'],
     description: `| 最新动态 | 学院公告 | 学生工作通知 | 科研信息 | 本科生教学 | 党团园地 | 研究生招生 | 研究生教学 | 境外交流 |
-| -------- | -------- | ---------- | -------- | ---------- | -------- | ---------- | ---------- | -------- |
-| 13291    | 13292    | 13293      | 13294    | 13295      | 13296    | 13297      | 13298      | 13299    |`,
+| -------- | -------- | ------------ | -------- | ---------- | -------- | ---------- | ---------- | -------- |
+| 13291    | 13292    | 13293        | 13294    | 13295      | 13296    | 13297      | 13298      | 13299    |`,
     url: 'cc.nankai.edu.cn',
     handler: async (ctx) => {
         // 从 URL 参数中获取通知分类
@@ -44,7 +45,7 @@ export const route: Route = {
         const list = $('#wp_news_w49 table tr')
             .slice(1) // 跳过表头
             .toArray()
-            .map((tr) => {
+            .map((tr): DataItem | null => {
                 const $tr = $(tr);
                 const cells = $tr.find('td');
 
@@ -72,7 +73,7 @@ export const route: Route = {
                 return {
                     title,
                     link,
-                    pubDate: timezone(parseDate(dateStr), +8),
+                    pubDate: timezone(parseDate(dateStr), 8),
                     author: publisher,
                 };
             })
@@ -82,7 +83,7 @@ export const route: Route = {
         const items = await Promise.all(
             list.map((item) =>
                 item
-                    ? cache.tryGet(item.link, async () => {
+                    ? cache.tryGet(item.link!, async () => {
                           try {
                               const { data: response } = await got(item.link);
                               const $ = load(response);
@@ -90,7 +91,7 @@ export const route: Route = {
                               // 优化内容选择器逻辑，避免重复选择
                               let description = $('.wp_articlecontent').html() || $('.body-news-detail').html();
 
-                              description = description || item.title;
+                              description ||= item.title;
                               item.description = description;
                           } catch {
                               // 如果获取详细内容失败，返回基本信息
@@ -108,7 +109,7 @@ export const route: Route = {
             // 源链接
             link: `${baseUrl}/${type}/list.htm`,
             // 源文章
-            item: items,
+            item: items as DataItem[],
         };
     },
 };

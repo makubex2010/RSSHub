@@ -1,8 +1,9 @@
-import { Route } from '@/types';
-import ofetch from '@/utils/ofetch';
 import { load } from 'cheerio';
-import { parseDate } from '@/utils/parse-date';
+
+import type { DataItem, Route } from '@/types';
 import cache from '@/utils/cache';
+import ofetch from '@/utils/ofetch';
+import { parseDate } from '@/utils/parse-date';
 
 export const route: Route = {
     path: '/soft/:atype',
@@ -30,9 +31,9 @@ export const route: Route = {
         const $ = load(response);
         const list = $('#mainContent li')
             .toArray()
-            .map((item) => {
-                item = $(item);
-                const a = item.find('a').eq(1);
+            .map((item): DataItem & { link: string } => {
+                const $item = $(item);
+                const a = $item.find('a').eq(1);
                 return {
                     title: a.text(),
                     link: String(a.attr('href')),

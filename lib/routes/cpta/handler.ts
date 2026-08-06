@@ -1,8 +1,9 @@
-import { DataItem, Route } from '@/types';
-import cache from '@/utils/cache';
-import got from '@/utils/got';
 import { load } from 'cheerio';
 import pMap from 'p-map';
+
+import type { DataItem, Route } from '@/types';
+import cache from '@/utils/cache';
+import got from '@/utils/got';
 
 type NewsCategory = {
     title: string;
@@ -26,7 +27,7 @@ const NEWS_TYPES: Record<string, NewsCategory> = {
 };
 
 const handler: Route['handler'] = async (ctx) => {
-    const category = ctx.req.param('category');
+    const category = ctx.req.param('category')!;
     const BASE_URL = NEWS_TYPES[category].baseUrl;
     // Fetch the index page
     const { data: listResponse } = await got(BASE_URL);
@@ -99,12 +100,10 @@ export const route: Route = {
     parameters: {
         category: '栏目参数，可见下表描述。',
     },
-    description: `
-| Category    | Title     | Description                         |
-|-------------|-----------|-------------------------------------|
-| notice      | 通知公告  | 中国人事考试网 考试通知公告汇总    |
-| performance | 成绩公布  | 中国人事考试网 考试成绩公布汇总    |
-`,
+    description: `| Category    | Title    | Description                     |
+| ----------- | -------- | ------------------------------- |
+| notice      | 通知公告 | 中国人事考试网 考试通知公告汇总 |
+| performance | 成绩公布 | 中国人事考试网 考试成绩公布汇总 |`,
     handler,
     categories: ['study'],
     features: {
@@ -120,12 +119,12 @@ export const route: Route = {
         {
             title: '中国人事考试网通知公告',
             source: ['www.cpta.com.cn/notice.html', 'www.cpta.com.cn'],
-            target: `/notice`,
+            target: '/notice',
         },
         {
             title: '中国人事考试网成绩发布',
             source: ['www.cpta.com.cn/performance.html', 'www.cpta.com.cn'],
-            target: `/performance`,
+            target: '/performance',
         },
     ],
     example: '/cpta/notice',

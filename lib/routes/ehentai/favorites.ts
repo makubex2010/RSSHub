@@ -1,7 +1,8 @@
-import { Route } from '@/types';
-import cache from '@/utils/cache';
-import EhAPI from './ehapi';
 import ConfigNotFoundError from '@/errors/types/config-not-found';
+import type { Route } from '@/types';
+import cache from '@/utils/cache';
+
+import EhAPI from './ehapi';
 
 export const route: Route = {
     path: '/favorites/:favcat?/:order?/:page?/:routeParams?',
@@ -37,7 +38,7 @@ async function handler(ctx) {
     const bittorrent = routeParams.get('bittorrent') || false;
     const embed_thumb = routeParams.get('embed_thumb') || false;
     const inline_set = ctx.req.param('order') === 'posted' ? 'fs_p' : 'fs_f';
-    const items = await EhAPI.getFavoritesItems(cache, favcat, inline_set, page, bittorrent, embed_thumb);
+    const items = await EhAPI.getFavoritesItems(cache, favcat, inline_set, page, bittorrent as unknown as boolean, embed_thumb as unknown as boolean);
 
     return EhAPI.from_ex
         ? {

@@ -1,8 +1,10 @@
-import { Route } from '@/types';
-import cache from '@/utils/cache';
-import { getData, getList } from './utils';
-import got from '@/utils/got';
 import { load } from 'cheerio';
+
+import type { Language, Route } from '@/types';
+import cache from '@/utils/cache';
+import got from '@/utils/got';
+
+import { getData, getList } from './utils';
 
 export const route: Route = {
     path: '/featured',
@@ -36,13 +38,13 @@ async function handler() {
     const listItems = $('li.hp-featured__tease')
         .toArray()
         .map((item) => {
-            item = $(item);
-            const link = item.find('.small-tease__link').attr('href').split('/').at(-2);
+            const $item = $(item);
+            const link = $item.find('.small-tease__link').attr('href')!.split('/').at(-2);
             return {
                 link,
             };
         });
-    const itemData = await Promise.all(listItems.map((item) => cache.tryGet(item.link, async () => (await getData(`https://grist.org/wp-json/wp/v2/posts?slug='${item.link}'&_embed`))[0])));
+    const itemData = await Promise.all(listItems.map((item) => cache.tryGet(item.link!, async () => (await getData(`https://grist.org/wp-json/wp/v2/posts?slug='${item.link}'&_embed`))[0])));
     const items = await getList(itemData);
 
     return {
@@ -52,6 +54,6 @@ async function handler() {
         description: 'Featured Articles on Grist.org',
         logo: 'https://grist.org/wp-content/uploads/2021/03/cropped-Grist-Favicon.png?w=192',
         icon: 'https://grist.org/wp-content/uploads/2021/03/cropped-Grist-Favicon.png?w=32',
-        language: 'en-us',
+        language: 'en-us' as Language,
     };
 }

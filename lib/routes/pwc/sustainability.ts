@@ -1,6 +1,6 @@
-import { Route } from '@/types';
-import { parseDate } from '@/utils/parse-date';
+import type { Language, Route } from '@/types';
 import ofetch from '@/utils/ofetch';
+import { parseDate } from '@/utils/parse-date';
 
 interface PlayerOptions {
     link: string;
@@ -53,7 +53,7 @@ export const route: Route = {
 
 async function handler() {
     const baseUrl = 'https://www.strategyand.pwc.com/at/en/functions/sustainability-strategy/publications.html';
-    const feedLang = 'en';
+    const feedLang: Language = 'en';
     const feedDescription = 'Sustainability Publications from PwC Strategy&';
 
     const response = await ofetch(

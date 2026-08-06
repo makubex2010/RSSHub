@@ -1,9 +1,10 @@
-import { Route } from '@/types';
+import { config } from '@/config';
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import ofetch from '@/utils/ofetch';
-import { phoneBaseUrl, webBaseUrl, generateNonce, sign, getPost } from './utils';
-import { config } from '@/config';
-import { BoardInfo, PostListData } from './types';
+
+import type { BoardInfo, PostListData } from './types';
+import { generateNonce, getPost, phoneBaseUrl, sign, webBaseUrl } from './utils';
 
 export const route: Route = {
     path: '/bbs/board/:boardId',
@@ -84,7 +85,7 @@ async function handler(ctx) {
         postId: item.postId,
     }));
 
-    const items = await Promise.all(list.map((item) => getPost(item, cache.tryGet)));
+    const items = await Promise.all(list.map((item) => getPost(item)));
 
     return {
         title: boardDetail.title,

@@ -1,8 +1,10 @@
-import { Route, ViewType } from '@/types';
-import got from '@/utils/got';
 import { load } from 'cheerio';
-import { parseDate } from '@/utils/parse-date';
+
 import InvalidParameterError from '@/errors/types/invalid-parameter';
+import type { Language, Route } from '@/types';
+import { ViewType } from '@/types';
+import got from '@/utils/got';
+import { parseDate } from '@/utils/parse-date';
 
 const host = 'https://www.dlsite.com';
 const infos = {
@@ -131,7 +133,7 @@ async function handler(ctx) {
         title,
         link,
         description,
-        language: 'ja-jp',
+        language: 'ja' as Language,
         item,
     };
 }

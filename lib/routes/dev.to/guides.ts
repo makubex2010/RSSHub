@@ -1,8 +1,9 @@
-import { Data, DataItem, Route } from '@/types';
-import got from '@/utils/got';
 import { load } from 'cheerio';
-import { parseDate } from '@/utils/parse-date';
+
+import type { Data, DataItem, Route } from '@/types';
 import cache from '@/utils/cache';
+import got from '@/utils/got';
+import { parseDate } from '@/utils/parse-date';
 
 export const route: Route = {
     path: '/guides',
@@ -55,7 +56,7 @@ async function handler() {
                 const coverImage = $article('.crayons-article__cover img').attr('src');
 
                 // Extract article content
-                const content = $article('.crayons-article__body').html() || '';
+                const content = $article('.crayons-article__body').html();
 
                 // Extract author info
                 const authorName = $article('.crayons-article__header__meta .fw-bold').first().text().trim();
@@ -63,12 +64,12 @@ async function handler() {
                 const authorAvatar = $article('.crayons-article__header__meta .radius-full').attr('src');
                 // Extract publication date
                 const dateElement = $article('time[datetime]').first();
-                const dateString = dateElement.attr('datetime') || undefined;
+                const dateString = dateElement.attr('datetime');
                 const pubDate = dateString ? parseDate(dateString) : undefined;
                 // Extract tags
                 const tags = $article('.spec__tags .crayons-tag')
                     .toArray()
-                    .map((tag) => $(tag).text().trim().replace('#', ''));
+                    .map((tag) => $(tag).text().replace('#', ''));
 
                 return {
                     title: item.title,

@@ -1,7 +1,10 @@
-import got from '@/utils/got';
 import { load } from 'cheerio';
-import timezone from '@/utils/timezone';
+
+import type { Language } from '@/types';
+import cache from '@/utils/cache';
+import got from '@/utils/got';
 import { parseDate } from '@/utils/parse-date';
+import timezone from '@/utils/timezone';
 
 const rootUrl = 'https://www.chinamine-safety.gov.cn';
 
@@ -9,13 +12,12 @@ const rootUrl = 'https://www.chinamine-safety.gov.cn';
  * Process the item list and return the resulting array.
  *
  * @param {Object[]} items - The items to process.
- * @param {Function} tryGet - The tryGet function that handles the retrieval process.
  * @returns {Promise<Object[]>} - A promise that resolves to an array of processed items.
  */
-const processItems = async (items, tryGet) =>
+const processItems = async (items) =>
     await Promise.all(
         items.map((item) =>
-            tryGet(item.link, async () => {
+            cache.tryGet(item.link, async () => {
                 if (!item.link.endsWith('html')) {
                     return item;
                 }
@@ -24,7 +26,7 @@ const processItems = async (items, tryGet) =>
 
                 const content = load(detailResponse);
 
-                item.title = item.title || content('title').text();
+                item.title ||= content('title').text();
                 item.description = content('div.TRS_Editor, div.TRS_UEDITOR, div.content').html();
                 item.author = content('meta[name="ContentSource"]').prop('content');
                 item.category = [
@@ -37,7 +39,7 @@ const processItems = async (items, tryGet) =>
                         ].filter(Boolean)
                     ),
                 ];
-                item.pubDate = timezone(parseDate(content('meta[name="PubDate"]').prop('content')), +8);
+                item.pubDate = timezone(parseDate(content('meta[name="PubDate"]').prop('content')), 8);
 
                 return item;
             })
@@ -60,7 +62,7 @@ const fetchData = ($, currentUrl) => {
         title: $('title').text(),
         link: currentUrl,
         description: $('meta[name="ColumnDescription"]').prop('content') || $('meta[name="Description"]').prop('content'),
-        language: 'zh',
+        language: 'zh' as Language,
         image,
         icon,
         logo: icon,
@@ -69,4 +71,4 @@ const fetchData = ($, currentUrl) => {
     };
 };
 
-export { rootUrl, processItems, fetchData };
+export { fetchData, processItems, rootUrl };

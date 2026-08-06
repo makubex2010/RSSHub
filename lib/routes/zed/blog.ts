@@ -1,8 +1,10 @@
-import { Route, DataItem, Data, ViewType } from '@/types';
+import { load } from 'cheerio';
+
+import type { Data, DataItem, Route } from '@/types';
+import { ViewType } from '@/types';
 import cache from '@/utils/cache';
 import ofetch from '@/utils/ofetch';
 import parser from '@/utils/rss-parser';
-import { load } from 'cheerio';
 
 export const route: Route = {
     path: '/blog',
@@ -48,7 +50,6 @@ async function handler() {
                 article.find('[class]').removeAttr('class');
                 article.find('[id]').removeAttr('id');
                 article.find('[preload]').removeAttr('preload');
-                article.find('script').remove();
                 article.find('figcaption').remove();
                 article.find('aside').remove(); // remove Looking and hiring part
 

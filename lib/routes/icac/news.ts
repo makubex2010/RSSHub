@@ -1,9 +1,11 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { DataItem, Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
-import utils from './utils';
 import { parseDate } from '@/utils/parse-date';
+
+import utils from './utils';
 
 export const route: Route = {
     path: '/news/:lang?',
@@ -36,7 +38,7 @@ async function handler(ctx) {
 
     const list = $('.pressItem.clearfix')
         .toArray()
-        .map((e) => {
+        .map((e): DataItem => {
             const c = load(e);
             return {
                 title: c('.hd a').text(),
@@ -45,7 +47,7 @@ async function handler(ctx) {
         });
     const items = await Promise.all(
         list.map((item) =>
-            cache.tryGet(item.link, async () => {
+            cache.tryGet(item.link!, async () => {
                 const detailResponse = await got({
                     method: 'get',
                     url: item.link,
@@ -56,7 +58,7 @@ async function handler(ctx) {
                 c('.col-3-wrap.clearfix.pressPhoto div').removeAttr('class');
                 const des = c('.pressContent.full').html();
                 const thumbs = c('.col-3-wrap.clearfix.pressPhoto').html() ?? '';
-                item.pubDate = parseDate(decodeURI(c('.date').text().trim()), ['YYYY年MM月DD日', 'YYYY年MM月D日', 'YYYY年M月DD日', 'YYYY年M月D日'], true);
+                item.pubDate = parseDate(decodeURI(c('.date').text().trim()), ['YYYY年MM月DD日', 'YYYY年MM月D日', 'YYYY年M月DD日', 'YYYY年M月D日'], true as unknown as string);
                 item.description = des + thumbs;
                 return item;
             })

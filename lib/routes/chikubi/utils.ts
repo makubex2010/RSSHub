@@ -1,7 +1,8 @@
-import { DataItem } from '@/types';
+import { load } from 'cheerio';
+
+import type { DataItem } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
 
 const CONTENT_TYPES = {
@@ -69,7 +70,7 @@ function processDescription(description: string): string {
     return $('body')
         .children()
         .toArray()
-        .map((el) => $(el).clone().wrap('<div>').parent().html())
+        .map((el) => $.html(el))
         .join('');
 }
 
@@ -94,7 +95,7 @@ export async function getPosts(ids?: string[]): Promise<DataItem[]> {
         }));
     });
 
-    return (Array.isArray(cachedData) ? cachedData : []).filter((item): item is DataItem => item !== null);
+    return ((Array.isArray(cachedData) ? cachedData : []) as Array<DataItem | null>).filter((item): item is DataItem => item !== null);
 }
 
 const API_TYPES = {
@@ -131,5 +132,5 @@ export async function getPostsBy<T extends keyof typeof API_TYPES>(type: T, id: 
         return [];
     });
 
-    return (Array.isArray(cachedData) ? cachedData : []).filter((item): item is DataItem => item !== null);
+    return ((Array.isArray(cachedData) ? cachedData : []) as Array<DataItem | null>).filter((item): item is DataItem => item !== null);
 }

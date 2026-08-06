@@ -1,8 +1,9 @@
+import { load } from 'cheerio';
+
 import { config } from '@/config';
-import { Route } from '@/types';
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import ofetch from '@/utils/ofetch';
-import { load } from 'cheerio';
 
 export const route: Route = {
     path: '/home/:column?',
@@ -23,7 +24,11 @@ export const route: Route = {
     },
     radar: [
         {
-            source: ['www.jumeili.cn/', 'jumeili.cn/'],
+            source: ['www.jumeili.cn/'],
+            target: '/home/:column?',
+        },
+        {
+            source: ['jumeili.cn/'],
             target: '/home/:column?',
         },
     ],
@@ -44,10 +49,9 @@ async function handler(ctx) {
     const cookie = config.jumeili.cookie;
     const response = await ofetch(link, {
         headers: {
-            referer: baseUrl,
             'user-agent': config.trueUA,
             accept: 'application/json, text/javascript, */*; q=0.01',
-            cookie,
+            cookie: cookie!,
         },
     });
 
@@ -72,7 +76,6 @@ async function handler(ctx) {
                 cache.tryGet(item.link, async () => {
                     const article = await ofetch(item.link, {
                         headers: {
-                            referer: baseUrl,
                             'user-agent': config.trueUA,
                             accept: 'application/json, text/javascript, */*; q=0.01',
                             cookie,

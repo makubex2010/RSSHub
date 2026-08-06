@@ -1,7 +1,8 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { Language, Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
 
 export const route: Route = {
@@ -21,10 +22,10 @@ export const route: Route = {
 };
 
 export async function handler(ctx) {
-    const limit = ctx.req.query('limit') ? Number.parseInt(ctx.req.query('limit'), 10) : 30;
+    const limit = ctx.req.query('limit') ? Number(ctx.req.query('limit')) : 30;
 
     const rootUrl = 'https://www.reactiflux.com';
-    const currentUrl = new URL(`transcripts`, rootUrl).href;
+    const currentUrl = new URL('transcripts', rootUrl).href;
 
     const { data: response } = await got(currentUrl);
 
@@ -49,7 +50,7 @@ export async function handler(ctx) {
                     id: guid,
                     image,
                     banner: image,
-                    language,
+                    language: language as Language,
                 };
             }) ?? [];
 
@@ -98,6 +99,6 @@ export async function handler(ctx) {
         allowEmpty: true,
         image,
         author,
-        language,
+        language: language as Language,
     };
 }

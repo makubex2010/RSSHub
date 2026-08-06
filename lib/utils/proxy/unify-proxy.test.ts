@@ -1,5 +1,7 @@
 import { describe, expect, it } from 'vitest';
-import unifyProxy from '@/utils/proxy/unify-proxy';
+
+import type { Config } from '@/config';
+import unifyProxy, { unifyProxies } from '@/utils/proxy/unify-proxy';
 
 const emptyProxyObj = {
     protocol: undefined,
@@ -7,7 +9,7 @@ const emptyProxyObj = {
     port: undefined,
     auth: undefined,
     url_regex: '.*',
-};
+} as Config['proxy'];
 
 const effectiveExpect = ({ proxyUri, proxyObj }, expectUri, expectObj) => {
     expect(proxyUri).toBe(expectUri);
@@ -137,5 +139,11 @@ describe('unify-proxy', () => {
 
     it('proxy-uri user@pass override proxy-obj auth', () => {
         effectiveExpect(unifyProxy(httpsAuthUri, httpsAuthObj), httpsAuthUri, httpsObj);
+    });
+
+    it('unifyProxies filters invalid proxy uris', () => {
+        const results = unifyProxies(['http://rsshub.proxy:2333', 'http://inv lid.test'], emptyProxyObj);
+        expect(results).toHaveLength(1);
+        expect(results[0].proxyUri).toBe('http://rsshub.proxy:2333');
     });
 });

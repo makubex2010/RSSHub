@@ -1,89 +1,63 @@
-name: Similar Issues via AI MCP
+name: duplicate-issues
 
 on:
-  issues:
-    types: [opened]
+    issues:
+        types: [opened]
+    workflow_dispatch:
+        inputs:
+            issue_number:
+                description: Issue number to check manually
+                required: true
+                type: number
 
 jobs:
-  find-similar:
-    permissions:
-      contents: read
-      issues: write
-      models: read
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+    check-duplicates:
+        runs-on: ubuntu-latest
+        permissions:
+            contents: read
+            issues: write
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
-      - name: Prepare prompt variables
-        id: prepare_input
-        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8.0.0
-        with:
-          script: |
-            const issue = context.payload.issue || {};
-            const title = issue.title || '';
-            const body = issue.body || '';
-            const indent = '      ';
-            // Indent subsequent lines so YAML block scalar indentation remains valid
-            const bodyIndented = body.replace(/\n/g, '\n' + indent);
-            core.setOutput('issue_title_json', JSON.stringify(title));
-            core.setOutput('issue_body_indented_json', JSON.stringify(bodyIndented));
+            - name: Check for duplicate issues
+              uses: anthropics/claude-code-action@v1
+              env:
+                  GH_TOKEN: ${{ github.token }}
+                  ISSUE_NUMBER: ${{ github.event.issue.number || inputs.issue_number }}
+                  CLAUDE_CODE_SUBPROCESS_ENV_SCRUB: 0
+              with:
+                  claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
+                  display_report: 'true'
+                  allowed_non_write_users: '*'
+                  claude_args: |
+                      --model ${{ vars.OPENCODE_MODEL }}
+                      ${{ vars.CLAUDE_EFFORT && format('--effort {0}', vars.CLAUDE_EFFORT) || '' }}
+                      --allowedTools "Bash(gh issue:*),Bash(gh search:*)"
+                      --disallowedTools "WebFetch,WebSearch"
+                  prompt: |
+                      A new issue has been created:
 
-      - name: Find similar issues with AI (MCP)
-        id: inference
-        uses: actions/ai-inference@a1c11829223a786afe3b5663db904a3aa1eac3a2 # v2.0.1
-        with:
-          prompt-file: ./.github/prompts/similar_issues.prompt.yml
-          input: |
-            issue_title: ${{ steps.prepare_input.outputs.issue_title_json }}
-            issue_body: ${{ steps.prepare_input.outputs.issue_body_indented_json }}
-            repository: ${{ github.repository }}
-          enable-github-mcp: true
-          # Inference token can use GITHUB_TOKEN. MCP specifically requires a PAT.
-          token: ${{ secrets.GITHUB_TOKEN }}
-          github-mcp-token: ${{ secrets.USER_PAT }}
-          max-tokens: 8000
+                      Issue number:
+                      ${{ github.event.issue.number || inputs.issue_number }}
 
-      - name: Prepare comment body
-        id: prepare
-        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8.0.0
-        env:
-          AI_RESPONSE: ${{ steps.inference.outputs.response }}
-        with:
-          script: |
-            let data;
-            try {
-              data = JSON.parse(process.env.AI_RESPONSE || '{}');
-            } catch (e) {
-              core.setOutput('has_matches', 'false');
-              return;
-            }
-            const matches = Array.isArray(data.matches) ? data.matches : [];
-            if (!matches.length) {
-              core.setOutput('has_matches', 'false');
-              return;
-            }
-            const lines = [];
-            lines.push('I found similar issues that might help:');
-            for (const m of matches.slice(0, 3)) {
-              const num = m.number != null ? `#${m.number}` : '';
-              const title = m.title || 'Untitled';
-              const url = m.url || '';
-              const score = typeof m.similarity_score === 'number' ? ` (similarity: ${m.similarity_score.toFixed(2)})` : '';
-              lines.push(`- ${url}${score}`.trim());
-            }
-            core.setOutput('has_matches', 'true');
-            core.setOutput('comment_body', lines.join('\n'));
+                      Lookup this issue and search through existing issues (excluding #${{ github.event.issue.number || inputs.issue_number }}) in this repository (${{ github.repository }}) to find any potential duplicates of this new issue.
+                      Consider:
+                      1. Similar titles or descriptions
+                      2. Same error messages or symptoms
+                      3. Related functionality or components
+                      4. Similar feature requests
 
-      - name: Comment similar issues
-        if: steps.prepare.outputs.has_matches == 'true'
-        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8.0.0
-        with:
-          script: |
-            const body = ${{ toJson(steps.prepare.outputs.comment_body) }};
-            await github.rest.issues.createComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.payload.issue.number,
-              body
-            });
+                      If you find any potential duplicates, please comment on the new issue with:
+                      - A brief explanation of why it might be a duplicate
+                      - Links to the potentially duplicate issues
+                      - A suggestion to check those issues first
+
+                      Use this format for the comment:
+                      "This issue might be a duplicate of existing issues. Please check:
+                      - #[issue_number]: [brief description of similarity]
+
+                      Feel free to ignore if none of these address your specific case."
+
+                      If no clear duplicates are found, do not comment.

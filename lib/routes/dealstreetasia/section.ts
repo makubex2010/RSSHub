@@ -1,8 +1,9 @@
-import { Route } from '@/types';
+import { load } from 'cheerio'; // An HTML parser with an API similar to jQuery
+
+import type { Language, Route } from '@/types';
 // import cache from '@/utils/cache';
 import ofetch from '@/utils/ofetch'; // Unified request library used
-import { load } from 'cheerio'; // An HTML parser with an API similar to jQuery
-// import puppeteer from '@/utils/puppeteer';
+// import playwright from '@/utils/playwright';
 // import { parseDate } from '@/utils/parse-date';
 
 export const route: Route = {
@@ -50,7 +51,7 @@ async function fetchPage(section: string) {
 
     return {
         title: 'Deal Street Asia - ' + headingText,
-        language: 'en',
+        language: 'en' as Language,
         item: feedItems,
         link: 'https://dealstreetasia.com/section/' + section + '/',
     };

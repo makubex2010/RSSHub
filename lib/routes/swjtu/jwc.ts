@@ -1,7 +1,8 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
 
 const rootURL = 'http://jwc.swjtu.edu.cn';
@@ -30,16 +31,16 @@ const getItem = (item, cache) => {
                 description: newsText,
             };
         } catch (error) {
-            if (error.response && error.response.status === 404) {
+            const err = error as { response?: { status: number } };
+            if (err.response && err.response.status === 404) {
                 return {
                     title: newsTitle,
                     pubDate: parseDate(String(newsTime)),
                     link,
                     description: '',
                 };
-            } else {
-                throw error;
             }
+            throw error;
         }
     });
 };

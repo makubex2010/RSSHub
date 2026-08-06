@@ -1,15 +1,15 @@
-import { Route } from '@/types';
+import type { Route } from '@/types';
 import got from '@/utils/got';
 
 async function getCategoryId(categories) {
-    const baseUrl = `https://macmenubar.com/wp-json/wp/v2/categories`;
+    const baseUrl = 'https://macmenubar.com/wp-json/wp/v2/categories';
     const { data: response } = await got(baseUrl, {
         method: 'GET',
         searchParams: {
             slug: categories,
         },
     });
-    return response.reduce((queryString, item) => queryString + item.id + ',', '');
+    return response.map((item) => item.id + ',').join('');
 }
 
 export const route: Route = {
@@ -33,7 +33,7 @@ export const route: Route = {
 async function handler(ctx) {
     const baseUrl = 'https://macmenubar.com/wp-json/wp/v2/posts';
     const categories = ctx.req.param('category');
-    const searchParams = {
+    const searchParams: { per_page: number; categories?: string } = {
         per_page: 100,
     };
     if (categories) {

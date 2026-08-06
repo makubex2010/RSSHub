@@ -1,7 +1,8 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { Language, Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
 
 export const route: Route = {
@@ -33,7 +34,7 @@ async function handler(ctx) {
         searchParams: {
             subject: '100990318;100990314;100990311',
             start: 0,
-            count: ctx.req.query('limit') ? Number.parseInt(ctx.req.query('limit'), 10) : 20,
+            count: ctx.req.query('limit') ? Number(ctx.req.query('limit')) : 20,
             type: '2',
             _: Date.now(),
         },
@@ -73,7 +74,7 @@ async function handler(ctx) {
                     content = data.data.content;
                 }
 
-                item.description = $('.cons-photo').prop('outerHTML') + content;
+                item.description = $('.cons-photo').prop('outerHTML')! + content!;
 
                 return item;
             })
@@ -83,7 +84,7 @@ async function handler(ctx) {
     return {
         title: 'The Latest Top Headlines on China - Caixin Global',
         description: 'The latest headlines on China finance, companies, politics, international affairs and other China-related issues from around the world. Caixin Global',
-        language: 'en',
+        language: 'en' as Language,
         link: 'https://www.caixinglobal.com/news/',
         item: items,
     };

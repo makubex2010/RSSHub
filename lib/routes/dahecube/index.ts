@@ -1,8 +1,10 @@
-import { Route } from '@/types';
+import type { Language, Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
 import { parseDate } from '@/utils/parse-date';
+
 import utils from './utils';
+
 const { TYPE, parseUrl } = utils;
 
 export const route: Route = {
@@ -76,7 +78,7 @@ async function handler(ctx) {
         title: '大河财立方',
         link: parseUrl(type),
         description: `大河财立方 ${TYPE[type].name}`,
-        language: 'zh-cn',
+        language: 'zh-CN' as Language,
         item: items,
     };
 

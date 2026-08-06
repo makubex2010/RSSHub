@@ -1,7 +1,8 @@
-import { Route } from '@/types';
-import ofetch from '@/utils/ofetch';
 import { load } from 'cheerio';
+
+import type { DataItem, Route } from '@/types';
 import cache from '@/utils/cache';
+import ofetch from '@/utils/ofetch';
 import { parseDate } from '@/utils/parse-date';
 import timezone from '@/utils/timezone';
 
@@ -37,7 +38,7 @@ async function handler(ctx) {
     const response = await ofetch(link);
     const $ = load(response);
 
-    const list = [
+    const list: DataItem[] = [
         ...$('.left li a')
             .toArray()
             .map((item) => {
@@ -46,7 +47,7 @@ async function handler(ctx) {
 
                 return {
                     title: $item.find('.bt').text().trim(),
-                    link: new URL($item.attr('href'), baseUrl).href?.replace('http://', 'https://'),
+                    link: new URL($item.attr('href')!, baseUrl).href?.replace('http://', 'https://'),
                     pubDate: parseDate(`${sj.find('span').text().trim()}.${sj.find('p').text().trim()}`, 'YYYY.MM.DD'),
                 };
             }),
@@ -63,7 +64,7 @@ async function handler(ctx) {
 
     const items = await Promise.all(
         list.map((item) =>
-            cache.tryGet(item.link, async () => {
+            cache.tryGet(item.link!, async () => {
                 if (!item.link?.startsWith('https://www.tsinghua.edu.cn/info/')) {
                     return item;
                 }

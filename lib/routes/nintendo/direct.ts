@@ -1,10 +1,10 @@
-import { Route } from '@/types';
-
-import got from '@/utils/got';
 import { load } from 'cheerio';
+
+import type { Route } from '@/types';
+import got from '@/utils/got';
 import { parseDate } from '@/utils/parse-date';
-import { art } from '@/utils/render';
-import path from 'node:path';
+
+import { renderDirectDescription } from './templates/direct';
 
 export const route: Route = {
     path: '/direct',
@@ -38,14 +38,11 @@ async function handler() {
     const nextData = JSON.parse($('script#__NEXT_DATA__').text());
 
     delete nextData.props.pageProps.initialApolloState.ROOT_QUERY;
-    const result = Object.values(nextData.props.pageProps.initialApolloState).map((item) => ({
+    const result = Object.values<Record<string, any>>(nextData.props.pageProps.initialApolloState).map((item) => ({
         title: item.name,
         pubDate: parseDate(item.startDate),
         link: `https://www.nintendo.com/nintendo-direct/${item.slug}/`,
-        description: art(path.join(__dirname, 'templates/direct.art'), {
-            publicId: item.thumbnail.publicId,
-            content: item.description.json.content,
-        }),
+        description: renderDirectDescription(item.thumbnail.publicId, item.description.json.content),
     }));
 
     return {

@@ -1,6 +1,7 @@
-import { Route } from '@/types';
-import got from '@/utils/got';
 import { load } from 'cheerio';
+
+import type { Language, Route } from '@/types';
+import got from '@/utils/got';
 import { parseDate } from '@/utils/parse-date';
 import timezone from '@/utils/timezone';
 
@@ -50,7 +51,7 @@ async function handler(ctx) {
             .text();
         const title = `${_subtitle} ${_title}`;
         const author = $('p.m-listitem__author', article).text();
-        const pubDate = timezone(parseDate($('span.date', article).text(), 'YYYY-MM-DD'), +9);
+        const pubDate = timezone(parseDate($('span.date', article).text(), 'YYYY-MM-DD'), 9);
         const link = `${baseUrl}${$('a', article).attr('href')}`.replace(/\?summary$/, '');
         return {
             title,
@@ -64,7 +65,7 @@ async function handler(ctx) {
         title,
         link,
         description,
-        language,
+        language: language as Language,
         item,
     };
 }

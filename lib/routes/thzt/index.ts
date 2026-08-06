@@ -1,8 +1,8 @@
-import { Route, DataItem } from '@/types';
+import { load } from 'cheerio';
 
+import type { DataItem, Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
 
 export const route: Route = {
@@ -34,7 +34,7 @@ async function handler() {
         const link = element.attr('href') || '';
         const span = element.find('span').first();
 
-        const title = span.text() || '';
+        const title = span.text();
 
         return {
             title,
@@ -56,7 +56,7 @@ async function handler() {
 
                 item.author = author;
                 item.pubDate = parseDate(articlePubDate);
-                item.description = $('div.post-body').first().html() || '';
+                item.description = $('div.post-body').html();
                 item.category = [$('span.post-category>span>a>span').first().text()];
 
                 return item;

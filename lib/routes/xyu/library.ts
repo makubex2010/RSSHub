@@ -1,6 +1,7 @@
-import { Route } from '@/types';
-import ofetch from '@/utils/ofetch';
 import { load } from 'cheerio';
+
+import type { Route } from '@/types';
+import ofetch from '@/utils/ofetch';
 import { parseDate } from '@/utils/parse-date';
 
 export const route: Route = {
@@ -39,7 +40,7 @@ async function handler() {
         .map((item) => {
             const $item = $(item);
             const $link = $item.find('a');
-            const title = $link.attr('title') || $link.text().trim();
+            const title = $link.attr('title') || $link.text();
             const relativeUrl = $link.attr('href');
             const link = relativeUrl ? new URL(relativeUrl, baseUrl).href : '';
             // 提取日期

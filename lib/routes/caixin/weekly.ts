@@ -1,7 +1,8 @@
-import { DataItem, Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { DataItem, Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
 
 export const route: Route = {
@@ -36,11 +37,11 @@ async function handler(ctx) {
             .map((item) => ({
                 link: $(item).attr('href'),
             })),
-    ].slice(0, ctx.req.query('limit') ? Number.parseInt(ctx.req.query('limit'), 10) : 10) as DataItem[];
+    ].slice(0, ctx.req.query('limit') ? Number(ctx.req.query('limit')) : 10) as DataItem[];
 
     const items = (await Promise.all(
         list.map((item) =>
-            cache.tryGet(item.link, async () => {
+            cache.tryGet(item.link!, async () => {
                 const { data } = await got(item.link);
                 const $ = load(data);
 
@@ -51,7 +52,7 @@ async function handler(ctx) {
                 item.pubDate = parseDate(
                     $('.source')
                         .text()
-                        .match(/出版日期：(\d{4}-\d{2}-\d{2})/)[1]
+                        .match(/出版日期：(\d{4}-\d{2}-\d{2})/)![1]
                 );
 
                 $('.subscribe').remove();
@@ -59,7 +60,7 @@ async function handler(ctx) {
                 const report = $('.report');
                 report.find('.title, .source, .date').remove();
 
-                item.description = $('.cover').html() + report.html() + $('.magIntro2').html();
+                item.description = $('.cover').html()! + report.html()! + $('.magIntro2').html();
 
                 return item;
             })

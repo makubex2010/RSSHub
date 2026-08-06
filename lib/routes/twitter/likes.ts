@@ -1,6 +1,7 @@
-import { Route } from '@/types';
-import utils from './utils';
+import type { Route } from '@/types';
+
 import api from './api';
+import utils from './utils';
 
 export const route: Route = {
     path: '/likes/:id/:routeParams?',
@@ -43,7 +44,7 @@ async function handler(ctx) {
         title: `Twitter Likes - ${id}`,
         link: `https://x.com/${id}/likes`,
         item: utils.ProcessFeed(ctx, {
-            data,
+            data: data as any[],
         }),
     };
 }

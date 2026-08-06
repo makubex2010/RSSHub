@@ -1,7 +1,8 @@
-import { config } from '@/config';
 import Parser from 'rss-parser';
 
-const parser = new Parser({
+import { config } from '@/config';
+
+const parser = new Parser<Record<string, any>, Record<string, any>>({
     customFields: {
         item: ['magnet'],
     },

@@ -1,10 +1,11 @@
-import { Route } from '@/types';
+import { config } from '@/config';
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import ofetch from '@/utils/ofetch';
 import { parseDate } from '@/utils/parse-date';
-import { phoneBaseUrl, webBaseUrl, generateNonce, sign, getPost } from './utils';
-import { config } from '@/config';
-import { RecommendListData, SpecialBoardDetail } from './types';
+
+import type { RecommendListData, SpecialBoardDetail } from './types';
+import { generateNonce, getPost, phoneBaseUrl, sign, webBaseUrl } from './utils';
 
 export const route: Route = {
     path: '/bbs/special/:specialId',
@@ -88,7 +89,7 @@ async function handler(ctx) {
         };
     });
 
-    const items = await Promise.all(list.map((item) => getPost(item, cache.tryGet)));
+    const items = await Promise.all(list.map((item) => getPost(item)));
 
     return {
         title: specialDetail.name,

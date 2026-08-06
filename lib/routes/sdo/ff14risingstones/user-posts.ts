@@ -1,8 +1,10 @@
-import type { Data, Route } from '@/types';
-import { INDEX_URL, REQUIRE_CONFIG } from './constant';
 import type { Context } from 'hono';
-import { checkConfig, generatePostFeeds } from './utils';
+
+import type { Data, Route } from '@/types';
+
 import { getUserInfo, getUserPosts } from './api';
+import { INDEX_URL, REQUIRE_CONFIG } from './constant';
+import { checkConfig, generatePostFeeds } from './utils';
 
 export const route: Route = {
     path: '/ff14risingstones/user-posts/:uid',
@@ -21,7 +23,7 @@ async function handler(ctx: Context) {
 
     const uid = ctx.req.param('uid');
 
-    const [posts, userInfo] = await Promise.all([getUserPosts(uid, 1), getUserInfo(uid)]);
+    const [posts, userInfo] = await Promise.all([getUserPosts(uid!, 1), getUserInfo(uid!)]);
 
     return {
         title: `石之家 - ${userInfo.character_name}@${userInfo.group_name} 发布的帖子`,

@@ -1,9 +1,11 @@
+import { load } from 'cheerio';
+
 import NotFoundError from '@/errors/types/not-found';
-import { DataItem, Route } from '@/types';
+import type { DataItem, Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
 import { parseDate } from '@/utils/parse-date';
-import { load } from 'cheerio';
+
 import { processEmbedPDF } from '../lib/embed-resource';
 
 const WEBSITE_LOGO = 'https://www.nwnu.edu.cn/_upload/tpl/02/d9/729/template729/favicon.ico';
@@ -41,7 +43,7 @@ const COLUMNS: Record<string, { title: string; description: string }> = {
 };
 
 const handler: Route['handler'] = async (ctx) => {
-    const columnParam = ctx.req.param('column');
+    const columnParam = ctx.req.param('column')!;
     if (COLUMNS[columnParam] === undefined) {
         throw new NotFoundError(`The column ${columnParam} does not exist`);
     }
@@ -120,15 +122,14 @@ export const route: Route = {
         supportPodcast: false,
         supportScihub: false,
     },
-    example: '/department/postgraduate/2701',
+    example: '/nwnu/department/postgraduate/2701',
     radar: [
         {
             source: ['yjsy.nwnu.edu.cn/:column/list.htm'],
             target: '/department/postgraduate/:column',
         },
     ],
-    description: `
-| column | 标题                           | 描述                                               |
+    description: `| column | 标题                           | 描述                                               |
 | ------ | ------------------------------ | -------------------------------------------------- |
 | 2701   | 招生工作（包括硕士、博士招生） | 研究生院招生信息（包含硕士招生和博士招生两个栏目） |
 | 2712   | 博士招生                       | 研究生院博士研究生招生信息                         |

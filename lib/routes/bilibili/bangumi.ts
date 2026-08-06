@@ -1,6 +1,8 @@
-import { Data, DataItem, Route, ViewType } from '@/types';
+import type { Data, DataItem, Route } from '@/types';
+import { ViewType } from '@/types';
 import cache from '@/utils/cache';
-import { EpisodeResult } from './types';
+
+import type { EpisodeResult } from './types';
 import utils from './utils';
 
 export const route: Route = {
@@ -42,7 +44,7 @@ async function handler(ctx) {
             description: utils.renderOGVDescription(embed, item.cover, item.long_title, seasonId, String(item.id)),
             link: item.share_url,
             image: item.cover.replace('http://', 'https://'),
-            language: 'zh-cn',
+            language: 'zh-CN',
         }) as DataItem;
 
     for (const item of seasonData.main_section.episodes) {
@@ -63,6 +65,6 @@ async function handler(ctx) {
         link: mediaData.share_url,
         item: episodes,
         image: mediaData.cover.replace('http://', 'https://'),
-        language: 'zh-cn',
+        language: 'zh-CN',
     } as Data;
 }

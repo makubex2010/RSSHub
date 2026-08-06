@@ -1,15 +1,16 @@
-import { type Data, type DataItem, type Route, ViewType } from '@/types';
+import type { CheerioAPI } from 'cheerio';
+import { load } from 'cheerio';
+import type { Context } from 'hono';
 
+import type { Data, DataItem, Language, Route } from '@/types';
+import { ViewType } from '@/types';
 import ofetch from '@/utils/ofetch';
-
-import { type CheerioAPI, load } from 'cheerio';
-import { type Context } from 'hono';
 
 import { baseUrl, fetchItems } from './util';
 
 export const handler = async (ctx: Context): Promise<Data> => {
     const { time = '24h', country = 'us' } = ctx.req.param();
-    const limit: number = Number.parseInt(ctx.req.query('limit') ?? '30', 10);
+    const limit = Number(ctx.req.query('limit') ?? '30');
 
     const targetUrl: string = new URL('mostwanted/', baseUrl).href;
 
@@ -35,7 +36,7 @@ export const handler = async (ctx: Context): Promise<Data> => {
         allowEmpty: true,
         image: $('a.brand-logo img').attr('src') ? new URL($('a.brand-logo img').attr('src') as string, baseUrl).href : undefined,
         author: title.split(/\|/).pop(),
-        language,
+        language: language as Language,
         id: targetUrl,
     };
 };
@@ -131,34 +132,32 @@ export const route: Route = {
             ],
         },
     },
-    description: `
-| Last 24h | Last Week | All Time |
+    description: `| Last 24h | Last Week | All Time |
 | -------- | --------- | -------- |
 | 24h      | week      | alltime  |
 
 <details>
   <summary>More countries</summary>
 
-| Currency | Country       | ID  |
-| -------- | ------------- | --- |
-| USD      | United States | us  |
-| EUR      | Austria       | at  |
-| AUD      | Australia     | au  |
-| BRL      | Brazil        | br  |
-| CAD      | Canada        | ca  |
-| EUR      | France        | fr  |
-| EUR      | Germany       | de  |
-| INR      | India         | in  |
-| EUR      | Italy         | it  |
-| EUR      | Netherlands   | nl  |
-| PLN      | Poland        | pl  |
-| RUB      | Russia        | ru  |
-| EUR      | Spain         | es  |
-| SEK      | Sweden        | se  |
-| GBP      | Great Britain | gb  |
+| Currency | Country       | ID |
+| -------- | ------------- | -- |
+| USD      | United States | us |
+| EUR      | Austria       | at |
+| AUD      | Australia     | au |
+| BRL      | Brazil        | br |
+| CAD      | Canada        | ca |
+| EUR      | France        | fr |
+| EUR      | Germany       | de |
+| INR      | India         | in |
+| EUR      | Italy         | it |
+| EUR      | Netherlands   | nl |
+| PLN      | Poland        | pl |
+| RUB      | Russia        | ru |
+| EUR      | Spain         | es |
+| SEK      | Sweden        | se |
+| GBP      | Great Britain | gb |
 
-</details>
-`,
+</details>`,
     categories: ['program-update'],
     features: {
         requireConfig: false,

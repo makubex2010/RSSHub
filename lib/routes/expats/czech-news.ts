@@ -1,36 +1,35 @@
-import { type Data, type DataItem, type Route, ViewType } from '@/types';
+import type { Cheerio, CheerioAPI } from 'cheerio';
+import { load } from 'cheerio';
+import type { Element } from 'domhandler';
+import type { Context } from 'hono';
 
+import type { Data, DataItem, Language, Route } from '@/types';
+import { ViewType } from '@/types';
 import cache from '@/utils/cache';
 import ofetch from '@/utils/ofetch';
 import { parseDate } from '@/utils/parse-date';
 
-import { type CheerioAPI, type Cheerio, load } from 'cheerio';
-import type { Element } from 'domhandler';
-import { type Context } from 'hono';
-
 export const handler = async (ctx: Context): Promise<Data> => {
     const { category = 'daily-news' } = ctx.req.param();
-    const limit: number = Number.parseInt(ctx.req.query('limit') ?? '30', 10);
+    const limit = Number(ctx.req.query('limit') ?? '30');
 
-    const baseUrl: string = 'https://www.expats.cz';
+    const baseUrl = 'https://www.expats.cz';
     const targetUrl: string = new URL(`czech-news/${category}`, baseUrl).href;
 
     const response = await ofetch(targetUrl);
     const $: CheerioAPI = load(response);
     const language = $('html').attr('lang') ?? 'en';
 
-    let items: DataItem[] = [];
-
-    items = $('div.main h3 a')
+    let items: DataItem[] = $('div.main h3 a')
         .slice(0, limit)
         .toArray()
-        .map((el): Element => {
+        .map((el) => {
             const $el: Cheerio<Element> = $(el);
 
             const processedItem: DataItem = {
                 title: $el.text(),
                 link: new URL($el.attr('href') as string, baseUrl).href,
-                language,
+                language: language as Language,
             };
 
             return processedItem;
@@ -43,13 +42,13 @@ export const handler = async (ctx: Context): Promise<Data> => {
             }
 
             return cache.tryGet(item.link, async (): Promise<DataItem> => {
-                const detailResponse = await ofetch(item.link);
+                const detailResponse = await ofetch(item.link!);
                 const $$: CheerioAPI = load(detailResponse);
 
                 $$('div.promo-widget, div.eas').remove();
 
                 const title: string = $$('div.title h1').text();
-                const description: string | undefined = $$('div#expats-article-content').html() ?? undefined;
+                const description = $$('div#expats-article-content').html();
                 const pubDateStr: string | undefined = $$('meta[property="article:published_time"]').attr('content');
                 const categories: string[] = [$$('meta[property="article:section"]').attr('content') ?? ''];
                 const authorEls: Element[] = $$('span.written-by a').toArray();
@@ -78,7 +77,7 @@ export const handler = async (ctx: Context): Promise<Data> => {
                     image,
                     banner: image,
                     updated: upDatedStr ? parseDate(upDatedStr) : item.updated,
-                    language,
+                    language: language as Language,
                 };
 
                 return {
@@ -97,7 +96,7 @@ export const handler = async (ctx: Context): Promise<Data> => {
         allowEmpty: true,
         image: $('meta[property="og:image"]').attr('content'),
         author: $('meta[property="og:site_name"]').attr('content'),
-        language,
+        language: language as Language,
         id: targetUrl,
     };
 };
@@ -186,8 +185,7 @@ To subscribe to [Daily News](https://www.expats.cz/czech-news/daily-news), where
 | [Economy](https://www.expats.cz/czech-news/economy)           | [economy](https://rsshub.app/expats/czech-news/economy)               |
 | [Language](https://www.expats.cz/czech-news/language)         | [language](https://rsshub.app/expats/czech-news/language)             |
 
-</details>
-`,
+</details>`,
     categories: ['new-media'],
     features: {
         requireConfig: false,

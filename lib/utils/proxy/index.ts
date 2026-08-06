@@ -1,15 +1,17 @@
-import { config } from '@/config';
-import { PacProxyAgent } from 'pac-proxy-agent';
 import { HttpsProxyAgent } from 'https-proxy-agent';
+import { PacProxyAgent } from 'pac-proxy-agent';
 import { SocksProxyAgent } from 'socks-proxy-agent';
 import { ProxyAgent } from 'undici';
+
+import { config } from '@/config';
 import logger from '@/utils/logger';
 
-const proxyIsPAC = config.pacUri || config.pacScript;
-
+import type { MultiProxyResult, ProxyState } from './multi-proxy';
+import createMultiProxy from './multi-proxy';
 import pacProxy from './pac-proxy';
 import unifyProxy from './unify-proxy';
-import createMultiProxy, { type MultiProxyResult, type ProxyState } from './multi-proxy';
+
+const proxyIsPAC = config.pacUri || config.pacScript;
 
 interface ProxyExport {
     agent: PacProxyAgent<string> | HttpsProxyAgent<string> | SocksProxyAgent | null;
@@ -36,7 +38,8 @@ const createAgentForProxy = (uri: string, proxyObj: Record<string, any>): any =>
                 'proxy-authorization': proxyObj?.auth ? `Basic ${proxyObj.auth}` : undefined,
             },
         });
-    } else if (uri.startsWith('socks')) {
+    }
+    if (uri.startsWith('socks')) {
         return new SocksProxyAgent(uri);
     }
     return null;
@@ -52,6 +55,9 @@ const createDispatcherForProxy = (uri: string, proxyObj: Record<string, any>): P
             },
         });
     }
+    if (uri.startsWith('socks')) {
+        return new ProxyAgent({ uri });
+    }
     return null;
 };
 
@@ -66,7 +72,7 @@ if (proxyIsPAC) {
     const currentProxy = multiProxy.getNextProxy();
     if (currentProxy) {
         proxyUri = currentProxy.uri;
-        proxyUrlHandler = currentProxy.urlHandler;
+        proxyUrlHandler = currentProxy.urlHandler ?? null;
     }
     logger.info(`Multi-proxy initialized with ${config.proxyUris.length} proxies`);
 } else {
@@ -102,21 +108,22 @@ const getCurrentProxy = (): ProxyState | null => {
 };
 
 const markProxyFailed = (failedProxyUri: string) => {
-    if (multiProxy) {
-        multiProxy.markProxyFailed(failedProxyUri);
-        const nextProxy = multiProxy.getNextProxy();
-        if (nextProxy) {
-            proxyUri = nextProxy.uri;
-            proxyUrlHandler = nextProxy.urlHandler || null;
-            agent = createAgentForProxy(nextProxy.uri, proxyObj);
-            dispatcher = createDispatcherForProxy(nextProxy.uri, proxyObj);
-            logger.info(`Switched to proxy: ${nextProxy.uri}`);
-        } else {
-            logger.warn('No available proxies remaining');
-            agent = null;
-            dispatcher = null;
-            proxyUri = undefined;
-        }
+    if (!multiProxy) {
+        return;
+    }
+    multiProxy.markProxyFailed(failedProxyUri);
+    const nextProxy = multiProxy.getNextProxy();
+    if (nextProxy) {
+        proxyUri = nextProxy.uri;
+        proxyUrlHandler = nextProxy.urlHandler || null;
+        agent = createAgentForProxy(nextProxy.uri, proxyObj);
+        dispatcher = createDispatcherForProxy(nextProxy.uri, proxyObj);
+        logger.info(`Switched to proxy: ${nextProxy.uri}`);
+    } else {
+        logger.warn('No available proxies remaining');
+        agent = null;
+        dispatcher = null;
+        proxyUri = undefined;
     }
 };
 

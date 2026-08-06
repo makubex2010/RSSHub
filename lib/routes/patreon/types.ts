@@ -1,27 +1,27 @@
 export interface CreatorData {
     meta: {
-        desc: string;
-        height: null;
+        // desc: string;
+        // height: null;
         imageUrl: string;
         isPrivate: boolean;
-        key: string;
-        openGraph: OpenGraph;
-        title: string;
+        // key: string;
+        // openGraph: OpenGraph;
+        // title: string;
         url: string;
         videoHeight: null;
-        videoUrl: null;
+        // videoUrl: null;
         videoWidth: null;
-        viewport: string;
+        // viewport: string;
     };
     id: string;
     attributes: IncludedAttributes;
 }
 
-interface OpenGraph {
-    desc: null;
-    imageUrl: null;
-    title: null;
-}
+// interface OpenGraph {
+//     desc: null;
+//     imageUrl: null;
+//     title: null;
+// }
 
 export interface PostData {
     data: Datum[];
@@ -63,14 +63,14 @@ interface Attributes {
     post_type: string;
     preview_asset_type: string | null;
     published_at: string;
-    teaser_text: string | null;
+    teaser_text_json_string?: string | null;
     title: string;
     upgrade_url: string;
     url: string;
     video_preview: VideoPreview | null;
     was_posted_by_campaign_owner: boolean;
     thumbnail?: Thumbnail;
-    content?: string;
+    content_json_string?: string | null;
     embed?: null;
     post_file?: PostFile;
 }
@@ -275,6 +275,7 @@ interface IncludedAttributes {
     is_monthly?: boolean;
     is_nsfw?: boolean;
     name?: string;
+    creation_name?: string;
     show_audio_post_download_links?: boolean;
     url?: string;
     // Additional properties for other types

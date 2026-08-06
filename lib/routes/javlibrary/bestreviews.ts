@@ -1,6 +1,6 @@
-import { Route } from '@/types';
-import cache from '@/utils/cache';
-import { defaultMode, defaultLanguage, rootUrl, ProcessItems } from './utils';
+import type { Route } from '@/types';
+
+import { defaultLanguage, defaultMode, ProcessItems, rootUrl } from './utils';
 
 export const route: Route = {
     path: '/bestreviews/:language?/:mode?',
@@ -29,5 +29,5 @@ async function handler(ctx) {
     const language = ctx.req.param('language') ?? defaultLanguage;
     const currentUrl = `${rootUrl}/${language}/tl_bestreviews.php?list&mode=${mode}`;
 
-    return await ProcessItems(language, currentUrl, cache.tryGet);
+    return await ProcessItems(language, currentUrl);
 }

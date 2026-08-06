@@ -1,9 +1,10 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
-import timezone from '@/utils/timezone';
 import { parseDate } from '@/utils/parse-date';
+import timezone from '@/utils/timezone';
 
 export const route: Route = {
     path: '/global/:category?',
@@ -24,7 +25,7 @@ export const route: Route = {
         },
     ],
     name: '轉角國際 - 首頁',
-    maintainers: ['nczitzk'],
+    maintainers: ['nczitzk', 'pseudoyu'],
     handler,
     description: `| 首頁 | 編輯精選 | 熱門文章 |
 | ---- | -------- | -------- |
@@ -44,28 +45,43 @@ async function handler(ctx) {
 
     const $ = load(response.data);
 
-    let articleSelector;
-    let titleExtractor;
+    const categoriesConf = {
+        hot: {
+            articleSelector: '.carousel__list .carousel__item',
+            titleExtractor: (e) => e.attr('title'),
+        },
+        editor: {
+            articleSelector: '.list-container--featured .list-vertical__item',
+            titleExtractor: (e) => e.find('.list-vertical__title').text(),
+        },
+        default: {
+            articleSelector: '.list-container--index .list-vertical__item',
+            titleExtractor: (e) => e.find('.list-vertical__title').text(),
+        },
+    };
+    const getItems = (config) =>
+        $(config.articleSelector)
+            .toArray()
+            .map((item) => {
+                const a = $(item);
+                const rawLink = a.attr('href')!.split('?', 1)[0];
+                return {
+                    title: config.titleExtractor(a),
+                    link: rawLink.startsWith('http') ? rawLink : `${rootUrl}${rawLink}`,
+                };
+            });
 
-    if (category === 'hot') {
-        articleSelector = '.carousel__list .carousel__item';
-        titleExtractor = (element) => element.attr('title').trim();
+    let items;
+    if (category) {
+        const conf = categoriesConf[category];
+        items = getItems(conf);
     } else {
-        const listContainer = category === 'editor' ? '.list-container--featured' : '.list-container--index';
-        articleSelector = `${listContainer} .list-vertical__item`;
-        titleExtractor = (element) => element.find('.list-vertical__title').text().trim();
-    }
+        const defaultItems = getItems(categoriesConf.default);
+        const hotItems = getItems(categoriesConf.hot);
 
-    let items = $(articleSelector)
-        .toArray()
-        .map((item) => {
-            const a = $(item);
-            const rawLink = a.attr('href').split('?')[0];
-            return {
-                title: titleExtractor(a),
-                link: rawLink.startsWith('http') ? rawLink : `${rootUrl}${rawLink}`,
-            };
-        });
+        const combinedItems = [...hotItems, ...defaultItems];
+        items = new Map(combinedItems.map((item) => [item.link, item])).values().toArray();
+    }
 
     items = await Promise.all(
         items.map((item) =>
@@ -77,8 +93,8 @@ async function handler(ctx) {
 
                 const content = load(detailResponse.data);
 
-                item.author = content('.article-content__authors-name').first().text().trim();
-                item.pubDate = timezone(parseDate(content('meta[property="article:published_time"]').attr('content')), +8);
+                item.author = content('.article-content__authors .article-content__authors-name').text();
+                item.pubDate = timezone(parseDate(content('meta[property="article:published_time"]').attr('content')!), 8);
 
                 const mainImage = content('.article-content__focus').html();
                 const articleBodyHtml = content('.article-content__editor')
@@ -88,7 +104,7 @@ async function handler(ctx) {
                     .join('');
 
                 item.description = mainImage + articleBodyHtml;
-                item.category = content('meta[name="news_keywords"]').attr('content').split(',');
+                item.category = content('meta[name="news_keywords"]').attr('content')!.split(',');
 
                 return item;
             })

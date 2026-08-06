@@ -1,7 +1,8 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { DataItem, Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
 
 export const route: Route = {
     path: '/topics/:topic?',
@@ -38,7 +39,7 @@ async function handler(ctx) {
     const data = response.data;
 
     const $ = load(data);
-    const links = [];
+    const links: string[] = [];
 
     function pushLinks(index, item) {
         const link = item.attribs.href;
@@ -70,6 +71,7 @@ async function handler(ctx) {
                 const pubDate = head.datePublished;
                 const descriptionDom = $('div[data-cy=storyWrapper]');
                 descriptionDom.find('div[class=share]').remove();
+                descriptionDom.find('div[class^="textToSpeech"]').remove();
                 const description = descriptionDom.html();
 
                 return { title, author, pubDate, description, link };
@@ -80,6 +82,6 @@ async function handler(ctx) {
     return {
         title: $('title').text(),
         link: url,
-        item: out.filter((x) => x.title),
+        item: out.filter((x: any) => x.title) as DataItem[],
     };
 }

@@ -1,9 +1,11 @@
-import { Route } from '@/types';
+import type { Route } from '@/types';
 import got from '@/utils/got';
 import { parseDate } from '@/utils/parse-date';
 
 export const route: Route = {
     path: '/nsfw',
+    categories: ['multimedia'],
+    example: '/abskoop/nsfw',
     radar: [
         {
             source: ['ahhhhfs.com/'],

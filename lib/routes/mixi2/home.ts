@@ -1,9 +1,12 @@
-import { type Data, type Route, ViewType } from '@/types';
 import type { Context } from 'hono';
+
+import type { Data, Route } from '@/types';
+import { ViewType } from '@/types';
+
 import { CONFIG_OPTIONS, generatePostDataItem, getClient, postFilter } from './utils';
 
 const handler = async (ctx: Context) => {
-    const limit = Number.parseInt(ctx.req.query('limit') ?? '20', 10);
+    const limit = Number(ctx.req.query('limit') ?? '20');
 
     const client = getClient();
 

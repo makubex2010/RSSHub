@@ -1,8 +1,10 @@
-import { Route, DataItem, Data, ViewType } from '@/types';
+import { load } from 'cheerio';
+
+import type { Data, DataItem, Route } from '@/types';
+import { ViewType } from '@/types';
 import cache from '@/utils/cache';
 import ofetch from '@/utils/ofetch';
 import parser from '@/utils/rss-parser';
-import { load } from 'cheerio';
 
 export const route: Route = {
     path: '/code/blog',
@@ -41,7 +43,7 @@ async function handler() {
                 const $ = load(data);
 
                 // remove title and time
-                $('main h1').first().remove();
+                $('main h1').remove();
                 $('main p').first().remove();
 
                 item.content = $('main').html() as string;

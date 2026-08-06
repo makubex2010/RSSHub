@@ -1,8 +1,9 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import { config } from '@/config';
+import type { DataItem, Route } from '@/types';
 import got from '@/utils/got';
 import { parseDate } from '@/utils/parse-date';
-import { config } from '@/config';
-import { load } from 'cheerio';
 
 export const route: Route = {
     path: '/discussions/:modelId',
@@ -65,11 +66,11 @@ async function handler(ctx) {
                   }
                 : null
         )
-        .filter(Boolean);
+        .filter(Boolean) as DataItem[];
 
     return {
         title: `Civitai model ${params.modelId} discussions`,
-        link: `https://civitai.com/`,
+        link: 'https://civitai.com/',
         item: items,
     };
 }

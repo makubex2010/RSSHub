@@ -1,5 +1,6 @@
-import { Route } from '@/types';
+import type { Route } from '@/types';
 import ofetch from '@/utils/ofetch';
+
 import { getCategoryBrief, parseList, ProcessFeed } from './utils';
 
 export const route: Route = {
@@ -131,7 +132,7 @@ async function handler(ctx) {
     const link = `https://juejin.im/${url}?sort=${p.link}`;
 
     let getUrl = 'https://api.juejin.cn/recommend_api/v1/article/recommend_all_feed';
-    const getJson = {
+    const getJson: { cursor: string; id_type: number; limit: number; sort_type: number; cate_id?: string } = {
         cursor: '0',
         id_type: 2,
         limit: 20,
@@ -149,7 +150,7 @@ async function handler(ctx) {
     });
     let entrylist = trendingResponse.data;
 
-    if (category === 'all' || category === 'devops' || category === 'product' || category === 'design') {
+    if (['all', 'devops', 'product', 'design'].includes(category)) {
         entrylist = trendingResponse.data.filter((item) => item.item_type === 2).map((item) => item.item_info);
     }
     const list = parseList(entrylist);

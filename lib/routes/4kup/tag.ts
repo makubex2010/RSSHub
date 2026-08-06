@@ -1,8 +1,9 @@
-import { Route } from '@/types';
+import type { Route } from '@/types';
 import got from '@/utils/got';
-import { SUB_NAME_PREFIX, SUB_URL } from './const';
+
 import loadArticle from './article';
-import { WPPost } from './types';
+import { SUB_NAME_PREFIX, SUB_URL } from './const';
+import type { WPPost } from './types';
 
 export const route: Route = {
     path: '/tag/:tag',
@@ -35,9 +36,8 @@ async function handler(ctx) {
     const tag = ctx.req.param('tag');
     const tagUrl = `${SUB_URL}tag/${tag}/`;
 
-    const {
-        data: [{ id: tagId }],
-    } = await got(`${SUB_URL}wp-json/wp/v2/tags?slug=${tag}`);
+    const { data } = await got(`${SUB_URL}wp-json/wp/v2/tags?slug=${tag}`);
+    const tagId = data[0].id;
     const { data: posts } = await got(`${SUB_URL}wp-json/wp/v2/posts?tags=${tagId}&per_page=${limit}`);
 
     return {

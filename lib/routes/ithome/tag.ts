@@ -1,9 +1,10 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { DataItem, Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
-import timezone from '@/utils/timezone';
 import { parseDate } from '@/utils/parse-date';
+import timezone from '@/utils/timezone';
 
 const rootUrl = 'https://www.ithome.com/';
 
@@ -38,15 +39,17 @@ async function handler(ctx) {
     const $ = load(response.data);
     const list = $('ul.bl > li')
         .toArray()
-        .map((item) => ({
-            title: $(item).find('h2 > a').text(),
-            link: $(item).find('h2 > a').attr('href'),
-            pubDate: timezone(parseDate($(item).find('div.c').attr('data-ot')), +8),
-        }));
+        .map(
+            (item): DataItem => ({
+                title: $(item).find('h2 > a').text(),
+                link: $(item).find('h2 > a').attr('href'),
+                pubDate: timezone(parseDate($(item).find('div.c').attr('data-ot')!), 8),
+            })
+        );
 
     const items = await Promise.all(
         list.map((item) =>
-            cache.tryGet(item.link, async () => {
+            cache.tryGet(item.link!, async (): Promise<any> => {
                 let detailResponse;
 
                 // handle 404 errors for some article URLs
@@ -63,10 +66,10 @@ async function handler(ctx) {
 
                 const article = content('div.post_content');
                 article.find('img[data-original]').each((_, ele) => {
-                    ele = $(ele);
-                    ele.attr('src', ele.attr('data-original'));
-                    ele.removeAttr('class');
-                    ele.removeAttr('data-original');
+                    const $ele = $(ele);
+                    $ele.attr('src', $ele.attr('data-original'));
+                    $ele.removeAttr('class');
+                    $ele.removeAttr('data-original');
                 });
                 item.description = article.html();
                 item.author = content('span.author_baidu > strong').text();
@@ -79,6 +82,6 @@ async function handler(ctx) {
     return {
         title: `IT之家 - ${name}标签`,
         link: url,
-        item: items.filter(Boolean),
+        item: items.filter(Boolean) as DataItem[],
     };
 }
