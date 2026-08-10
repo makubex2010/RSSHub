@@ -1631,6 +1631,9 @@
     "DIYgod",
     "nuomi1"
   ],
+  "/mi/newproducts": [
+    "nuomi1"
+  ],
   "/misskey/notes/featured/:site": [
     "Misaka13514"
   ],
@@ -2098,6 +2101,9 @@
   "/ahjzu/news": [
     "Yuk-0v0"
   ],
+  "/ahstu/:type?": [
+    "JizzCruiy"
+  ],
   "/ai-bot/daily-ai-news": [
     "redwood9"
   ],
@@ -2358,8 +2364,9 @@
   "/bad/:path{.+}?": [
     "nczitzk"
   ],
-  "/baidu/gushitong/index": [
-    "CaoMeiYouRen"
+  "/baidu/gushitong/index/:market?": [
+    "CaoMeiYouRen",
+    "hutianyu2006"
   ],
   "/baidu/tieba/forum/good/:kw/:cid?/:sortBy?": [
     "u3u",
