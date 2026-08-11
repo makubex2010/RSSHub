@@ -9,194 +9,173 @@ import { parseDate } from '@/utils/parse-date';
 import timezone from '@/utils/timezone';
 
 export const route: Route = {
-    path: '/gnn/:category?',
-    categories: ['anime'],
-    view: ViewType.Articles,
-    example: '/gamer/gnn/ps5',
-    parameters: {
-        category: {
-            description: '版塊',
-            options: [
-                { value: '1', label: 'PC' },
-                { value: '3', label: 'TV 掌機' },
-                { value: '4', label: '手機遊戲' },
-                { value: '5', label: '動漫畫' },
-                { value: '9', label: '主題報導' },
-                { value: '11', label: '活動展覽' },
-                { value: '13', label: '電競' },
-                { value: 'ns', label: 'Switch' },
-                { value: 'ps5', label: 'PS5' },
-                { value: 'ps4', label: 'PS4' },
-                { value: 'xbone', label: 'XboxOne' },
-                { value: 'xbsx', label: 'XboxSX' },
-                { value: 'pc', label: 'PC 單機' },
-                { value: 'olg', label: 'PC 線上' },
-                { value: 'ios', label: 'iOS' },
-                { value: 'android', label: 'Android' },
-                { value: 'web', label: 'Web' },
-                { value: 'comic', label: '漫畫' },
-                { value: 'anime', label: '動畫' },
-            ],
-        },
-    },
-    features: {
-        requireConfig: false,
-        requirePuppeteer: false,
-        antiCrawler: true,
-        supportBT: false,
-        supportPodcast: false,
-        supportScihub: false,
-    },
-    name: 'GNN 新聞',
-    maintainers: ['Arracc', 'ladeng07', 'pseudoyu'],
-    handler,
-    description: '缺省為首頁',
+    path: '/gnn/:category?',
+    categories: ['anime'],
+    view: ViewType.Articles,
+    example: '/gamer/gnn/ps5',
+    parameters: {
+        category: {
+            description: '版塊',
+            options: [
+                { value: '1', label: 'PC' },
+                { value: '3', label: 'TV 掌機' },
+                { value: '4', label: '手機遊戲' },
+                { value: '5', label: '動漫畫' },
+                { value: '9', label: '主題報導' },
+                { value: '11', label: '活動展覽' },
+                { value: '13', label: '電競' },
+                { value: 'ns', label: 'Switch' },
+                { value: 'ps5', label: 'PS5' },
+                { value: 'ps4', label: 'PS4' },
+                { value: 'xbone', label: 'XboxOne' },
+                { value: 'xbsx', label: 'XboxSX' },
+                { value: 'pc', label: 'PC 單機' },
+                { value: 'olg', label: 'PC 線上' },
+                { value: 'ios', label: 'iOS' },
+                { value: 'android', label: 'Android' },
+                { value: 'web', label: 'Web' },
+                { value: 'comic', label: '漫畫' },
+                { value: 'anime', label: '動畫' },
+            ],
+        },
+    },
+    features: {
+        requireConfig: false,
+        requirePuppeteer: false,
+        antiCrawler: true,
+        supportBT: false,
+        supportPodcast: false,
+        supportScihub: false,
+    },
+    name: 'GNN 新聞',
+    maintainers: ['Arracc', 'ladeng07', 'pseudoyu'],
+    handler,
+    description: '缺省為首頁',
 };
 
 async function handler(ctx) {
-    const rawCategory = ctx.req.param('category');
-    const category = typeof rawCategory === 'string' ? rawCategory.toLowerCase() : '';
-    let categoryName = '';
+    const category = ctx.req.param('category')?.toLowerCase();
+    let categoryName = '';
 
-    const categoryTable: Record<string, string> = {
-        '1': 'PC',
-        '3': 'TV 掌機',
-        '4': '手機遊戲',
-        '5': '動漫畫',
-        '9': '主題報導',
-        '11': '活動展覽',
-        '13': '電競',
-        ns: 'Switch',
-        ps5: 'PS5',
-        ps4: 'PS4',
-        xbone: 'XboxOne',
-        xbsx: 'XboxSX',
-        pc: 'PC 單機',
-        olg: 'PC 線上',
-        ios: 'iOS',
-        android: 'Android',
-        web: 'Web',
-        comic: '漫畫',
-        anime: '動畫',
-    };
+    const categoryTable = {
+        1: 'PC',
+        3: 'TV 掌機',
+        4: '手機遊戲',
+        5: '動漫畫',
+        9: '主題報導',
+        11: '活動展覽',
+        13: '電競',
+        ns: 'Switch',
+        ps5: 'PS5',
+        ps4: 'PS4',
+        xbone: 'XboxOne',
+        xbsx: 'XboxSX',
+        pc: 'PC 單機',
+        olg: 'PC 線上',
+        ios: 'iOS',
+        android: 'Android',
+        web: 'Web',
+        comic: '漫畫',
+        anime: '動畫',
+    };
 
-    let targetUrl = 'https://gnn.gamer.com.tw/';
-    if (category && categoryTable[category]) {
-        categoryName = '-' + categoryTable[category];
-        targetUrl = `https://acg.gamer.com.tw/news.php?p=${category}`;
-    }
+    let targetUrl = 'https://gnn.gamer.com.tw/';
+    if (category && Object.hasOwn(categoryTable, category)) {
+        categoryName = '-' + categoryTable[category];
+        targetUrl = `https://acg.gamer.com.tw/news.php?p=${category}`;
+    }
 
-    const response = await got({
-        method: 'get',
-        url: targetUrl,
-        headers: {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-            Referer: 'https://acg.gamer.com.tw/',
-        },
-    });
+    const response = await got({
+        method: 'get',
+        url: targetUrl,
+        headers: {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+            Referer: 'https://acg.gamer.com.tw/',
+        },
+    });
 
-    const htmlData = typeof response.data === 'string' ? response.data : String(response.body || '');
-    const $ = load(htmlData);
-    const limit = ctx.req.query('limit') ? Number.parseInt(ctx.req.query('limit'), 10) : 10;
+    const $ = load(response.data);
+    const limit = ctx.req.query('limit') ? Number.parseInt(ctx.req.query('limit')) : 10;
 
-    const list = $('a')
-        .toArray()
-        .map((item): DataItem | null => {
-            const $item = $(item);
-            const titleText = $item.text().trim();
-            let link = $item.attr('href');
+    const list = $('a')
+        .toArray()
+        .map((item): DataItem | null => {
+            const $item = $(item);
+            const titleText = $item.text().trim();
+            const link = $item.attr('href');
 
-            if (!titleText || !link || titleText.length < 4) {
-                return null;
-            }
+            if (!titleText || !link || titleText.length < 4) {
+                return null;
+            }
+            if (!link.includes('detail.php') && !link.includes('gnn.gamer.com.tw/detail.php')) {
+                return null;
+            }
 
-            if (link.startsWith('//')) {
-                link = 'https:' + link;
-            } else if (link.startsWith('/')) {
-                link = new URL(link, targetUrl).href;
-            }
+            return {
+                title: titleText,
+                link: link.replace('//', 'https://'),
+            };
+        })
+        .filter((item, index, self) => {
+            if (!item) {
+                return false;
+            }
+            return index === self.findIndex((t) => t?.link === item.link);
+        })
+        .slice(0, limit) as DataItem[];
 
-            if (!link.includes('detail.php')) {
-                return null;
-            }
+    const items = await pMap(
+        list,
+        async (item) => {
+            item.description = await cache.tryGet(item.link!, async () => {
+                const res = await got.get(item.link!, {
+                    headers: { 'User-Agent': 'Mozilla/5.0' },
+                });
+                let component: string;
+                const urlReg = /window\.lazySizesConfig/g;
 
-            return {
-                title: titleText,
-                link,
-            };
-        })
-        .filter((item, index, self): item is DataItem => {
-            if (!item) {
-                return false;
-            }
-            return index === self.findIndex((t) => t?.link === item.link);
-        })
-        .slice(0, limit);
+                let pubInfo;
+                let dateStr;
+                if (res.body.search(urlReg) >= 0) {
+                    const _$ = load(res.data);
+                    if (_$('span.GN-lbox3C').length > 0) {
+                        pubInfo = _$('span.GN-lbox3C').text().split('）');
+                        item.author = pubInfo[0].replace('（', '').replace(' 報導', '');
+                        dateStr = pubInfo[1].trim();
+                    } else {
+                        pubInfo = _$('span.GN-lbox3CA').text().split('）');
+                        item.author = pubInfo[0].replace('（', '').replace(' 報導', '');
+                        dateStr = pubInfo[1].replace('原文出處', '').trim();
+                    }
+                    component = _$('div.GN-lbox3B').html() ?? '';
+                } else {
+                    const _response = await got.get(item.link!);
+                    const _$ = load(_response.data);
 
-    const items = await pMap(
-        list,
-        async (item) => {
-            try {
-                item.description = await cache.tryGet(item.link!, async () => {
-                    const res = await got.get(item.link!, {
-                        headers: {
-                            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-                            Referer: targetUrl,
-                        },
-                    });
+                    if (_$('div.MSG-list8C').length > 0) {
+                        pubInfo = _$('span.ST1').text().split('│');
+                        item.author = pubInfo[0].replace('作者：', '');
+                        dateStr = pubInfo[_$('span.ST1').find('a').length > 0 ? 2 : 1];
+                        component = _$('div.MSG-list8C').html() ?? '';
+                    } else {
+                        pubInfo = _$('div.article-intro').text().replaceAll('\n', '').split('|');
+                        item.author = pubInfo[0];
+                        dateStr = pubInfo[1];
+                        component = _$('div.text-paragraph').html() ?? '';
+                    }
+                }
+                item.pubDate = timezone(parseDate(dateStr, 'YYYY-MM-DD HH:mm:ss'), 8);
+                component = component.replaceAll(/\b(data-src)\b/g, 'src');
+                return component;
+            });
+            return item;
+        },
+        { concurrency: 2 }
+    );
 
-                    const pageHtml = typeof res.data === 'string' ? res.data : String(res.body || '');
-                    const _$ = load(pageHtml);
-                    let component = '';
-                    let pubInfo: string[] = [];
-                    let dateStr: string | undefined;
-
-                    if (pageHtml.includes('window.lazySizesConfig')) {
-                        if (_$('span.GN-lbox3C').length > 0) {
-                            pubInfo = _$('span.GN-lbox3C').text().split('）');
-                            item.author = pubInfo[0]?.replace('（', '').replace(' 報導', '').trim();
-                            dateStr = pubInfo[1]?.trim();
-                        } else if (_$('span.GN-lbox3CA').length > 0) {
-                            pubInfo = _$('span.GN-lbox3CA').text().split('）');
-                            item.author = pubInfo[0]?.replace('（', '').replace(' 報導', '').trim();
-                            dateStr = pubInfo[1]?.replace('原文出處', '').trim();
-                        }
-                        component = _$('div.GN-lbox3B').html() ?? '';
-                    } else if (_$('div.MSG-list8C').length > 0) {
-                        pubInfo = _$('span.ST1').text().split('│');
-                        item.author = pubInfo[0]?.replace('作者：', '').trim();
-                        const dateIndex = _$('span.ST1').find('a').length > 0 ? 2 : 1;
-                        dateStr = pubInfo[dateIndex]?.trim();
-                        component = _$('div.MSG-list8C').html() ?? '';
-                    } else if (_$('div.article-intro').length > 0) {
-                        pubInfo = _$('div.article-intro').text().replaceAll('\n', '').split('|');
-                        item.author = pubInfo[0]?.trim();
-                        dateStr = pubInfo[1]?.trim();
-                        component = _$('div.text-paragraph').html() ?? '';
-                    }
-
-                    if (dateStr) {
-                        try {
-                            item.pubDate = timezone(parseDate(dateStr, 'YYYY-MM-DD HH:mm:ss'), 8);
-                        } catch {
-                            // 忽略日期解析失败
-                        }
-                    }
-
-                    component = component.replaceAll(/\bdata-src\b/g, 'src');
-                    return component || item.title;
-                });
-            } catch {
-                item.description = item.title;
-            }
-            return item;
-        },
-        { concurrency: 2 }
-    );
-
-    return {
-        title: '巴哈姆特-GNN新聞' + categoryName,
-        link: targetUrl,
-        item: items,
-    };
+    return {
+        title: '巴哈姆特-GNN新聞' + categoryName,
+        link: targetUrl,
+        item: items,
+    };
 }
