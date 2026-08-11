@@ -58054,7 +58054,7 @@ export default {
           "anime"
         ],
         "view": 0,
-        "example": "/gamer/gnn/1",
+        "example": "/gamer/gnn/ps5",
         "parameters": {
           "category": {
             "description": "版塊",
