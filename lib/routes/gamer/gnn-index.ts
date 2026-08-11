@@ -54,19 +54,18 @@ export const route: Route = {
 };
 
 async function handler(ctx) {
-    // 1. 安全获取 category 参数，防止大小写或 undefined 导致崩溃
     const rawCategory = ctx.req.param('category');
     const category = typeof rawCategory === 'string' ? rawCategory.toLowerCase() : '';
     let categoryName = '';
 
     const categoryTable: Record<string, string> = {
-        1: 'PC',
-        3: 'TV 掌機',
-        4: '手機遊戲',
-        5: '動漫畫',
-        9: '主題報導',
-        11: '活動展覽',
-        13: '電競',
+        '1': 'PC',
+        '3': 'TV 掌機',
+        '4': '手機遊戲',
+        '5': '動漫畫',
+        '9': '主題報導',
+        '11': '活動展覽',
+        '13': '電競',
         ns: 'Switch',
         ps5: 'PS5',
         ps4: 'PS4',
@@ -87,7 +86,6 @@ async function handler(ctx) {
         targetUrl = `https://acg.gamer.com.tw/news.php?p=${category}`;
     }
 
-    // 2. 发起主页面请求
     const response = await got({
         method: 'get',
         url: targetUrl,
@@ -101,7 +99,6 @@ async function handler(ctx) {
     const $ = load(htmlData);
     const limit = ctx.req.query('limit') ? Number.parseInt(ctx.req.query('limit'), 10) : 10;
 
-    // 3. 解析新闻列表
     const list = $('a')
         .toArray()
         .map((item): DataItem | null => {
@@ -136,7 +133,6 @@ async function handler(ctx) {
         })
         .slice(0, limit);
 
-    // 4. 并发获取文章详情
     const items = await pMap(
         list,
         async (item) => {
@@ -183,7 +179,7 @@ async function handler(ctx) {
                         try {
                             item.pubDate = timezone(parseDate(dateStr, 'YYYY-MM-DD HH:mm:ss'), 8);
                         } catch {
-                            // 忽略日期解析失败，不阻断主流程
+                            // 忽略日期解析失败
                         }
                     }
 
