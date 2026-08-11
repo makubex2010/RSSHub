@@ -57,7 +57,7 @@ async function handler(ctx) {
     const category = ctx.req.param('category')?.toLowerCase();
     let categoryName = '';
 
-    const categoryTable = {
+    const categoryTable: Record<string, string> = {
         1: 'PC',
         3: 'TV 掌機',
         4: '手機遊戲',
@@ -94,8 +94,9 @@ async function handler(ctx) {
         },
     });
 
-    const $ = load(response.data);
-    const limit = ctx.req.query('limit') ? Number.parseInt(ctx.req.query('limit')) : 10;
+    const responseHtml = String(response.data || response.body || '');
+    const $ = load(responseHtml);
+    const limit = ctx.req.query('limit') ? Number.parseInt(ctx.req.query('limit'), 10) : 10;
 
     const list = $('a')
         .toArray()
@@ -108,7 +109,6 @@ async function handler(ctx) {
                 return null;
             }
 
-            // 补充完整 URL 地址
             if (link.startsWith('//')) {
                 link = 'https:' + link;
             } else if (link.startsWith('/')) {
@@ -135,47 +135,51 @@ async function handler(ctx) {
     const items = await pMap(
         list,
         async (item) => {
-            item.description = await cache.tryGet(item.link!, async () => {
-                const res = await got.get(item.link!, {
-                    headers: { 'User-Agent': 'Mozilla/5.0' },
-                });
-                let component: string;
-                const urlReg = /window\.lazySizesConfig/g;
+            try {
+                item.description = await cache.tryGet(item.link!, async () => {
+                    const res = await got.get(item.link!, {
+                        headers: { 'User-Agent': 'Mozilla/5.0' },
+                    });
 
-                let pubInfo;
-                let dateStr;
-                if (res.body.search(urlReg) >= 0) {
-                    const _$ = load(res.data);
-                    if (_$('span.GN-lbox3C').length > 0) {
-                        pubInfo = _$('span.GN-lbox3C').text().split('）');
-                        item.author = pubInfo[0].replace('（', '').replace(' 報導', '');
-                        dateStr = pubInfo[1].trim();
-                    } else {
-                        pubInfo = _$('span.GN-lbox3CA').text().split('）');
-                        item.author = pubInfo[0].replace('（', '').replace(' 報導', '');
-                        dateStr = pubInfo[1].replace('原文出處', '').trim();
-                    }
-                    component = _$('div.GN-lbox3B').html() ?? '';
-                } else {
-                    const _response = await got.get(item.link!);
-                    const _$ = load(_response.data);
+                    const htmlContent = String(res.data || res.body || '');
+                    const _$ = load(htmlContent);
+                    let component = '';
+                    let pubInfo: string[];
+                    let dateStr: string | undefined;
 
-                    if (_$('div.MSG-list8C').length > 0) {
+                    if (htmlContent.includes('window.lazySizesConfig')) {
+                        if (_$('span.GN-lbox3C').length > 0) {
+                            pubInfo = _$('span.GN-lbox3C').text().split('）');
+                            item.author = pubInfo[0]?.replace('（', '').replace(' 報導', '').trim();
+                            dateStr = pubInfo[1]?.trim();
+                        } else {
+                            pubInfo = _$('span.GN-lbox3CA').text().split('）');
+                            item.author = pubInfo[0]?.replace('（', '').replace(' 報導', '').trim();
+                            dateStr = pubInfo[1]?.replace('原文出處', '').trim();
+                        }
+                        component = _$('div.GN-lbox3B').html() ?? '';
+                    } else if (_$('div.MSG-list8C').length > 0) {
                         pubInfo = _$('span.ST1').text().split('│');
-                        item.author = pubInfo[0].replace('作者：', '');
-                        dateStr = pubInfo[_$('span.ST1').find('a').length > 0 ? 2 : 1];
+                        item.author = pubInfo[0]?.replace('作者：', '').trim();
+                        dateStr = pubInfo[_$('span.ST1').find('a').length > 0 ? 2 : 1]?.trim();
                         component = _$('div.MSG-list8C').html() ?? '';
                     } else {
                         pubInfo = _$('div.article-intro').text().replaceAll('\n', '').split('|');
-                        item.author = pubInfo[0];
-                        dateStr = pubInfo[1];
+                        item.author = pubInfo[0]?.trim();
+                        dateStr = pubInfo[1]?.trim();
                         component = _$('div.text-paragraph').html() ?? '';
                     }
-                }
-                item.pubDate = timezone(parseDate(dateStr, 'YYYY-MM-DD HH:mm:ss'), 8);
-                component = component.replaceAll(/\b(data-src)\b/g, 'src');
-                return component;
-            });
+
+                    if (dateStr) {
+                        item.pubDate = timezone(parseDate(dateStr, 'YYYY-MM-DD HH:mm:ss'), 8);
+                    }
+
+                    component = component.replaceAll(/\bdata-src\b/g, 'src');
+                    return component;
+                });
+            } catch {
+                item.description = item.title;
+            }
             return item;
         },
         { concurrency: 2 }
