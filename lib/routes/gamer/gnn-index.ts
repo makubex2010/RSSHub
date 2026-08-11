@@ -54,18 +54,19 @@ export const route: Route = {
 };
 
 async function handler(ctx) {
-    const category = ctx.req.param('category')?.toLowerCase();
+    const rawCategory = ctx.req.param('category');
+    const category = typeof rawCategory === 'string' ? rawCategory.toLowerCase() : '';
     let categoryName = '';
 
-    const categoryTable = {
-        1: 'PC', 3: 'TV 掌機', 4: '手機遊戲', 5: '動漫畫', 9: '主題報導',
-        11: '活動展覽', 13: '電競', ns: 'Switch', ps5: 'PS5', ps4: 'PS4',
+    const categoryTable: Record<string, string> = {
+        '1': 'PC', '3': 'TV 掌機', '4': '手機遊戲', '5': '動漫畫', '9': '主題報導',
+        '11': '活動展覽', '13': '電競', ns: 'Switch', ps5: 'PS5', ps4: 'PS4',
         xbone: 'XboxOne', xbsx: 'XboxSX', pc: 'PC 單機', olg: 'PC 線上',
         ios: 'iOS', android: 'Android', web: 'Web', comic: '漫畫', anime: '動畫',
     };
 
     let targetUrl = 'https://gnn.gamer.com.tw/';
-    if (category && category in categoryTable) {
+    if (category && Object.prototype.hasOwnProperty.call(categoryTable, category)) {
         categoryName = '-' + categoryTable[category];
         targetUrl = `https://acg.gamer.com.tw/news.php?p=${category}`;
     }
@@ -79,8 +80,9 @@ async function handler(ctx) {
         },
     });
 
-    const $ = load(response.data);
-    const limit = ctx.req.query('limit') ? Number.parseInt(ctx.req.query('limit')) : 10;
+    const htmlContent = typeof response.data === 'string' ? response.data : String(response.body || '');
+    const $ = load(htmlContent);
+    const limit = ctx.req.query('limit') ? Number.parseInt(ctx.req.query('limit'), 10) : 10;
 
     const list = $('a')
         .toArray()
@@ -101,13 +103,13 @@ async function handler(ctx) {
                 link: link.replace('//', 'https://'),
             };
         })
-        .filter((item, index, self) => {
+        .filter((item, index, self): item is DataItem => {
             if (!item) {
                 return false;
             }
             return index === self.findIndex((t) => t?.link === item.link);
         })
-        .slice(0, limit) as DataItem[];
+        .slice(0, limit);
 
     const items = await pMap(
         list,
@@ -123,19 +125,20 @@ async function handler(ctx) {
                     
                     let component: string = '';
                     const urlReg = /window\.lazySizesConfig/g;
-                    const resBodyStr = typeof res.body === 'string' ? res.body : String(res.data || '');
+                    const resDataStr = typeof res.data === 'string' ? res.data : String(res.body || '');
 
-                    let pubInfo;
-                    let dateStr;
-                    if (resBodyStr.search(urlReg) >= 0) {
-                        const _$ = load(res.data);
+                    let pubInfo: string[] = [];
+                    let dateStr: string | undefined;
+
+                    if (resDataStr.search(urlReg) >= 0) {
+                        const _$ = load(resDataStr);
                         if (_$('span.GN-lbox3C').length > 0) {
                             pubInfo = _$('span.GN-lbox3C').text().split('）');
-                            item.author = pubInfo[0]?.replace('（', '').replace(' 報導', '');
+                            item.author = pubInfo[0]?.replace('（', '').replace(' 報導', '').trim();
                             dateStr = pubInfo[1]?.trim();
                         } else {
                             pubInfo = _$('span.GN-lbox3CA').text().split('）');
-                            item.author = pubInfo[0]?.replace('（', '').replace(' 報導', '');
+                            item.author = pubInfo[0]?.replace('（', '').replace(' 報導', '').trim();
                             dateStr = pubInfo[1]?.replace('原文出處', '').trim();
                         }
                         component = _$('div.GN-lbox3B').html() ?? '';
@@ -143,28 +146,32 @@ async function handler(ctx) {
                         const _response = await got.get(item.link!, {
                             headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36' }
                         });
-                        const _$ = load(_response.data);
+                        const subHtmlStr = typeof _response.data === 'string' ? _response.data : String(_response.body || '');
+                        const _$ = load(subHtmlStr);
 
                         if (_$('div.MSG-list8C').length > 0) {
                             pubInfo = _$('span.ST1').text().split('│');
-                            item.author = pubInfo[0]?.replace('作者：', '');
-                            dateStr = pubInfo[_$('span.ST1').find('a').length > 0 ? 2 : 1];
+                            item.author = pubInfo[0]?.replace('作者：', '').trim();
+                            dateStr = pubInfo[_$('span.ST1').find('a').length > 0 ? 2 : 1]?.trim();
                             component = _$('div.MSG-list8C').html() ?? '';
                         } else {
                             pubInfo = _$('div.article-intro').text().replaceAll('\n', '').split('|');
-                            item.author = pubInfo[0];
-                            dateStr = pubInfo[1];
+                            item.author = pubInfo[0]?.trim();
+                            dateStr = pubInfo[1]?.trim();
                             component = _$('div.text-paragraph').html() ?? '';
                         }
                     }
                     if (dateStr) {
-                        item.pubDate = timezone(parseDate(dateStr, 'YYYY-MM-DD HH:mm:ss'), 8);
+                        try {
+                            item.pubDate = timezone(parseDate(dateStr, 'YYYY-MM-DD HH:mm:ss'), 8);
+                        } catch {
+                            // 忽略日期解析错误
+                        }
                     }
                     component = component.replaceAll(/\b(data-src)\b/g, 'src');
-                    return component;
+                    return component || item.title;
                 });
             } catch {
-                // 抓取单篇详情超时或异常时回退显示标题，保障 Serverless 整体不崩
                 item.description = item.title;
             }
             return item;
