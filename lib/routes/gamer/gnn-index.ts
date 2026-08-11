@@ -44,7 +44,7 @@ async function handler(ctx) {
     const category = ctx.req.param('category')?.toLowerCase();
     let categoryName = '';
 
-    const categoryTable = {
+    const categoryTable: Record<string, string> = {
         1: 'PC', 3: 'TV 掌機', 4: '手機遊戲', 5: '動漫畫', 9: '主題報導',
         11: '活動展覽', 13: '電競', ns: 'Switch', ps5: 'PS5', ps4: 'PS4',
         xbone: 'XboxOne', xbsx: 'XboxSX', pc: 'PC 單機', olg: 'PC 線上',
@@ -85,59 +85,62 @@ async function handler(ctx) {
 
             return {
                 title: titleText,
-                link: link.replace('//', 'https://'),
+                link: new URL(link, targetUrl).href,
             };
         })
-        .filter((item, index, self) => {
+        .filter((item, index, self): item is DataItem => {
             if (!item) {
                 return false;
             }
             return index === self.findIndex((t) => t?.link === item.link);
         })
-        .slice(0, limit) as DataItem[];
+        .slice(0, limit);
 
     const items = await pMap(
         list,
         async (item) => {
             item.description = await cache.tryGet(item.link!, async () => {
                 const res = await got.get(item.link!, {
-                    headers: { 'User-Agent': 'Mozilla/5.0' },
+                    headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)' },
                 });
-                let component: string;
-                const urlReg = /window\.lazySizesConfig/g;
+                const _$ = load(res.data);
+                let component = '';
+                let pubInfo: string[] = [];
+                let dateStr = '';
 
-                let pubInfo;
-                let dateStr;
-                if (res.body.search(urlReg) >= 0) {
-                    const _$ = load(res.data);
+                // 補全 lazyload 圖片與相對位址
+                _$('img[data-src]').each((_, el) => {
+                    _$(el).attr('src', _$(el).attr('data-src'));
+                });
+
+                if (res.data.includes('window.lazySizesConfig')) {
                     if (_$('span.GN-lbox3C').length > 0) {
                         pubInfo = _$('span.GN-lbox3C').text().split('）');
-                        item.author = pubInfo[0].replace('（', '').replace(' 報導', '');
-                        dateStr = pubInfo[1].trim();
+                        item.author = pubInfo[0]?.replace('（', '').replace(' 報導', '').trim();
+                        dateStr = pubInfo[1]?.trim() ?? '';
                     } else {
                         pubInfo = _$('span.GN-lbox3CA').text().split('）');
-                        item.author = pubInfo[0].replace('（', '').replace(' 報導', '');
-                        dateStr = pubInfo[1].replace('原文出處', '').trim();
+                        item.author = pubInfo[0]?.replace('（', '').replace(' 報導', '').trim();
+                        dateStr = pubInfo[1]?.replace('原文出處', '').trim() ?? '';
                     }
                     component = _$('div.GN-lbox3B').html() ?? '';
+                } else if (_$('div.MSG-list8C').length > 0) {
+                    pubInfo = _$('span.ST1').text().split('│');
+                    item.author = pubInfo[0]?.replace('作者：', '').trim();
+                    const dateIndex = _$('span.ST1').find('a').length > 0 ? 2 : 1;
+                    dateStr = pubInfo[dateIndex]?.trim() ?? '';
+                    component = _$('div.MSG-list8C').html() ?? '';
                 } else {
-                    const _response = await got.get(item.link!);
-                    const _$ = load(_response.data);
-
-                    if (_$('div.MSG-list8C').length > 0) {
-                        pubInfo = _$('span.ST1').text().split('│');
-                        item.author = pubInfo[0].replace('作者：', '');
-                        dateStr = pubInfo[_$('span.ST1').find('a').length > 0 ? 2 : 1];
-                        component = _$('div.MSG-list8C').html() ?? '';
-                    } else {
-                        pubInfo = _$('div.article-intro').text().replaceAll('\n', '').split('|');
-                        item.author = pubInfo[0];
-                        dateStr = pubInfo[1];
-                        component = _$('div.text-paragraph').html() ?? '';
-                    }
+                    pubInfo = _$('div.article-intro').text().replaceAll('\n', '').split('|');
+                    item.author = pubInfo[0]?.trim();
+                    dateStr = pubInfo[1]?.trim() ?? '';
+                    component = _$('div.text-paragraph').html() ?? '';
                 }
-                item.pubDate = timezone(parseDate(dateStr, 'YYYY-MM-DD HH:mm:ss'), 8);
-                component = component.replaceAll(/\b(data-src)\b/g, 'src');
+
+                if (dateStr) {
+                    item.pubDate = timezone(parseDate(dateStr, 'YYYY-MM-DD HH:mm:ss'), 8);
+                }
+
                 return component;
             });
             return item;
