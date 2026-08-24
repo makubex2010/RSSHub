@@ -103507,6 +103507,44 @@ export default {
     "url": "yzb.scau.edu.cn",
     "lang": "zh-CN"
   },
+  "schwabnetwork": {
+    "routes": {
+      "/markets": {
+        "path": "/markets",
+        "categories": [
+          "finance"
+        ],
+        "view": 5,
+        "example": "/schwabnetwork/markets",
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "schwabnetwork.com/markets"
+            ]
+          }
+        ],
+        "name": "市场新闻",
+        "maintainers": [
+          "hutianyu2006"
+        ],
+        "url": "schwabnetwork.com/markets",
+        "location": "markets.tsx",
+        "module": () => import('@/routes/schwabnetwork/markets.tsx')
+      }
+    },
+    "apiRoutes": {},
+    "name": "Schwab Network",
+    "url": "schwabnetwork.com",
+    "description": "Charles Schwab Media Productions Company"
+  },
   "science": {
     "routes": {
       "/blogs/:name?": {
@@ -113890,7 +113928,7 @@ export default {
         "features": {
           "requireConfig": false,
           "requirePuppeteer": false,
-          "antiCrawler": false,
+          "antiCrawler": true,
           "supportBT": false,
           "supportPodcast": false,
           "supportScihub": false
@@ -113922,8 +113960,8 @@ export default {
         },
         "features": {
           "requireConfig": false,
-          "requirePuppeteer": true,
-          "antiCrawler": false,
+          "requirePuppeteer": false,
+          "antiCrawler": true,
           "supportBT": false,
           "supportPodcast": false,
           "supportScihub": false
