@@ -1615,9 +1615,6 @@
   "/tingtingfm/program/:programId": [
     "TonyRL"
   ],
-  "/toutiao/user/token/:token": [
-    "TonyRL"
-  ],
   "/tqyb/sncsyjxh": [
     "Fatpandac"
   ],
@@ -2768,6 +2765,9 @@
   "/baidu/tieba/post/lz/:id": [
     "u3u",
     "FlanChanXwO"
+  ],
+  "/baidu/baijiahao/:id/:tab?": [
+    "TonyRL"
   ],
   "/baidu/search/:keyword": [
     "CaoMeiYouRen"
@@ -8508,6 +8508,12 @@
   ],
   "/toranoana/news/:category?": [
     "Tsuyumi25"
+  ],
+  "/toutiao/user/token/:token": [
+    "TonyRL"
+  ],
+  "/toutiao/channel/:category": [
+    "TonyRL"
   ],
   "/towardsdatascience/latest": [
     "mintyfrankie"
