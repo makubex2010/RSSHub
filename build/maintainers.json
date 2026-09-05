@@ -1402,6 +1402,9 @@
   "/foodtalks/news/tag/:tagId": [
     "TonyRL"
   ],
+  "/gamebase/news/:type?/:category?": [
+    "nczitzk"
+  ],
   "/gettr/user/:id": [
     "TonyRL"
   ],
@@ -3100,6 +3103,12 @@
   "/canada.ca/news/:lang/:department?": [
     "elibroftw"
   ],
+  "/canalmuseum/consulting/:type": [
+    "magazian"
+  ],
+  "/canalmuseum/lszl": [
+    "magazian"
+  ],
   "/capitalmuseum/exhibition/:type?": [
     "magazian"
   ],
@@ -4689,9 +4698,6 @@
   ],
   "/gameapps/": [
     "TonyRL"
-  ],
-  "/gamebase/news/:type?/:category?": [
-    "nczitzk"
   ],
   "/gamegene/news": [
     "lone1y-51"

@@ -4859,6 +4859,20 @@
       }
     ]
   },
+  "gamebase.com.tw": {
+    "_name": "遊戲基地 Gamebase",
+    "news": [
+      {
+        "title": "新聞",
+        "docs": "https://docs.rsshub.app/routes/game",
+        "source": [
+          "/news",
+          "/news/:type"
+        ],
+        "target": "/gamebase(params,url)=>{const type=params.type;const urlObj=new URL(url);const category=urlObj.searchParams.get(\"type\")??void 0;return`/gamebase/news${type?`/${type}${category?`/${category}`:\"\"}`:\"\"}`}"
+      }
+    ]
+  },
   "gettr.com": {
     "_name": "GETTR",
     ".": [
@@ -14358,6 +14372,27 @@
       }
     ]
   },
+  "canalmuseum.org.cn": {
+    "_name": "The Grand Canal Museum of Beijing",
+    "www": [
+      {
+        "title": "NEWS",
+        "docs": "https://docs.rsshub.app/routes/travel",
+        "source": [
+          "/consulting.html"
+        ],
+        "target": "/canalmuseum/consulting/tzgg"
+      },
+      {
+        "title": "临时展览",
+        "docs": "https://docs.rsshub.app/routes/travel",
+        "source": [
+          "/lszl.html"
+        ],
+        "target": "/canalmuseum/lszl"
+      }
+    ]
+  },
   "capitalmuseum.org.cn": {
     "_name": "Capital Museum",
     "www": [
@@ -21860,20 +21895,6 @@
           "/"
         ],
         "target": "/gameapps/"
-      }
-    ]
-  },
-  "gamebase.com.tw": {
-    "_name": "遊戲基地 Gamebase",
-    "news": [
-      {
-        "title": "新聞",
-        "docs": "https://docs.rsshub.app/routes/game",
-        "source": [
-          "/news",
-          "/news/:type"
-        ],
-        "target": "/gamebase(params,url)=>{const type=params.type;const urlObj=new URL(url);const category=urlObj.searchParams.get(\"type\")??void 0;return`/gamebase/news${type?`/${type}${category?`/${category}`:\"\"}`:\"\"}`}"
       }
     ]
   },
