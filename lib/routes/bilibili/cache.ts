@@ -1,5 +1,4 @@
 import { load } from 'cheerio';
-import { JSDOM } from 'jsdom';
 import { RateLimiterMemory, RateLimiterQueue } from 'rate-limiter-flexible';
 
 import { config } from '@/config';
@@ -80,10 +79,8 @@ const getRenderData = (uid) => {
                 Cookie: cookie,
             },
         });
-        const dom = new JSDOM(response);
-        const document = dom.window.document;
-        const scriptElement = document.querySelector('#__RENDER_DATA__');
-        const innerText = scriptElement ? scriptElement.textContent || '{}' : '{}';
+        const $ = load(response);
+        const innerText = $('#__RENDER_DATA__').first().text() || '{}';
         const renderData = JSON.parse(decodeURIComponent(innerText));
         const accessId = renderData.access_id;
         return accessId;

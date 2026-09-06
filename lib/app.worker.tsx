@@ -1,18 +1,20 @@
 // Worker-specific app configuration
-// This is a simplified version of app-bootstrap.tsx for Cloudflare Workers
-// Heavy middleware and API routes are excluded
+// Keep feed processing and API routes aligned with app-bootstrap.tsx.
 
 import type { KVNamespace } from '@cloudflare/workers-types';
 import { Hono } from 'hono';
 import { jsxRenderer } from 'hono/jsx-renderer';
 import { trimTrailingSlash } from 'hono/trailing-slash';
 
+import api from '@/api';
 import { errorHandler, notFoundHandler } from '@/errors';
 import accessControl from '@/middleware/access-control';
+import antiHotlink from '@/middleware/anti-hotlink';
 import cache from '@/middleware/cache';
 import debug from '@/middleware/debug';
 import header from '@/middleware/header';
 import mLogger from '@/middleware/logger';
+import parameter from '@/middleware/parameter';
 import template from '@/middleware/template';
 import trace from '@/middleware/trace';
 import registry from '@/registry';
@@ -51,21 +53,18 @@ app.use(
 app.use(mLogger);
 app.use(trace);
 
-// Heavy middleware excluded in Worker build:
-// - honeybadger: @honeybadger-io/js
-// - sentry: @sentry/node
-// - antiHotlink: cheerio
-// - parameter: cheerio, sanitize-html, @jocmp/mercury-parser
+// Monitoring integrations that depend on Node.js remain disabled.
 
-app.use(cache);
 app.use(accessControl);
 app.use(debug);
 app.use(template);
 app.use(header);
+app.use(antiHotlink);
+app.use(parameter);
+app.use(cache);
 
 app.route('/', registry);
-
-// API routes not available in Worker environment
+app.route('/api', api);
 
 app.notFound(notFoundHandler);
 app.onError(errorHandler);
