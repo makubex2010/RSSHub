@@ -69,6 +69,6 @@ export default defineConfig({
         },
     },
     test: {
-        include: ['lib/**/*.worker.test.ts', 'tests/**/*.worker.test.ts'],
+        include: ['lib/**/*.worker.test.ts', 'tests/**/*.worker.test.ts', 'lib/utils/parse-script-data.test.ts'],
     },
 });

@@ -21,17 +21,21 @@ const getBrowserBinding = () => {
 
 const launchBrowser = async () => {
     const browser = await launch(getBrowserBinding(), { keep_alive: 60000 });
-    const context = await browser.newContext({
-        ignoreHTTPSErrors: true,
-    });
-    return { browser, context };
+    try {
+        const context = await browser.newContext({ ignoreHTTPSErrors: true });
+        return { browser, context };
+    } catch (error) {
+        await browser.close();
+        throw error;
+    }
 };
 
-const scheduleClose = (browser: Browser) => {
-    setTimeout(() => {
-        void browser.close();
-    }, 30000);
-};
+const scheduleClose = (browser: Browser, timeout = 30000) =>
+    timeout === 0
+        ? undefined
+        : setTimeout(() => {
+              void browser.close();
+          }, timeout);
 
 /**
  * @returns Playwright browser context (native `newPage()` shares state across calls)
@@ -48,6 +52,8 @@ export default async function outPlaywright() {
 export const getPlaywrightPage = async (
     url: string,
     instanceOptions: {
+        // Set to zero only when the caller always awaits destroy() in finally.
+        closeTimeout?: number;
         gotoConfig?: GotoOptions;
         noGoto?: boolean;
         onBeforeLoad?: (page: Page, context?: Awaited<ReturnType<typeof launchBrowser>>['context']) => Promise<void> | void;
@@ -56,29 +62,25 @@ export const getPlaywrightPage = async (
     logger.debug(`Launching Cloudflare Browser for: ${url}`);
 
     const { browser, context } = await launchBrowser();
-    scheduleClose(browser);
-    const page = await context.newPage();
-
-    if (instanceOptions.onBeforeLoad) {
-        await instanceOptions.onBeforeLoad(page, context);
-    }
-
-    if (!instanceOptions.noGoto) {
-        try {
-            await page.goto(url, instanceOptions.gotoConfig || { waitUntil: 'domcontentloaded' });
-        } catch (error) {
-            logger.error(`Playwright navigation failed: ${error}`);
-            throw error;
-        }
-    }
-
-    return {
-        context,
-        destroy: async () => {
-            await context.close();
-        },
-        page,
+    const closeTimer = scheduleClose(browser, instanceOptions.closeTimeout);
+    const destroy = async () => {
+        clearTimeout(closeTimer);
+        await browser.close();
     };
+    try {
+        const page = await context.newPage();
+        if (instanceOptions.onBeforeLoad) {
+            await instanceOptions.onBeforeLoad(page, context);
+        }
+        if (!instanceOptions.noGoto) {
+            await page.goto(url, instanceOptions.gotoConfig || { waitUntil: 'domcontentloaded' });
+        }
+        return { context, destroy, page };
+    } catch (error) {
+        logger.error(`Playwright page setup failed: ${error}`);
+        await destroy();
+        throw error;
+    }
 };
 
 export { type Page } from '@cloudflare/playwright';

@@ -98,8 +98,13 @@ const launchBrowser = async (currentProxy?: ProxyState | null) => {
     } else {
         browser = await chromium.launch(getLaunchOptions(currentProxy));
     }
-    const context = await browser.newContext(getContextOptions());
-    return { browser, context };
+    try {
+        const context = await browser.newContext(getContextOptions());
+        return { browser, context };
+    } catch (error) {
+        await browser.close();
+        throw error;
+    }
 };
 
 const getBrowserlessEndpoint = (endpoint: string, launchOptions: BrowserlessLaunchOptions) => {
@@ -109,9 +114,11 @@ const getBrowserlessEndpoint = (endpoint: string, launchOptions: BrowserlessLaun
 };
 
 const scheduleClose = (browser: Browser, timeout = 30000) =>
-    setTimeout(() => {
-        void browser.close();
-    }, timeout);
+    timeout === 0
+        ? undefined
+        : setTimeout(() => {
+              void browser.close();
+          }, timeout);
 
 /**
  * @returns Playwright browser context (native `newPage()` shares state across calls)
@@ -132,6 +139,7 @@ export const setBrowserBinding = (_binding: any) => {};
 export const getPlaywrightPage = async (
     url: string,
     instanceOptions: {
+        // Set to zero only when the caller always awaits destroy() in finally.
         closeTimeout?: number;
         gotoConfig?: GotoOptions;
         noGoto?: boolean;
@@ -161,34 +169,38 @@ export const getPlaywrightPage = async (
         await browser.close();
     };
 
-    const page = await context.newPage();
+    try {
+        const page = await context.newPage();
 
-    if (hasProxy && currentProxyState) {
-        logger.debug(`Proxying request in playwright via ${currentProxyState.uri}: ${url}`);
-    }
-
-    if (instanceOptions.onBeforeLoad) {
-        await instanceOptions.onBeforeLoad(page, context);
-    }
-
-    if (!instanceOptions.noGoto) {
-        try {
-            await page.goto(url, instanceOptions.gotoConfig || { waitUntil: 'domcontentloaded' });
-        } catch (error) {
-            if (hasProxy && currentProxyState && proxy.multiProxy) {
-                logger.warn(`Playwright navigation failed with proxy ${currentProxyState.uri}, marking as failed: ${error}`);
-                proxy.markProxyFailed(currentProxyState.uri);
-            }
-            await destroy();
-            throw error;
+        if (hasProxy && currentProxyState) {
+            logger.debug(`Proxying request in playwright via ${currentProxyState.uri}: ${url}`);
         }
-    }
 
-    return {
-        context,
-        destroy,
-        page,
-    };
+        if (instanceOptions.onBeforeLoad) {
+            await instanceOptions.onBeforeLoad(page, context);
+        }
+
+        if (!instanceOptions.noGoto) {
+            try {
+                await page.goto(url, instanceOptions.gotoConfig || { waitUntil: 'domcontentloaded' });
+            } catch (error) {
+                if (hasProxy && currentProxyState && proxy.multiProxy) {
+                    logger.warn(`Playwright navigation failed with proxy ${currentProxyState.uri}, marking as failed: ${error}`);
+                    proxy.markProxyFailed(currentProxyState.uri);
+                }
+                throw error;
+            }
+        }
+
+        return {
+            context,
+            destroy,
+            page,
+        };
+    } catch (error) {
+        await destroy();
+        throw error;
+    }
 };
 
 export { type Page } from 'patchright';
