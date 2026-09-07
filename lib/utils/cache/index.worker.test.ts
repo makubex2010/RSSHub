@@ -25,6 +25,7 @@ describe('worker cache with KV binding', () => {
     it('becomes available once the KV namespace is bound', () => {
         setKVNamespace(env.CACHE);
         expect(cache.status.available).toBe(true);
+        expect(cache.globalCache.supportsAtomicClaims).toBe(false);
     });
 
     it('round-trips strings and serializes objects', async () => {

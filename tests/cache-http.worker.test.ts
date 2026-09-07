@@ -62,6 +62,7 @@ afterEach(() => {
 describe('worker HTTP cache', () => {
     it('initializes without I/O and keeps using HTTP when a KV binding is present', async () => {
         expect(cache.status.available).toBe(true);
+        expect(cache.globalCache.supportsAtomicClaims).toBe(false);
         expect(fetchMock).not.toHaveBeenCalled();
 
         setKVNamespace(env.CACHE);
