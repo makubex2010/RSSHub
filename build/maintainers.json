@@ -1015,6 +1015,22 @@
   "/eleduck/posts/:id?": [
     "running-grass"
   ],
+  "/everia/": [
+    "KTachibanaM",
+    "AiraNadih"
+  ],
+  "/everia/search/:keyword": [
+    "KTachibanaM",
+    "AiraNadih"
+  ],
+  "/everia/category/:category": [
+    "KTachibanaM",
+    "AiraNadih"
+  ],
+  "/everia/tag/:tag": [
+    "KTachibanaM",
+    "AiraNadih"
+  ],
   "/fantia/search/:type?/:caty?/:period?/:order?/:rating?/:keyword?": [
     "nczitzk"
   ],
@@ -2228,10 +2244,6 @@
     "nczitzk"
   ],
   "/19lou/:city?": [
-    "nczitzk"
-  ],
-  "/1lou/:params{.+}?": [
-    "falling",
     "nczitzk"
   ],
   "/1point3acres/user/:id/posts": [
@@ -4509,22 +4521,6 @@
   "/eventernote/actors/:name/:id": [
     "KTachibanaM"
   ],
-  "/everia/category/:category": [
-    "KTachibanaM",
-    "AiraNadih"
-  ],
-  "/everia/": [
-    "KTachibanaM",
-    "AiraNadih"
-  ],
-  "/everia/search/:keyword": [
-    "KTachibanaM",
-    "AiraNadih"
-  ],
-  "/everia/tag/:tag": [
-    "KTachibanaM",
-    "AiraNadih"
-  ],
   "/expats/czech-news/:category?": [
     "nczitzk"
   ],
@@ -6281,6 +6277,9 @@
   ],
   "/naceweb/blog/:sort?": [
     "nczitzk"
+  ],
+  "/namoc/zhanlan": [
+    "magazian"
   ],
   "/nankai/ai/:type?": [
     "LMark"
@@ -9619,6 +9618,13 @@
   "/18comic/search/:option?/:category?/:keyword?/:time?/:order?": [
     "nczitzk",
     "pseudoyu"
+  ],
+  "/1lou/:params{.+}?": [
+    "falling",
+    "nczitzk"
+  ],
+  "/1lou/search/:params": [
+    "JimenezLi"
   ],
   "/36kr/:category/:subCategory?/:keyword?": [
     "nczitzk",
