@@ -25,6 +25,7 @@ vi.mock('../lib/config', () => ({
     },
 }));
 vi.mock('../lib/utils/ofetch', () => ({ default: mocks.ofetch }));
+vi.mock('../lib/utils/is-worker', () => ({ isWorker: true }));
 vi.mock('../lib/utils/playwright', () => ({ getPlaywrightPage: mocks.getPlaywrightPage }));
 
 const origin = 'https://www.zhihu.com';

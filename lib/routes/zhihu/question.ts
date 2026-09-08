@@ -1,4 +1,5 @@
 import type { Route } from '@/types';
+import { isWorker } from '@/utils/is-worker';
 import { parseDate } from '@/utils/parse-date';
 
 import { processImage, withZhihuClient } from './utils';
@@ -12,11 +13,11 @@ export const route: Route = {
         requireConfig: [
             {
                 name: 'ZHIHU_COOKIES',
-                description: 'A complete d_c0 and __zse_ck cookie pair avoids browser-based session initialization. Otherwise Playwright (BROWSER on Workers) is required.',
+                description: 'A complete d_c0 and __zse_ck cookie pair skips session initialization. Otherwise Workers use a Playwright browser session; Docker and Vercel generate credentials with JSDOM.',
                 optional: true,
             },
         ],
-        requirePuppeteer: true,
+        requirePuppeteer: isWorker || process.env.WORKER_BUILD === 'true',
         antiCrawler: true,
         supportBT: false,
         supportPodcast: false,

@@ -1,6 +1,7 @@
 import { load } from 'cheerio';
 
 import { config } from '@/config';
+import { isWorker } from '@/utils/is-worker';
 import ofetch from '@/utils/ofetch';
 
 import type { createBrowserClient } from './browser';
@@ -75,6 +76,11 @@ export const withZhihuClient = async <T>(pageUrl: string, callback: (client: Zhi
     const configured = config.zhihu.cookies || '';
     const dc0 = getCookieValueFrom(configured, 'd_c0');
     const hasConfiguredSession = !!dc0 && !!getCookieValueFrom(configured, '__zse_ck');
+    if (!isWorker && !hasConfiguredSession) {
+        const { createJSDOMClient } = await import('./jsdom');
+        return callback(createJSDOMClient(pageUrl, configured, dc0));
+    }
+
     let browserPromise: ReturnType<typeof createBrowserClient> | undefined;
     const startBrowser = async (apiPath?: string) => {
         const { createBrowserClient } = await import('./browser');
