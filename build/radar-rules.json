@@ -9666,6 +9666,14 @@
           "/"
         ],
         "target": "/abc-tenpo/property"
+      },
+      {
+        "title": "エリア別賃料相場",
+        "docs": "https://docs.rsshub.app/routes/other",
+        "source": [
+          "/feature/rent"
+        ],
+        "target": "/abc-tenpo/rent-benchmark"
       }
     ]
   },
@@ -9799,6 +9807,14 @@
   "acfun.cn": {
     "_name": "AcFun",
     "www": [
+      {
+        "title": "用户文章",
+        "docs": "https://docs.rsshub.app/routes/anime",
+        "source": [
+          "/u/:id"
+        ],
+        "target": "/acfun/user/article/:id"
+      },
       {
         "title": "用户投稿",
         "docs": "https://docs.rsshub.app/routes/anime",
@@ -25673,6 +25689,22 @@
           "/bukken/:region/bukkens/list/local-:area"
         ],
         "target": "/inshokutenparams=>`/bukken/${params.area??params.region}`"
+      },
+      {
+        "title": "賃料相場",
+        "docs": "https://docs.rsshub.app/routes/other",
+        "source": [
+          "/bukken/kanto/market/rent/line/:area"
+        ],
+        "target": "/inshokuten/rent-benchmark/:area"
+      },
+      {
+        "title": "賃料相場",
+        "docs": "https://docs.rsshub.app/routes/other",
+        "source": [
+          "/bukken/kanto/market/rent/station/:line"
+        ],
+        "target": "/inshokuten/rent-benchmark/23ward/:line"
       }
     ]
   },
@@ -26783,6 +26815,19 @@
           "/:lang/article/list/:category"
         ],
         "target": "/kcna/:lang/:category"
+      }
+    ]
+  },
+  "keio.co.jp": {
+    "_name": "Keio Corporation",
+    "www": [
+      {
+        "title": "駅別 一日平均乗降人員",
+        "docs": "https://docs.rsshub.app/routes/other",
+        "source": [
+          "/company/corporate/corporate_manual/number-of-passengers.html"
+        ],
+        "target": "/keio/ridership"
       }
     ]
   },
@@ -33278,6 +33323,19 @@
           "/"
         ],
         "target": "/odaily/user/:id"
+      }
+    ]
+  },
+  "odakyu.jp": {
+    "_name": "Odakyu Electric Railway",
+    "www": [
+      {
+        "title": "駅別乗降人員",
+        "docs": "https://docs.rsshub.app/routes/other",
+        "source": [
+          "/company/railroad/users/"
+        ],
+        "target": "/odakyu/ridership"
       }
     ]
   },
@@ -42002,6 +42060,33 @@
           "/:lang/report"
         ],
         "target": "/tokeninsight/report/:lang"
+      }
+    ]
+  },
+  "tokyometro.jp": {
+    "_name": "Tokyo Metro",
+    "www": [
+      {
+        "title": "各駅の乗降人員ランキング",
+        "docs": "https://docs.rsshub.app/routes/other",
+        "source": [
+          "/corporate/enterprise/passenger_rail/transportation/passengers/:page"
+        ],
+        "target": "/tokyometro/ridership"
+      }
+    ]
+  },
+  "tokyu.co.jp": {
+    "_name": "Tokyu Railways",
+    "www": [
+      {
+        "title": "駅別乗降人員",
+        "docs": "https://docs.rsshub.app/routes/other",
+        "source": [
+          "/railway/company/business/passengers/:year",
+          "/railway/company/business/passengers/"
+        ],
+        "target": "/tokyu/ridership/:year"
       }
     ]
   },

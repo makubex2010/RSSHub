@@ -111,6 +111,7 @@ export type RoutePath =
   | `/aa1/60s/:category?`
   | `/aamacau/:category?/:id?`
   | `/abc-tenpo/property/:pref?`
+  | `/abc-tenpo/rent-benchmark/:pref?`
   | `/abc/:category{.+}?`
   | `/abmedia/:category?`
   | `/abmedia/index`
@@ -120,6 +121,7 @@ export type RoutePath =
   | `/accessbriefing/:category{.+}?`
   | `/acfun/article/:categoryId/:sortType?/:timeRange?`
   | `/acfun/bangumi/:id/:embed?`
+  | `/acfun/user/article/:uid`
   | `/acfun/user/video/:uid/:embed?`
   | `/acg17/post/all`
   | `/acgvinyl/news`
@@ -1791,6 +1793,7 @@ export type RoutePath =
   | `/inoreader/html_clip/:user/:tag`
   | `/inoreader/rss/:user/:tag`
   | `/inshokuten/bukken/:area?`
+  | `/inshokuten/rent-benchmark/:area?/:line?`
   | `/inspirehep/authors/:id`
   | `/inspirehep/literature/:q`
   | `/instagram/:category/:key`
@@ -1963,6 +1966,7 @@ export type RoutePath =
   | `/ke/researchResults`
   | `/keep/user/:id`
   | `/keepass/`
+  | `/keio/ridership`
   | `/kelownacapnews/:type`
   | `/kemono/:source?/:id?/:type?`
   | `/kenshin/:category?/:type?`
@@ -2045,6 +2049,7 @@ export type RoutePath =
   | `/lfsyd/old_home`
   | `/lfsyd/tag/:tagId?`
   | `/lfsyd/user/:id?`
+  | `/lg/osaka/food-permit`
   | `/lg/tokyo/food-permit/:ward?`
   | `/lhratings/research/:type?`
   | `/lianxh/:category?`
@@ -2520,6 +2525,7 @@ export type RoutePath =
   | `/odaily/newsflash`
   | `/odaily/search/news/:keyword`
   | `/odaily/user/:id`
+  | `/odakyu/ridership`
   | `/oeeee/app/channel/:id`
   | `/oeeee/app/reporter/:id`
   | `/oeeee/web/:channel`
@@ -3322,6 +3328,8 @@ export type RoutePath =
   | `/tokeninsight/blog/:lang?`
   | `/tokeninsight/bulletin/:lang?`
   | `/tokeninsight/report/:lang?`
+  | `/tokyometro/ridership/:year?`
+  | `/tokyu/ridership/:year?`
   | `/tongji/bks`
   | `/tongji/gs`
   | `/tongji/sem/:type?`
