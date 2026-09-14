@@ -31594,6 +31594,72 @@ export default {
     "url": "abc.net.au",
     "lang": "en"
   },
+  "abc-tenpo": {
+    "routes": {
+      "/property/:pref?": {
+        "path": "/property/:pref?",
+        "name": "新着物件",
+        "url": "www.abc-tenpo.com",
+        "maintainers": [
+          "pseudoyu"
+        ],
+        "example": "/abc-tenpo/property/tokyo",
+        "parameters": {
+          "pref": {
+            "description": "Prefecture slug or JIS X 0401 code; omit for all of 東京・神奈川・千葉・埼玉",
+            "options": [
+              {
+                "value": "tokyo",
+                "label": "東京都 (13)"
+              },
+              {
+                "value": "kanagawa",
+                "label": "神奈川県 (14)"
+              },
+              {
+                "value": "saitama",
+                "label": "埼玉県 (11)"
+              },
+              {
+                "value": "chiba",
+                "label": "千葉県 (12)"
+              }
+            ]
+          }
+        },
+        "description": "Listings on ABC 店舗 sorted by 新着順 (first page, 20 listings). Each item's `_extra` carries the structured listing fields (賃料，坪，階，最寄駅，引渡状態，現業態，業種制限，飲食条件，情報更新日，…) parsed from the list and detail pages; unknown values are `null`. 保証金，礼金 and 造作譲渡料 are members-only on the site and therefore always `null`; the item date is the site's 情報更新日.\n\n| Query   | Description                                                                  | Default |\n| ------- | ---------------------------------------------------------------------------- | ------- |\n| `limit` | Number of listings to process (detail pages are fetched per listing), max 20 | 20      |",
+        "categories": [
+          "other"
+        ],
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportRadar": true
+        },
+        "radar": [
+          {
+            "source": [
+              "www.abc-tenpo.com/property/search",
+              "www.abc-tenpo.com/feature/new_arrival",
+              "www.abc-tenpo.com/"
+            ],
+            "target": "/property"
+          }
+        ],
+        "location": "property.ts",
+        "module": () => import('@/routes/abc-tenpo/property.ts')
+      }
+    },
+    "apiRoutes": {},
+    "name": "ABC Tenpo",
+    "url": "www.abc-tenpo.com",
+    "description": "ABC 店舗 — 飲食店向け居抜き・貸店舗物件情報サイト",
+    "lang": "ja",
+    "ja": {
+      "name": "ABC店舗"
+    }
+  },
   "abskoop": {
     "routes": {
       "/nsfw": {
@@ -42349,6 +42415,69 @@ export default {
       "description": "各组织自建的 Bugzilla 实例。"
     },
     "lang": "en"
+  },
+  "bukenavi": {
+    "routes": {
+      "/object/:region?/:pref?": {
+        "path": "/object/:region?/:pref?",
+        "name": "新着物件",
+        "url": "bukenavi.jp",
+        "maintainers": [
+          "pseudoyu"
+        ],
+        "example": "/bukenavi/object/kanto/tokyo",
+        "parameters": {
+          "region": {
+            "description": "Region",
+            "default": "kanto",
+            "options": [
+              {
+                "value": "kanto",
+                "label": "関東"
+              },
+              {
+                "value": "kansai",
+                "label": "関西"
+              },
+              {
+                "value": "tokai",
+                "label": "東海"
+              }
+            ]
+          },
+          "pref": "Prefecture slug (tokyo, kanagawa, saitama, chiba, osaka, kyoto, hyogo, aichi) or two-digit JIS X 0401 code; omit for the whole region"
+        },
+        "description": "New 居抜き listings on ぶけなび that are currently 募集中，newest first (first page, 10 listings). Each item's `_extra` carries the structured listing fields (賃料，坪，坪単価，階，最寄駅，前業態，業種制限，…) parsed from the list and detail pages; unknown values are `null`. The site does not publish listing dates, so items have no `pubDate`.",
+        "categories": [
+          "other"
+        ],
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportRadar": true
+        },
+        "radar": [
+          {
+            "source": [
+              "bukenavi.jp/:region/object/list",
+              "bukenavi.jp/:region"
+            ],
+            "target": "/object/:region"
+          }
+        ],
+        "location": "object.ts",
+        "module": () => import('@/routes/bukenavi/object.ts')
+      }
+    },
+    "apiRoutes": {},
+    "name": "Bukenavi",
+    "url": "bukenavi.jp",
+    "description": "ぶけなび — 飲食店の居抜き物件専門サイト",
+    "lang": "ja",
+    "ja": {
+      "name": "ぶけなび"
+    }
   },
   "bulianglin": {
     "routes": {
@@ -73932,6 +74061,91 @@ export default {
     "url": "inoreader.com",
     "lang": "en"
   },
+  "inshokuten": {
+    "routes": {
+      "/bukken/:area?": {
+        "path": "/bukken/:area?",
+        "name": "新着物件",
+        "url": "www.inshokuten.com",
+        "maintainers": [
+          "pseudoyu"
+        ],
+        "example": "/inshokuten/bukken/23ward",
+        "parameters": {
+          "area": {
+            "description": "Region or 首都圏 sub-area",
+            "default": "kanto",
+            "options": [
+              {
+                "value": "kanto",
+                "label": "首都圏"
+              },
+              {
+                "value": "23ward",
+                "label": "東京23区"
+              },
+              {
+                "value": "23ward_out",
+                "label": "東京都下"
+              },
+              {
+                "value": "yokohama_kawasaki",
+                "label": "神奈川"
+              },
+              {
+                "value": "chiba",
+                "label": "千葉"
+              },
+              {
+                "value": "saitama",
+                "label": "埼玉"
+              },
+              {
+                "value": "kansai",
+                "label": "関西"
+              },
+              {
+                "value": "tokai",
+                "label": "東海"
+              },
+              {
+                "value": "kyushu",
+                "label": "九州"
+              }
+            ]
+          }
+        },
+        "description": "New restaurant-property listings on 飲食店.COM sorted by 登録日 (first page, 20 listings). Each item's `_extra` carries the structured listing fields (賃料，坪，坪単価，階，最寄駅，造作譲渡料，現況，前業態，出店可能業態，登録日，…); unknown values are `null`. 保証金 and 礼金 are members-only on the site and therefore always `null`.",
+        "categories": [
+          "other"
+        ],
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportRadar": true
+        },
+        "radar": [
+          {
+            "source": [
+              "www.inshokuten.com/bukken/:region/bukkens/list",
+              "www.inshokuten.com/bukken/:region/bukkens/list/local-:area"
+            ]
+          }
+        ],
+        "location": "bukken.ts",
+        "module": () => import('@/routes/inshokuten/bukken.ts')
+      }
+    },
+    "apiRoutes": {},
+    "name": "Inshokuten.com",
+    "url": "www.inshokuten.com",
+    "description": "飲食店.COM — 飲食店向け居抜き・貸店舗物件情報サイト",
+    "lang": "ja",
+    "ja": {
+      "name": "飲食店.COM"
+    }
+  },
   "instructables": {
     "routes": {
       "/projects/:category?": {
@@ -74723,6 +74937,51 @@ export default {
     "name": "iRacing",
     "url": "iracing.com",
     "description": ""
+  },
+  "iri-search": {
+    "routes": {
+      "/estate/:area?": {
+        "path": "/estate/:area?",
+        "name": "新着物件",
+        "url": "www.iri-search.net",
+        "maintainers": [
+          "pseudoyu"
+        ],
+        "example": "/iri-search/estate/tokyo",
+        "parameters": {
+          "area": "Region slug (shutoken, hokkaido, tohoku, kitakanto, hokuriku, koshinetsu, tokai, kinki, chugoku, shikoku, kyushu, okinawa) or a 首都圏 prefecture (tokyo, kanagawa, saitama, chiba or its JIS code); omit for nationwide"
+        },
+        "description": "New listings on 居抜き物件検索 iri-search sorted by 新着順 (first page, 30 listings). Each item's `_extra` carries the structured listing fields (賃料，坪，坪単価，階，最寄駅，保証金・敷金，居抜き譲渡代，以前の業態，業種可否，掲載日，…) parsed from the list and detail pages; unknown values are `null`.\n\n| Query   | Description                                                                  | Default |\n| ------- | ---------------------------------------------------------------------------- | ------- |\n| `limit` | Number of listings to process (detail pages are fetched per listing), max 30 | 30      |",
+        "categories": [
+          "other"
+        ],
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportRadar": true
+        },
+        "radar": [
+          {
+            "source": [
+              "www.iri-search.net/estate_search",
+              "www.iri-search.net/"
+            ],
+            "target": "/estate"
+          }
+        ],
+        "location": "estate.ts",
+        "module": () => import('@/routes/iri-search/estate.ts')
+      }
+    },
+    "apiRoutes": {},
+    "name": "iri-search",
+    "url": "www.iri-search.net",
+    "description": "居抜き物件検索 iri-search — 全国の貸店舗・居抜き物件情報サイト",
+    "lang": "ja",
+    "ja": {
+      "name": "居抜き物件検索 iri-search"
+    }
   },
   "itc": {
     "routes": {
@@ -108651,6 +108910,51 @@ export default {
     "url": "www.solidot.org",
     "lang": "zh-CN"
   },
+  "sonomama": {
+    "routes": {
+      "/property/:pref?": {
+        "path": "/property/:pref?",
+        "name": "新着物件",
+        "url": "www.sonomama.net",
+        "maintainers": [
+          "pseudoyu"
+        ],
+        "example": "/sonomama/property/tokyo",
+        "parameters": {
+          "pref": "Prefecture slug (tokyo, kanagawa, saitama, chiba, osaka, kyoto, hyogo, aichi, fukuoka) or JIS X 0401 code; omit for nationwide"
+        },
+        "description": "New listings on 店舗そのままオークション，newest first (first page, 20 listings). Each item's `_extra` carries the structured listing fields (賃料，坪，階，最寄駅，敷金・保証金，造作価格，業態，業種制限，…) parsed from the list and detail pages; unknown values are `null`. The site does not publish listing dates, so items have no `pubDate`.\n\n| Query   | Description                                                                  | Default |\n| ------- | ---------------------------------------------------------------------------- | ------- |\n| `limit` | Number of listings to process (detail pages are fetched per listing), max 20 | 20      |",
+        "categories": [
+          "other"
+        ],
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportRadar": true
+        },
+        "radar": [
+          {
+            "source": [
+              "www.sonomama.net/app/",
+              "www.sonomama.net/"
+            ],
+            "target": "/property"
+          }
+        ],
+        "location": "property.ts",
+        "module": () => import('@/routes/sonomama/property.ts')
+      }
+    },
+    "apiRoutes": {},
+    "name": "Sonomama",
+    "url": "www.sonomama.net",
+    "description": "店舗そのままオークション — 居抜き店舗物件情報サイト",
+    "lang": "ja",
+    "ja": {
+      "name": "店舗そのままオークション"
+    }
+  },
   "sony": {
     "routes": {
       "/downloads/:productType/:productId": {
@@ -113321,6 +113625,59 @@ export default {
     "url": "t.me",
     "lang": "en"
   },
+  "temponw": {
+    "routes": {
+      "/estates/:area?": {
+        "path": "/estates/:area?",
+        "name": "新着物件",
+        "url": "www.temponw.com",
+        "maintainers": [
+          "pseudoyu"
+        ],
+        "example": "/temponw/estates/tokyo",
+        "parameters": {
+          "area": {
+            "description": "`tokyo` for the 23 wards of Tokyo; omit for nationwide",
+            "options": [
+              {
+                "value": "tokyo",
+                "label": "東京23区"
+              }
+            ]
+          }
+        },
+        "description": "Listings on 店舗ネットワーク sorted by 新着順 (first two pages, 20 listings). Each item's `_extra` carries the structured listing fields (賃料，坪，階，最寄駅，保証金，礼金，造作譲渡料，不可業態，…) parsed from the list and detail pages; unknown values are `null`. The site does not publish listing dates, so items have no `pubDate`; the same unit may be listed by several agencies under different ids.",
+        "categories": [
+          "other"
+        ],
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportRadar": true
+        },
+        "radar": [
+          {
+            "source": [
+              "www.temponw.com/result",
+              "www.temponw.com/"
+            ],
+            "target": "/estates"
+          }
+        ],
+        "location": "estates.ts",
+        "module": () => import('@/routes/temponw/estates.ts')
+      }
+    },
+    "apiRoutes": {},
+    "name": "Temponw",
+    "url": "www.temponw.com",
+    "description": "店舗ネットワーク — 貸店舗・テナント物件情報サイト",
+    "lang": "ja",
+    "ja": {
+      "name": "店舗ネットワーク"
+    }
+  },
   "temposmart": {
     "routes": {
       "/estates/:pref?": {
@@ -113396,6 +113753,176 @@ export default {
     "lang": "ja",
     "ja": {
       "name": "テンポスマート"
+    }
+  },
+  "tenant-shop": {
+    "routes": {
+      "/chintai/:pref?/:type?": {
+        "path": "/chintai/:pref?/:type?",
+        "name": "新着物件",
+        "url": "www.tenant-shop.com",
+        "maintainers": [
+          "pseudoyu"
+        ],
+        "example": "/tenant-shop/chintai/tokyo/food",
+        "parameters": {
+          "pref": {
+            "description": "Prefecture slug or the site's `pa` code",
+            "default": "tokyo",
+            "options": [
+              {
+                "value": "tokyo",
+                "label": "東京都 (14)"
+              },
+              {
+                "value": "kanagawa",
+                "label": "神奈川県 (15)"
+              },
+              {
+                "value": "saitama",
+                "label": "埼玉県 (16)"
+              },
+              {
+                "value": "chiba",
+                "label": "千葉県 (17)"
+              },
+              {
+                "value": "ibaraki",
+                "label": "茨城県 (18)"
+              },
+              {
+                "value": "tochigi",
+                "label": "栃木県 (19)"
+              },
+              {
+                "value": "gunma",
+                "label": "群馬県 (20)"
+              },
+              {
+                "value": "hokkaido",
+                "label": "北海道 (7)"
+              },
+              {
+                "value": "miyagi",
+                "label": "宮城県 (10)"
+              },
+              {
+                "value": "niigata",
+                "label": "新潟県 (21)"
+              },
+              {
+                "value": "nagano",
+                "label": "長野県 (28)"
+              },
+              {
+                "value": "aichi",
+                "label": "愛知県 (25)"
+              },
+              {
+                "value": "gifu",
+                "label": "岐阜県 (26)"
+              },
+              {
+                "value": "shizuoka",
+                "label": "静岡県 (27)"
+              },
+              {
+                "value": "osaka",
+                "label": "大阪府 (1)"
+              },
+              {
+                "value": "kyoto",
+                "label": "京都府 (31)"
+              },
+              {
+                "value": "hyogo",
+                "label": "兵庫県 (32)"
+              },
+              {
+                "value": "shiga",
+                "label": "滋賀県 (5)"
+              },
+              {
+                "value": "nara",
+                "label": "奈良県 (34)"
+              }
+            ]
+          },
+          "type": {
+            "description": "Property type filter; omit for all types",
+            "options": [
+              {
+                "value": "inuki",
+                "label": "居抜き"
+              },
+              {
+                "value": "food",
+                "label": "飲食"
+              },
+              {
+                "value": "office",
+                "label": "オフィス"
+              },
+              {
+                "value": "retail",
+                "label": "物販・サービス"
+              },
+              {
+                "value": "warehouse",
+                "label": "倉庫・工場"
+              },
+              {
+                "value": "beauty",
+                "label": "美容・エステ・医療"
+              },
+              {
+                "value": "roadside",
+                "label": "沿道サービス・借地"
+              },
+              {
+                "value": "mall",
+                "label": "商業施設"
+              }
+            ]
+          }
+        },
+        "description": "New listings (新着物件) on テナントショップネットワーク for one prefecture, newest first (first page, 30 listings). Each item's `_extra` carries the structured listing fields (賃料，坪，坪単価，階，最寄駅，保証金・敷金，礼金，物件登録日，…) parsed from the list and detail pages; unknown values are `null`. East Japan prefectures are served by tenant-shop.com and 愛知 and westward by tenant-shop.jp.\n\n| Query   | Description                                                                  | Default |\n| ------- | ---------------------------------------------------------------------------- | ------- |\n| `limit` | Number of listings to process (detail pages are fetched per listing), max 30 | 30      |",
+        "categories": [
+          "other"
+        ],
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportRadar": true
+        },
+        "radar": [
+          {
+            "source": [
+              "www.tenant-shop.com/chintai_biz/pa-:pa/shin-1",
+              "www.tenant-shop.com/chintai_biz/pa-:pa"
+            ],
+            "target": "/chintai/:pa"
+          },
+          {
+            "source": [
+              "www.tenant-shop.jp/chintai_biz/pa-:pa/shin-1",
+              "www.tenant-shop.jp/chintai_biz/pa-:pa"
+            ],
+            "target": "/chintai/:pa"
+          }
+        ],
+        "location": "chintai.ts",
+        "module": () => import('@/routes/tenant-shop/chintai.ts')
+      }
+    },
+    "apiRoutes": {},
+    "name": "Tenant Shop Network",
+    "url": "www.tenant-shop.com",
+    "description": "テナントショップネットワーク — 貸店舗・貸事務所・居抜き物件情報サイト（東日本は tenant-shop.com、愛知以西は tenant-shop.jp）",
+    "lang": "ja",
+    "ja": {
+      "name": "テナントショップネットワーク"
     }
   },
   "tencent": {
