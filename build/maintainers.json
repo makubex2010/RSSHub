@@ -1797,15 +1797,7 @@
   "/ff14/global/:lang/:type?": [
     "kmod-midori"
   ],
-  "/ff14/ff14_global/:lang/:type?": [
-    "kmod-midori"
-  ],
   "/ff14/zh/:type?": [
-    "Kiotlin",
-    "ZeroClad",
-    "15x15G"
-  ],
-  "/ff14/ff14_zh/:type?": [
     "Kiotlin",
     "ZeroClad",
     "15x15G"
@@ -2298,6 +2290,9 @@
   ],
   "/30secondsofcode/latest": [
     "Rjnishant530"
+  ],
+  "/35mmc/:category?": [
+    "IvanWng97"
   ],
   "/3dmgame/games/:name/:type?": [
     "sinchang",

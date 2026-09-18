@@ -5997,14 +5997,6 @@
           "/web8/index.html"
         ],
         "target": "/ff14/zh"
-      },
-      {
-        "title": "最终幻想 14 国服",
-        "docs": "https://docs.rsshub.app/routes/game",
-        "source": [
-          "/web8/index.html"
-        ],
-        "target": "/ff14/zh"
       }
     ]
   },
@@ -8753,6 +8745,21 @@
           "/"
         ],
         "target": "/30secondsofcode/latest"
+      }
+    ]
+  },
+  "35mmc.com": {
+    "_name": "35mmc",
+    "www": [
+      {
+        "title": "Posts",
+        "docs": "https://docs.rsshub.app/routes/picture",
+        "source": [
+          "/category/:category",
+          "/category/:parent/:category",
+          "/"
+        ],
+        "target": "/35mmc/:category?"
       }
     ]
   },
