@@ -2381,6 +2381,9 @@
     "nczitzk",
     "pseudoyu"
   ],
+  "/abc-tenpo/detail/:id": [
+    "pseudoyu"
+  ],
   "/abc-tenpo/property/:pref?": [
     "pseudoyu"
   ],
@@ -2744,6 +2747,9 @@
   "/atcoder/post/:language?/:keyword?": [
     "nczitzk"
   ],
+  "/athome/rent-store/:pref/:city": [
+    "pseudoyu"
+  ],
   "/augmentcode/blog": [
     "nczitzk"
   ],
@@ -3058,7 +3064,10 @@
   "/bugzilla/bug/:site/:bugId": [
     "FranklinYu"
   ],
-  "/bukenavi/object/:region?/:pref?": [
+  "/bukenavi/detail/:id/:region?": [
+    "pseudoyu"
+  ],
+  "/bukenavi/object/:region?/:pref?/:city?": [
     "pseudoyu"
   ],
   "/bulianglin/": [
@@ -3136,6 +3145,9 @@
   ],
   "/canada.ca/news/:lang/:department?": [
     "elibroftw"
+  ],
+  "/canaeru/:pref?/:city?": [
+    "pseudoyu"
   ],
   "/canalmuseum/consulting/:type": [
     "magazian"
@@ -5392,6 +5404,12 @@
   "/hzcu/news/latest": [
     "zhang-wangz"
   ],
+  "/i-tenpo/detail/:id": [
+    "pseudoyu"
+  ],
+  "/i-tenpo/:pref/:city/:type?": [
+    "pseudoyu"
+  ],
   "/ianspriggs/:category?": [
     "nczitzk"
   ],
@@ -5533,7 +5551,7 @@
   "/inoreader/rss/:user/:tag": [
     "IvanWng97"
   ],
-  "/inshokuten/bukken/:area?": [
+  "/inshokuten/bukken/:area?/:region?": [
     "pseudoyu"
   ],
   "/inshokuten/rent-benchmark/:area?/:line?": [
@@ -8415,7 +8433,7 @@
   "/temponw/estates/:area?": [
     "pseudoyu"
   ],
-  "/temposmart/estates/:pref?": [
+  "/temposmart/estates/:pref?/:district?": [
     "pseudoyu"
   ],
   "/tenant-shop/chintai/:pref?/:type?": [
