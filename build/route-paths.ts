@@ -1192,6 +1192,7 @@ export type RoutePath =
   | `/forwardfuture/daily`
   | `/forwardfuture/originals`
   | `/fosshub/:id`
+  | `/fraenkelgallery/:type?`
   | `/free/`
   | `/freebuf/articles/:type`
   | `/freecomputerbooks/:category?`
@@ -3696,6 +3697,7 @@ export type RoutePath =
   | `/xueqiu/fund/:id`
   | `/xueqiu/hots`
   | `/xueqiu/snb/:id`
+  | `/xueqiu/status/:uid/:id`
   | `/xueqiu/stock_comments/:id`
   | `/xueqiu/stock_info/:id/:type?`
   | `/xueqiu/timeline/:usergroup_id?`

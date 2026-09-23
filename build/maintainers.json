@@ -4676,6 +4676,9 @@
   "/fosshub/:id": [
     "nczitzk"
   ],
+  "/fraenkelgallery/:type?": [
+    "IvanWng97"
+  ],
   "/freecomputerbooks/:category?": [
     "cubroe"
   ],
@@ -9340,6 +9343,9 @@
   ],
   "/xueqiu/hots": [
     "hillerliao"
+  ],
+  "/xueqiu/status/:uid/:id": [
+    "ruesin"
   ],
   "/xueqiu/stock_info/:id/:type?": [
     "YuYang"
