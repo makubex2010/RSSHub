@@ -13496,39 +13496,6 @@ export default {
     "url": "fantia.jp",
     "lang": "ja"
   },
-  "fortnite": {
-    "routes": {
-      "/news/:options?": {
-        "path": "/news/:options?",
-        "categories": [
-          "game"
-        ],
-        "example": "/fortnite/news",
-        "parameters": {
-          "options": "Params"
-        },
-        "features": {
-          "requireConfig": false,
-          "requirePuppeteer": true,
-          "antiCrawler": false,
-          "supportBT": false,
-          "supportPodcast": false,
-          "supportScihub": false
-        },
-        "name": "News",
-        "maintainers": [
-          "lyqluis"
-        ],
-        "description": "- `options.lang`, optional, language, eg. `/fortnite/news/lang=en-US`, common languages are listed below, more languages are available one the [official website](https://www.fortnite.com/news)\n\n| English (default) | Spanish | Japanese | French | Korean | Polish |\n| ----------------- | ------- | -------- | ------ | ------ | ------ |\n| en-US             | es-ES   | ja       | fr     | ko     | pl     |",
-        "location": "news.ts",
-        "module": () => import('@/routes/fortnite/news.ts')
-      }
-    },
-    "apiRoutes": {},
-    "name": "Fortnite",
-    "url": "fortnite.com",
-    "lang": "en"
-  },
   "gamer520": {
     "routes": {
       "/:category?/:order?": {
@@ -79106,6 +79073,45 @@ export default {
       "university"
     ],
     "lang": "zh-CN"
+  },
+  "komica": {
+    "routes": {
+      "/:host/:board/:category?": {
+        "path": "/:host/:board/:category?",
+        "name": "討論板",
+        "url": "komica1.org",
+        "maintainers": [
+          "TonyRL"
+        ],
+        "example": "/komica/gita/00b/動畫",
+        "parameters": {
+          "host": "子網域，即討論板網址中 `*.komica1.org` 的第一段，如 `gita`",
+          "board": "討論板路徑，如 `00b`",
+          "category": "類別（列表模式），如 `動畫`、`漫畫`、`掛圖`、`新番捏他`、`新番實況`、`模型`、`軍武`；留空為整個版面"
+        },
+        "description": "例如綜合避難所 <https://gita.komica1.org/00b/> 對應 `/komica/gita/00b`，其「動畫」列表對應 `/komica/gita/00b/動畫`。",
+        "categories": [
+          "bbs"
+        ],
+        "radar": [
+          {
+            "source": [
+              "komica1.org/:board/"
+            ],
+            "target": "/:host/:board"
+          }
+        ],
+        "location": "index.ts",
+        "module": () => import('@/routes/komica/index.ts')
+      }
+    },
+    "apiRoutes": {},
+    "name": "Komica",
+    "url": "komica1.org",
+    "categories": [
+      "bbs"
+    ],
+    "lang": "zh-TW"
   },
   "kongfz": {
     "routes": {
@@ -161355,6 +161361,54 @@ export default {
     "apiRoutes": {},
     "name": "Finology Insider",
     "url": "insider.finology.in",
+    "lang": "en"
+  },
+  "fortnite": {
+    "routes": {
+      "/news/:options?": {
+        "path": "/news/:options?",
+        "categories": [
+          "game"
+        ],
+        "example": "/fortnite/news",
+        "parameters": {
+          "options": "Query-style options, `lang` and `tag`, see below"
+        },
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "www.fortnite.com/news"
+            ],
+            "target": "/news"
+          },
+          {
+            "source": [
+              "www.fortnite.com/news/tag/:tag"
+            ],
+            "target": "/news/tag=:tag"
+          }
+        ],
+        "name": "News",
+        "maintainers": [
+          "lyqluis"
+        ],
+        "url": "www.fortnite.com/news",
+        "description": "- `lang`, default `en-US`, one of `ar`, `de`, `en-US`, `es-ES`, `es-MX`, `fr`, `it`, `ja`, `ko`, `pl`, `pt-BR`, `ru`, `tr`, `zh-Hans`\n- `tag`, optional, one of `battle-royale` (Battle Royale), `fortnite-competitive` (Fortnite Competitive), `fortnite-festival` (Fortnite Festival), `fortnite-news` (Fortnite News), `fortnite-og` (Fortnite OG), `fortnite-uefn-and-creative` (UEFN and Creative), `lego-fortnite` (LEGO Fortnite Odyssey), `lego-fortnite-brick-life` (LEGO Fortnite Brick Life), `ranked` (Ranked Battle Royale), `reload` (Reload), `rocket-racing` (Rocket Racing), `save-the-world` (Save the World)",
+        "location": "news.ts",
+        "module": () => import('@/routes/fortnite/news.ts')
+      }
+    },
+    "apiRoutes": {},
+    "name": "Fortnite",
+    "url": "fortnite.com",
     "lang": "en"
   },
   "pixiv": {
