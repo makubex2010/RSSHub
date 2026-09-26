@@ -36174,6 +36174,20 @@
       }
     ]
   },
+  "petapixel.com": {
+    "_name": "PetaPixel",
+    ".": [
+      {
+        "title": "Posts",
+        "docs": "https://docs.rsshub.app/routes/picture",
+        "source": [
+          "/topic/:category",
+          "/"
+        ],
+        "target": "/petapixel/:category?"
+      }
+    ]
+  },
   "peterwunder.de": {
     "_name": "Peter Wunder",
     "projects": [
@@ -42710,14 +42724,25 @@
   },
   "uber.com": {
     "_name": "Uber",
+    "eng": [
+      {
+        "title": "Engineering",
+        "docs": "https://docs.rsshub.app/routes/blog",
+        "source": [
+          "/",
+          "/:country/:language/blog/engineering"
+        ],
+        "target": "/uber/blog"
+      }
+    ],
     "www": [
       {
         "title": "Engineering",
         "docs": "https://docs.rsshub.app/routes/blog",
         "source": [
-          "/:language/blog/engineering"
+          "/:country/:language/blog/engineering/:category"
         ],
-        "target": "/uber/blog"
+        "target": "/uber/blog/:category"
       }
     ]
   },
@@ -44279,6 +44304,19 @@
           "/:uid"
         ],
         "target": "/xmanhua/:uid"
+      }
+    ]
+  },
+  "xml.com": {
+    "_name": "XML.com",
+    "www": [
+      {
+        "title": "Articles and News",
+        "docs": "https://docs.rsshub.app/routes/programming",
+        "source": [
+          "/"
+        ],
+        "target": "/xmlcom/"
       }
     ]
   },
@@ -54599,6 +54637,22 @@
           "/channel/:id"
         ],
         "target": "/youtube/channel/:id"
+      },
+      {
+        "title": "Live Streams",
+        "docs": "https://docs.rsshub.app/routes/live",
+        "source": [
+          "/@:handle/streams"
+        ],
+        "target": "/youtube/streams/@:handle"
+      },
+      {
+        "title": "Live Streams",
+        "docs": "https://docs.rsshub.app/routes/live",
+        "source": [
+          "/channel/:handle/streams"
+        ],
+        "target": "/youtube/streams/:handle"
       },
       {
         "title": "Channel with user handle",

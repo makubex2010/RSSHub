@@ -5335,6 +5335,9 @@
   "/hubu/zhxy/:category{.+}?": [
     "nczitzk"
   ],
+  "/huggingface/datasets/:author": [
+    "Cod1doc"
+  ],
   "/huggingface/activity/:user/likes": [
     "dotwee"
   ],
@@ -7185,6 +7188,9 @@
   "/perplexity/changelog": [
     "xbot"
   ],
+  "/petapixel/:category?": [
+    "IvanWng97"
+  ],
   "/peterwunder/achievements": [
     "LinxHex"
   ],
@@ -8751,8 +8757,9 @@
   "/u9a9/search/:keyword/:preview?": [
     "TonyRL"
   ],
-  "/uber/blog/:compat?": [
-    "hulb"
+  "/uber/blog/:category?": [
+    "hulb",
+    "zhsama"
   ],
   "/ucas/ai": [
     "shengmaosu"
@@ -9302,6 +9309,9 @@
   ],
   "/xmanhua/:uid": [
     "Ye11"
+  ],
+  "/xmlcom/": [
+    "AboutRSS"
   ],
   "/xmnn/epaper/:id?": [
     "nczitzk"
@@ -12289,6 +12299,10 @@
   "/zhihu/people/pins/:id": [
     "xyqfer"
   ],
+  "/zhihu/daily": [
+    "DHPO",
+    "pseudoyu"
+  ],
   "/zhihu/xhu/people/answers/:hexId": [
     "JimenezLi"
   ],
@@ -12302,10 +12316,6 @@
     "huruji",
     "Colin-XKL",
     "Fatpandac"
-  ],
-  "/zhihu/daily": [
-    "DHPO",
-    "pseudoyu"
   ],
   "/zhihu/weekly": [
     "LogicJake"
@@ -12477,6 +12487,9 @@
   ],
   "/youtube/playlist/:id/:embed?": [
     "HenryQW"
+  ],
+  "/youtube/streams/:handle/:routeParams?": [
+    "ouuan"
   ],
   "/youtube/user/:username/:routeParams?": [
     "DIYgod",
