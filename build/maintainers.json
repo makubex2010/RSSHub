@@ -10313,6 +10313,9 @@
   "/dongqiudi/top_news/:id?": [
     "HendricksZheng"
   ],
+  "/dr/:category?": [
+    "cufezhusy"
+  ],
   "/dribbble/keyword/:keyword": [
     "DIYgod",
     "loganrockmore"
@@ -12361,6 +12364,9 @@
   ],
   "/zhihu/zhuanlan/:id": [
     "DIYgod"
+  ],
+  "/czechstepbystep/kratke-ceske-zpravy": [
+    "cmp0xff"
   ],
   "/finology/bullets": [
     "Rjnishant530"
