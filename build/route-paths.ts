@@ -2004,6 +2004,7 @@ export type RoutePath =
   | `/kongfz/shop/:id/:cat?`
   | `/konghq/blog-posts`
   | `/koreaherald/:category{.+}?`
+  | `/kosmofoto/:category?`
   | `/kovidgoyal/kitty/changelog`
   | `/koyso/:category?/:sort?`
   | `/kpmg/insights/:lang?`
@@ -3786,6 +3787,7 @@ export type RoutePath =
   | `/youtube/community/:handle`
   | `/youtube/live/:username/:embed?`
   | `/youtube/playlist/:id/:embed?`
+  | `/youtube/shows/:username`
   | `/youtube/subscriptions/:embed?`
   | `/youtube/user/:username/:routeParams?`
   | `/youzan/goods/:id`

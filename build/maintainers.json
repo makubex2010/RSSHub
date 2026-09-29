@@ -5865,6 +5865,9 @@
   "/koreaherald/:category{.+}?": [
     "quiniapiezoelectricity"
   ],
+  "/kosmofoto/:category?": [
+    "IvanWng97"
+  ],
   "/kovidgoyal/kitty/changelog": [
     "xbot"
   ],
@@ -12456,6 +12459,9 @@
   ],
   "/youtube/playlist/:id/:embed?": [
     "HenryQW"
+  ],
+  "/youtube/shows/:username": [
+    "TonyRL"
   ],
   "/youtube/user/:username/:routeParams?": [
     "DIYgod",
